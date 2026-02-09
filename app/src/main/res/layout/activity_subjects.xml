@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/subContainer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.SubjectsActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main_content_to_blurS"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background">
+
+        <!-- Decorative Top Arc -->
+        <ImageView
+            android:id="@+id/subjectDecor1"
+            android:layout_width="420dp"
+            android:layout_height="420dp"
+            android:layout_marginTop="-260dp"
+            android:alpha="0.8"
+            android:contentDescription="@string/decor"
+            android:src="@drawable/oval_gradient"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/subjectDecor2"
+            android:layout_width="420dp"
+            android:layout_height="420dp"
+            android:layout_marginEnd="-200dp"
+            android:layout_marginBottom="-230dp"
+            android:alpha="0.8"
+            android:contentDescription="@string/decor"
+            android:src="@drawable/oval_gradient2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <ImageView
+            android:id="@+id/subjectDecor3"
+            android:layout_width="420dp"
+            android:layout_height="420dp"
+            android:layout_marginStart="-270dp"
+            android:layout_marginBottom="80dp"
+            android:alpha="0.6"
+            android:contentDescription="@string/decor"
+            android:src="@drawable/oval_gradient3"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/subjectsDecor"
+            android:visibility="gone"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/backBtnSS"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="80dp"
+            android:contentDescription="@string/back"
+            android:src="@drawable/ic_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/white" />
+
+        <TextView
+            android:id="@+id/subjectTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginTop="48dp"
+            android:fontFamily="@font/inter18regular"
+            android:text="@string/subjects"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/backBtnSS"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/menuS"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="48dp"
+            android:layout_marginEnd="30dp"
+            android:contentDescription="@string/menu"
+            android:src="@drawable/menu"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/white" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/subjects_recycler_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:clipToPadding="false"
+            android:padding="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/subjectTitle"
+            tools:listitem="@layout/item_subject" />
+
+        <TextView
+            android:id="@+id/empty_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:padding="16dp"
+            android:text="@string/no_subjects_selected_please_add_subjects_in_your_profile"
+            android:textSize="16sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/subjectTitle" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <eightbitlab.com.blurview.BlurView
+        android:id="@+id/blurViewS"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        app:blurOverlayColor="#4D000000" />
+
+    <include
+        android:id="@+id/customNavDrawerS"
+        layout="@layout/custom_nav_subjects"
+        android:layout_width="280dp"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:layout_gravity="end"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="10dp"
+        android:elevation="20dp"/>
+
+</FrameLayout>
+
+
+
+
+
+
+
+

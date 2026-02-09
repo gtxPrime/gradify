@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary">#1976D2</color>
+    <color name="primary_dark">#1565C0</color>
+    <color name="primary_light">#BBDEFB</color>
+    <color name="accent">#FF9800</color>
+    <color name="accent_dark">#F57C00</color>
+    <color name="accent_light">#FFE0B2</color>
+
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="gray">#9E9E9E</color>
+    <color name="light_gray">#F5F5F5</color>
+    <color name="red">#F44336</color>
+    <color name="green">#4CAF50</color>
+
+    <color name="background">#111A23</color>
+    <color name="text_primary">#212121</color>
+    <color name="text_secondary">#757575</color>
+    <color name="divider">#BDBDBD</color>
+
+    <!--    My colors-->
+    <color name="primaryColor">#243447</color>
+    <color name="secondaryColor">#252525</color>
+    <color name="glowColor">#0BE5C1</color>
+    <color name="grey">#353535</color>
+
+    <color name="primaryDarkColor">#0A2E28</color>
+
+    <color name="ga1">#0BE5C1</color>
+    <color name="ga2">#0BC5E5</color>
+    <color name="ga3">#0BE5D3</color>
+
+    <color name="chip_selected">#243447</color>
+    <color name="chip_unselected">#243447</color>
+    <color name="chip_border">#243447</color>
+    <color name="unselected_text">#A0A0A0</color>
+
+    <color name="secondSecondary">#FF0000</color>
+    <color name="firstSecondary">#0049FF</color>
+
+
+    <color name="pie1">#00FF90</color>
+    <color name="pie2">#00F7FF</color>
+    <color name="pie3">#007BFF</color>
+    <color name="pie4">#0048FF</color>
+
+    <array name="default_pie_chart_colors">
+        <item>@color/pie1</item>
+        <item>@color/pie2</item>
+        <item>@color/pie3</item>
+        <item>@color/pie4</item>
+    </array>
+
+</resources>

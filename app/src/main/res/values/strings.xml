@@ -1,0 +1,223 @@
+<resources>
+    <string name="app_name">Gradify</string>
+    <string name="web_client_id">487108809621-bra5oe20nb952uc1m0krhgl97bl50e41.apps.googleusercontent.com</string>
+
+    <!-- Navigation -->
+    <string name="title_notes">Notes</string>
+    <string name="title_lectures">Lectures</string>
+    <string name="title_quiz">Quiz</string>
+    <string name="title_settings">Settings</string>
+
+    <!-- College Years -->
+    <string name="first_year">First Year</string>
+    <string name="second_year">Second Year</string>
+    <string name="third_year">Third Year</string>
+    <string name="fourth_year">Fourth Year</string>
+
+    <!-- Lecture Types -->
+    <string name="official_lectures">Official Lectures</string>
+    <string name="helping_lectures">Helping Lectures</string>
+
+    <!-- Quiz Types -->
+    <string name="quiz_1">Quiz 1</string>
+    <string name="quiz_2">Quiz 2</string>
+    <string name="end_term">End Term</string>
+
+    <!-- Settings -->
+    <string name="select_year">Select Year</string>
+    <string name="select_subjects">Select Subjects</string>
+    <string name="save_settings">Save Settings</string>
+
+    <!-- Actions -->
+    <string name="download">Download</string>
+    <string name="view">View</string>
+    <string name="next">Next</string>
+    <string name="submit">Submit</string>
+    <string name="start_quiz">Start Quiz</string>
+    <string name="back_to_menu">Back to Menu</string>
+
+    <!-- Messages -->
+    <string name="loading">Loading…</string>
+    <string name="error_loading">Error loading data. Please try again.</string>
+    <string name="network_error">Network error. Please check your connection.</string>
+    <string name="no_data_available">No data available.</string>
+    <string name="settings_saved">Settings saved successfully!</string>
+    <string name="hello">Hello!</string>
+    <string name="search_on_yt">Search on YT</string>
+    <string name="good_morning">Good Morning</string>
+    <string name="need_help">Need Help?</string>
+    <string name="practice_pyq">Practice PYQ</string>
+    <string name="practice_you_knowledge">Practice PYQs</string>
+    <string name="lectures">Lectures</string>
+    <string name="tools">Tools</string>
+    <string name="notes">Notes</string>
+    <string name="life_saving_notes">Life-saving notes</string>
+    <string name="boring_part">Boring part</string>
+    <string name="just_to_make_your_life_easy">Just for easy life</string>
+    <string name="pyq">PYQ</string>
+    <string name="previous_year_questions">Practice PYQs</string>
+    <string name="subject">Subject</string>
+    <string name="quiz_type">Quiz Type</string>
+    <string name="year">Year</string>
+    <string name="session">Session</string>
+    <string name="mode">Mode</string>
+    <string name="practice">Practice</string>
+    <string name="exam">Exam</string>
+    <string name="start_exam">Start Exam</string>
+    <string name="date_selection">Date Selection</string>
+    <string name="mode_description">Choose between practice mode with no limits or exam mode with time limits</string>
+    <string name="exam_mode_description">Exam mode has a time limit and no hints. Good luck!</string>
+    <string name="back">Back</string>
+    <string name="sign_out">Sign Out</string>
+
+
+    <!-- Profile Activity -->
+    <string name="profile_picture">Profile Picture</string>
+    <string name="user_name">User Name</string>
+    <string name="user_email">user@ds.study.iitm.ac.in</string>
+    <string name="select_degree_year">Select Degree Year</string>
+    <string name="selected_items">Selected Items</string>
+    <string name="logout">Logout</string>
+    <string name="sign_in_with_google">Log-in with Google</string>
+    <string name="academic_profile">Academic Profile</string>
+    <string name="add">Add</string>
+    <string name="login_required">Login required with @ds.study.iitm.ac.in email</string>
+    <string name="invalid_domain">Only @ds.study.iitm.ac.in domain is allowed</string>
+    <string name="menu">Menu</string>
+    <string name="welcome">Welcome</string>
+    <string name="decor">decor</string>
+    <string name="_50_min">50 min</string>
+    <string name="total_time_studied">Total time studied</string>
+    <string name="garvit_sharma">Garvit Sharma</string>
+    <string name="level">Level:</string>
+    <string name="levels">Choose your study level</string>
+    <string name="choose_subjects">Choose your subjects</string>
+    <string name="select_level">Select level test</string>
+    <string name="configure_quiz">Select your preferences</string>
+    <string name="select_parameters_below">Select the parameters below to start your practice quiz</string>
+    <string name="practice_mode">Practice Mode</string>
+    <string name="exam_mode">Exam Mode</string>
+    <string name="select_quiz_type">Select Quiz Type</string>
+    <string name="select_session">Select Session</string>
+    <string name="fetching_data">Fetching data…</string>
+    <string name="_00_00">00:00</string>
+    <string name="question_1_20">Question 1/20</string>
+    <string name="_100_marks">100 Marks</string>
+    <string name="single_answer">Single Answer</string>
+    <string name="select_answer">Select Answer:</string>
+    <string name="enter_your_answer">Enter your answer</string>
+    <string name="correct">Correct!</string>
+    <string name="check">Check</string>
+    <string name="submit_quiz">Submit Quiz</string>
+    <string name="view_extra_information">View Extra Information</string>
+    <string name="your_score">Your Score</string>
+    <string name="_0">0</string>
+    <string name="_100">/100</string>
+    <string name="extra_info">Extra Info</string>
+    <string name="extra_information">Extra Information</string>
+    <string name="close">Close</string>
+    <string name="quiz_results">Quiz Results</string>
+    <string name="review_answers">Review answers</string>
+    <string name="quit">Quit?</string>
+    <string name="are_you_sure_you_wanna_quit">Are you sure you want to quit?</string>
+    <string name="exit">Exit</string>
+    <string name="submit_and_exit">Submit &amp; exit</string>
+    <string name="cancel">Cancel</string>
+    <string name="close_exam">Close exam</string>
+    <string name="abort_quiz">Abort Quiz</string>
+    <string name="abort">Abort</string>
+    <string name="grade_calculator">Grade Calculator</string>
+    <string name="calculate_grade">Calculate Grade</string>
+    <string name="ai_chat">AI Chat</string>
+    <string name="reviews">Reviews</string>
+    <string name="share_video">Share Video</string>
+    <string name="modules">Modules</string>
+    <string name="no_subjects_selected_please_add_subjects_in_your_profile">No subjects selected. Please add subjects in your profile.</string>
+    <string name="introduction_to_big_data">Introduction to Big Data</string>
+    <string name="foundation_level">Foundation level</string>
+    <string name="subjects">Subjects</string>
+    <string name="daily_view">Daily View</string>
+    <string name="monthly_view">Monthly View</string>
+    <string name="previous_day">Previous Day</string>
+    <string name="next_day">Next Day</string>
+    <string name="next_month">Next Month</string>
+    <string name="previous_month">Previous Month</string>
+    <string name="no_data_for_this_period">No data for this period.</string>
+    <string name="multiple_answers">Multiple Answers</string>
+    <string name="text_answer">Text Answer</string>
+    <string name="submit_question">Submit?</string>
+    <string name="are_you_sure_you_want_to_submit">Are you sure you want to submit?</string>
+
+    <!--    Marks reviews-->
+    <string name="above90">Excellent! Outstanding performance!</string>
+    <string name="above80">Great job! Very good performance!</string>
+    <string name="above70">Good work! You\'ve done well.</string>
+    <string name="above60">Decent effort. Room for improvement.</string>
+    <string name="above50">Shayad pass ho jaye or mhenat kar ke padhle</string>
+    <string name="above40">Padhai kar bhai</string>
+    <string name="fail_mc">Padhai karle yar aise to tu fail hai</string>
+    <string name="settings">Settings</string>
+    <string name="help">Help</string>
+    <string name="time_studied">Time Studied</string>
+    <string name="stats">Stats</string>
+    <string name="gaa_answers">GAA Answers</string>
+    <string name="exam_dates">Exam Dates</string>
+    <string name="paradox">Paradox</string>
+    <string name="margazhi">Margazhi</string>
+    <string name="contribute">Contribute</string>
+    <string name="developers">Developers</string>
+    <string name="donation">Donation</string>
+    <string name="edit_subjects">Edit Subjects</string>
+    <string name="live_lectures">Live lectures</string>
+    <string name="error">Error</string>
+    <string name="enable_auto_timezone">Enable auto date &amp; time</string>
+    <string name="calculating">Calculating</string>
+    <string name="select_subjects_in_profile">Select subjects in profile</string>
+    <string name="login">Login</string>
+    <string name="head_dev_info"><![CDATA[Lead Developer & Architect. Crafted the entire application from concept to deployment.]]></string>
+    <string name="key_contributors">Key Contributors</string>
+    <string name="dev2_info">Assisted with data entry and content gathering.</string>
+    <string name="dev3_info">Instrumental in data validation and organization.</string>
+    <string name="shashwat_upadhyay">Shashwat Upadhyay</string>
+    <string name="dev1">Aayansh Yadav</string>
+    <string name="generate_detailed_notes">Generate detailed notes</string>
+    <string name="summarise_this_video">Summarise this video</string>
+    <string name="explain_this_concept">Explain this concept</string>
+    <string name="ask_ai">Ask AI…</string>
+    <string name="send">SEND</string>
+
+    <string name="theme">Theme</string>
+    <string name="light">Light</string>
+    <string name="dark">Dark</string>
+    <string name="system_default">System</string>
+    <string name="primary_color">Primary Color</string>
+    <string name="secondary_color">Secondary Color</string>
+    <string name="more_colors">More Options</string>
+    <string name="gradient_1_color">Color 1</string>
+    <string name="gradient_2_color">Color 2</string>
+    <string name="gradient_3_color">Color 3</string>
+    <string name="ai_settings">AI Settings</string>
+    <string name="api_key">API Key</string>
+    <string name="how_to_get_api_key">How to get your API key?</string>
+    <string name="edit">Edit</string>
+    <string name="message_history">Message History</string>
+    <string name="send_whole_history">Send whole history</string>
+    <string name="meaning_prompt">Meaning?</string>
+    <string name="history_meaning_explanation">History means the number of previous messages which will be sent to AI for context in Lecture summary. 3 means total 6 messages (3 yours and 3 AI\'s). More history means more token consumption.</string>
+    <string name="other_settings">Other Settings</string>
+    <string name="strict_exam_mode">Strict Exam Mode</string>
+    <string name="focus_mode">Focus Mode</string>
+    <string name="coming_soon">Coming Soon!</string>
+    <string name="gemini_api_key">Gemini API Key</string>
+    <string name="less_colors">Show less</string>
+    <string name="sky_light">Sky-Light</string>
+    <string name="edge_flare">Edge-Flare</string>
+    <string name="color">Color</string>
+    <string name="enter_credits">Enter Credits</string>
+    <string name="enter_grade">Enter Grade</string>
+    <string name="open_api_settings">Open API settings</string>
+
+    <string name="welcome_message"> 👋 Welcome! I’m Lex — your AI assistant powered by Gemini.\n I am here to help you with summaries, notes, and other study support.\n\n🧠 Just type what you need, and I’ll handle the rest.\n\n⏳ Heads up: It may take around 1 minute for me to respond — the delay is on Google\'s end, not ours. Thanks for your patience!\n\n Let\'s get started!💬
+    </string>
+
+</resources>

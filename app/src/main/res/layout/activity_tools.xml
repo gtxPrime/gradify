@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/toolsContainer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/fui_transparent"
+    android:orientation="vertical">
+
+    <!-- Decorative Arcs (copied from activity_pyq.xml) -->
+    <ImageView
+        android:id="@+id/toolDecor1"
+        android:layout_width="420dp"
+        android:layout_height="420dp"
+        android:layout_marginTop="-260dp"
+        android:alpha="0.8"
+        android:contentDescription="@string/decor"
+        android:src="@drawable/oval_gradient"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/toolDecor2"
+        android:layout_width="420dp"
+        android:layout_height="420dp"
+        android:layout_marginEnd="-200dp"
+        android:layout_marginBottom="-230dp"
+        android:alpha="0.8"
+        android:contentDescription="@string/decor"
+        android:src="@drawable/oval_gradient2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/toolDecor3"
+        android:layout_width="420dp"
+        android:layout_height="420dp"
+        android:layout_marginStart="-270dp"
+        android:layout_marginBottom="80dp"
+        android:alpha="0.6"
+        android:contentDescription="@string/decor"
+        android:src="@drawable/oval_gradient3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/toolDecor"
+        android:visibility="gone"/>
+
+    <ImageView
+        android:id="@+id/backBtnT"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="80dp"
+        android:contentDescription="@string/back"
+        android:src="@drawable/ic_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/white" />
+
+    <TextView
+        android:id="@+id/toolsTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginTop="48dp"
+        android:fontFamily="@font/inter18regular"
+        android:text="@string/tools"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/backBtnT"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:tabTextColor="@color/white"
+        app:tabSelectedTextColor="@color/primaryColor"
+        app:tabIndicatorColor="@color/primaryColor"
+        android:background="@color/fui_transparent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolsTitle"
+        app:tabGravity="fill"
+        app:tabMode="fixed" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tab_layout" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

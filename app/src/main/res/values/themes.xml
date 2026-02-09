@@ -1,0 +1,81 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="Theme.CollegeCompanion" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryVariant">@color/primary_dark</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/accent</item>
+        <item name="colorSecondaryVariant">@color/accent_dark</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <!-- Customize your theme here. -->
+        <item name="android:windowBackground">@color/background</item>
+        <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="android:textColorSecondary">@color/text_secondary</item>
+        <!-- For Android 8.0+ (API 26+) -->
+        <item name="android:windowLightStatusBar">false</item>
+
+        <item name="colorControlActivated">@color/primaryColor</item>
+    </style>
+
+    <style name="Theme.CollegeCompanion.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="circleImageView" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="Theme.CollegeCompanion.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="Theme.AlphaGrade" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <!-- other theme attributes -->
+    </style>
+
+    <!-- Material Design 3 switch style with secondSecondary accent color -->
+    <style name="Widget.CollegeCompanion.Switch" parent="Widget.Material3.CompoundButton.MaterialSwitch">
+        <item name="thumbTint">@color/white</item>
+        <item name="trackTint">@color/secondSecondary</item>
+        <item name="trackDecoration">@null</item>
+        <item name="android:minHeight">48dp</item>
+        <item name="android:minWidth">52dp</item>
+    </style>
+
+    <style name="ThemeOverlay.CollegeCompanion.Switch.M3" parent="">
+        <item name="colorPrimary">@color/secondSecondary</item>
+        <item name="colorSurfaceVariant">@color/firstSecondary</item>
+        <item name="colorOnSurface">@color/white</item>
+        <item name="colorOutline">@color/white</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/secondSecondary</item>
+    </style>
+
+    <style name="CustomSpinnerStyle" parent="Widget.AppCompat.Spinner">
+        <item name="android:background">@drawable/custom_spinner_background</item>
+        <item name="android:popupBackground">@drawable/custom_dropdown_background</item>
+        <item name="android:dropDownVerticalOffset">8dp</item>
+        <item name="android:paddingStart">12dp</item>
+        <item name="android:paddingEnd">12dp</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+    </style>
+
+
+    <style name="NumberPickerTheme" parent="Theme.AppCompat.Light">
+        <item name="colorAccent">@android:color/white</item>
+        <item name="android:fontFamily">@font/inter18regular</item>
+        <item name="colorControlNormal">@android:color/transparent</item>
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:textSize">22sp</item>
+    </style>
+
+</resources> 

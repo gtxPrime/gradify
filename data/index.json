@@ -1,0 +1,49 @@
+{
+  "formulas": "https://github.com/gtxPrime/gradify/blob/main/data/formulas.json",
+  "lectures": {
+    "Diploma": {
+      "Business Analytics": "https://github.com/gtxPrime/gradify/blob/main/data/lectures/Diploma/ba.json",
+      "BDM": "https://github.com/gtxPrime/gradify/blob/main/data/lectures/Diploma/bdm.json",
+      "DBMS": "https://github.com/gtxPrime/gradify/blob/main/data/lectures/Diploma/dbms.json",
+      "Java": "https://github.com/gtxPrime/gradify/blob/main/data/lectures/Diploma/java.json",
+      "MAD 1": "https://github.com/gtxPrime/gradify/blob/main/data/lectures/Diploma/mad1.json",
+      "MAD 2": "https://github.com/gtxPrime/gradify/blob/main/data/lectures/Diploma/mad2.json",
+      "MLF": "https://github.com/gtxPrime/gradify/blob/main/data/lectures/Diploma/mlf.json",
+      "MLP": "https://github.com/gtxPrime/gradify/blob/main/data/lectures/Diploma/mlp.json",
+      "MLT": "https://github.com/gtxPrime/gradify/blob/main/data/lectures/Diploma/mlt.json",
+      "PDSA": "https://github.com/gtxPrime/gradify/blob/main/data/lectures/Diploma/pdsa.json",
+      "System Commands": "https://github.com/gtxPrime/gradify/blob/main/data/lectures/Diploma/sc.json"
+    },
+    "Foundation": {
+      "CT": "https://github.com/gtxPrime/gradify/blob/main/data/lectures/Foundation/ct.json",
+      "English 1": "https://github.com/gtxPrime/gradify/blob/main/data/lectures/Foundation/english1.json",
+      "English 2": "https://github.com/gtxPrime/gradify/blob/main/data/lectures/Foundation/english2.json",
+      "Maths 1": "https://github.com/gtxPrime/gradify/blob/main/data/lectures/Foundation/maths1.json",
+      "Maths 2": "https://github.com/gtxPrime/gradify/blob/main/data/lectures/Foundation/maths2.json",
+      "Python": "https://github.com/gtxPrime/gradify/blob/main/data/lectures/Foundation/python.json",
+      "Stats 1": "https://github.com/gtxPrime/gradify/blob/main/data/lectures/Foundation/stats1.json",
+      "Stats 2": "https://github.com/gtxPrime/gradify/blob/main/data/lectures/Foundation/stats2.json"
+    }
+  },
+  "quizzes": {
+    "BDM": "https://github.com/gtxPrime/gradify/blob/main/data/quizzes/quiz_BDM.json",
+    "Business Analytics": "https://github.com/gtxPrime/gradify/blob/main/data/quizzes/quiz_Business%20Analytics.json",
+    "CT": "https://github.com/gtxPrime/gradify/blob/main/data/quizzes/quiz_CT.json",
+    "DBMS": "https://github.com/gtxPrime/gradify/blob/main/data/quizzes/quiz_DBMS.json",
+    "English 1": "https://github.com/gtxPrime/gradify/blob/main/data/quizzes/quiz_English%201.json",
+    "English 2": "https://github.com/gtxPrime/gradify/blob/main/data/quizzes/quiz_English%202.json",
+    "Java": "https://github.com/gtxPrime/gradify/blob/main/data/quizzes/quiz_Java.json",
+    "MAD 1": "https://github.com/gtxPrime/gradify/blob/main/data/quizzes/quiz_MAD%201.json",
+    "MAD 2": "https://github.com/gtxPrime/gradify/blob/main/data/quizzes/quiz_MAD%202.json",
+    "MLF": "https://github.com/gtxPrime/gradify/blob/main/data/quizzes/quiz_MLF.json",
+    "MLP": "https://github.com/gtxPrime/gradify/blob/main/data/quizzes/quiz_MLP.json",
+    "MLT": "https://github.com/gtxPrime/gradify/blob/main/data/quizzes/quiz_MLT.json",
+    "Maths 1": "https://github.com/gtxPrime/gradify/blob/main/data/quizzes/quiz_Maths%201.json",
+    "Maths 2": "https://github.com/gtxPrime/gradify/blob/main/data/quizzes/quiz_Maths%202.json",
+    "PDSA": "https://github.com/gtxPrime/gradify/blob/main/data/quizzes/quiz_PDSA.json",
+    "Python": "https://github.com/gtxPrime/gradify/blob/main/data/quizzes/quiz_Python.json",
+    "Stats 1": "https://github.com/gtxPrime/gradify/blob/main/data/quizzes/quiz_Stats%201.json",
+    "Stats 2": "https://github.com/gtxPrime/gradify/blob/main/data/quizzes/quiz_Stats%202.json",
+    "System Commands": "https://github.com/gtxPrime/gradify/blob/main/data/quizzes/quiz_System%20Commands.json"
+  }
+}

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    android:paddingVertical="12dp">
+
+    <TextView
+        android:id="@+id/textView_week_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/inter18regular"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:text="Week 1"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/imageView_expand"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/lecturesNum"
+        android:layout_width="0dp"
+        android:alpha="0.7"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/inter18regular"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        android:layout_marginTop="0dp"
+        android:text="Total Lectures: 8"
+        app:layout_constraintTop_toBottomOf="@+id/textView_week_title"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/imageView_expand"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <ImageView
+        android:id="@+id/imageView_expand"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/ic_arrow_down"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/white" />
+
+</androidx.constraintlayout.widget.ConstraintLayout> 

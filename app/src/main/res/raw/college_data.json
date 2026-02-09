@@ -1,0 +1,61 @@
+{
+  "years": [
+    {
+      "year": "Foundation",
+      "subjects": [
+        "Maths 1",
+        "Stats 1",
+        "English 1",
+        "Computational Thinking",
+        "Python",
+        "Maths 2",
+        "Stats 2",
+        "English 2"
+      ]
+    },
+    {
+      "year": "Diploma",
+      "subjects": [
+        "MLF",
+        "MLT",
+        "MLP",
+        "BDM",
+        "Business Analytics",
+        "Tools in DS",
+        "PDSA",
+        "DBMS",
+        "App Dev 1",
+        "Java",
+        "System Commands",
+        "App Dev 2"
+      ]
+    },
+    {
+      "year": "Degree",
+      "subjects": [
+        "Software Testing",
+        "Software Engineering",
+        "SPG",
+        "Deep Learning",
+        "A.I."
+      ]
+    }
+  ],
+  "quizTypes": [
+    "Quiz 1",
+    "Quiz 2",
+    "End Term"
+  ],
+  "academicYears": [
+    "2024",
+    "2023",
+    "2022",
+    "2021",
+    "2020"
+  ],
+  "sessions": [
+    "January",
+    "May",
+    "September"
+  ]
+} 
