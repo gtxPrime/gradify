@@ -1,0 +1,409 @@
+{
+  "subject": "MLP",
+  "weeks": {
+    "Week 0": [
+      {
+        "id": "W0L1",
+        "title": "W0L1: Introduction to Google Colab",
+        "link": "https://www.youtube.com/watch?v=bWmt8IFBjH0"
+      },
+      {
+        "id": "W0L2",
+        "title": "W0L2: Introduction to Data Visualization",
+        "link": "https://www.youtube.com/watch?v=vsbr1vH0N-o"
+      },
+      {
+        "id": "W0L3",
+        "title": "W0L3: Complex Data Visualization",
+        "link": "https://www.youtube.com/watch?v=JX9RuwkfIYI"
+      }
+    ],
+    "Week 2": [
+      {
+        "id": "2.1 - Introduction",
+        "title": "2.1 - Introduction: Looking at the big picture",
+        "link": "https://www.youtube.com/watch?v=c3fKU3H4VDM"
+      },
+      {
+        "id": "2.2 - Data Visualization",
+        "title": "2.2 - Data Visualization",
+        "link": "https://www.youtube.com/watch?v=kIyxumBVo6o"
+      },
+      {
+        "id": "2.3 - Data Preparation",
+        "title": "2.3 - Data Preparation",
+        "link": "https://www.youtube.com/watch?v=R3V0hVHggwo"
+      },
+      {
+        "id": "2.4 - Selection and training of ML models",
+        "title": "2.4 - Selection and training of ML models",
+        "link": "https://www.youtube.com/watch?v=TKqS2Pd1U7o"
+      },
+      {
+        "id": "2.5 - Finetuning ML models",
+        "title": "2.5 - Finetuning ML models",
+        "link": "https://www.youtube.com/watch?v=oa7QlR8kzIA"
+      },
+      {
+        "id": "2.6 - Introduction to Scikit-Learn",
+        "title": "2.6 - Introduction to Scikit-Learn",
+        "link": "https://www.youtube.com/watch?v=4Lo10fugSOE"
+      },
+      {
+        "id": "2.7.1 - Data Loading",
+        "title": "2.7.1 - Data Loading",
+        "link": "https://www.youtube.com/watch?v=kCxlP1tXc_0"
+      },
+      {
+        "id": "2.7.2 - Demonstration of sklearn dataset API",
+        "title": "2.7.2 - Demonstration of sklearn dataset API",
+        "link": "https://www.youtube.com/watch?v=bCxOHmIKDqQ"
+      }
+    ],
+    "Week 3": [
+      {
+        "id": "3.1 - Data Preprocessing",
+        "title": "3.1 - Data Preprocessing",
+        "link": "https://www.youtube.com/watch?v=_PcVkfVsjuo"
+      },
+      {
+        "id": "3.2 - Numeric Transformers",
+        "title": "3.2 - Numeric Transformers",
+        "link": "https://www.youtube.com/watch?v=c85P93At8DQ"
+      },
+      {
+        "id": "3.3 - Categorical Transformers",
+        "title": "3.3 - Categorical Transformers",
+        "link": "https://www.youtube.com/watch?v=QQtBTFqpv24"
+      },
+      {
+        "id": "3.4 - Filter based feature selection",
+        "title": "3.4 - Filter based feature selection",
+        "link": "https://www.youtube.com/watch?v=D-Bz9qXnLac"
+      },
+      {
+        "id": "3.5 - Wrapper based feature selection",
+        "title": "3.5 - Wrapper based feature selection",
+        "link": "https://www.youtube.com/watch?v=q8Z1mf7Nu0U"
+      },
+      {
+        "id": "3.6 - Heterogeneous features transformations",
+        "title": "3.6 - Heterogeneous features transformations",
+        "link": "https://www.youtube.com/watch?v=nmhaq1rdsHk"
+      },
+      {
+        "id": "3.7 - Dimensionality reduction by PCA",
+        "title": "3.7 - Dimensionality reduction by PCA",
+        "link": "https://www.youtube.com/watch?v=UVYuejgzVW0"
+      },
+      {
+        "id": "3.8 - Chaining Transformers",
+        "title": "3.8 - Chaining Transformers",
+        "link": "https://www.youtube.com/watch?v=wVrWAnOm0iY"
+      },
+      {
+        "id": "3.9 - Demonstration of Data extraction, imputation, scaling, visualizing feature distribution",
+        "title": "3.9 - Demonstration of Data extraction, imputation, scaling, visualizing feature distribution",
+        "link": "https://www.youtube.com/watch?v=_lxhnV8Ucy8"
+      },
+      {
+        "id": "3.10 - Demonstration of Data transformation, Composite transformers",
+        "title": "3.10 - Demonstration of Data transformation, Composite transformers",
+        "link": "https://www.youtube.com/watch?v=Nn1Gi5mfIv8"
+      },
+      {
+        "id": "3.11 - Demonstration of Feature Selection Demonstration, PCA, Pipelines, Handling class imbalance",
+        "title": "3.11 - Demonstration of Feature Selection Demonstration, PCA, Pipelines, Handling class imbalance",
+        "link": "https://www.youtube.com/watch?v=C700yzE_X4Q"
+      }
+    ],
+    "Week 4": [
+      {
+        "id": "4.1 - Linear regression",
+        "title": "4.1 - Linear regression",
+        "link": "https://www.youtube.com/watch?v=SFYn4UnZaSQ"
+      },
+      {
+        "id": "4.2 - Model Evaluation",
+        "title": "4.2 - Model Evaluation",
+        "link": "https://www.youtube.com/watch?v=TvtBGjcjdak"
+      },
+      {
+        "id": "4.3 - Linear Regression Demonstration",
+        "title": "4.3 - Linear Regression Demonstration",
+        "link": "https://www.youtube.com/watch?v=ddRlrZ_2JvU"
+      },
+      {
+        "id": "4.4 - Baseline Model",
+        "title": "4.4 - Baseline Model",
+        "link": "https://www.youtube.com/watch?v=PWhK5gePJ_g"
+      },
+      {
+        "id": "4.5 - SGDRegressor Demonstration",
+        "title": "4.5 - SGDRegressor Demonstration",
+        "link": "https://www.youtube.com/watch?v=fzX55uQs4Sg"
+      }
+    ],
+    "Week 5": [
+      {
+        "id": "5.1 - Polynomial Regression",
+        "title": "5.1 - Polynomial Regression",
+        "link": "https://www.youtube.com/watch?v=dMHECW-BkIM"
+      },
+      {
+        "id": "5.2 - Regularization",
+        "title": "5.2 - Regularization",
+        "link": "https://www.youtube.com/watch?v=Tj8XetBzmVE"
+      },
+      {
+        "id": "5.3 - Hyper parameter tuning",
+        "title": "5.3 - Hyper parameter tuning",
+        "link": "https://www.youtube.com/watch?v=2Ef12zzy9q8"
+      },
+      {
+        "id": "5.4 - Explore California Housing Dataset",
+        "title": "5.4 - Explore California Housing Dataset",
+        "link": "https://www.youtube.com/watch?v=rM1h2CI_Cjw"
+      },
+      {
+        "id": "5.5 - Linear Regression on California housing Dataset",
+        "title": "5.5 - Linear Regression on California housing Dataset",
+        "link": "https://www.youtube.com/watch?v=SkL5TyjBiHQ"
+      }
+    ],
+    "Week 6": [
+      {
+        "id": "6.1 - Classification Functions in Scikit learn",
+        "title": "6.1 - Classification Functions in Scikit learn",
+        "link": "https://www.youtube.com/watch?v=dhYydFzxfes"
+      },
+      {
+        "id": "6.2 - Multi Learning Classification",
+        "title": "6.2 - Multi Learning Classification",
+        "link": "https://www.youtube.com/watch?v=-AIkfX41Mgc"
+      },
+      {
+        "id": "6.3 - Evaluating Classifiers",
+        "title": "6.3 - Evaluating Classifiers",
+        "link": "https://www.youtube.com/watch?v=yDKol1MkXag"
+      },
+      {
+        "id": "6.4 - Demonstration",
+        "title": "6.4 - Demonstration: Binary class Image Classification with Perceptron",
+        "link": "https://www.youtube.com/watch?v=i9tCqiNkdLA"
+      },
+      {
+        "id": "6.5 - Demonstration",
+        "title": "6.5 - Demonstration: Multi class Image Classification with Perceptron",
+        "link": "https://www.youtube.com/watch?v=cB0ObIWlEEs"
+      }
+    ],
+    "Week 7": [
+      {
+        "id": "7.1 - Naive Bayes Classifier",
+        "title": "7.1 - Naive Bayes Classifier",
+        "link": "https://www.youtube.com/watch?v=uM-MNko46Zo"
+      },
+      {
+        "id": "7.2 - Demonstration",
+        "title": "7.2 - Demonstration: MNIST Digits Classification using SGDRegressor",
+        "link": "https://www.youtube.com/watch?v=wnWmmmjKaTo"
+      },
+      {
+        "id": "7.3 - Demonstration",
+        "title": "7.3 - Demonstration: MNIST Digits Classification using Logistic Regression",
+        "link": "https://www.youtube.com/watch?v=Gy-TZWTsKRw"
+      },
+      {
+        "id": "7.4 - Demonstration",
+        "title": "7.4 - Demonstration: Zero detector with Ridge Classifier",
+        "link": "https://www.youtube.com/watch?v=qrwPx41Q22c"
+      },
+      {
+        "id": "7.5 - Demonstration",
+        "title": "7.5 - Demonstration: Multiclass classifier on MNIST Dataset",
+        "link": "https://www.youtube.com/watch?v=v9jAO44KG7M"
+      },
+      {
+        "id": "7.6 - Demonstration",
+        "title": "7.6 - Demonstration: Naive Bayes Classifier",
+        "link": "https://www.youtube.com/watch?v=eyPYs5jJFys"
+      }
+    ],
+    "Week 8": [
+      {
+        "id": "8.1 - Demonstration",
+        "title": "8.1 - Demonstration: Softmax Regression with MNIST",
+        "link": "https://www.youtube.com/watch?v=_zWJhbFQBQI"
+      },
+      {
+        "id": "8.2 - K Nearest Neighbours",
+        "title": "8.2 - K Nearest Neighbours",
+        "link": "https://www.youtube.com/watch?v=gKiFTMLgZy4"
+      },
+      {
+        "id": "8.3 - Demonstration",
+        "title": "8.3 - Demonstration: KNN with MNIST",
+        "link": "https://www.youtube.com/watch?v=nbOcdzyPulA"
+      },
+      {
+        "id": "8.4 - Demonstration",
+        "title": "8.4 - Demonstration: KNN with California Housing Dataset",
+        "link": "https://www.youtube.com/watch?v=QCrEPEqkRII"
+      },
+      {
+        "id": "8.5 - Large Scale Machine Learning",
+        "title": "8.5 - Large Scale Machine Learning",
+        "link": "https://www.youtube.com/watch?v=CodUuMNLHyc"
+      },
+      {
+        "id": "L8.6",
+        "title": "L8.6: SVM in scikit-learn",
+        "link": "https://www.youtube.com/watch?v=5erlKOqL8Xk"
+      },
+      {
+        "id": "L8.7",
+        "title": "L8.7: Demonstration: SVC on MNIST dataset",
+        "link": "https://www.youtube.com/watch?v=pDmRNHjCZRE"
+      }
+    ],
+    "Week 9": [
+      {
+        "id": "9.1 - Decision Trees",
+        "title": "9.1 - Decision Trees",
+        "link": "https://www.youtube.com/watch?v=5OZc2zWS2cY"
+      },
+      {
+        "id": "9.2 - Decision Trees for Regression",
+        "title": "9.2 - Decision Trees for Regression",
+        "link": "https://www.youtube.com/watch?v=wjVCvwgwSSg"
+      },
+      {
+        "id": "9.3 - Decision Trees for Classification - Abalone",
+        "title": "9.3 - Decision Trees for Classification - Abalone",
+        "link": "https://www.youtube.com/watch?v=SBnT0B2e5kc"
+      },
+      {
+        "id": "9.4 - Decision Trees for Classification - Iris",
+        "title": "9.4 - Decision Trees for Classification - Iris",
+        "link": "https://www.youtube.com/watch?v=3Lc7sD1Dj4Q"
+      },
+      {
+        "id": "9.5 Confusion Matrix",
+        "title": "9.5 Confusion Matrix",
+        "link": "https://www.youtube.com/watch?v=feypiLEbhr8"
+      },
+      {
+        "id": "9.6 Accuracy",
+        "title": "9.6 Accuracy",
+        "link": "https://www.youtube.com/watch?v=j7yRrf3IYXc"
+      },
+      {
+        "id": "9.7 Precision",
+        "title": "9.7 Precision",
+        "link": "https://www.youtube.com/watch?v=TJ1kghIlhto"
+      },
+      {
+        "id": "9.8  f1 score",
+        "title": "9.8  f1 score",
+        "link": "https://www.youtube.com/watch?v=wrfrxQNMIyQ"
+      },
+      {
+        "id": "9.8 Recall",
+        "title": "9.8 Recall",
+        "link": "https://www.youtube.com/watch?v=6hayjB0TugY"
+      },
+      {
+        "id": "9.9  Multiclass",
+        "title": "9.9  Multiclass",
+        "link": "https://www.youtube.com/watch?v=IdCzHOouck0"
+      }
+    ],
+    "Week 10": [
+      {
+        "id": "L10.1",
+        "title": "L10.1: Voting, Bagging and Random Forest",
+        "link": "https://www.youtube.com/watch?v=EZ5szvjQgWw"
+      },
+      {
+        "id": "L10.2",
+        "title": "L10.2: Bagging and Random Forest Classifier on MNIST",
+        "link": "https://www.youtube.com/watch?v=fy7AhpixJ-A"
+      },
+      {
+        "id": "L10.3",
+        "title": "L10.3: Bagging and Random Forest Regressor on California Housing Dataset",
+        "link": "https://www.youtube.com/watch?v=cjf5b1dx6Tk"
+      },
+      {
+        "id": "L10.4",
+        "title": "L10.4: Boosting: AdaBoost, GradientBoost",
+        "link": "https://www.youtube.com/watch?v=ZIMlYAKgGTg"
+      },
+      {
+        "id": "L10.5",
+        "title": "L10.5: AdaBoost and GradientBoost Classifier on MNIST",
+        "link": "https://www.youtube.com/watch?v=DhftGTaoFDI"
+      },
+      {
+        "id": "L10.6",
+        "title": "L10.6: AdaBoost and GradientBoost Regressor on California Housing",
+        "link": "https://www.youtube.com/watch?v=yJjCDkjNNaM"
+      }
+    ],
+    "Week 11": [
+      {
+        "id": "11.1 - K-means clustering on digit dataset",
+        "title": "11.1 - K-means clustering on digit dataset",
+        "link": "https://www.youtube.com/watch?v=-tPSKI9nUf0"
+      },
+      {
+        "id": "11.2 - HAC Demo",
+        "title": "11.2 - HAC Demo",
+        "link": "https://www.youtube.com/watch?v=GG6yYMO91FQ"
+      },
+      {
+        "id": "11.3 - Neural Networks",
+        "title": "11.3 - Neural Networks: Multi-layer Perceptron",
+        "link": "https://www.youtube.com/watch?v=wphku4k1e90"
+      },
+      {
+        "id": "11.4 - MLP Classifier on MNIST dataset",
+        "title": "11.4 - MLP Classifier on MNIST dataset",
+        "link": "https://www.youtube.com/watch?v=lvS2ZHJeyng"
+      },
+      {
+        "id": "11.5 - MLP Regressor on california housing dataset",
+        "title": "11.5 - MLP Regressor on california housing dataset",
+        "link": "https://www.youtube.com/watch?v=zsPNGpLFqgg"
+      }
+    ],
+    "Week 12": [
+      {
+        "id": "Case Study",
+        "title": "Case Study",
+        "link": "https://www.youtube.com/watch?v=27G4drv3Nfk"
+      },
+      {
+        "id": "What is transfer Learning",
+        "title": "What is transfer Learning",
+        "link": "https://www.youtube.com/watch?v=OoCAtgDxx4A"
+      },
+      {
+        "id": "Quick Recap of Neural Networks",
+        "title": "Quick Recap of Neural Networks",
+        "link": "https://www.youtube.com/watch?v=G0Tzd9n6M5k"
+      },
+      {
+        "id": "Transfer Learning theoretical implementation",
+        "title": "Transfer Learning theoretical implementation",
+        "link": "https://www.youtube.com/watch?v=SF41dPUKJ44"
+      },
+      {
+        "id": "Practical Implementation of Transfer Learning",
+        "title": "Practical Implementation of Transfer Learning",
+        "link": "https://www.youtube.com/watch?v=bd6Fwc9L4bk"
+      }
+    ]
+  }
+}

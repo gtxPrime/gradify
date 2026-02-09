@@ -1,0 +1,454 @@
+{
+  "subject": "MLF",
+  "weeks": {
+    "Week 1": [
+      {
+        "id": "L1.1",
+        "title": "L1.1: What is Machine Learning?",
+        "link": "https://www.youtube.com/watch?v=zuS1WZQGhAs"
+      },
+      {
+        "id": "L1.2",
+        "title": "L1.2: Data, Models and ML Task",
+        "link": "https://www.youtube.com/watch?v=zssr9nOZlVg"
+      },
+      {
+        "id": "L1.3",
+        "title": "L1.3: Supervised Learning: Regression",
+        "link": "https://www.youtube.com/watch?v=iVcrCdEaJ7A"
+      },
+      {
+        "id": "L1.4",
+        "title": "L1.4: Supervised Learning: Classification",
+        "link": "https://www.youtube.com/watch?v=QtOrjs0Fzzc"
+      },
+      {
+        "id": "L1.5",
+        "title": "L1.5: Unsupervised Learning: Dimensionality Reduction",
+        "link": "https://www.youtube.com/watch?v=EuNPsw9zA1k"
+      },
+      {
+        "id": "L1.6",
+        "title": "L1.6: Unsupervised Learning: Density Estimation",
+        "link": "https://www.youtube.com/watch?v=Gj6-61UDeMs"
+      },
+      {
+        "id": "Tutorial 1.1 - To ML or not to ML",
+        "title": "Tutorial 1.1 - To ML or not to ML",
+        "link": "https://www.youtube.com/watch?v=5G4klfCCoIs"
+      },
+      {
+        "id": "Tutorial1.2 - Illustration with a real world dataset",
+        "title": "Tutorial1.2 - Illustration with a real world dataset",
+        "link": "https://www.youtube.com/watch?v=T7vdFVC6DOo"
+      },
+      {
+        "id": "Tutorial 1.3 -  Dimensionality Reduction and Density Estimation with Applications",
+        "title": "Tutorial 1.3 -  Dimensionality Reduction and Density Estimation with Applications",
+        "link": "https://www.youtube.com/watch?v=JG5Z9np4Tbs"
+      }
+    ],
+    "Week 2": [
+      {
+        "id": "L2.1",
+        "title": "L2.1: Sets and Functions",
+        "link": "https://www.youtube.com/watch?v=Gi9nUcrZAJs"
+      },
+      {
+        "id": "L2.2",
+        "title": "L2.2: Univariate Calculus: Continuity and Differentiability",
+        "link": "https://www.youtube.com/watch?v=yvaPORg2w9c"
+      },
+      {
+        "id": "L2.3",
+        "title": "L2.3: Univariate Calculus: Derivatives and Linear Approximations",
+        "link": "https://www.youtube.com/watch?v=AG2fQvxEpbE"
+      },
+      {
+        "id": "L2.4",
+        "title": "L2.4: Univariate Calculus: applications and advanced rules",
+        "link": "https://www.youtube.com/watch?v=En15LA59Fsw"
+      },
+      {
+        "id": "L2.5",
+        "title": "L2.5: Multivariate Calculus: Lines and planes in higher dimensional space",
+        "link": "https://www.youtube.com/watch?v=O5jrvVi05wA"
+      },
+      {
+        "id": "L2.6",
+        "title": "L2.6: Multivariate Calculus: Linear approximation and applications",
+        "link": "https://www.youtube.com/watch?v=dLLbl0vucCc"
+      },
+      {
+        "id": "Tutorial - 2.1",
+        "title": "Tutorial - 2.1",
+        "link": "https://www.youtube.com/watch?v=YNJMUyNlqFQ"
+      }
+    ],
+    "Week 3": [
+      {
+        "id": "L3.1",
+        "title": "L3.1: Four Fundamental Subspaces",
+        "link": "https://www.youtube.com/watch?v=9Ynm5oJRjxY"
+      },
+      {
+        "id": "L3.2",
+        "title": "L3.2: Orthogonal Vectors and Subspaces",
+        "link": "https://www.youtube.com/watch?v=fHorO_JCaYA"
+      },
+      {
+        "id": "L3.3",
+        "title": "L3.3: Projections",
+        "link": "https://www.youtube.com/watch?v=kVYR7II5KUA"
+      },
+      {
+        "id": "L3.4",
+        "title": "L3.4: Least Squares and Projections onto a Subspace",
+        "link": "https://www.youtube.com/watch?v=_QRlIQBwIk8"
+      },
+      {
+        "id": "L3.5",
+        "title": "L3.5: Example of Least Squares",
+        "link": "https://www.youtube.com/watch?v=wZlwod57blE"
+      },
+      {
+        "id": "Tutorial 3.1",
+        "title": "Tutorial 3.1: Four fundamental vector subspaces",
+        "link": "https://www.youtube.com/watch?v=rbBiDiFC584"
+      },
+      {
+        "id": "Tutorial 3.2",
+        "title": "Tutorial 3.2: Row space using reduced row echelon form, Solution to Ax = b",
+        "link": "https://www.youtube.com/watch?v=kRJIiQXiOqU"
+      },
+      {
+        "id": "Tutorial 3.3",
+        "title": "Tutorial 3.3: Orthogonality, projections and least squares method",
+        "link": "https://www.youtube.com/watch?v=Ijn-HGlVifU"
+      },
+      {
+        "id": "Revisiting Vector Spaces and more",
+        "title": "Revisiting Vector Spaces and more",
+        "link": "https://www.youtube.com/watch?v=Mu5Cf9eD4SQ"
+      }
+    ],
+    "Week 4": [
+      {
+        "id": "L4.1",
+        "title": "L4.1: Linear and Polynomial Regression",
+        "link": "https://www.youtube.com/watch?v=x7UJYkGHVJw"
+      },
+      {
+        "id": "L4.2",
+        "title": "L4.2: Eigenvalues and Eigenvectors",
+        "link": "https://www.youtube.com/watch?v=GA6m_T4d_d0"
+      },
+      {
+        "id": "L4.3",
+        "title": "L4.3: Diagonalization of a matrix",
+        "link": "https://www.youtube.com/watch?v=WKZUxnrLmRk"
+      },
+      {
+        "id": "L4.4",
+        "title": "L4.4: Solving Fibonacci Sequence using diagonalization",
+        "link": "https://www.youtube.com/watch?v=ISB87lDKOVE"
+      },
+      {
+        "id": "L4.5",
+        "title": "L4.5: Orthogonally diagonalizable matrices",
+        "link": "https://www.youtube.com/watch?v=f0hVL9xhL94"
+      },
+      {
+        "id": "Tutorial 4.1",
+        "title": "Tutorial 4.1: Polynomial Regression",
+        "link": "https://www.youtube.com/watch?v=EF85-fHy-m0"
+      },
+      {
+        "id": "Tutorial 4.2",
+        "title": "Tutorial 4.2: Eigenvalues and Eigenvectors",
+        "link": "https://www.youtube.com/watch?v=SPF2ovt7uYg"
+      }
+    ],
+    "Week 5": [
+      {
+        "id": "L5.1",
+        "title": "L5.1: Complex Matrices",
+        "link": "https://www.youtube.com/watch?v=G6A3PDivChQ"
+      },
+      {
+        "id": "L5.2",
+        "title": "L5.2: Hermitian Matrices",
+        "link": "https://www.youtube.com/watch?v=aHykfDdjDiw"
+      },
+      {
+        "id": "L5.3",
+        "title": "L5.3: Unitary Matrices",
+        "link": "https://www.youtube.com/watch?v=2DAG0I1NKiI"
+      },
+      {
+        "id": "L5.4",
+        "title": "L5.4: Diagonalization of Hermitian Matrices (Part 1)",
+        "link": "https://www.youtube.com/watch?v=qG1tlEa2Zn0"
+      },
+      {
+        "id": "L5.5",
+        "title": "L5.5: Diagonalization of Hermitian Matrices (part 2)",
+        "link": "https://www.youtube.com/watch?v=u9uFJNrCL0E"
+      },
+      {
+        "id": "Tutorial 5.1",
+        "title": "Tutorial 5.1: Some Problems to think and solve",
+        "link": "https://www.youtube.com/watch?v=__TUd8Sq-wU"
+      }
+    ],
+    "Week 6": [
+      {
+        "id": "L6.1",
+        "title": "L6.1: Singular Value Decomposition",
+        "link": "https://www.youtube.com/watch?v=fTErMgNIKHQ"
+      },
+      {
+        "id": "L6.2",
+        "title": "L6.2: Example of SVD",
+        "link": "https://www.youtube.com/watch?v=lP1UKRK4h5k"
+      },
+      {
+        "id": "L6.3",
+        "title": "L6.3: Positive Definiteness",
+        "link": "https://www.youtube.com/watch?v=HspdIGCore0"
+      },
+      {
+        "id": "L6.4",
+        "title": "L6.4: Positive Definite Matrices",
+        "link": "https://www.youtube.com/watch?v=N-iBr_r9jic"
+      },
+      {
+        "id": "Tutorial 6.1",
+        "title": "Tutorial 6.1: Real world Application of SVD",
+        "link": "https://www.youtube.com/watch?v=SYFGwuf-v9k"
+      },
+      {
+        "id": "Tutorial 6.2",
+        "title": "Tutorial 6.2: Geometric Interpretation of SVD",
+        "link": "https://www.youtube.com/watch?v=BHIpHagNcgw"
+      },
+      {
+        "id": "Tutorial 6.3",
+        "title": "Tutorial 6.3: Positive Definite Functions and Matrices",
+        "link": "https://www.youtube.com/watch?v=0vb0c-0waik"
+      }
+    ],
+    "Week 7": [
+      {
+        "id": "L7.1",
+        "title": "L7.1: Principal Component Analysis",
+        "link": "https://www.youtube.com/watch?v=K5vOOARxVyU"
+      },
+      {
+        "id": "L7.2",
+        "title": "L7.2: Principal Component Analysis (Contd.)",
+        "link": "https://www.youtube.com/watch?v=TDlSb1-QhhA"
+      },
+      {
+        "id": "L7.3",
+        "title": "L7.3: PCA as maximizing variance",
+        "link": "https://www.youtube.com/watch?v=BHovu_rftQA"
+      },
+      {
+        "id": "L7.4",
+        "title": "L7.4: PCA in higher dimensions",
+        "link": "https://www.youtube.com/watch?v=d0Ch0S1hAs8"
+      }
+    ],
+    "Week 8": [
+      {
+        "id": "L8.1",
+        "title": "L8.1: Pillars of machine learning",
+        "link": "https://www.youtube.com/watch?v=LYZPWUppGGc"
+      },
+      {
+        "id": "L8.2",
+        "title": "L8.2: Introduction to Optimization",
+        "link": "https://www.youtube.com/watch?v=-2bXHwSNwTc"
+      },
+      {
+        "id": "L8.3",
+        "title": "L8.3: Solving an unconstrained optimization problem (Part 1)",
+        "link": "https://www.youtube.com/watch?v=CkxFp_ZPqAw"
+      },
+      {
+        "id": "L8.4",
+        "title": "L8.4: Solving an unconstrained optimization problem (Part 2)",
+        "link": "https://www.youtube.com/watch?v=-bXrog1dbrM"
+      },
+      {
+        "id": "L8.5",
+        "title": "L8.5: Basic algorithm for unconstrained optimization: Gradient Descent",
+        "link": "https://www.youtube.com/watch?v=3rxDd68TE3o"
+      },
+      {
+        "id": "L8.6",
+        "title": "L8.6: Gradient Descent and Taylor Series",
+        "link": "https://www.youtube.com/watch?v=X35txJMlYsc"
+      },
+      {
+        "id": "L8.7",
+        "title": "L8.7: Gradient Descent for multivariate functions",
+        "link": "https://www.youtube.com/watch?v=DLYQu-r7TKI"
+      },
+      {
+        "id": "L8.8",
+        "title": "L8.8: Taylor series in Higher dimensions",
+        "link": "https://www.youtube.com/watch?v=ohQfHMpjTlQ"
+      },
+      {
+        "id": "Tutorial 8.1",
+        "title": "Tutorial 8.1",
+        "link": "https://www.youtube.com/watch?v=tywEGBtZTu0"
+      }
+    ],
+    "Week 9": [
+      {
+        "id": "L9.1",
+        "title": "L9.1: Constrained Optimization (Part -1)",
+        "link": "https://www.youtube.com/watch?v=fFJHsQBo6NE"
+      },
+      {
+        "id": "L9.2",
+        "title": "L9.2: Constrained Optimization (Part -2)",
+        "link": "https://www.youtube.com/watch?v=q9JJc3Zj_js"
+      },
+      {
+        "id": "L9.3",
+        "title": "L9.3: Method of Lagrange Multiplier, Projected Gradient Descent",
+        "link": "https://www.youtube.com/watch?v=PoAPXmDlk4U"
+      },
+      {
+        "id": "L9.4",
+        "title": "L9.4: Introduction to Convexity",
+        "link": "https://www.youtube.com/watch?v=_qlBaMTiVXk"
+      },
+      {
+        "id": "L9.5",
+        "title": "L9.5: Properties of Convex Sets",
+        "link": "https://www.youtube.com/watch?v=PfDvKJ2UTPg"
+      },
+      {
+        "id": "L9.6",
+        "title": "L9.6: Convex Functions",
+        "link": "https://www.youtube.com/watch?v=xExRalp3eY8"
+      },
+      {
+        "id": "L9.7",
+        "title": "L9.7: Properties of Convex Functions",
+        "link": "https://www.youtube.com/watch?v=gqUwsig0geA"
+      },
+      {
+        "id": "Tutorial 9.1 - Constrained Optimisation, Lagrange Multipliers, Convex sets and Convex Functions",
+        "title": "Tutorial 9.1 - Constrained Optimisation, Lagrange Multipliers, Convex sets and Convex Functions",
+        "link": "https://www.youtube.com/watch?v=TQc50S0alsA"
+      }
+    ],
+    "Week 10": [
+      {
+        "id": "L10.1",
+        "title": "L10.1: Properties of Convex Functions",
+        "link": "https://www.youtube.com/watch?v=c9LZ0Uw9wpE"
+      },
+      {
+        "id": "L10.2",
+        "title": "L10.2: Applications of Optimization in Machine Learning",
+        "link": "https://www.youtube.com/watch?v=4jN8XhwGa48"
+      },
+      {
+        "id": "L10.3",
+        "title": "L10.3: Revisiting Constrained Optimization",
+        "link": "https://www.youtube.com/watch?v=eM17jHQwrOY"
+      },
+      {
+        "id": "L10.4",
+        "title": "L10.4: Relation between Primal and Dual Problem, KKT Conditions",
+        "link": "https://www.youtube.com/watch?v=JiHrrqdMWAM"
+      },
+      {
+        "id": "L10.5",
+        "title": "L10.5: KKT conditions continued.",
+        "link": "https://www.youtube.com/watch?v=SItUaM_X4C4"
+      },
+      {
+        "id": "Tutorial 10.1",
+        "title": "Tutorial 10.1: Linear Programming, Karush-Kuhn-Tucker Conditions, Relationship between primal and dual problem",
+        "link": "https://www.youtube.com/watch?v=M2qvsHZxlI0"
+      }
+    ],
+    "Week 11": [
+      {
+        "id": "L11.1",
+        "title": "L11.1: Continuous random variables",
+        "link": "https://www.youtube.com/watch?v=K1-JKrms2SU"
+      },
+      {
+        "id": "L11.2",
+        "title": "L11.2: Conditional pdf",
+        "link": "https://www.youtube.com/watch?v=cjCJIUOCwAs"
+      },
+      {
+        "id": "L11.3",
+        "title": "L11.3: Expectation",
+        "link": "https://www.youtube.com/watch?v=XFYz9KyPU48"
+      },
+      {
+        "id": "L11.4",
+        "title": "L11.4: Multiple random variables",
+        "link": "https://www.youtube.com/watch?v=-dyVWffZlRE"
+      },
+      {
+        "id": "L11.5",
+        "title": "L11.5: Independent random variables",
+        "link": "https://www.youtube.com/watch?v=734WLw-fb5Y"
+      },
+      {
+        "id": "L11.6",
+        "title": "L11.6: Transformed random variables",
+        "link": "https://www.youtube.com/watch?v=aWbs8AGk5zM"
+      },
+      {
+        "id": "L11.7",
+        "title": "L11.7: Uniform, Exponential, Normal",
+        "link": "https://www.youtube.com/watch?v=vo3f56Gc1i8"
+      },
+      {
+        "id": "Tutorial 11.1",
+        "title": "Tutorial 11.1: Solved examples",
+        "link": "https://www.youtube.com/watch?v=sBT-TWoCMj4"
+      }
+    ],
+    "Week 12": [
+      {
+        "id": "L12.1",
+        "title": "L12.1: Bivariate and multivariate normal",
+        "link": "https://www.youtube.com/watch?v=yNPMeKXjISQ"
+      },
+      {
+        "id": "L12.2",
+        "title": "L12.2: Estimation of parameters using ML",
+        "link": "https://www.youtube.com/watch?v=gbqYl44DdX0"
+      },
+      {
+        "id": "L12.3",
+        "title": "L12.3: Gaussian Mixture Models and Expectation Maximisation",
+        "link": "https://www.youtube.com/watch?v=6Zk77RKcI2Q"
+      },
+      {
+        "id": "L12.4",
+        "title": "L12.4: Laws of large numbers: Markov, Chebyshev, Hoeffding, Central limit.",
+        "link": "https://www.youtube.com/watch?v=iwidPQHOe_I"
+      },
+      {
+        "id": "Tutorial 12.1",
+        "title": "Tutorial 12.1: Solved examples",
+        "link": "https://www.youtube.com/watch?v=UExuNuc8IKo"
+      }
+    ]
+  }
+}

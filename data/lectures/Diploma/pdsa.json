@@ -1,0 +1,390 @@
+{
+  "subject": "PDSA",
+  "weeks": {
+    "Week 1": [
+      {
+        "id": "L1.1",
+        "title": "L1.1: Introduction to Jupyter notebooks and Google Colab",
+        "link": "https://www.youtube.com/watch?v=G-XixYjFNnA"
+      },
+      {
+        "id": "L1.2",
+        "title": "L1.2: Implementation of Python codes (Part 1)",
+        "link": "https://www.youtube.com/watch?v=PVwttQzr7nY"
+      },
+      {
+        "id": "L1.3",
+        "title": "L1.3: Python recap - I",
+        "link": "https://www.youtube.com/watch?v=2W3BKOSg958"
+      },
+      {
+        "id": "L1.4",
+        "title": "L1.4: Python recap - II",
+        "link": "https://www.youtube.com/watch?v=q9rS_GFCtQg"
+      },
+      {
+        "id": "L1.6",
+        "title": "L1.6: Exception handling",
+        "link": "https://www.youtube.com/watch?v=XkHIWFlryv8"
+      },
+      {
+        "id": "L1.5",
+        "title": "L1.5: Python recap - III",
+        "link": "https://www.youtube.com/watch?v=PBnhRTf00Z0"
+      },
+      {
+        "id": "L1.7",
+        "title": "L1.7: Classes and Objects",
+        "link": "https://www.youtube.com/watch?v=oHZNBBUlD-0"
+      },
+      {
+        "id": "L1.8",
+        "title": "L1.8: Implementation of Python codes (Part 2)",
+        "link": "https://www.youtube.com/watch?v=xbLF2bckqok"
+      },
+      {
+        "id": "L1.9",
+        "title": "L1.9: Timing our code",
+        "link": "https://www.youtube.com/watch?v=x5uLvXbpcMY"
+      },
+      {
+        "id": "L1.10",
+        "title": "L1.10: Implementation of Python codes (Part 3)",
+        "link": "https://www.youtube.com/watch?v=wz_oE0Z9kr8"
+      },
+      {
+        "id": "L1.11",
+        "title": "L1.11: Why efficiency matters?",
+        "link": "https://www.youtube.com/watch?v=0B3niErBMto"
+      },
+      {
+        "id": "L1.12",
+        "title": "L1.12: Implementation of Python codes (Part 4)",
+        "link": "https://www.youtube.com/watch?v=jixpXGLjpNQ"
+      }
+    ],
+    "Week 2": [
+      {
+        "id": "L2.1",
+        "title": "L2.1: Analysis of Algorithms",
+        "link": "https://www.youtube.com/watch?v=l2O71OvX0kg"
+      },
+      {
+        "id": "L2.2",
+        "title": "L2.2: Comparing Orders of Magnitude",
+        "link": "https://www.youtube.com/watch?v=YviduWBizB0"
+      },
+      {
+        "id": "L2.3",
+        "title": "L2.3: Calculating Complexity",
+        "link": "https://www.youtube.com/watch?v=L1SPxZvjpoM"
+      },
+      {
+        "id": "L2.4",
+        "title": "L2.4: Searching in a List",
+        "link": "https://www.youtube.com/watch?v=nLHPNN_d85I"
+      },
+      {
+        "id": "L2.5",
+        "title": "L2.5: Selection Sort",
+        "link": "https://www.youtube.com/watch?v=PzLW39b12Cc"
+      },
+      {
+        "id": "L2.6",
+        "title": "L2.6: Inserting Sort",
+        "link": "https://www.youtube.com/watch?v=NEWwLaeFols"
+      },
+      {
+        "id": "L2.7",
+        "title": "L2.7: Merge Sort",
+        "link": "https://www.youtube.com/watch?v=HBF0FNPJQeA"
+      },
+      {
+        "id": "L2.8",
+        "title": "L2.8: Analysis of Merge Sort",
+        "link": "https://www.youtube.com/watch?v=YdjNwrRxOII"
+      },
+      {
+        "id": "L2.9",
+        "title": "L2.9: Implementation of Searching and Sorting algorithms",
+        "link": "https://www.youtube.com/watch?v=kl-RyxDJGM8"
+      }
+    ],
+    "Week 3": [
+      {
+        "id": "L3.1",
+        "title": "L3.1: Quicksort",
+        "link": "https://www.youtube.com/watch?v=4w2N6ON79Y4"
+      },
+      {
+        "id": "L3.2",
+        "title": "L3.2: Analysis of Quicksort",
+        "link": "https://www.youtube.com/watch?v=Pf85r6Xzf4g"
+      },
+      {
+        "id": "L3.3",
+        "title": "L3.3: Implementation of Quicksort algorithm",
+        "link": "https://www.youtube.com/watch?v=rqYRw5XAmGI"
+      },
+      {
+        "id": "L3.4",
+        "title": "L3.4: Concluding remarks on sorting algorithms",
+        "link": "https://www.youtube.com/watch?v=bWRLxhD44gw"
+      },
+      {
+        "id": "L3.5",
+        "title": "L3.5: Difference between Lists and Arrays (Theory)",
+        "link": "https://www.youtube.com/watch?v=fbXzNtoEsVg"
+      },
+      {
+        "id": "L3.6",
+        "title": "L3.6: Designing a Flexible List and Operations on the same",
+        "link": "https://www.youtube.com/watch?v=AsE30JMsM14"
+      },
+      {
+        "id": "L3.7",
+        "title": "L3.7: Implementation of Lists in Python",
+        "link": "https://www.youtube.com/watch?v=QHKuZRaeKZE"
+      },
+      {
+        "id": "L3.8",
+        "title": "L3.8: Implementation of Dictionaries in Python",
+        "link": "https://www.youtube.com/watch?v=leiBMoWxmqI"
+      },
+      {
+        "id": "L3.9",
+        "title": "L3.9: Difference between Lists and Arrays (Implementation)",
+        "link": "https://www.youtube.com/watch?v=ZPjSeqQjpAQ"
+      }
+    ],
+    "Week 4": [
+      {
+        "id": "L4.1",
+        "title": "L4.1: Introduction to graphs",
+        "link": "https://www.youtube.com/watch?v=Z9akqu1KiXk"
+      },
+      {
+        "id": "L4.2",
+        "title": "L4.2: Representing Graphs",
+        "link": "https://www.youtube.com/watch?v=_5czfD3Bzlw"
+      },
+      {
+        "id": "L4.3",
+        "title": "L4.3: Breadth First Search (BFS)",
+        "link": "https://www.youtube.com/watch?v=ULrHm2nsV8A"
+      },
+      {
+        "id": "L4.4",
+        "title": "L4.4: Depth First Search (DFS)",
+        "link": "https://www.youtube.com/watch?v=A7TFa4u3Db8"
+      },
+      {
+        "id": "L4.5",
+        "title": "L4.5: Applications of BFS and DFS",
+        "link": "https://www.youtube.com/watch?v=RDA1nGsEVLY"
+      },
+      {
+        "id": "L4.6",
+        "title": "L4.6: Introduction to Directed Acyclic Graph (DAG)",
+        "link": "https://www.youtube.com/watch?v=om9baDPpWNE"
+      },
+      {
+        "id": "L4.7",
+        "title": "L4.7: Topological Sorting",
+        "link": "https://www.youtube.com/watch?v=xkNBIO4Qorg"
+      },
+      {
+        "id": "L4.8",
+        "title": "L4.8: Longest Path in DAGs",
+        "link": "https://www.youtube.com/watch?v=CVcChPiBAgQ"
+      }
+    ],
+    "Week 5": [
+      {
+        "id": "L5.1",
+        "title": "L5.1: Shortest Paths in Weighted Graphs",
+        "link": "https://www.youtube.com/watch?v=Kxun2wSsKLM"
+      },
+      {
+        "id": "L5.2",
+        "title": "L5.2: Single Source Shortest Paths (Dijkstra's algorithm)",
+        "link": "https://www.youtube.com/watch?v=Qjf7krjTF5g"
+      },
+      {
+        "id": "L5.3",
+        "title": "L5.3: Single Source Shortest Paths with Negative Weights (Bellman-Ford Algorithm)",
+        "link": "https://www.youtube.com/watch?v=SgULLcChnxQ"
+      },
+      {
+        "id": "L5.4",
+        "title": "L5.4: All Pairs Shortest Paths (Floyd-Warshall algorithm)",
+        "link": "https://www.youtube.com/watch?v=9F8MM_KVJds"
+      },
+      {
+        "id": "L5.5",
+        "title": "L5.5: Minimum Cost Spanning Trees",
+        "link": "https://www.youtube.com/watch?v=57DmQiDrkto"
+      },
+      {
+        "id": "L5.6",
+        "title": "L5.6: Minimum Cost Spanning Trees (Prim's Algorithm)",
+        "link": "https://www.youtube.com/watch?v=ddT3JcFalsI"
+      },
+      {
+        "id": "L5.7",
+        "title": "L5.7: Minimum Cost Spanning Trees (Kruskal's Algorithm)",
+        "link": "https://www.youtube.com/watch?v=c2LPB-Eqdj4"
+      }
+    ],
+    "Week 6": [
+      {
+        "id": "L6.1",
+        "title": "L6.1: Union-Find Data Structure",
+        "link": "https://www.youtube.com/watch?v=Zxlor3u7x7c"
+      },
+      {
+        "id": "L6.2",
+        "title": "L6.2: Priority Queues",
+        "link": "https://www.youtube.com/watch?v=DAmSQfaurGs"
+      },
+      {
+        "id": "L6.3",
+        "title": "L6.3: Heaps",
+        "link": "https://www.youtube.com/watch?v=-bBwSWTp-aE"
+      },
+      {
+        "id": "L6.4",
+        "title": "L6.4: Using Heaps in Algorithms",
+        "link": "https://www.youtube.com/watch?v=_TY8IesVyXA"
+      },
+      {
+        "id": "L6.5",
+        "title": "L6.5: Search Trees",
+        "link": "https://www.youtube.com/watch?v=6BXwmWK0VvE"
+      }
+    ],
+    "Week 7": [
+      {
+        "id": "L7.1",
+        "title": "L7.1: Balanced Search Trees",
+        "link": "https://www.youtube.com/watch?v=L9ah47pNf-E"
+      },
+      {
+        "id": "L7.2",
+        "title": "L7.2: Greedy Algorithms-Interval Scheduling",
+        "link": "https://www.youtube.com/watch?v=JfLewiAaPQ0"
+      },
+      {
+        "id": "L7.3",
+        "title": "L7.3: Greedy Algorithms-Minimizing Lateness",
+        "link": "https://www.youtube.com/watch?v=EBLpkKkQbTU"
+      },
+      {
+        "id": "L7.4",
+        "title": "L7.4: Greedy Algorithms-Huffman Coding",
+        "link": "https://www.youtube.com/watch?v=N87FpkW8LnA"
+      }
+    ],
+    "Week 8": [
+      {
+        "id": "L8.1",
+        "title": "L8.1: Divide and Conquer-Counting inversions",
+        "link": "https://www.youtube.com/watch?v=aEvoP-oOUv0"
+      },
+      {
+        "id": "L8.2",
+        "title": "L8.2: Divide and Conquer-Closest Pair of Points",
+        "link": "https://www.youtube.com/watch?v=vjjWGpy7DMk"
+      },
+      {
+        "id": "L8.3",
+        "title": "L8.3: Divide and Conquer-Integer Multiplication",
+        "link": "https://www.youtube.com/watch?v=Y-4ZRutInQU"
+      },
+      {
+        "id": "L8.4",
+        "title": "L8.4: Divide and Conquer-Recursion Trees",
+        "link": "https://www.youtube.com/watch?v=sl68fd-HdTI"
+      },
+      {
+        "id": "L8.5",
+        "title": "L8.5: Divide and Conquer-Quick Select",
+        "link": "https://www.youtube.com/watch?v=f8dhP521DHI"
+      },
+      {
+        "id": "L8.6",
+        "title": "L8.6: Implementation of Quick select and Fast select algorithms",
+        "link": "https://www.youtube.com/watch?v=PQIuyAJ7D7k"
+      }
+    ],
+    "Week 9": [
+      {
+        "id": "L9.1",
+        "title": "L9.1: Dynamic Programming",
+        "link": "https://www.youtube.com/watch?v=BfjdGOeH1XQ"
+      },
+      {
+        "id": "L9.2",
+        "title": "L9.2: Memoization",
+        "link": "https://www.youtube.com/watch?v=MK-LS5KdYFA"
+      },
+      {
+        "id": "L9.3",
+        "title": "L9.3: Grid Paths",
+        "link": "https://www.youtube.com/watch?v=9U2CYxmE2kg"
+      },
+      {
+        "id": "L9.4",
+        "title": "L9.4: Common Subwords and Subsequences",
+        "link": "https://www.youtube.com/watch?v=nP21HMGTjjM"
+      },
+      {
+        "id": "L9.5",
+        "title": "L9.5: Edit Distance",
+        "link": "https://www.youtube.com/watch?v=q_YDH7eQEfw"
+      },
+      {
+        "id": "L9.6",
+        "title": "L9.6: Matrix Multiplication",
+        "link": "https://www.youtube.com/watch?v=LDUx8Sf8urE"
+      }
+    ],
+    "Week 11": [
+      {
+        "id": "L11.1",
+        "title": "L11.1: Linear Programming",
+        "link": "https://www.youtube.com/watch?v=3YPqsJpYQJU"
+      },
+      {
+        "id": "L11.2",
+        "title": "L11.2: Linear Programming-Production Planning",
+        "link": "https://www.youtube.com/watch?v=8cpSh48s5Bo"
+      },
+      {
+        "id": "L11.3",
+        "title": "L11.3: Linear Programming-Bandwidth Allocation",
+        "link": "https://www.youtube.com/watch?v=WrA2Cir5r8k"
+      },
+      {
+        "id": "L11.4",
+        "title": "L11.4: Network Flows",
+        "link": "https://www.youtube.com/watch?v=yC6ychEgaTc"
+      },
+      {
+        "id": "L11.5",
+        "title": "L11.5: Reductions",
+        "link": "https://www.youtube.com/watch?v=yZt9FRXxgPQ"
+      },
+      {
+        "id": "L11.6",
+        "title": "L11.6: Intractability-Checking Algorithms",
+        "link": "https://www.youtube.com/watch?v=ar0jgfcGLvw"
+      },
+      {
+        "id": "L11.7",
+        "title": "L11.7: Intractability-P and NP",
+        "link": "https://www.youtube.com/watch?v=IT7pcW-50YI"
+      }
+    ]
+  }
+}

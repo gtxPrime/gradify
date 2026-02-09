@@ -1,0 +1,449 @@
+{
+  "subject": "Stats 2",
+  "weeks": {
+    "Week 1": [
+      {
+        "id": "L1.1",
+        "title": "L1.1: Joint PMF of two discrete random variables",
+        "link": "https://www.youtube.com/watch?v=0kvuT4ZwpJ0"
+      },
+      {
+        "id": "L1.2",
+        "title": "L1.2: Marginal PMF of discrete random variables",
+        "link": "https://www.youtube.com/watch?v=Yi5mf3fQP3k"
+      },
+      {
+        "id": "L1.3",
+        "title": "L1.3: Conditional distribution of one random variable given another",
+        "link": "https://www.youtube.com/watch?v=6eQxA6ElXOo"
+      },
+      {
+        "id": "L1.4",
+        "title": "L1.4: Examples on joint, marginal and conditional probabilities",
+        "link": "https://www.youtube.com/watch?v=B0-W5xQa5GE"
+      },
+      {
+        "id": "L1.5",
+        "title": "L1.5: Joint PMF of more than two discrete random variable",
+        "link": "https://www.youtube.com/watch?v=1d-6FI33HmY"
+      },
+      {
+        "id": "L1.6",
+        "title": "L1.6: Marginal PMF of multiple discrete random variable",
+        "link": "https://www.youtube.com/watch?v=t5GR3Eq1mLI"
+      },
+      {
+        "id": "L1.7",
+        "title": "L1.7: Conditioning with multiple discrete random variables",
+        "link": "https://www.youtube.com/watch?v=4a5rbPTqbOg"
+      }
+    ],
+    "Week 2": [
+      {
+        "id": "L2.1",
+        "title": "L2.1: Independence of two random variables",
+        "link": "https://www.youtube.com/watch?v=YXaYJths2Ts"
+      },
+      {
+        "id": "L2.2",
+        "title": "L2.2: Independence of multiple random variables",
+        "link": "https://www.youtube.com/watch?v=Ndy0KTpmJAI"
+      },
+      {
+        "id": "L2.3",
+        "title": "L2.3: Visualizing functions of one random variables, one-to-one functions",
+        "link": "https://www.youtube.com/watch?v=vQ8nsT6RH1I"
+      },
+      {
+        "id": "L2.4",
+        "title": "L2.4: Visualizing functions of one random variable, many-to-one functions",
+        "link": "https://www.youtube.com/watch?v=4nMkqSG9-_s"
+      },
+      {
+        "id": "L2.5",
+        "title": "L2.5: Examples on functions of one random variables",
+        "link": "https://www.youtube.com/watch?v=xK4Vbtv7DFY"
+      },
+      {
+        "id": "L2.6",
+        "title": "L2.6: Introduction to functions of two random variables",
+        "link": "https://www.youtube.com/watch?v=a0EHS19ZY0Y"
+      },
+      {
+        "id": "L2.7",
+        "title": "L2.7: Visualizing functions of two random variables",
+        "link": "https://www.youtube.com/watch?v=eyPW1iX66oI"
+      },
+      {
+        "id": "L2.8",
+        "title": "L2.8: Sum of two random variables",
+        "link": "https://www.youtube.com/watch?v=qWnGC_Jg0Qs"
+      },
+      {
+        "id": "L2.9",
+        "title": "L2.9: Maximum of two random variables",
+        "link": "https://www.youtube.com/watch?v=CyhOZjX5Ch8"
+      },
+      {
+        "id": "L2.10",
+        "title": "L2.10: Functions of random variables",
+        "link": "https://www.youtube.com/watch?v=I2S7nlCBkA8"
+      },
+      {
+        "id": "L2.11",
+        "title": "L2.11: Minimum and maximum of two random variables",
+        "link": "https://www.youtube.com/watch?v=sgzr8rTaAcI"
+      }
+    ],
+    "Week 3": [
+      {
+        "id": "L3.1",
+        "title": "L3.1: Expected value of random variable",
+        "link": "https://www.youtube.com/watch?v=7FrGkXw0OKQ"
+      },
+      {
+        "id": "L3.2",
+        "title": "L3.2: Properties of expected value",
+        "link": "https://www.youtube.com/watch?v=r1-n85hdJUw"
+      },
+      {
+        "id": "L3.3",
+        "title": "L3.3: Simulation of expected value using Python",
+        "link": "https://www.youtube.com/watch?v=hUidLbV0fNo"
+      },
+      {
+        "id": "L3.4",
+        "title": "L3.4: Variance and standard deviation",
+        "link": "https://www.youtube.com/watch?v=tZs2xS6XfYg"
+      },
+      {
+        "id": "L3.5",
+        "title": "L3.5: Covariance and its properties",
+        "link": "https://www.youtube.com/watch?v=UoZc81wNK4I"
+      },
+      {
+        "id": "L3.6",
+        "title": "L3.6: Correlation coefficient",
+        "link": "https://www.youtube.com/watch?v=BtZXJohBrno"
+      },
+      {
+        "id": "L3.7",
+        "title": "L3.7: Bounds in probabilities using mean and variance",
+        "link": "https://www.youtube.com/watch?v=NTGLrewi_uY"
+      }
+    ],
+    "Week 4": [
+      {
+        "id": "L4.1",
+        "title": "L4.1: Introduction",
+        "link": "https://www.youtube.com/watch?v=VfmiCE67QrE"
+      },
+      {
+        "id": "L4.2",
+        "title": "L4.2: Cumulative distribution function",
+        "link": "https://www.youtube.com/watch?v=bjQmbMOIL4Q"
+      },
+      {
+        "id": "L4.3",
+        "title": "L4.3: Approximation of CDF from discrete to continuous",
+        "link": "https://www.youtube.com/watch?v=3vpKxQjm0l8"
+      },
+      {
+        "id": "L4.4",
+        "title": "L4.4: General random variables and continuous random variables",
+        "link": "https://www.youtube.com/watch?v=bEPwrTc6-m4"
+      },
+      {
+        "id": "L4.5",
+        "title": "L4.5: Probability density function",
+        "link": "https://www.youtube.com/watch?v=YgCBemBF3pg"
+      },
+      {
+        "id": "L4.6",
+        "title": "L4.6: Common distributions",
+        "link": "https://www.youtube.com/watch?v=Sr_oC-iaXIs"
+      },
+      {
+        "id": "L4.7",
+        "title": "L4.7: Illustration in Colab",
+        "link": "https://www.youtube.com/watch?v=QFd8KeaY4Tk"
+      }
+    ],
+    "Week 5": [
+      {
+        "id": "L5.1",
+        "title": "L5.1: Functions of a continuous random variable",
+        "link": "https://www.youtube.com/watch?v=EJjvm7rXswU"
+      },
+      {
+        "id": "L5.2",
+        "title": "L5.2: Expectations of continuous random variable",
+        "link": "https://www.youtube.com/watch?v=cyu51WEwo7w"
+      },
+      {
+        "id": "L5.3",
+        "title": "L5.3: Motivation",
+        "link": "https://www.youtube.com/watch?v=PGKH0mFlOAg"
+      },
+      {
+        "id": "L5.4",
+        "title": "L5.4: Joint distributions: discrete and continuous",
+        "link": "https://www.youtube.com/watch?v=s_VmvOWnPWs"
+      },
+      {
+        "id": "Week 5 Tutorial 1",
+        "title": "Week 5 Tutorial 1",
+        "link": "https://www.youtube.com/watch?v=jNxALEU7q2w"
+      },
+      {
+        "id": "Week 5 Tutorial 2",
+        "title": "Week 5 Tutorial 2",
+        "link": "https://www.youtube.com/watch?v=c1J3W_YQPcI"
+      },
+      {
+        "id": "Week 5 Tutorial 3",
+        "title": "Week 5 Tutorial 3",
+        "link": "https://www.youtube.com/watch?v=o_WtuCPiDfY"
+      },
+      {
+        "id": "Week 5 Tutorial 4",
+        "title": "Week 5 Tutorial 4",
+        "link": "https://www.youtube.com/watch?v=MnCKTRjKzYE"
+      },
+      {
+        "id": "Week 5 Tutorial 5",
+        "title": "Week 5 Tutorial 5",
+        "link": "https://www.youtube.com/watch?v=TCU9DtD6rw0"
+      },
+      {
+        "id": "Week 5 Tutorial 6",
+        "title": "Week 5 Tutorial 6",
+        "link": "https://www.youtube.com/watch?v=0I8tmShq0uo"
+      },
+      {
+        "id": "Week 5 Tutorial 7",
+        "title": "Week 5 Tutorial 7",
+        "link": "https://www.youtube.com/watch?v=ni_hPOq42Ds"
+      }
+    ],
+    "Week 6": [
+      {
+        "id": "L6.1",
+        "title": "L6.1: Jointly continuous random variables",
+        "link": "https://www.youtube.com/watch?v=CIyqDJG-U9Q"
+      },
+      {
+        "id": "L6.2",
+        "title": "L6.2: Marginal densities",
+        "link": "https://www.youtube.com/watch?v=TirRvH4PiiA"
+      },
+      {
+        "id": "L6.3",
+        "title": "L6.3: Independence",
+        "link": "https://www.youtube.com/watch?v=cms_2NGMiHY"
+      },
+      {
+        "id": "L6.4",
+        "title": "L6.4: Conditional density",
+        "link": "https://www.youtube.com/watch?v=lTCc9oYRwr8"
+      },
+      {
+        "id": "L6.5",
+        "title": "L6.5: From data to distribution",
+        "link": "https://www.youtube.com/watch?v=RD-NtteZjzY"
+      },
+      {
+        "id": "L6.6",
+        "title": "L6.6: Summarizing data and plotting 1D/2D histograms in Colab",
+        "link": "https://www.youtube.com/watch?v=tpeP4uxybYY"
+      }
+    ],
+    "Week 7": [
+      {
+        "id": "L7.1",
+        "title": "L7.1: Statistics from i.i.d. samples",
+        "link": "https://www.youtube.com/watch?v=vcsSO5Gs2NE"
+      },
+      {
+        "id": "L7.2",
+        "title": "L7.2: Empirical distribution and descriptive statistics",
+        "link": "https://www.youtube.com/watch?v=7pEE9GSZuIg"
+      },
+      {
+        "id": "L7.3",
+        "title": "L7.3: Illustrations with data",
+        "link": "https://www.youtube.com/watch?v=6jPW0M4ruX4"
+      },
+      {
+        "id": "L7.4",
+        "title": "L7.4: Sum of independent random variables I",
+        "link": "https://www.youtube.com/watch?v=z2TrKozjcAk"
+      }
+    ],
+    "Week 8": [
+      {
+        "id": "L8.1",
+        "title": "L8.1: Moment Generating functions",
+        "link": "https://www.youtube.com/watch?v=OSL7bAmH6E4"
+      },
+      {
+        "id": "L8.2",
+        "title": "L8.2: Central Limit Theorem",
+        "link": "https://www.youtube.com/watch?v=o5wSSPcbp6U"
+      },
+      {
+        "id": "L8.3",
+        "title": "L8.3: Distribution, properties and connections",
+        "link": "https://www.youtube.com/watch?v=ArkKg5F1x38"
+      },
+      {
+        "id": "L8.4",
+        "title": "L8.4: Descriptive statistics of normal samples",
+        "link": "https://www.youtube.com/watch?v=Jrw7dyC4D4I"
+      }
+    ],
+    "Week 9": [
+      {
+        "id": "L9.1",
+        "title": "L9.1: Statistical problems in real life",
+        "link": "https://www.youtube.com/watch?v=iY6u-gh6324"
+      },
+      {
+        "id": "L9.2",
+        "title": "L9.2: Introduction to parameter estimation",
+        "link": "https://www.youtube.com/watch?v=NPmDCjN9s7A"
+      },
+      {
+        "id": "L9.3",
+        "title": "L9.3: Error in estimation",
+        "link": "https://www.youtube.com/watch?v=73F6lceo6iM"
+      },
+      {
+        "id": "L9.4",
+        "title": "L9.4: Bias, Variance and Risk of an estimator",
+        "link": "https://www.youtube.com/watch?v=fZjMovn18YE"
+      },
+      {
+        "id": "L9.5",
+        "title": "L9.5: Estimator design approach: Method of moments",
+        "link": "https://www.youtube.com/watch?v=XMX3lesags8"
+      },
+      {
+        "id": "L9.6",
+        "title": "L9.6: Estimator design approach: Maximum likelihood",
+        "link": "https://www.youtube.com/watch?v=0qnRu8GNxBg"
+      },
+      {
+        "id": "L9.7",
+        "title": "L9.7: Evaluation of ML estimators",
+        "link": "https://www.youtube.com/watch?v=0hbUXNPVrro"
+      },
+      {
+        "id": "L9.8",
+        "title": "L9.8: Finding MME and ML estimators",
+        "link": "https://www.youtube.com/watch?v=R1k74Kk7dbM"
+      }
+    ],
+    "Week 10": [
+      {
+        "id": "L10.1",
+        "title": "L10.1: Bayesian estimation",
+        "link": "https://www.youtube.com/watch?v=iMjDOTIb3-Q"
+      },
+      {
+        "id": "L10.2",
+        "title": "L10.2: Choice of prior and examples",
+        "link": "https://www.youtube.com/watch?v=HOFR9k3_97Y"
+      },
+      {
+        "id": "L10.3",
+        "title": "L10.3: Problems: Finding estimators",
+        "link": "https://www.youtube.com/watch?v=2owMxamj-Tc"
+      },
+      {
+        "id": "L10.4",
+        "title": "L10.4: Problems: Model estimation",
+        "link": "https://www.youtube.com/watch?v=c-N6tSRb_-0"
+      }
+    ],
+    "Week 11": [
+      {
+        "id": "L11.1",
+        "title": "L11.1: Introduction to Hypothesis testing",
+        "link": "https://www.youtube.com/watch?v=F9lk8tlkDXI"
+      },
+      {
+        "id": "L11.2",
+        "title": "L11.2: Size and power of a test (Problems)",
+        "link": "https://www.youtube.com/watch?v=4__hxeWOs5w"
+      },
+      {
+        "id": "L11.3",
+        "title": "L11.3: Types of hypothesis testing",
+        "link": "https://www.youtube.com/watch?v=gvvWghxz9SU"
+      },
+      {
+        "id": "L11.4",
+        "title": "L11.4: answering questions using data",
+        "link": "https://www.youtube.com/watch?v=LP11xjRaL4k"
+      },
+      {
+        "id": "L11.5",
+        "title": "L11.5: Standard testing methods: z-test",
+        "link": "https://www.youtube.com/watch?v=ZLj66E1Ue5Q"
+      },
+      {
+        "id": "L11.6",
+        "title": "L11.6: P-value",
+        "link": "https://www.youtube.com/watch?v=RfJBrqRljEg"
+      },
+      {
+        "id": "L11.7",
+        "title": "L11.7: z-test problems",
+        "link": "https://www.youtube.com/watch?v=RvQqGzHzKgo"
+      },
+      {
+        "id": "L11.8",
+        "title": "L11.8: More problems on z-test",
+        "link": "https://www.youtube.com/watch?v=bcm0eYB2ZyQ"
+      }
+    ],
+    "Week 12": [
+      {
+        "id": "L12.1",
+        "title": "L12.1: t-test, Chi squrared test, two sample z/F test",
+        "link": "https://www.youtube.com/watch?v=mWafJVZxKOY"
+      },
+      {
+        "id": "L12.2",
+        "title": "L12.2: t-test for mean (variance unknown) and Chi squared test for variance",
+        "link": "https://www.youtube.com/watch?v=dbJwXIoDBtQ"
+      },
+      {
+        "id": "L12.3",
+        "title": "L12.3: Two samples from normal distribution",
+        "link": "https://www.youtube.com/watch?v=G4mJrRem0H0"
+      },
+      {
+        "id": "L12.4",
+        "title": "L12.4: Two samples test",
+        "link": "https://www.youtube.com/watch?v=rOTvOV3RviE"
+      },
+      {
+        "id": "L12.5",
+        "title": "L12.5: Problems on t-test, chi-squared test and two-sample z/F test",
+        "link": "https://www.youtube.com/watch?v=Tyraw3Xue0Q"
+      },
+      {
+        "id": "L12.6",
+        "title": "L12.6: More problems on t-test, chi-squared test and two-sample z/F test",
+        "link": "https://www.youtube.com/watch?v=U7E4IstED2s"
+      },
+      {
+        "id": "L12.7",
+        "title": "L12.7: Problems on two-sample test",
+        "link": "https://www.youtube.com/watch?v=2lp4VeuE6OM"
+      }
+    ]
+  }
+}

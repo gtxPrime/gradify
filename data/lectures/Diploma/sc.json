@@ -1,0 +1,190 @@
+{
+  "subject": "SC",
+  "weeks": {
+    "Week 1": [
+      {
+        "id": "1.1 - Launching a Linux Virtual Machine",
+        "title": "1.1 - Launching a Linux Virtual Machine",
+        "link": "https://www.youtube.com/embed/PHrN7yp1AJw?enablejsapi=1&origin=https%3A%2F%2Facegrade.in&widgetid=2&forigin=https%3A%2F%2Facegrade.in%2Flectures&aoriginsup=1&vf=6"
+      },
+      {
+        "id": "1.2 - Command line environment",
+        "title": "1.2 - Command line environment",
+        "link": "https://www.youtube.com/embed/qrAnlpcMyYc?enablejsapi=1&origin=https%3A%2F%2Facegrade.in&widgetid=3&forigin=https%3A%2F%2Facegrade.in%2Flectures&aoriginsup=1&vf=6"
+      },
+      {
+        "id": "1.3 - Simple Commands in Linux - 1",
+        "title": "1.3 - Simple Commands in Linux - 1",
+        "link": "https://www.youtube.com/embed/DIpBEmRDHnw?enablejsapi=1&origin=https%3A%2F%2Facegrade.in&widgetid=4&forigin=https%3A%2F%2Facegrade.in%2Flectures&aoriginsup=1&vf=6"
+      },
+      {
+        "id": "1.4 - Simple Commands in Linux - 2",
+        "title": "1.4 - Simple Commands in Linux - 2",
+        "link": "https://www.youtube.com/embed/lpe6AKk5GIk?enablejsapi=1&origin=https%3A%2F%2Facegrade.in&widgetid=5&forigin=https%3A%2F%2Facegrade.in%2Flectures&aoriginsup=1&vf=6"
+      }
+    ],
+    "Week 2": [
+      {
+        "id": "L2.1 - Command line editors - Part 01",
+        "title": "L2.1 - Command line editors - Part 01",
+        "link": "https://www.youtube.com/embed/NIIZ1cgrO7g?enablejsapi=1&origin=https%3A%2F%2Facegrade.in&widgetid=6&forigin=https%3A%2F%2Facegrade.in%2Flectures&aoriginsup=1&vf=6"
+      },
+      {
+        "id": "L2.2 - Command line editors - Part 02",
+        "title": "L2.2 - Command line editors - Part 02",
+        "link": "https://www.youtube.com/embed/HLhza4vZTsI?enablejsapi=1&origin=https%3A%2F%2Facegrade.in&widgetid=7&forigin=https%3A%2F%2Facegrade.in%2Flectures&aoriginsup=1&vf=6"
+      },
+      {
+        "id": "L2.3 - Command line editors - Part 03",
+        "title": "L2.3 - Command line editors - Part 03",
+        "link": "https://www.youtube.com/embed/w25zlMXshHw?enablejsapi=1&origin=https%3A%2F%2Facegrade.in&widgetid=8&forigin=https%3A%2F%2Facegrade.in%2Flectures&aoriginsup=1&vf=6"
+      },
+      {
+        "id": "L2.4",
+        "title": "L2.4: Networking Commands and SSH",
+        "link": "https://www.youtube.com/embed/SxDIXtxR33c?enablejsapi=1&origin=https%3A%2F%2Facegrade.in&widgetid=9&forigin=https%3A%2F%2Facegrade.in%2Flectures&aoriginsup=1&vf=6"
+      }
+    ],
+    "Week 3": [
+      {
+        "id": "L3.1 - Combining commands and files",
+        "title": "L3.1 - Combining commands and files",
+        "link": "https://www.youtube.com/embed/Lcx9UsS7y8Y?enablejsapi=1&origin=https%3A%2F%2Facegrade.in&widgetid=10&forigin=https%3A%2F%2Facegrade.in%2Flectures&aoriginsup=1&vf=6"
+      },
+      {
+        "id": "L3.2 - Redirections",
+        "title": "L3.2 - Redirections",
+        "link": "https://www.youtube.com/embed/BBh69kH_G_Y?enablejsapi=1&origin=https%3A%2F%2Facegrade.in&widgetid=11&forigin=https%3A%2F%2Facegrade.in%2Flectures&aoriginsup=1&vf=6"
+      },
+      {
+        "id": "L3.3",
+        "title": "L3.3: Software Management - Part 01",
+        "link": "https://www.youtube.com/embed/OAEVYgH1IMM?enablejsapi=1&origin=https%3A%2F%2Facegrade.in&widgetid=12&forigin=https%3A%2F%2Facegrade.in%2Flectures&aoriginsup=1&vf=6"
+      },
+      {
+        "id": "L3.4",
+        "title": "L3.4: Software Management - Part 02",
+        "link": "https://www.youtube.com/embed/3saraSGT1i0?enablejsapi=1&origin=https%3A%2F%2Facegrade.in&widgetid=13&forigin=https%3A%2F%2Facegrade.in%2Flectures&aoriginsup=1&vf=6"
+      },
+      {
+        "id": "L3.5 - Linux process management",
+        "title": "L3.5 - Linux process management",
+        "link": "https://www.youtube.com/embed/2aThmDRvSWU?enablejsapi=1&origin=https%3A%2F%2Facegrade.in&widgetid=14&forigin=https%3A%2F%2Facegrade.in%2Flectures&aoriginsup=1&vf=6"
+      }
+    ],
+    "Week 4": [
+      {
+        "id": "L4.1",
+        "title": "L4.1: Pattern Matching - Part 01",
+        "link": "https://www.youtube.com/embed/1y85iTaqq8Y?enablejsapi=1&origin=https%3A%2F%2Facegrade.in&widgetid=15&forigin=https%3A%2F%2Facegrade.in%2Flectures&aoriginsup=1&vf=6"
+      },
+      {
+        "id": "L4.2",
+        "title": "L4.2: Pattern Matching - Part 02",
+        "link": "https://www.youtube.com/embed/XQUJPRc-7zA?enablejsapi=1&origin=https%3A%2F%2Facegrade.in&widgetid=16&forigin=https%3A%2F%2Facegrade.in%2Flectures&aoriginsup=1&vf=6"
+      }
+    ],
+    "Week 5": [
+      {
+        "id": "L 5.1 - $hell variables",
+        "title": "L 5.1 - $hell variables",
+        "link": "https://www.youtube.com/embed/pPRge8Yxbso?enablejsapi=1&origin=https%3A%2F%2Facegrade.in&widgetid=17&forigin=https%3A%2F%2Facegrade.in%2Flectures&aoriginsup=1&vf=6"
+      },
+      {
+        "id": "L 5.2  - Shell Variables - Part 1",
+        "title": "L 5.2  - Shell Variables - Part 1",
+        "link": "https://www.youtube.com/embed/QX5XElFRpck?enablejsapi=1&origin=https%3A%2F%2Facegrade.in&widgetid=18&forigin=https%3A%2F%2Facegrade.in%2Flectures&aoriginsup=1&vf=6"
+      },
+      {
+        "id": "L 5.3 - Shell Variables - Part 2",
+        "title": "L 5.3 - Shell Variables - Part 2",
+        "link": "https://www.youtube.com/embed/R9vnc8AdVUo?enablejsapi=1&origin=https%3A%2F%2Facegrade.in&widgetid=19&forigin=https%3A%2F%2Facegrade.in%2Flectures&aoriginsup=1&vf=6"
+      }
+    ],
+    "Week 6": [
+      {
+        "id": "L6.1",
+        "title": "L6.1: Some Command line Utilities",
+        "link": "https://www.youtube.com/embed/fNf74ycgD9w?enablejsapi=1&origin=https%3A%2F%2Facegrade.in&widgetid=20&forigin=https%3A%2F%2Facegrade.in%2Flectures&aoriginsup=1&vf=6"
+      },
+      {
+        "id": "L6.2 - Overview of Shell Scripts",
+        "title": "L6.2 - Overview of Shell Scripts",
+        "link": "https://www.youtube.com/embed/YAddHeVpG7I?enablejsapi=1&origin=https%3A%2F%2Facegrade.in&widgetid=21&forigin=https%3A%2F%2Facegrade.in%2Flectures&aoriginsup=1&vf=6"
+      },
+      {
+        "id": "L6.3 - Bash Scripts - Part 01",
+        "title": "L6.3 - Bash Scripts - Part 01",
+        "link": "https://www.youtube.com/embed/_WdPclVGNNc?enablejsapi=1&origin=https%3A%2F%2Facegrade.in&widgetid=22&forigin=https%3A%2F%2Facegrade.in%2Flectures&aoriginsup=1&vf=6"
+      }
+    ],
+    "Week 7": [
+      {
+        "id": "L7.1 - Bash scripts - Part 2A",
+        "title": "L7.1 - Bash scripts - Part 2A",
+        "link": "https://www.youtube.com/embed/8YmNovNo6NE?enablejsapi=1&origin=https%3A%2F%2Facegrade.in&widgetid=23&forigin=https%3A%2F%2Facegrade.in%2Flectures&aoriginsup=1&vf=6"
+      },
+      {
+        "id": "L5.4 - Bash scripts - Part 2B",
+        "title": "L5.4 - Bash scripts - Part 2B",
+        "link": "https://www.youtube.com/embed/n56JIC15DBo?enablejsapi=1&origin=https%3A%2F%2Facegrade.in&widgetid=24&forigin=https%3A%2F%2Facegrade.in%2Flectures&aoriginsup=1&vf=6"
+      },
+      {
+        "id": "L7..3 - Bash scripts - Part 2C",
+        "title": "L7..3 - Bash scripts - Part 2C",
+        "link": "https://www.youtube.com/embed/kjMhi4gI0po?enablejsapi=1&origin=https%3A%2F%2Facegrade.in&widgetid=25&forigin=https%3A%2F%2Facegrade.in%2Flectures&aoriginsup=1&vf=6"
+      }
+    ],
+    "Week 8": [
+      {
+        "id": "L8.1",
+        "title": "L8.1: Automating Scripts",
+        "link": "https://www.youtube.com/embed/kWid87j6qIE?enablejsapi=1&origin=https%3A%2F%2Facegrade.in&widgetid=26&forigin=https%3A%2F%2Facegrade.in%2Flectures&aoriginsup=1&vf=6"
+      },
+      {
+        "id": "L 8.2 - Stream editor sed",
+        "title": "L 8.2 - Stream editor sed",
+        "link": "https://www.youtube.com/embed/uCJjZ3cbaAw?enablejsapi=1&origin=https%3A%2F%2Facegrade.in&widgetid=27&forigin=https%3A%2F%2Facegrade.in%2Flectures&aoriginsup=1&vf=6"
+      }
+    ],
+    "Week 9": [
+      {
+        "id": "9.1 - AWK Programming Part 1",
+        "title": "9.1 - AWK Programming Part 1",
+        "link": "https://www.youtube.com/embed/k3q-9ntZI4s?enablejsapi=1&origin=https%3A%2F%2Facegrade.in&widgetid=28&forigin=https%3A%2F%2Facegrade.in%2Flectures&aoriginsup=1&vf=6"
+      },
+      {
+        "id": "9.2 - AWK Programming Part 2",
+        "title": "9.2 - AWK Programming Part 2",
+        "link": "https://www.youtube.com/embed/g9_ij64u8eQ?enablejsapi=1&origin=https%3A%2F%2Facegrade.in&widgetid=29&forigin=https%3A%2F%2Facegrade.in%2Flectures&aoriginsup=1&vf=6"
+      }
+    ],
+    "Week 10": [
+      {
+        "id": "L10.1 - Version Control - Part 01",
+        "title": "L10.1 - Version Control - Part 01",
+        "link": "https://www.youtube.com/embed/tzYx6DKtvGw?enablejsapi=1&origin=https%3A%2F%2Facegrade.in&widgetid=30&forigin=https%3A%2F%2Facegrade.in%2Flectures&aoriginsup=1&vf=6"
+      },
+      {
+        "id": "L10.2 - Version Control - Part 02",
+        "title": "L10.2 - Version Control - Part 02",
+        "link": "https://www.youtube.com/embed/B9XVOO9ERis?enablejsapi=1&origin=https%3A%2F%2Facegrade.in&widgetid=31&forigin=https%3A%2F%2Facegrade.in%2Flectures&aoriginsup=1&vf=6"
+      },
+      {
+        "id": "L10.3 - Knowing your Hardware",
+        "title": "L10.3 - Knowing your Hardware",
+        "link": "https://www.youtube.com/embed/pbb5YQQhqXU?enablejsapi=1&origin=https%3A%2F%2Facegrade.in&widgetid=32&forigin=https%3A%2F%2Facegrade.in%2Flectures&aoriginsup=1&vf=6"
+      },
+      {
+        "id": "L10.4 ",
+        "title": "L10.4 : Prompt String",
+        "link": "https://www.youtube.com/embed/UBjENhxwpcU?enablejsapi=1&origin=https%3A%2F%2Facegrade.in&widgetid=33&forigin=https%3A%2F%2Facegrade.in%2Flectures&aoriginsup=1&vf=6"
+      },
+      {
+        "id": "L10.5",
+        "title": "L10.5: Managing Storage",
+        "link": "https://www.youtube.com/embed/BvAtNUX7da4?enablejsapi=1&origin=https%3A%2F%2Facegrade.in&widgetid=34&forigin=https%3A%2F%2Facegrade.in%2Flectures&aoriginsup=1&vf=6"
+      }
+    ]
+  }
+}
