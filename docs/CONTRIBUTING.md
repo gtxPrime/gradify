@@ -36,21 +36,58 @@ Thank you for your interest in contributing to Gradify! This guide will help you
 
 ### Adding Quizzes
 
-1. **Create quiz JSON**:
+1. **Create quiz JSON** following the IIT-M format:
 
    ```json
    {
-     "subject": "Subject Name",
+     "papers": [
+       {
+         "paper_name": "Subject Name_DD Mon YYYY",
+         "total_time_minutes": "60",
+         "subject": "Subject Name",
+         "year": "2024",
+         "session": "Quiz 1"
+       }
+     ],
      "questions": [
        {
-         "question": "Your question?",
-         "options": ["A", "B", "C", "D"],
-         "answer": 0,
-         "explanation": "Why this is correct"
+         "question_number": 1,
+         "question_text": "Your question text here",
+         "question_type": "mcq",
+         "marks": 6,
+         "question_image_url": "",
+         "options": [
+           {
+             "text": "Option A text",
+             "image_url": "",
+             "is_correct": true
+           },
+           {
+             "text": "Option B text",
+             "image_url": "",
+             "is_correct": false
+           },
+           {
+             "text": "Option C text",
+             "image_url": "",
+             "is_correct": false
+           },
+           {
+             "text": "Option D text",
+             "image_url": "",
+             "is_correct": false
+           }
+         ]
        }
      ]
    }
    ```
+
+   **Notes**:
+   - Use `question_image_url` for questions with images
+   - Use `image_url` in options for image-based choices
+   - Set `is_correct: true` for the correct answer
+   - Leave `text` or `image_url` empty if not used
 
 2. **Encrypt (optional)**:
 
