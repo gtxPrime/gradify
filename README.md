@@ -1,16 +1,21 @@
-# Gradify
-
 <div align="center">
 
-![Gradify Banner](https://img.shields.io/badge/Gradify-Your%20Academic%20Companion-6C63FF?style=for-the-badge)
+<img src="app/src/main/ic_launcher-playstore.png" alt="Gradify Logo" width="120"/>
 
-**Your All-in-One Academic Success Platform**
+# Gradify
+
+**Your Complete Academic Companion for IIT Madras BS in Data Science**
 
 [![License](https://img.shields.io/badge/License-Modified%20MIT-blue.svg)](LICENSE)
-[![Android](https://img.shields.io/badge/Platform-Android-green.svg)](https://www.android.com/)
+[![Platform](https://img.shields.io/badge/Platform-Android-green.svg)](https://www.android.com/)
 [![Version](https://img.shields.io/badge/Version-Mark%207-orange.svg)](https://github.com/gtxPrime/gradify/releases)
+[![IIT Madras](https://img.shields.io/badge/IIT%20Madras-BS%20Data%20Science-red.svg)](https://study.iitm.ac.in/)
 
-### [Features](#-features) | [Tech Stack](#-tech-stack) | [Installation](#-installation) | [Contributing](#-contributing)
+[![GitHub stars](https://img.shields.io/github/stars/gtxPrime/gradify?style=social)](https://github.com/gtxPrime/gradify/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/gtxPrime/gradify?style=social)](https://github.com/gtxPrime/gradify/network/members)
+[![GitHub issues](https://img.shields.io/github/issues/gtxPrime/gradify)](https://github.com/gtxPrime/gradify/issues)
+
+### [Features](#-features) | [Installation](#-installation) | [Documentation](#-documentation) | [Contributing](#-contributing)
 
 </div>
 
@@ -18,209 +23,106 @@
 
 ## 📱 About Gradify
 
-Gradify is not just another study app; it's a comprehensive academic ecosystem designed to help students excel in their courses. From interactive video lectures to AI-powered assistance, Gradify transforms the challenging journey of learning into an engaging and rewarding experience.
+**Gradify** is a comprehensive mobile learning platform designed exclusively for **IIT Madras BS in Data Science and Applications** students. From Foundation to Diploma levels, Gradify brings together video lectures, interactive quizzes, formula sheets, AI assistance, and study materials - all in one beautifully designed Android application.
 
-> "Education is not the learning of facts, but the training of the mind to think." - Albert Einstein
+> "The beautiful thing about learning is that no one can take it away from you." - B.B. King
 
-Gradify brings together everything you need to succeed academically - all in one beautifully designed Android application.
+Whether you're tackling Statistics, mastering Python, or diving into Machine Learning, Gradify is your trusted companion throughout your IIT-M journey.
 
 ---
 
-## 🚀 Features
+## ✨ Features
 
-Gradify comes packed with powerful features designed to enhance your learning experience.
-
-### 📚 Interactive Video Lectures
-
-Access a comprehensive library of video lectures across multiple subjects.
-
-- **Structured Learning Paths**: Organized by Foundation and Diploma levels
-- **YouTube Integration**: Seamless video playback with custom controls
-- **Offline Support**: Download lectures for offline viewing
-- **Progress Tracking**: Keep track of completed lectures and your learning journey
-- **Multi-Subject Coverage**: From Python and Java to Statistics and Machine Learning
-
-**Supported Subjects:**
+### 📚 **Comprehensive Video Lectures**
 
 - **Foundation Level**: Computational Thinking, English, Mathematics, Python, Statistics
 - **Diploma Level**: Business Analytics, BDM, DBMS, Java, MAD, Machine Learning, PDSA, System Commands
+- Seamless YouTube integration with custom player
+- Progress tracking and bookmarking
+- Offline download support (coming soon)
 
-### 🎯 Interactive Quizzes
+### 🎯 **Interactive Quizzes**
 
-Test your knowledge with subject-specific quizzes.
+- Subject-specific question banks for all courses
+- Instant feedback and explanations
+- Performance analytics and progress tracking
+- Encrypted content delivery for security
+- Practice mode and exam simulation
 
-- **Comprehensive Question Banks**: Hundreds of questions across all subjects
-- **Instant Feedback**: Get immediate results and explanations
-- **Progress Analytics**: Track your quiz performance over time
-- **Encrypted Content**: Secure quiz data with AES encryption
-- **Adaptive Learning**: Focus on areas that need improvement
+### 🧮 **Formula Sheet**
 
-### 📖 Smart Notes System
+- Comprehensive formula database for Math, Statistics, and Science
+- Quick search and categorization
+- Bookmark frequently used formulas
+- Visual representations with proper formatting
+- Offline access
 
-Access and organize your study materials efficiently.
+### 🤖 **AI-Powered Study Assistant**
 
-- **Cloud-Synced Notes**: Access your notes from anywhere
-- **Rich Media Support**: Images, PDFs, and formatted text
-- **Quick Search**: Find what you need instantly
-- **Categorized Content**: Organized by subject and topic
-- **Offline Access**: Study even without internet connection
+- Powered by Google Gemini AI
+- Subject-specific help and explanations
+- Step-by-step problem solving
+- 24/7 availability
+- Context-aware responses
 
-### 🧮 Formula Sheet
+### 📖 **Smart Notes System**
 
-Never forget important formulas again.
+- Cloud-synced study materials
+- Rich media support (PDFs, images, formatted text)
+- Quick search functionality
+- Organized by subject and topic
+- Offline access
 
-- **Comprehensive Formula Database**: Math, Statistics, and Science formulas
-- **Quick Reference**: Instant access to commonly used formulas
-- **Visual Representations**: Clear, formatted mathematical expressions
-- **Searchable**: Find formulas by subject or keyword
-- **Favorites**: Bookmark frequently used formulas
+### 🎨 **Beautiful Material Design**
 
-### 🤖 AI-Powered Assistant
+- Modern Material Design 3 interface
+- Dark mode support
+- Smooth animations and transitions
+- Customizable themes
+- Responsive design for all screen sizes
 
-Get instant help with your studies using Google's Gemini AI.
+### 🔐 **Secure & Private**
 
-- **Natural Conversations**: Ask questions in plain language
-- **Subject-Specific Help**: Tailored responses for your courses
-- **Step-by-Step Explanations**: Understand concepts thoroughly
-- **24/7 Availability**: Study help whenever you need it
-- **Context-Aware**: Remembers your conversation history
+- AES encryption for content delivery
+- Firebase authentication
+- Encrypted URL handling
+- Privacy-first approach
 
-### 🎨 Beautiful UI/UX
+---
 
-A stunning interface that makes learning enjoyable.
+## 📸 Screenshots
 
-- **Material Design 3**: Modern, clean, and intuitive interface
-- **Dark Mode Support**: Easy on the eyes during late-night study sessions
-- **Smooth Animations**: Polished transitions and interactions
-- **Customizable Themes**: Personalize your learning environment
-- **Responsive Design**: Optimized for all screen sizes
+<div align="center">
 
-### 🔐 Secure & Private
+| Home Screen   | Lectures      | Quizzes       | AI Assistant  |
+| ------------- | ------------- | ------------- | ------------- |
+| _Coming Soon_ | _Coming Soon_ | _Coming Soon_ | _Coming Soon_ |
 
-Your data is protected with industry-standard security.
-
-- **AES Encryption**: Secure content delivery
-- **Firebase Authentication**: Safe and reliable user management
-- **Encrypted URLs**: Protected access to premium content
-- **Privacy First**: Your study data stays yours
-
-### 📊 Progress Tracking
-
-Monitor your academic journey with detailed analytics.
-
-- **Learning Statistics**: Track time spent on each subject
-- **Quiz Performance**: Visualize your improvement over time
-- **Completion Rates**: See how much you've accomplished
-- **Personalized Insights**: Get recommendations based on your progress
+</div>
 
 ---
 
 ## 🛠 Tech Stack
 
-Gradify is built with modern Android development practices, ensuring a smooth, secure, and responsive experience.
-
 **Core Technologies:**
 
 ```
 • Java (Android)
-• Firebase (Authentication, Firestore, Crashlytics)
+• Firebase (Auth, Firestore, Crashlytics)
 • Material Design 3
-• AndroidX Libraries
+• Google Gemini AI
 ```
 
-**Key Dependencies:**
+**Key Libraries:**
 
-```gradle
-// UI & Design
-androidx.appcompat:appcompat
-com.google.android.material:material
-androidx.constraintlayout:constraintlayout
-com.github.Dimezis:BlurView
+- **UI/UX**: Material Components, ConstraintLayout, BlurView
+- **Networking**: Retrofit, OkHttp, Volley
+- **Media**: Glide, PhotoView, YouTube Player
+- **AI**: Google Generative AI SDK
+- **Security**: AndroidX Security Crypto
+- **Utilities**: MathParser, Markwon, ColorPicker
 
-// Networking
-com.squareup.retrofit2:retrofit
-com.squareup.okhttp3:okhttp
-com.android.volley:volley
-
-// Media & Images
-com.github.bumptech.glide:glide
-com.github.chrisbanes:PhotoView
-com.pierfrancescosoffritti.androidyoutubeplayer:core
-
-// Firebase
-com.google.firebase:firebase-auth
-com.google.firebase:firebase-firestore
-com.google.firebase:firebase-crashlytics
-
-// AI & Intelligence
-com.google.ai.client.generativeai:generativeai
-
-// Data & Storage
-androidx.room:room-runtime
-androidx.security:security-crypto
-
-// Utilities
-org.mariuszgromada.math:MathParser.org-mXparser
-io.noties.markwon:core
-com.github.skydoves:colorpickerview
-
-// And more... (see app/build.gradle)
-```
-
----
-
-## 🗺 Roadmap
-
-We are constantly improving Gradify. Here's what's coming next:
-
-- [ ] **Offline Mode**: Full offline support for lectures and quizzes
-- [ ] **Study Groups**: Collaborate with classmates in real-time
-- [ ] **Live Classes**: Interactive live sessions with instructors
-- [ ] **Flashcards**: Spaced repetition learning system
-- [ ] **Achievement System**: Earn badges and rewards for learning milestones
-- [ ] **Calendar Integration**: Sync with your academic calendar
-- [ ] **Voice Notes**: Record and transcribe lecture notes
-- [ ] **Web Dashboard**: Access your progress on desktop
-- [ ] **Multi-Language Support**: Learn in your preferred language
-- [ ] **Advanced Analytics**: Detailed insights into your learning patterns
-
----
-
-## 📚 Documentation
-
-### Project Structure
-
-```
-Gradify/
-├── app/
-│   ├── src/
-│   │   ├── main/
-│   │   │   ├── java/com/gxdevs/gradify/
-│   │   │   │   ├── activities/        # All app activities
-│   │   │   │   ├── adapters/          # RecyclerView adapters
-│   │   │   │   ├── fragments/         # UI fragments
-│   │   │   │   ├── models/            # Data models
-│   │   │   │   └── Utils/             # Utility classes
-│   │   │   ├── res/                   # Resources (layouts, drawables, etc.)
-│   │   │   └── AndroidManifest.xml
-│   │   └── build.gradle
-├── data/
-│   ├── lectures/                      # Lecture JSON files
-│   ├── quizzes/                       # Quiz JSON files
-│   ├── formulas.json                  # Formula database
-│   └── index.json                     # Content index
-├── .gitignore
-├── LICENSE
-└── README.md
-```
-
-### Key Components
-
-- **Utils.java**: Core utility functions including encryption/decryption, URL handling, and data fetching
-- **LectureActivity.java**: Video lecture player with YouTube integration
-- **NotesActivity.java**: Notes viewer with PDF and image support
-- **SubjectsActivity.java**: Subject selection and navigation
-- **MainActivity.java**: App entry point and navigation hub
+For complete dependency list, see [`app/build.gradle`](app/build.gradle)
 
 ---
 
@@ -228,121 +130,118 @@ Gradify/
 
 ### Option 1: Download APK (Recommended)
 
-1. Go to the [Releases](https://github.com/gtxPrime/gradify/releases) section
-2. Download the latest APK file
-3. Install on your Android device (Enable "Install from Unknown Sources" if needed)
+1. Go to [Releases](https://github.com/gtxPrime/gradify/releases)
+2. Download the latest APK
+3. Install on your Android device (Enable "Install from Unknown Sources")
 
 ### Option 2: Build from Source
 
-**Prerequisites:**
+See our detailed [Build & Run Guide](docs/BUILD_AND_RUN.md) for complete instructions.
 
-- Android Studio (latest version)
-- JDK 8 or higher
-- Android SDK (API 24+)
+**Quick Start:**
 
-**Steps:**
-
-1. **Clone the repository**
-
-   ```bash
-   git clone https://github.com/gtxprime/gradify.git
-   cd gradify
-   ```
-
-2. **Set up local.properties**
-
-   Create a `local.properties` file in the root directory:
-
-   ```properties
-   sdk.dir=YOUR_ANDROID_SDK_PATH
-   SECRET_KEY=your_secret_key_here
-   ```
-
-3. **Configure signing (optional)**
-
-   Update `gradle.properties` with your keystore details:
-
-   ```properties
-   KEYSTORE_FILE=path/to/your/keystore
-   KEYSTORE_PASSWORD=your_password
-   KEY_ALIAS=your_alias
-   KEY_PASSWORD=your_key_password
-   ```
-
-4. **Open in Android Studio**
-   - Open Android Studio
-   - Select "Open an Existing Project"
-   - Navigate to the cloned directory
-
-5. **Sync Gradle**
-   - Wait for Gradle to sync all dependencies
-   - Resolve any dependency issues if prompted
-
-6. **Run the app**
-   - Connect an Android device or start an emulator
-   - Click the "Run" button (or press Shift+F10)
-
-**Note:** You'll need to configure Firebase for full functionality. Download `google-services.json` from your Firebase console and place it in the `app/` directory.
+```bash
+git clone https://github.com/gtxprime/gradify.git
+cd gradify
+./gradlew assembleDebug
+```
 
 ---
 
-## 🤝 How to Contribute
+## 📚 Documentation
 
-We love contributions! Whether it's a bug fix, new feature, or documentation improvement, your help is appreciated.
+We have comprehensive documentation to help you understand, build, and contribute:
 
-### Contributing Guidelines
-
-1. **Fork the Project**
-
-   ```bash
-   # Click the 'Fork' button on GitHub
-   ```
-
-2. **Create your Feature Branch**
-
-   ```bash
-   git checkout -b feature/AmazingFeature
-   ```
-
-3. **Make your changes**
-   - Write clean, documented code
-   - Follow existing code style and conventions
-   - Test your changes thoroughly
-
-4. **Commit your Changes**
-
-   ```bash
-   git commit -m 'Add some AmazingFeature'
-   ```
-
-5. **Push to the Branch**
-
-   ```bash
-   git push origin feature/AmazingFeature
-   ```
-
-6. **Open a Pull Request**
-   - Go to the repository on GitHub
-   - Click "New Pull Request"
-   - Describe your changes in detail
-
-### Areas We Need Help With
-
-- 🎨 **UI/UX Improvements**: Make the app even more beautiful
-- 📝 **Content Creation**: Add more quizzes, notes, and study materials
-- 🐛 **Bug Fixes**: Help us squash bugs
-- 📚 **Documentation**: Improve guides and tutorials
-- 🌐 **Translations**: Make Gradify accessible in more languages
-- ⚡ **Performance**: Optimize app speed and efficiency
+- **[⚡ Quick Start](docs/QUICK_START.md)**: Get the app running in 5 minutes
+- **[🔧 Build & Run](docs/BUILD_AND_RUN.md)**: Detailed setup and troubleshooting
+- **[🏛️ Architecture](docs/ARCHITECTURE.md)**: Code structure and design patterns
+- **[🔑 Key Components](docs/KEY_COMPONENTS.md)**: Deep dive into critical files
+- **[🤝 Contributing Guide](docs/CONTRIBUTING.md)**: How to contribute content and code
+- **[📂 Documentation Index](docs/SUMMARY.md)**: Full documentation list
 
 ---
 
-## 🐛 Bug Reports & Feature Requests
+## 🗺 Roadmap
 
-Found a bug or have a feature idea? We'd love to hear from you!
+We're constantly improving Gradify. Here's what's coming:
 
-- **Bug Reports**: [Open an issue](https://github.com/gtxPrime/gradify/issues/new?template=bug_report.md)
-- **Feature Requests**: [Open an issue](https://github.com/gtxPrime/gradify/issues/new?template=feature_request.md)
+- [ ] **Offline Mode**: Download lectures and quizzes for offline access
+- [ ] **Flashcards**: Spaced repetition learning system
+- [ ] **Achievement System**: Earn badges for learning milestones
+- [ ] **Streak System**: Daily learning streaks and rewards
+- [ ] **Web Dashboard**: Access your progress on desktop
+- [ ] **Advanced Analytics**: Detailed insights into learning patterns
+- [ ] **Community Features**: Study groups and peer discussions
+- [ ] **Quiz Paper Downloads**: Downloadable ZIP files of all quizzes
+
+---
+
+## 🤝 Contributing
+
+We love contributions! Whether you're adding content, fixing bugs, or improving features - your help is appreciated.
+
+### Ways to Contribute:
+
+#### 📝 **Content Contribution**
+
+- **Add Lectures**: Submit new video lecture links
+- **Create Quizzes**: Add questions for any subject
+- **Update Formulas**: Contribute to the formula database
+- **Improve Notes**: Share study materials and notes
+
+See [Contributing Guide](docs/CONTRIBUTING.md) for detailed instructions.
+
+#### 💻 **Code Contribution**
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+#### 🎯 **Areas We Need Help**
+
+- UI/UX improvements
+- Content creation (lectures, quizzes, notes)
+- Bug fixes and optimization
+- Documentation improvements
+- Translations
+
+---
+
+## 🚀 Setup Your Own Instance
+
+Want to create your own version of Gradify for your institution?
+
+1. **Fork the repository**
+2. **Update content files** in the `data/` directory:
+   - `data/index.json` - Main content index
+   - `data/lectures/` - Lecture JSON files
+   - `data/quizzes/` - Quiz JSON files
+   - `data/formulas.json` - Formula database
+3. **Configure Firebase**:
+   - Create a Firebase project
+   - Download `google-services.json`
+   - Place in `app/` directory
+4. **Set up encryption**:
+   - Generate a secret key
+   - Add to `local.properties`: `SECRET_KEY=your_key_here`
+5. **Build and deploy**
+
+See [Setup Guide](docs/SETUP_YOUR_OWN.md) for detailed instructions.
+
+---
+
+## 📊 Repository Stats
+
+<div align="center">
+
+![GitHub repo size](https://img.shields.io/github/repo-size/gtxPrime/gradify)
+![GitHub code size](https://img.shields.io/github/languages/code-size/gtxPrime/gradify)
+![GitHub last commit](https://img.shields.io/github/last-commit/gtxPrime/gradify)
+![GitHub contributors](https://img.shields.io/github/contributors/gtxPrime/gradify)
+
+</div>
 
 ---
 
@@ -361,15 +260,15 @@ See [LICENSE](LICENSE) for more information.
 **Developed by gtxPrime**
 
 - GitHub: [@gtxPrime](https://github.com/gtxprime)
-- Project Link: [https://github.com/gtxPrime/gradify](https://github.com/gtxPrime/gradify)
+- Project: [Gradify](https://github.com/gtxPrime/gradify)
 
 ---
 
 ## 🙏 Acknowledgments
 
-- Thanks to all the students using Gradify to achieve their academic goals
-- Special thanks to the open-source community for amazing libraries
-- Inspired by the need for better educational tools
+- Thanks to all IIT-M BS Data Science students using Gradify
+- Special thanks to the open-source community
+- Inspired by the need for better educational tools for online learners
 
 ---
 
@@ -385,7 +284,7 @@ Need help? Have questions?
 
 <div align="center">
 
-**Made with ❤️ for students, by a student**
+**Made with ❤️ for IIT-M students, by an IIT-M student**
 
 ⭐ Star this repo if Gradify helps you ace your exams!
 
