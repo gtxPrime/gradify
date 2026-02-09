@@ -23,11 +23,33 @@
 
 ## 📱 About Gradify
 
-**Gradify** is a comprehensive mobile learning platform designed exclusively for **IIT Madras BS in Data Science and Applications** students. From Foundation to Diploma levels, Gradify brings together video lectures, interactive quizzes, formula sheets, AI assistance, and study materials - all in one beautifully designed Android application.
+**Gradify** is a comprehensive mobile learning platform designed exclusively for **IIT Madras BS in Data Science** students. From Foundation to Diploma levels, Gradify brings together video lectures, interactive quizzes, formula sheets, AI assistance, and study materials - all in one beautifully designed Android application.
 
 > "The beautiful thing about learning is that no one can take it away from you." - B.B. King
 
 Whether you're tackling Statistics, mastering Python, or diving into Machine Learning, Gradify is your trusted companion throughout your IIT-M journey.
+
+---
+
+## 🌐 Coming Soon: Gradify Website!
+
+<div align="center">
+
+### 🚀 **Web Platform Under Development** 🚀
+
+**Access Gradify from anywhere - Desktop, Tablet, or Mobile Browser!**
+
+🎯 **What's Coming:**
+
+- 📊 **Advanced Analytics Dashboard** - Visualize your learning progress
+- 💻 **Cross-Device Sync** - Seamlessly continue your studies across all devices
+- 🌍 **Web-Based Learning** - No installation required, access from any browser
+- 📱 **Responsive Design** - Optimized for all screen sizes
+- 🔄 **Real-time Sync** - Your progress synced between mobile app and website
+
+> 🎉 **Stay tuned for the launch announcement!**
+
+</div>
 
 ---
 
@@ -60,8 +82,6 @@ Whether you're tackling Statistics, mastering Python, or diving into Machine Lea
 ### 🤖 **AI-Powered Study Assistant**
 
 - Powered by Google Gemini AI
-- Subject-specific help and explanations
-- Step-by-step problem solving
 - 24/7 availability
 - Context-aware responses
 
@@ -165,14 +185,16 @@ We have comprehensive documentation to help you understand, build, and contribut
 
 We're constantly improving Gradify. Here's what's coming:
 
-- [ ] **Offline Mode**: Download lectures and quizzes for offline access
-- [ ] **Flashcards**: Spaced repetition learning system
-- [ ] **Achievement System**: Earn badges for learning milestones
-- [ ] **Streak System**: Daily learning streaks and rewards
-- [ ] **Web Dashboard**: Access your progress on desktop
-- [ ] **Advanced Analytics**: Detailed insights into learning patterns
-- [ ] **Community Features**: Study groups and peer discussions
-- [ ] **Quiz Paper Downloads**: Downloadable ZIP files of all quizzes
+- [ ] **🌐 Web Platform**: Access Gradify from any browser (Coming Soon!)
+- [ ] **🔄 Cross-Device Sync**: Seamless sync between mobile app and website
+- [ ] **📚 PYQs Topic-wise Sorting**: Previous Year Questions organized by topics
+- [ ] **📥 Offline Mode**: Download lectures and quizzes for offline access
+- [ ] **🃏 Flashcards**: Spaced repetition learning system
+- [ ] **🏆 Achievement System**: Earn badges for learning milestones
+- [ ] **🔥 Streak System**: Daily learning streaks and rewards
+- [ ] **📊 Advanced Analytics**: Detailed insights into learning patterns
+- [ ] **👥 Community Features**: Study groups and peer discussions
+- [ ] **📦 Quiz Paper Downloads**: Downloadable ZIP files of all quizzes
 
 ---
 
@@ -240,6 +262,10 @@ See [Setup Guide](docs/SETUP_YOUR_OWN.md) for detailed instructions.
 ![GitHub code size](https://img.shields.io/github/languages/code-size/gtxPrime/gradify)
 ![GitHub last commit](https://img.shields.io/github/last-commit/gtxPrime/gradify)
 ![GitHub contributors](https://img.shields.io/github/contributors/gtxPrime/gradify)
+
+### ⭐ Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=gtxPrime/gradify&type=Date)](https://star-history.com/#gtxPrime/gradify&Date)
 
 </div>
 
