@@ -1,0 +1,452 @@
+{
+  "subject": "Python",
+  "weeks": {
+    "Week 1": [
+      {
+        "id": "",
+        "title": "L1.1: Introduction",
+        "link": "https://www.youtube.com/watch?v=8ndsDXohLMQ"
+      },
+      {
+        "id": "",
+        "title": "L1.2: Introduction to Replit",
+        "link": "https://www.youtube.com/watch?v=NgZZ0HIUqbs"
+      },
+      {
+        "id": "",
+        "title": "L1.3: More on Replit, print and Common Mistakes",
+        "link": "https://www.youtube.com/watch?v=As7_aq6XGfI&t=3s"
+      },
+      {
+        "id": "",
+        "title": "L1.4: A Quick Introduction to Variables",
+        "link": "https://www.youtube.com/watch?v=Yg6xzi2ie5s"
+      },
+      {
+        "id": "",
+        "title": "L1.5: Variables and Input Statement",
+        "link": "https://www.youtube.com/watch?v=ruQb8jzkGyQ"
+      },
+      {
+        "id": "",
+        "title": "L1.6: Variables and Literals",
+        "link": "https://www.youtube.com/watch?v=tDaXdoKfX0k"
+      },
+      {
+        "id": "",
+        "title": "L1.7: Data Types 1",
+        "link": "https://www.youtube.com/watch?v=8n4MBjuDBu4"
+      },
+      {
+        "id": "",
+        "title": "L1.8: Data Types 2",
+        "link": "https://www.youtube.com/watch?v=xQXxufhEJHw"
+      },
+      {
+        "id": "",
+        "title": "L1.9: Operators and Expressions 1",
+        "link": "https://www.youtube.com/watch?v=8pu73HKzNOE"
+      },
+      {
+        "id": "",
+        "title": "L1.10: Operators and Expressions 2",
+        "link": "https://www.youtube.com/watch?v=Y53K9FFu97Q"
+      },
+      {
+        "id": "",
+        "title": "L1.11: Introduction to Strings",
+        "link": "https://www.youtube.com/watch?v=sS89tiDuqoM"
+      },
+      {
+        "id": "",
+        "title": "L1.12: More on Strings",
+        "link": "https://www.youtube.com/watch?v=e45MVXwya7A"
+      },
+      {
+        "id": "",
+        "title": "L1.13: Conclusion: FAQs",
+        "link": "https://www.youtube.com/watch?v=_Ccezy5hlc8"
+      }
+    ],
+    "Week 2": [
+      {
+        "id": "",
+        "title": "L2.1: Introduction",
+        "link": "https://www.youtube.com/watch?v=aEPFZSzZ6VQ"
+      },
+      {
+        "id": "",
+        "title": "L2.2: Variables : A Programmer's Perspective",
+        "link": "https://www.youtube.com/watch?v=XZSnqseRbZY"
+      },
+      {
+        "id": "",
+        "title": "L2.3: Variables Revisited: Dynamic Typing",
+        "link": "https://www.youtube.com/watch?v=2OFZY77eOjw"
+      },
+      {
+        "id": "",
+        "title": "L2.4: More on Variables, Operators and Expressions",
+        "link": "https://www.youtube.com/watch?v=-f833WH_cVo"
+      },
+      {
+        "id": "",
+        "title": "L2.5: Escape characters and types of quotes",
+        "link": "https://www.youtube.com/watch?v=4vWM2oTGEio"
+      },
+      {
+        "id": "",
+        "title": "L2.6: String Methods",
+        "link": "https://www.youtube.com/watch?v=bRAo6TJJjCU"
+      },
+      {
+        "id": "",
+        "title": "L2.7: An Interesting Cipher: More on Strings",
+        "link": "https://www.youtube.com/watch?v=oxFYdHVNpg8"
+      },
+      {
+        "id": "",
+        "title": "L2.8: Introduction to the if statement",
+        "link": "https://www.youtube.com/watch?v=FTX5wF_3J9Q"
+      },
+      {
+        "id": "",
+        "title": "L2.9: Tutorial on if, else and else-if (elif) conditions",
+        "link": "https://www.youtube.com/watch?v=-dBqiRCHbNw"
+      },
+      {
+        "id": "",
+        "title": "L2.10: Introduction to \"import library\"",
+        "link": "https://www.youtube.com/watch?v=OdjXL5U95eI"
+      },
+      {
+        "id": "",
+        "title": "L2.11: Different ways to import a library",
+        "link": "https://www.youtube.com/watch?v=eW58_ky7oc8"
+      },
+      {
+        "id": "",
+        "title": "L2.12: Conclusion",
+        "link": "https://www.youtube.com/watch?v=DK16M8EvOLE"
+      }
+    ],
+    "Week 3": [
+      {
+        "id": "",
+        "title": "L3.1: Introduction",
+        "link": "https://www.youtube.com/watch?v=xiEzc_m2izc"
+      },
+      {
+        "id": "",
+        "title": "L3.2: Introduction to while loop",
+        "link": "https://www.youtube.com/watch?v=KTvVNN7ia8o"
+      },
+      {
+        "id": "",
+        "title": "L3.3: While to Compute Factorial",
+        "link": "https://www.youtube.com/watch?v=-ZMw8D-Xapk"
+      },
+      {
+        "id": "",
+        "title": "L3.4: Tutorial on while loop",
+        "link": "https://www.youtube.com/watch?v=SqMeT9caxpE"
+      },
+      {
+        "id": "",
+        "title": "L3.5: Introduction to for loop",
+        "link": "https://www.youtube.com/watch?v=lvXuQ_x7EsI"
+      },
+      {
+        "id": "",
+        "title": "L3.6: for loop to add the first n numbers",
+        "link": "https://www.youtube.com/watch?v=lrbqrxIZcaQ"
+      },
+      {
+        "id": "",
+        "title": "L3.7: for loop for multiplication tables",
+        "link": "https://www.youtube.com/watch?v=SMASd0rbt0g"
+      },
+      {
+        "id": "",
+        "title": "L3.8: More on range and for loop without range",
+        "link": "https://www.youtube.com/watch?v=ihL3Eac9tFc"
+      },
+      {
+        "id": "",
+        "title": "L3.9: Formatted Printing",
+        "link": "https://www.youtube.com/watch?v=DR0BhSzGnPo"
+      },
+      {
+        "id": "",
+        "title": "L3.10: Tutorial on for loop and difference between while loop and for loop",
+        "link": "https://www.youtube.com/watch?v=7D2SFKSiiLg"
+      },
+      {
+        "id": "",
+        "title": "L3.11: Nested for loop",
+        "link": "https://www.youtube.com/watch?v=-4MRaWABCuo"
+      },
+      {
+        "id": "",
+        "title": "L3.12: Tutorial on nested loops",
+        "link": "https://www.youtube.com/watch?v=590mjTALkj0"
+      },
+      {
+        "id": "",
+        "title": "L3.13: break, continue and pass",
+        "link": "https://www.youtube.com/watch?v=SVAVQHfJbE0"
+      },
+      {
+        "id": "",
+        "title": "L3.14: Conclusion",
+        "link": "https://www.youtube.com/watch?v=DhjvmkGgw8U"
+      }
+    ],
+    "Week 4": [
+      {
+        "id": "",
+        "title": "L4.1: Warmup with Lists",
+        "link": "https://www.youtube.com/watch?v=toMhJJHSIYk"
+      },
+      {
+        "id": "",
+        "title": "L4.2: Lists and Sets",
+        "link": "https://www.youtube.com/watch?v=WQNxG2B85rc"
+      },
+      {
+        "id": "",
+        "title": "L4.3: Tuples",
+        "link": "https://www.youtube.com/watch?v=z-n9yQaWr7o"
+      },
+      {
+        "id": "",
+        "title": "L4.4: More on Lists",
+        "link": "https://www.youtube.com/watch?v=aaaENpVGS5U"
+      },
+      {
+        "id": "",
+        "title": "L4.5: More on Sets",
+        "link": "https://www.youtube.com/watch?v=qoV4tdDD8zE"
+      },
+      {
+        "id": "",
+        "title": "L4.6: More on Tuples",
+        "link": "https://www.youtube.com/watch?v=V7r6DB3a6_o"
+      },
+      {
+        "id": "",
+        "title": "L4.7: List Comprehensions",
+        "link": "https://www.youtube.com/watch?v=MNe03MfOLto"
+      },
+      {
+        "id": "",
+        "title": "L4.8: Introduction to Functions",
+        "link": "https://www.youtube.com/watch?v=zDZRfWWetg0"
+      },
+      {
+        "id": "",
+        "title": "L4.9: More Examples of Functions",
+        "link": "https://www.youtube.com/watch?v=TBFTFusLIco"
+      },
+      {
+        "id": "",
+        "title": "L4.10: Types of Function Arguments",
+        "link": "https://www.youtube.com/watch?v=NqjnCY2qQWU"
+      },
+      {
+        "id": "",
+        "title": "L4.11: Types of Functions",
+        "link": "https://www.youtube.com/watch?v=F9xeVMToUJ8"
+      }
+    ],
+    
+    "Week 5": [
+        { 
+        "id": "",
+        "title": "L5.1: L5.1: Dictionaries",
+        "link": "https://www.youtube.com/watch?v=X8Nj5cxaP9E"
+       } ,
+       {
+        "id": "",
+        "title": "L5.2: More on Dictionaries",
+        "link": "https://www.youtube.com/watch?v=gTpPI3SMnAA"
+        },
+        {
+        "id": "",           
+        "title": "L5.3:  Sorting using Functions",
+        "link": "https://www.youtube.com/watch?v=8MQBieBCRFA"
+        },
+        {       
+        "id": "",
+        "title": "L5.4: Matrix Multiplication - 1",
+        "link": "https://www.youtube.com/watch?v=seYP1F6Ct2g"
+        },
+        {
+        "id": "",
+        "title": "L5.5: Matrix Multiplication - 2",
+        "link": "https://www.youtube.com/watch?v=mtRRS_ssl3s"
+        },
+        {
+        "id": "",
+        "title": "L5.6: Matrix Multiplication using Functions",
+        "link": "https://www.youtube.com/watch?v=HJetH-CCOGY"
+        },
+        {
+        "id": "",
+        "title": "L5.7: Scope of Variables",
+        "link": "https://www.youtube.com/watch?v=4q5rGHfR-ic"
+        },
+        {  
+        "id": "",
+        "title": "L5.8:  Tutorial on functions",
+        "link": "https://www.youtube.com/watch?v=mkAbfQM2OJY"
+        },
+        {
+        "id": "",
+        "title": "L5.9: Iterators and genrator",
+        "link": "https://www.youtube.com/watch?v=29A7HhnzxPU"
+        },
+        {
+        "id": "",
+        "title": "L5.10: lambda functions, enumerate, zip, map filter",
+        "link": "https://www.youtube.com/watch?v=ueIignqReDY"
+        }
+    ],
+
+    "Week 8": [
+        {
+            "id": "",
+            "title": "L8.1: Introduction to File Handling",
+            "link": "https://www.youtube.com/watch?v=rYLJaAdgLhI"
+        },
+        {
+            "id": "",
+            "title": "L8.2: Reading and Writing to a Files",
+            "link": "https://www.youtube.com/watch?v=rYLJaAdgLhI"
+        },
+        {
+            "id": "",
+            "title": "L8.3: Big text file handling",
+            "link": "https://www.youtube.com/watch?v=9eOxi7smTKg"
+        },
+        {
+            "id": "",
+            "title": "L8.4: Very big files - a tip",
+            "link": "https://www.youtube.com/watch?v=NwFpo_KGvOA"
+        },
+        {
+            "id": "",
+            "title": "L8.5: Caesar Cipher",
+            "link": "https://www.youtube.com/watch?v=MkqFvnC2naE"
+        },
+        {
+            "id": "",
+            "title": "L8.6: File handling, Genetic Sequences",
+            "link": "https://www.youtube.com/watch?v=df8FxNd27Dg"
+        }
+    ],
+    "Week 9": [
+        {
+            "id": "",
+            "title": "L9.1:  Introduction to the week and introduction to recursion",
+            "link": "https://www.youtube.com/watch?v=SGCy1yBLbsg"
+        },
+        {
+            "id": "",
+            "title": "L9.2: Theoretical Introduction to Recursion",
+            "link": "https://www.youtube.com/watch?v=htu4ZCW7hzA"
+        },
+        {
+            "id": "",
+            "title": "L9.3: Recursion - An Illustration",
+            "link": "https://www.youtube.com/watch?v=PAUlGa9wAxA"
+        },
+        {
+            "id": "",
+            "title": "L9.4: Recursion: a simple question",
+            "link": "https://www.youtube.com/watch?v=wkglgM6uUmI"
+        },
+        {
+            "id": "",
+            "title": "L9.5:  Recursion: find 0 in a list",
+            "link": "https://www.youtube.com/watch?v=eNARY_uyLqo"
+        },
+        {
+            "id": "",
+            "title": "L9.6: Sorting Recursively",
+            "link": "https://www.youtube.com/watch?v=vRajQuHdlBE"
+        },
+        {
+            "id": "",
+            "title": "L9.7: Introduction to Binary Search",
+            "link": "https://www.youtube.com/watch?v=WEJt1L7YTpM"
+        },
+        {
+            "id": "",
+            "title": "L9.8: Warm up for Binary Search",
+            "link": "https://www.youtube.com/watch?v=Bb7oymEgX_I"
+        },
+        {
+            "id": "",
+            "title": "L9.9: Binary Search Implementation",
+            "link": "https://www.youtube.com/watch?v=1l83L1ZKF5k"
+        },
+        {
+            "id": "",
+            "title": "L9.10:  Binary Search Recursion Way",
+            "link": "https://www.youtube.com/watch?v=v_WYTBhHONo"
+        }
+
+    ],
+    "Week 10": [
+        {
+            "id": "",
+            "title": "L10.1: Exception handling",
+            "link": "https://www.youtube.com/watch?v=me3_XR7Iz60"
+        },
+        {
+            "id": "",
+            "title": "L10.2: Introduction to Object Oriented Programming",
+            "link": "https://www.youtube.com/watch?v=X1mOrCwZUgQ"
+        },
+        {
+            "id": "",
+            "title": "L10.3: Classes and Objects",
+            "link": "https://www.youtube.com/watch?v=ZPtRsQrZLcE"
+        },
+        {
+            "id": "",
+            "title": "L10.4: Attributes and Methods",
+            "link": "https://www.youtube.com/watch?v=n_jPQlWhGhM&t=2s"
+        },
+        {
+            "id": "",
+            "title": "L10.5: ConstructorsInheritance and Method Overriding",
+            "link": "https://www.youtube.com/watch?v=RrFvcDjJptY"
+        }
+    ],
+
+    "Week 11": [
+        {
+        "id": "",
+        "title": "L11.1: Introduction to Numpy Library",
+        "link": "https://www.youtube.com/watch?v=O0IrNk1qoUE"
+        },
+        {
+        "id": "",
+        "title": "L11.2:Why Pandas",
+        "link": "https://www.youtube.com/watch?v=HCxhHo8tV4U"
+        },
+        {
+        "id": "",
+        "title": "L11.3: Pandas Series, DataFrame and more",
+        "link": "https://www.youtube.com/watch?v=aPjiMs7CR7s"
+        },
+        {
+        "id": "",
+        "title": "L11.4.: Introduction to Matplotlib library",
+        "link": "https://www.youtube.com/watch?v=hk6NsCfvftY"
+        }
+    ]
+  }
+}
