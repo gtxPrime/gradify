@@ -1,0 +1,884 @@
+{
+  "subjects": [
+    "BDM",
+    "Business Analytics",
+    "CT",
+    "DBMS",
+    "English 1",
+    "English 2",
+    "Java",
+    "MAD 1",
+    "MAD 2",
+    "MLF",
+    "MLP",
+    "MLT",
+    "Maths 1",
+    "Maths 2",
+    "PDSA",
+    "Python",
+    "Stats 1",
+    "Stats 2",
+    "System Commands"
+  ],
+  "notes": {
+    "Python": "youarenoob.gradify/w2oJLGRT-fL512fkrRXM3mn17LSJXDu8EWbw1aIjE6WypKPh-yjI5kKMcDvxonelXGznhMoPhJkEHpUrZXjyPeB3yCiddKX65raDwFj32DQIvLUNGwNKDsSZmSVLJnEXvMFzBGu-zzU1HkvoJ1EAK5SY9CNDXJ4Sv8iyTeAung8oNpEvVRo9jisrcgpaNLzXl_7L4bJ6Ky5rYjsyP3gRyQ=="
+  },
+  "papers": {
+    "System Commands": {
+      "Quiz 1": {
+        "Oct, 2022": {
+          "AM": "youarenoob.gradify/g2WTEhTQvYqTG7NeiU00sKlux4ehV5p_VxCYhvhXZerMKestG1oJ7TyMM0Gw8Wx2NRmRFPaS6HXIuz99gzCQBctsCJo-ldzbB8eJrknjkkgrv-T1bVsn6izwYf-lMSEESzPeQYPM4a4_H2VumTthM1XxBm0QlidBNbcpPMyvnVUv-iK3TUq0c4Ul7GqH3x5E1ZgIzHIk3sSYr6er3VFuSNksr7eKDjMAQ71AIoFQIng="
+        },
+        "July, 2024": {
+          "AM": "youarenoob.gradify/HzyGJkVdJp9d7wab-iEcTelS_z-1IrKgrjwQoeVdzYpQtB-vm22CsvjHqKNfPDZCQ5QS4qfJCHTFMWCbo-DR54R0HpWf3kjp2PWtkEIoUc2XbDsR1UqUhld3QHndgQMhHwyLzMNnZGdheYc1igliAkaUSALY76udMcy7xTqQb2bXQ5ZPbZoFPLG0AqlUGrlQHsmlJ1gZuhf1YoI2lKPeWgUYkE1AeApJ4W9YMx5YuTI="
+        },
+        "Oct, 2024": {
+          "AM": "youarenoob.gradify/TMnBFQK4219H-aSSuInHIX92PtrWBSYXYfd_7gXDeiSupVB3s5MD7_sAEcct2_X5heMF51IteAnCatw9fk54XpydNShnE4HE17JqOfeMwol5kb8Nj-eIQt_Zc9PzCaVQeh7UpBmaq4Dibg9_9OT75rJkPBvb6pZtgJSBwxWY-1vLXnOJjG3hv7TVWOLrxArdtMGrp9nZy4GvHTuaZVkN4ilkTgML-fZZTS_LUNvorfw="
+        },
+        "Feb, 2025": {
+          "AM": "youarenoob.gradify/1neI7rznBIJBefe88KqMBsRLAQDDq3Pl9pGZKb26dza4uxRXin52oruClSsiXPJgHkL6ePN67R6xyAXQN3Uxh4ompcKBnca3TKvZL4ILgeGtGwJ5cWmbVq7ArjzvF90c8w82Lgp2lVmwGrJ2jdZKUXS8ddtHTELp6t7nzbA5nQDS4Ygqac37Blgl1MTHnpoKiCCr-xGQf51NEwFYQ8UEmVW_8NYafGDqeixKirzCFvo="
+        },
+        "Feb, 2024": {
+          "AM": "youarenoob.gradify/9kH1QSbKaqLBUOcJEWL4JyRGaPC-rR1CJxed1LeCsJyYz7vSVFvk4Y7b9HnYhTTrH_Lw3hxg_Dya9Ek4Y1TRdKmynkYjLQWOc-6m8XsB6k5ODErl9U71e9_RT3HmbLbCvEeYw9IsGE1-Wzii91pqbyIc6hLfy_Rc-E6tIr3yTK8-dGvq6jbe8lJ7KhQM_lkatIMKgqQwOjEujmdBx0H01jMMW1PGlxIaW936uYNewYU="
+        },
+        "Oct, 2023": {
+          "AM": "youarenoob.gradify/_OkLGxfzBRbSr_XEHgpYXFy_sqvDrBgVr2V7GAKFGUGWfkbYS2O608iVEamzYKRTPy3eP0fHSbj6meP4T7wW9DZMHX7HV6bBx3eu-U65U1k2FLa6X-p4ZBCrYM5HEJLENWIaJgDQXZ7XGV_0_E-2mxPnmsEdpCdvXrUXX-EpC7Z8x44EwEOWaf0aPKD1C3-CzRwByWUpqrWVFLZPvj6BAuBTss0_0EZjk5yaeBxTk_o="
+        }
+      },
+      "Quiz 2": {
+        "24 Mar, 2024": {
+          "AM": "youarenoob.gradify/6ApzmMjT5a1YqBJd68mVlEDXnc1E2WG46m_uRIqFQzAkecWesyxF8T3yyBnS9StxWRhBfJmZi6dyal_GTITvpFoKOBMDj9UlBMo3PZmVXxdn2LbzoWmVOXzHENgVprayWVkgaqMvGfeOpPcF_gRvIAEjy6IdlZuw-vqYWpW4iTbvrihLGEbN-M2nvzgz1YmVDtIpHELYHi-frekY4t1R8Q=="
+        },
+        "03 Dec, 2023": {
+          "AM": "youarenoob.gradify/-8yHt6_Dw-aiqCOVctLHo9tgWRqJlnXKTFMus2uwQu1E3xsgBTK5NFisJ4t-Q2SHMQ6gf8v98JRYmSju2NRlher5XOV2jfGekR5RGq074OyCtb0-88YhV_BSSfMbYVrCmchm4vlgvbxG-2oAfskbeIvRCmBmO1CQU1OrneS2U6oHQolAa2shzbbQb3rzDqN2mBjq1GemNykgB4164p6a8w=="
+        },
+        "06 Aug, 2023": {
+          "AM": "youarenoob.gradify/o5ldgVWe5fIGzsGx1kl15YRhNbDJG3jDzmXZ7UIolA14rrCDF1K-Og9TpnOLoUKBqr9Ng1X06m3T7YBvg8NRk-F3nJ6_8JJg3qglDKfofDYAm0gFVsEnkyWjfvH3MGovUJEYfW8DvgclN1zCrHj_BhVMuvHdSbL2V5a1bLrwqAdUM-j6AYzkYao-5WjqgSQOMrS-kYQ5l86vKaqcgix_7A=="
+        },
+        "10 July, 2022": {
+          "AM": "youarenoob.gradify/OVByFFUO6AKJcB5lwnLHL_hvBVX5lzgbveG_s1fGcV65gIk-McX7Y_EjrGm2UzkD4uKvxWkE7M6YwREe3mBmGcF2FfRf2SKae2CE4C23Cv3G9TN-g07T17dE7hvyrWrGcg8ys-1ZTQfK4V43fbMOsPDIx2TxM2CUfgMGH6vsl8Mtw2WNmhCVpsAE7t7SSQ4IngrKfJZU51-wsPUqDBDCoQ=="
+        }
+      }
+    },
+    "Stats 2": {
+      "Quiz 1": {
+        "Jun, 2022": {
+          "AM": "youarenoob.gradify/zoooVl7THb8GoCDk2OwlYUqo-hCudKSVESifMVDkdf5L8aIGLy4VRuL02XznAmTjohl126Oykl40Ta2uDOpfDenWKr3WnxNrlG1EtslY3xkcQXKs-IUlYkO5X3-6_WwbChIUvQthWpybJ6VvuS0DjmWq9AmDXAbq1aoDgqqiKrbFZVviZq0T6J_AdPXcN7CpaxE3AbK9Axr4CEfwDb3JBQ=="
+        },
+        "July, 2023": {
+          "AM": "youarenoob.gradify/tOcSN8aOeMdBkQ3wWgEbljrMJY2odPKzsmGuIO2BaYWEhdQt9UjNsaZHW2_A-HYFmgBW_RYlovCTRMOJ0Dd7nBT3-MohExQexmhtpXzXMb8WUG4rhxl3H10zVFtvkkbnaqtF81NRSwTMJwNG4uFgTaz2NtLeIgZQMRiio_YZN_Wb5DSKv4It76QtJAnHR15mqAIruUBi6v0Hx7AbhSWRvA=="
+        },
+        "Oct, 2022": {
+          "AM": "youarenoob.gradify/z3oC5l8K03fJcyo8zTjRWijnIbgOHB_uGJm-JYoDLW0SjELNMh7j-tVHdk56KXYRMOcQaVj09OVLVkXnw29i3knwfcq3df8a0NRxyMEfd3ziJkvn88v-jv-dTekeozp1355SKAYPOF0yilQkNURq0QX1R0iFgCXxAipUr6VSa58VhyI46KHqk_5S20Hqww5q-4Xz7dDx6uzWxU6MzcCE4w=="
+        },
+        "July, 2024": {
+          "AM": "youarenoob.gradify/S0tH4vtVlXH4MWjiAKYQxbQTbhA6NubJowV4t-V6hZ6UdOItRkbvgLZ_30ZN2Zvhbwh6ByNkhasjArS4g5eh9bzdjfA6EjYMEe-rFPyeSZAOw8AQPjFqxGh3V3ordi7CaejLzHpjFnrSKS0FvQN6_uMQwplsTkZ00kS1kc7VT2T77xIMUW3tPfGr4Tc8rQcpqcK7OmTCMckfx9CRcH86hQ=="
+        },
+        "Oct, 2024": {
+          "AM": "youarenoob.gradify/n5_KNElTKnLuU40hF0K0ZriNVFQTL_YSWC07kY2_w6chqnWd2Kzh1MFFfhl5St7HpIkLjrSccy_aadnHLF_j63HKCkY8eWEtSxOk8gosDtC7BSb_Vep8WTIoRgwYjlmp-N9QLQjQb-HqOuQmHsZp0WzHaN-E3SVM5fIWmAABZYGe66iwnNcht8hS0mHPlm00KmMnoUrLuc-UYUndi8gVEw=="
+        },
+        "Feb, 2025": {
+          "AM": "youarenoob.gradify/V3CMuQG9tM3IUNZnAUB5dIHuxxP8SpDLtUGFTXmBvTt1RKiBvoemCgjQgJYaRmc9KjlPrslPLLgsx2_Ht69egRupJ3yJRH8Zp6quwKsSA9BjWmybur7NLNEMIyaYfZhK2cDOu1_ipOw4s8tTVUOhoA5_hzzlX5dgIz_mtsJ34CB0JFhQ2u1_vtyi4LWinqJdmDH0_i4VbqLdQnto7wVygg=="
+        },
+        "Feb, 2024": {
+          "AM": "youarenoob.gradify/NK44YWesy--Lw_eGWxgAWsltZqEWYgrUonk5lchkQ327WT5p5gau4XVX97C_AKWIx8GeL6C3OwwZ8pMIEuKv5zvYnE6jl7jtlY7Z8rZJnPjoRwBomdMQqZlkMLZvMsIGqFh5hZN1DjF1manJDR3GzkdZE_rdwyZpXoL38aHO0u3XbWZATjKO1S5caiOLnH-DDFydXKxDQn7ri0M-tldNdw=="
+        },
+        "Oct, 2023": {
+          "AM": "youarenoob.gradify/mxOW6GoDOj62mhBOgBwMK-vBubr56zN2aGXDS8VtTbY_PDJ3htAMOVIHsaF_4CIhJH_cKiZHeGgEF2n4UJqZcC8FtJ7IwVlEoNhQPiv1FniUEONaKCh37GTITfwGUqUPNtzKanJnaIrCRxlJtHukG9ly9Gm2eyoDtCxkGCP0tGZvY0Bbxck6cgWywh8N_2vrTyuTZbduwaBqFxm1l68R2g=="
+        }
+      },
+      "Quiz 2": {
+        "16 March, 2025": {
+          "AM": "youarenoob.gradify/CpSddRDs1B5d5zhuenbkCMiD2iMyQ-nu7lCrjyFBJN5ODTQgfLk5vNh4qnjXa7zFEGTFmUt45mlzTFYoH7ySORsHII9NWoSy7zezQ9F4iY13e2gvvxSasJhVCZGMiQUzmgIF9rTUwsOImQkDJLAF8P7kibe_zJQrkYbbJD96KDV5dugmu-XQPQE-ODatk80P_Y68y6uqcB8Eenon18DwPA=="
+        },
+        "01 Dec, 2024": {
+          "AM": "youarenoob.gradify/RpAy7Yg6NmZKa4FjG31MW1QSX3B7_NUEmuiCBJKRUVp-GBPsd-_U6aSTcUwt6Q4sAJBpQJambrFUnXgX6UIxn74Bkr7H1U38NWmdm44_J3E0-BvknHtby0E0R9K9upTUsQdwE3ZaD7saVCZtcnZz4cWKNSOndqWF8wgGJom3rrc1pBVuY1TYRldo6NVqftaD0abDE5qFnGMhuY9t3JqNBQ=="
+        },
+        "04 Aug, 2024": {
+          "AM": "youarenoob.gradify/P_9IrvMXiA6LrnuRZ3yfLPbXVIiCpf4TYTxLKbQfokqaF3rXR1hqooHdkzM_qxO_F21cZerOw6CE2jx4R185LSNTYSBZaw8KQHn4r3cjvsKvCZ4p0o0dcxvdnpWVt9fs8QK-HkbGnkPN-dPZkEqrLlu9vV2pC2HtJQJoJpjTTM_Eni0P7jSfsmkc0LbNo_D65g6INKZa470RqfSGXIjhtQ=="
+        },
+        "24 Mar, 2024": {
+          "AM": "youarenoob.gradify/6Lbul4kjV142DT6WOG9TCRc7R4A1aivkm3Qjj6b7vdQsp7yuQi6FNU6VQYCz-F_I3UkJOg4j9amnsitBgYq7JM-h096c7_haaOs-YqauHCgvOFQvYXVfyYmaMyeLzL0s0qgTmknwXiCyOof8sHlmZs6YmeCtcYTHQtCpmc1yHxaety9pq9wHjr0pSbIwkJqPikVd1v0UtSTTphF53dQg6g=="
+        },
+        "02 Apr, 2023": {
+          "AM": "youarenoob.gradify/SNPGmP2RHksqKxA-X4hihwdEtkvQK_zFutIiIDWjjkqYzJ3afGZJODxo_uJ2uWqjPGueExYsDo7DKAqwn6xsXZEyKBEEhoi82psoyyNOV_JsN--UC0VRx3zSdQLfdEkut97krX-PXHrHEAw30yaTCTdo8qNfj8tAJzOTvu0C2xLkeG0pmeB9GGgOHlc1Qj0dDxoIKbW_1FKR7L9u5daPlQ=="
+        },
+        "03 Dec, 2023": {
+          "AM": "youarenoob.gradify/IjEfg7WLXZ7RCS47MI19NUUuObqZxCrSpgF_Q0bVtCxXF-x0Gl0ugwqJVb8G-8leIWazn72K_HJcVv7XmbXRn-0kyhjr3zGOeQrhSbFbfLVqGAbJwO5rni7p59lrlS2oMUNQ1Vj5-h_Nd6tJR2MDws2g860vKJ9l5s18jmoP6bZwUeSzCBtSE1PIA7hML0fP68X5szf8gB1V7dvu9Pgomg=="
+        },
+        "06 Aug, 2023": {
+          "AM": "youarenoob.gradify/RSwWXcDmD9jOU3AYRoca2hz8OBZCfsiFKEdtqXIOYWVjq30L1gNCou5HHU3kikAQqkcOtXDL7fXLewVT27WJl1asyx9lZanSxMeooLodPF3MLcNDoJnuaBN0uV8UJgaK13z570rThuuVdzTtLuC6UXZwF9VeRU6Cv38dpDZ393IoHJIn3MAq8iM3_RB_AylcrqR7tdBTnpdn_urIMFZN2g=="
+        },
+        "10 July, 2022": {
+          "AM": "youarenoob.gradify/3ZAPiqtparRhQwjl2yU_SDNV3hdYg0hFc1K1yBuPRn-eWr3du9xLlOGubOSmrYqtHz6jtGqJGa9v_WE16JIkvFO_NvfCdtcaqfqn3GstX9Af82lkNPgQJsY5bRvnwN0hdxOd94aQ74OXsj0wWYvkbw0Pg2KeIIdtKt2zlTVJwS5zBgi_fb1D57OBs0KhLSu_el7fcA_Ht-fzqZsjDrcnHA=="
+        },
+        "20 Nov, 2022": {
+          "AM": "youarenoob.gradify/XUeFzGI0ZckIn5AGK3bmtRyu3GkkYEj4wANCnTSyxBWZJTjQsav4Hp-fkJy8CNaEXIAuDSklEddYpWOwbPoZgz3NmbvXgoIN-vVa9cwye2F7YJc6YKhgmrnvAt5OOXu3zdq0eRfshBA-bo5nKiMjWyV4Mxc2PEEowyMvAkE_D59Sx3QD4saY-X46hYD2RnI5EYj5XPhdciAIcFyOOqfa1w=="
+        }
+      }
+    },
+    "Stats 1": {
+      "Quiz 1": {
+        "Jun, 2022": {
+          "AM": "youarenoob.gradify/UEPJCjYZSrFMpDj_pajvmphrLY4TbfFeXuszSCjbvDLdGmxBvIxkugYP7Cw3o7NA0JsC2zQOJbN1LVFaJHnoi74UJzP1ij0T2PYyC7mYdl28Bqi1q4F3uvdpTKFlpcbdoTLFaiGE8xnOwrkf6XEks9U0gQDC-qDNGJ-J2Hyr2go4GvKyPCOfv55nypuFPqE2u8pqxDUJ-gTBoXEtrpcKCg=="
+        },
+        "July, 2023": {
+          "AM": "youarenoob.gradify/Yyp6W-CVS0STxSiaNdVB0oAF20FpuFSZEn4c-lUWBBLpVoijzMkvnDjH6mkL4YszV8l1tfE7FrZzzUDtZMiVAm-4w2bKQ9UQQtmr8JY7e3vSWD1Dc42TL0K0gZSGiRLFFkADp3b1zOq-eUznFp9CVaA8CAGgVnxN8jo1XaFnSc3tyJMDO4AZ0xyjBPp3WtGlDbmE5EmyN8RA6GoFT6I91Q=="
+        },
+        "Oct, 2022": {
+          "AM": "youarenoob.gradify/_d6OzqOTuz0YIsfuxKPKtDvZPfRJHplxzn5WozSkwn8a3oZJXrTm0dSY-g5cZ5L0pRrdzDzTvpfbItfew-mxNfjsg-CqWfIj2DFbKa29SYIv4beuR1ldvF-8wQ6lc6ZovakAED70ftGuxfUF4JtjV4tEWTazLAksMW_DM0IBT_lWsTh2zlEi1UG5rg1nxKB9ZHVBSZZlDrYKAvPfrnCUcA=="
+        },
+        "July, 2024": {
+          "AM": "youarenoob.gradify/n99D7T71DRGlL5iVkAc9lkCZaapZyZyzTE2iUVn4qYP5SF9hoYrnlAKTAcbkZ1SZwGLoJr_ZNuhcCfYSGmLPL5ljd56t92cD5cOF_P5CQfMsMaHPRJVns8aDH-3KfF_S1VgtrExrQ-tFiZaUcTwMmEGgafojMcYEsSX1PSt40JnpqJ7u0SqbuUDaS6VS5V-97ySt_ixRIHpEpKJcor8Gcg=="
+        },
+        "Oct, 2024": {
+          "AM": "youarenoob.gradify/hSJoBsmBjUDI0NtpAb_RqJqsvYzJAtBI0kO_frusYFFwf_IFW7YffLnr4j6BxwEOFhFdhTyHpSGSlvF_vp4U5ygu9NGTuksg7Xkzoknz7MBe5iqEvgDz7vuJx5FLkGju7xH7JTTW2583nNo6M9i4CgC-ovZnv1u-2xlOCL8A9o8t3nubGrZPUOso4Hy-hqlN3DFVMwLfClpnTdjdj4Pppg=="
+        },
+        "Feb, 2025": {
+          "AM": "youarenoob.gradify/jKtUrUfFC3lZf3AcW-pQZRPU9bOvXpaGp-dlpEFzJQLyDUQ-cxcQ5vtv40wuRd4LdxPVXY07ZmdoVDHVVPWt8pABF8AFP38YKVL0j8vnNBFlY8AqPDmeKoBGjk1YRUltfJ-DKhL7IXeKcVOqItXOATVwGfauYk5e0MeTGPbOqOnXLuOEITHgTAIzTgVCm9uy2t3sICHJNkrbPJSxROF_rQ=="
+        },
+        "Feb, 2024": {
+          "AM": "youarenoob.gradify/w4wOFecKPLagdbBUpZGyNDHCWWYaZTEbg-huEr8W7H6Dsz7I8YZ0CPN5VUERuyJgccVv8ZZumi2E-kQAIrLM78uf_-LFqY0yHJogVyVphpXyE9W1LPtavxRjiJoFDbMNCVp5x8nFIMP81xSL5G45EjmI5BC7Xi5xQ8GzueiBYZq_KQ2dDI6bcA_Ru33VbMZLs4M_49znvCHpOKCXswV0Mw=="
+        }
+      },
+      "Quiz 2": {
+        "16 March, 2025": {
+          "AM": "youarenoob.gradify/KRCSbYBHOQjWD42OIBR22X75XXQW6iwofuotLEtwRUWweYj-3ZyeSjTyKx_iQASxiFLJUS2kz5Ch4hTU6b-6h8YrrS8Z_WZmYv-dwiypVDvrK2qGVzu_3Sukw6tNea6U7FF32YxLECN4aaEMAwgURUVy6CSRnLoxRI9ZS7FPruOSlqNd6paJpaniOmc0Wmnk2VX_ZDar-2AKTAihFETHZA=="
+        },
+        "02 Dec, 2024": {
+          "AM": "youarenoob.gradify/uj4fi9VO4eJPraSUE0vWE37ITEPw6QlaJLALUgUuuO_CK8Z0360Zwqsa_cscfPoxsmTrIPV0evvkA-V87qyEam6E3n6ox3WVww-9pwiaHEjJypLF4ZSDKP0WrEORyFvHX5RVXunuLUguas9XaPbMHorND46lTYzQcszTS8MQOB8euWU8x9hvfu9WQ2kgDMLpkR_vj1zu_nUMCGC_zKv3Cg=="
+        },
+        "04 Aug, 2024": {
+          "AM": "youarenoob.gradify/j1R1DocnVQCe8Rcvikf-kX_eChjheh7VcccMkrxphgj7nWjM6h6FJ4YojfiKhzeBCe5_7le8o1rdIP39_RkFuFDQNaREsX4j5yNb72436LZ0AaJrLOsdCpefrA3TWZp_RUccgZqyRKDWMilnpuYOKpm6paElkfS4JerUBgfCPt9NX7PKUEHFP9C9p4Rei2kScczxBfd-e1D2XaXf2aGCUg=="
+        },
+        "24 Mar, 2024": {
+          "AM": "youarenoob.gradify/rRqsX3v8dNIEA1EqL-qL6uroaSnlepr1jZR7irZTJBMt1qiEgkLYHYTSFkcCrTcXb_-z5ughjxCoQZA2Ci-_1C0x1OUc7KfyabPhtLUuQFKPCgnYy2ohtWuxekFlstF5oHVQq2SFw4GgUFcfQ1TAdHpAQveJeEGqlIrnoFEg0snquP_Opq-TGOAQKMsKIjlODZgwuRqPH9Q9E-n7PSH8Dw=="
+        },
+        "02 Apr, 2023": {
+          "AM": "youarenoob.gradify/bGdscSJcfBnhEMcyxyDmaFKWuDF23mJp5ud7JWfKOx6cIhAjMH7UUzyoC1SVF2q6kgNSA7-RUnhZ4RC17-PyK-1WarGCmG1Jb61WhZNO2iAl-w60lqNbyTibByTScmgWfdtYZh7J_w6JrPKv57NlElRLWBcDRUgHlqmNbNoOOZ8I07GQ2xCGH14gPrUhsZiKObCuZsl-Pue0SfR6M49Inw=="
+        },
+        "03 Dec, 2023": {
+          "AM": "youarenoob.gradify/OhBpfSiN26o6a5Zk2p7aL11udOMXrg4x9qtKXJvzpzTzz31bgE026kKQD3h2OgWxGxEnaX8jLGoiJhVNnq5SZYSR7mY2PCQgtFravV37kCnUg9yKcFuxr7IlybjwI1R3ag08sbCKtRC7YMtETwHibb4_W1E2OL5Zw3CEqFZ6Y7XXSH6S4AUl6APiWhvGxFKwUGsWE2kU8A6O9KpkrXFctA=="
+        },
+        "06 Aug, 2023": {
+          "AM": "youarenoob.gradify/EYoNaj4y0Ap-vEy-SlYQYV2iFYTmlaruW5UifTIuiGd-SamZWuQgRtpbTxZsMQl022j44Z3ac1ryiKFVC3YXyC_j-hlm7vL5R9ui08T81JOBk0WMZrg4rvvQXCJ4lmT3NU_sVTAPx1TAsiZx23tMSoRWMslW3qcc_ZvMbk9ty4DYghjtmLf_0raLVF5YehxBC4aR9RqkJcl1TQupyEUmxA=="
+        },
+        "10 July, 2022": {
+          "AM": "youarenoob.gradify/N4SYnQ39yJmoRdP_hc7ELap5H6jPyQIFhgRvJJ9g8jxeUsCWKFfPjDKV7p5ARv-KDJx0LfJMio3YpdkTnt1TPckxDD4z8JVaiLG4wnlypqBB-PCVj9PDUUA4eowaPHYCRVWYNr9hAG6rN4tXMIVZ4SahOYxJRxpQo05dU9jW8bgT5WYi5BNk1pvUr9Hx4kP7ipHq6TrAdg3FhZj8elPRmw=="
+        },
+        "20 Nov, 2022": {
+          "AM": "youarenoob.gradify/Sb569CKhDf7zPI3z0txkbs-PbuMkCoo9i_rNJdmNvqqPDMMIRZ6dGilOl10gnVMl9EQuWoD8zWHLSxvZO_pAfkO_Tzm0-zbLyjcTSlvp73bCIBlVBpSdESA5ulcMZg5hJSDS8pUurrCsxAxsYQx_y_Yiqp_Z6lZ0qq8rvpnUmfU9mP6AMv7K-GTSTe9A2W03utX43R8VjH4VSXdZAWN9nA=="
+        }
+      }
+    },
+    "PDSA": {
+      "Quiz 1": {
+        "July, 2023": {
+          "AM": "youarenoob.gradify/hDSF5RATVXEbBMEcxMY-I97scSncK1RmTXLsqTqPnqzBlOWSH0Do-Zz8q6I_Yumug-yR8R-MkxZGxFQIsod0IL-x7PcgV2oOnCUNKe0OrR97yu0x0ZtNvbmCynX6mhSoHD-6RzMSfrOsuONgwAeMRbx6nwGfvnmRDK3FuL6zoZ1gMOdczxMT4Wxt4T8A7CK43TJuAg_gppJ_DTTfuIgMFg=="
+        },
+        "Oct, 2022": {
+          "AM": "youarenoob.gradify/u3W2l2adqMtMPZcu6Dyi8EBrNoMHVr74MCZrQ5mbgUFhDNcC0iv8yNEAT_G02bq19YPIS6ST4vG794IzVYZhLS0dfNwzKNtpvzYWnbntIQQDvrsZDf1MXBa6taAzVdnZar-LrNUX-LiSYImfZfyCQ6OwZ-89ktNBQU8bCldsu30JstRaelScb86PYbMsX_dvmS1Bm19mfQfEBsFkIueG0Q=="
+        },
+        "July, 2024": {
+          "AM": "youarenoob.gradify/gRxnyqspi7XGHwGvI4WnupcGCAKIKG-4EC3SRimjY_MIVYWI5fXmNHlaYDixkBV7oJAKtf1c-80J7PpNnraSsPn3XS8A_DQg2dA_rKsdrrvUJrdd1UN4MiOl9wwE2t956A3HPRbi3uF1q5IhadDfTg0b4Rm0Lhja3Q3cnJqFzCGCMOk0tVotqjB8H7eaNeONvV5auOl-0Cyq76fL_lpRfA=="
+        },
+        "Oct, 2024": {
+          "AM": "youarenoob.gradify/ffEw10ohq5dcOf2Hq3d1cqvH78nT_kfLjA8GFR81mHdZXe4-qRwPZudjGtz7UbyRhVcZu5k8y8uI6FIZZnVNy0ZPnvPtOjDtN5bf3BS7qT7xP8juX6M_YGPArMnEjVnpt-O_W_AWGcSFZRNccCQNj_zJa5ZsnhDJTaQhrBA8I8DlEZZg1cZJL42J3YFOHqr5UfrO72XQ1qIxs190NBIPzA=="
+        },
+        "Feb, 2025": {
+          "AM": "youarenoob.gradify/8UnTMGMDF8Gt6giyQ0nAg22zE_-5zlX4MnGmeexPjQfoXBUKiRBV5Z-ZHhw034M0LdhlpgP9yvESKUKfP197RH0--ABlzYcDnbTJUPh0gdu-6c5eAtqZrwEWecqSfd6tENXu6qE8QJkHN8gGaGOWVmzkEFYGKMOwnrnltY6dOrG3e77NotYUuutAJ9RaYdzw6cTtuiSclaSAj9YVrig_hw=="
+        },
+        "Feb, 2024": {
+          "AM": "youarenoob.gradify/e0bMS-04yUyLkMF8a3-eFhOAISYeCzgYr-9m999zpeC8lMKd18uaA50crW8UdrlLz9I4DAJbmjC-DJpoDxXxfc-lj9jAAM2_6MlYz9cVHYe4EPkNXrehXTr14FLYUV5vxfKt21qcd1TkcTXI_0EoQGSaWFyG3_tj3EjoUcKb3qMrR5kGtA79tigBYpSMHVfYZCJ2Z1LxpSE0mismdyZaVw=="
+        },
+        "Oct, 2023": {
+          "AM": "youarenoob.gradify/znFO2WM7TP3yOJIECg_KCUeXXF_Z7Kn3Fc1i-fWGIa1Jzm_7AgNdPveeFuA5steleslh6Qqd7hldKjfgQqNTLaC2qzbCy352M71tYanngwIDiqaFXiSMgfsyFmqT-KYRaPEeIuxK_37MRiEQWBBBfkEJDNpv1zSAN02_6yUCd6oRgQHC-R-aua0r-5ATkdnbsKsZk07VjEJkikMTUBCqWA=="
+        }
+      },
+      "Quiz 2": {
+        "16 March, 2025": {
+          "AM": "youarenoob.gradify/IIwybv350Mok97fkgvABdT__zhWDcAOoXBilgYWVx61R2j2yAoZHotdtKJYZ4Kq3OsoTZRKFCd0NfuFpq5I6KZFQFqHlLlMtwQJCI1Tq_sHMsnkNCc0uAPIgOcvhgELa4OUzWwNKMGi7csAy2ohxLVy-HSREYY78av0h76ruReBfyB8iEvPP2MLTt5Mg-JxYbPPFMzhqkK0dXwmHd9NPtA=="
+        },
+        "01 Dec, 2024": {
+          "AM": "youarenoob.gradify/zVruYE9R9U8owfm78Hy846Krd0J6YmRxfIfZY1EVuioxjHRvqMg8y_YKwrtbpBuvj9eymTMv1fLIxi4f0WGiCjDyI8hPD5voWk-d3UV-q5HguvqBsxDTzFPUZnzXJWMgRctHtAZjLL4yTMURaFapjs-jNkrFV5OTISVMGOnckopl2EbQ70epzyACRmteYj66ySAhJ9FN9EHWm3hZ8jdQ0w=="
+        },
+        "04 Aug, 2024": {
+          "AM": "youarenoob.gradify/F3YA3Gpy4QyUhQuJXu7lCrP7W_oyHmXXGRdVNd1qg3VrHmb6i2E56O5HGvVnakxl0kYT0wYb83P5nqN_aXeKSL2LPd8Qd-HVhI1sd5Rm0aSZop_4TmE9vp3L_40QXm5nqLDMGeJujWnXuum1YybI5uJnbMdak03Qfy8IM5mWwKlWAhhdSLqwBiyMmXnCd9O2LNi3xksdJNfMtdXQn2tGCQ=="
+        },
+        "24 Mar, 2024": {
+          "AM": "youarenoob.gradify/szuKiPxfkHDyxr-SE5ZOJxryNMx8Q4yjNdHdc7TzkqJ4D1m625kQMLteGl3njwRrazzzGz5w1JR7iUk7tv5xVeG2uuyKQH9Z7S_eDPGx_slMc1KrzTHhhTk5m80GCxB1lk7qRwPHb5A-gB6fkfSOornjAKdT9mZhnrSaljKimBHgzJHJ6pGMxaeqk24-Bc3NMqgFfheHUeVG4mttcgZlRw=="
+        },
+        "03 Dec, 2023": {
+          "AM": "youarenoob.gradify/Qci3OKBUf0iK8uCrs5Z6j7HhgamubzHK_L11HyuOKifSJpdG0a8PvwQtPe-xuQjBgtyB1WgoSkPrANQP41941vUoriokjE6zgW13w7FQc4InvTDc8VboRE_9wtRsxqMRAI6DKtTNqll3Nsd6jqbClZRxdW20rup5-qNMna78PFnniot4G9GQ-t90cY25XefnIsrlU4wZBQnwWeY6OtE27w=="
+        },
+        "06 Aug, 2023": {
+          "AM": "youarenoob.gradify/C_bDHOOJHaxckrlnIjoBiMLGpQcNrKxG74X3rXq6Jsc6vGw4oqWY5BrdPGONqE2gvVXTLgl7fiAg4zKgt4paTWPHgLVFl8vfflBnMzW_z7qVgNuWaA1cvR5ca7yo-_PFkUI5R6EXFEdv17-KyJKMyRagCkhuB0mdWhVEbSIK10bAlsVYY1Wa19SBAF3cyYK7vx9RLGWRMHhYCGg8PZkEWg=="
+        },
+        "10 July, 2022": {
+          "AM": "youarenoob.gradify/i23lm55ZsezdBdWrCuQABwUZdnqp2YuNnHe-yQwPOM2GmHJyrJgk6-29IibwqfVcy3IDVjlqg9rfOTgkTm9bo8vbiPz-VVVi1SB0rm3bXQMkJ4LSaUg_TXsQ1mUtgLNPZ6JXzTjcdQw4ILc3cqvjv0YTGfoiNj1CNRS3TJxNwXQulaQKcqULrdfCZtzqTqpuZJv-GnLpflMmuiZoTRRmtg=="
+        }
+      }
+    },
+    "MLT": {
+      "Quiz 1": {
+        "July, 2023": {
+          "AM": "youarenoob.gradify/NtPefiC1um6SG1CvlqQF3NtdsdXpnzJ7vqYlc-pQ9vCgrUhDwyvzb4bFiqDRpxJicsBHKEvofK70Lcl6fPlYKRGKretoCG2undG6zFIDuYYo3BomT02LtRgPUFudxxHRZJNYM65jq10S65Sxz2Oj-sr_A0_3DuCDvMzqst4CPtr0LmEnivG28F1M8d1ahWU8QIDjG-IJrYbFLUuyPo8Dzw=="
+        },
+        "Oct, 2022": {
+          "AM": "youarenoob.gradify/nyOW5lyf6fEnBUFcT3mf-XTa10vstRHMCY0Q_Oi7tvVn8OI1fftTOpVP2to7wGaLCrXjIFUCzGuCGF-Koh7aIKGf8CGrGrjhFiRF8wblTPPbd58Qk9UjTKM44N9CDOjk0EbF6LRGk75qXOEsAJiN63blX9KC2ks2EIHgh8YATrr7S6ATPY6dk2pUX2TZFd6jouvY-TnZpR9OAAXki9Ztrg=="
+        },
+        "July, 2024": {
+          "AM": "youarenoob.gradify/5ZGT725CPeeM501-u-kqP1l4SimjnVHcALphzBQgPpZbzVFu_NmYepeznrZ96XZpzCDZHj-_oI9OXN6Nk3yTT6rdE3VOuMnJXQy26a7ssAV4p3HJtK5NYOFeTCVJKd8tQgLyRcIRadYAL9Jgh8XQZQS3MAIEPej4tZRp9eC55iAyyXmlwNM3l4GIC34d9EB-8_r9vBnMU27EusNuWLWTyw=="
+        },
+        "Oct, 2024": {
+          "AM": "youarenoob.gradify/TLDNNdBGxM5uf75CP5JLJSX_q7kXvnCKyM-gJaDldB-CtjmgkLDb_0yE73QZ9ac16m8jfrVVcvN_3xhH5cDOgpPAq7YcEnngl9m7exzx6RLSv7HKGSCqHCoQR6rPpGb70nCYq4o-UYSK6JvBk99UXdp95BKuwusvFHgP44gkBZobNkXCdOoqv5hannELSKVh352WgxVID_tVPdYB4Rjzcw=="
+        },
+        "Feb, 2025": {
+          "AM": "youarenoob.gradify/lPHrAPxE4H-pIpggZEmYHLsIk0BSqNj7giVFtN8LeIPnKnYBxD85-MJYem5PGNY17Y5QsOjb51qr0coXAlgvS9uxCEjZlUyoCNu0udcSmpOWkIYcYL-GhA85QIx-Yl_MO1nj2j6x2pTM5seqIQwUyAcpPv5udBSy0tyKYpfLUVu78DYmb0HaaOeH6nsSf11xJ1zNWOgD-lSwSSyac5bT5w=="
+        },
+        "Feb, 2024": {
+          "AM": "youarenoob.gradify/SZRzO3_RnVpMOWvgwAWNoc6UZZ3izh8s-4lEEuNR1B8mm-L6CdIOypwnrcoVdx3JlEFyfCOocSZXAUy09SfSlbBelXG4nDX8QNQKIGFEsYxs4HJlpDUXdbvWdlru3Lhopw4cBtkYchZFkFDNGHVfAICuFqXDy3A05PFJgXdSG2arIYV7N2XcO9PsEphrTsrhKiOSqoGAqfX_PnI_6I1nLQ=="
+        },
+        "Oct, 2023": {
+          "AM": "youarenoob.gradify/_S4zSe6otvHdm4TBppOz0X1DlPkKswRGac0waQPtchutqiyZ77T1v4dtva7g8w6zR5p7bhSKD-0_Sj4Sz4aE8XbV9M9tsh-GnIPJ5_mGe2_4vEemQx0QZXRmdW9kvQTaHsYvQGd_UXcJaI5JVM_3RSech_RY2tyjIssXLHKNm2s4-6l2IHhj8_3HWtrkwFY6npku8lpkYMJD_pSCUyCtIA=="
+        }
+      },
+      "Quiz 2": {
+        "16 March, 2025": {
+          "AM": "youarenoob.gradify/YWjRoTtOdoWdYc8HdR9iRIXVqpiAZle5SzXZ6t4kCNpn4ZQfih4iVReDYiVmgrWiXg9o4Jv586wbgX4m_C_vlaa_Y2AQHH3uMmVzznoAcQ7A0wvBrSPImrn0X8goRuNTiobXbNwkoKKGzDkWOi9sPrz7S-gm92RcSsihvG_scGBMFe2TxR0IiPAwjOUlYSGSUR7Mye_5hMZ3Y20rCrZHtQ=="
+        },
+        "01 Dec, 2024": {
+          "AM": "youarenoob.gradify/0m6vyHG75GrRx0_YvleIPwPn9H_Ca9nTKtVULVF0_kcbkj4Yc8BNKyhUDYZmSBPq--kqFaB0Gyz6PtfX7WocGMiLDyDRvAsR2N4ZNH1tAmJR3kWFMdEWq_7EC4kUzkMwrrc8l33Iv8O50bGncjE6DvdiMMC_618L9qjps91Z0ChkOTtLnUVHyRl5qZZPNPAfslY-yFEZWlmiomUCumkpAQ=="
+        },
+        "04 Aug, 2024": {
+          "AM": "youarenoob.gradify/0pemm5WQxK_M6LzGYwjM_94Si8kcIoHRSlaFIJ7vMROpJtKt59UPvjGRBP3N2C8SICR3BWg0HoUYdIFz32VKwpUDNvvr2aunM1hip_ndq-wxNTS3a46sGAGBVwZvMhK0GSP9_8SWbj2kiGZYG8lvDyNcGdZ7eI7_R0buiQHapXyBhN9Nux-0cIlQTFeoLzDaQrurvI8aMo-CHXeDpXjv2w=="
+        },
+        "24 Mar, 2024": {
+          "AM": "youarenoob.gradify/D7yBg4AWHZsjKCYtXBcN4uCgueiINXiqSYWQ4ksvqfm8jLJ3yrS-0EuI2KrcbsE4SrNXH8fY4kSAXnC9-gbhRSs47lDYZnemvcgPckzETiWj9VsYwuk-EIPQIS4-vlfYnT2R6cwRkgGff55u89_sFzU7PcfUa7h-oUX2sjM3Vc7aBTMgm1-vXq9jBaH2k4dhSvuxhY9hqOQIvfv10DKr7w=="
+        },
+        "03 Dec, 2023": {
+          "AM": "youarenoob.gradify/iVDPUMsB1ngaTa4mtWpfS2H_siQlTjYR4bOkI-IIWecpsHAnue9bFAyrt0UIHQybyRD-Pd4wZiubFtHrUpjmt4mj9jRJOAEjaDLSLyguroxyjv1KqTkY3WD5nvJlKlMYdWuFRrJ0Q161_9C0y82B3-IEn_0W3e18TXF48wevcHz2xoTjqjBotgNpIlpK6Ej1YaA5zgnDwSd6ixFlWTvglg=="
+        },
+        "06 Aug, 2023": {
+          "AM": "youarenoob.gradify/6cNGPP-n6vfK_1Zs_oO30AssVja5Afrd95GkDVLyhPVVjzNXsLlsccam4pQBEIF9E19QLqLGmiLkdq7Gg9GFuade6KhXNqmFF6Zyj6XC-S2s36-3gysA7XYZ62Hd5emkjtTJ67QxSzT4HNa_gCiXcMnC2W76B8waqkeZTWSHfmizuLpALpD5-JEg0aH6O80t8a6bpBYAyELugOGN6fbvqQ=="
+        },
+        "10 July, 2022": {
+          "AM": "youarenoob.gradify/JDfqr8vaYppKbfH_4Pg0bt1WcnHj2yB6wJq99yXyNCXs2z7gndS4O6jFIgTdGBwzHsh5Q7e15TrXYKcgV7xbAj1KE_QXYIRpg13p67CT03PgTGiZcfe087BEFdxUTNRBKETZjBUQQOQXbjCfd3V_W2nn-hllhnscQb_iuMSbEYTXO2vcIaH93gpQMfbaD_2OdERerNUCreG5PQxSXxgP0g=="
+        }
+      }
+    },
+    "MLP": {
+      "Quiz 1": {
+        "Oct, 2022": {
+          "AM": "youarenoob.gradify/caSGkJ4l-8CRf-se0q1_0iVqZD2hg-QgvnKLwlDTL0fCKvGkFBVnfLceZGKKcFo344s-P5tQndJnxkpD7J1Qc4ExNsLOFkRQR3YSXENK_uoKIvOuZ4iOmpIqdI76NZTk9Y5gDyDah_d1boXbCXY6rYQWeFrKO03Ags_YBoBEXM4oOPZMLUahlfpZQ2_uJrrhwqHteT7-HqBD3Iyr3rYLRA=="
+        },
+        "July, 2024": {
+          "AM": "youarenoob.gradify/8QVDVvx003lI9r0bWyQBgTNRb60IdCeoBrxWdu_TZzXVfIJwcrtIj1jAqyI5xTDlcDMp_Y2N_HX1d2XVoIDgvh1ebTZ0dgY1EdP2kiTMOLXuCa5SIfqY0h-9y9m9wNP0v69nnijwz2OA3htZrgZGSbTyi4vKtZGfBKUoa__s_WvK3lbJcjEgSJnTS6zS60v8_kR352SsVOluQeOwTRTH0g=="
+        },
+        "Oct, 2024": {
+          "AM": "youarenoob.gradify/TX8GBfXwQt2mRljjknNjYigsvgcclaKpmamn1YHn9qgx_42lbFMkryBxGmAweJKwuiQSM1hg00DQSlfJ7PKQRFp0OGyFxelRYaSBqRb9GlqR8UbEAKF1CuVD8UOvwHWe8EB1ZDfwBG3lp4oOYtf3ZuaoIA6mjLzqg1bzElekQhKNxTWpfrVRlM3LKqTW-lCNGZ35waNIXSiBUVy9EBkXFg=="
+        },
+        "Feb, 2025": {
+          "AM": "youarenoob.gradify/Dh_zwpvB0cLC3TOpkld_gwg6k4Hti-HdtdUCKGXUoZ6FGoBlnaApSGi-8kElUjbgEkCNrcxpOODLUMEE-MOH_8WPhKlabKl5kQAEFyFAxYFWComV2Ii9sKTS8vbJUBUoP9K6uQUbKooJttcGiDaKnYfHTSHEvYbb9i_m2wACXDdML_kiGB7qpAmGb5712HsHLQ0Lzkrd9LWqjxC1byU2jg=="
+        },
+        "Feb, 2024": {
+          "AM": "youarenoob.gradify/YECnwaTFDzTgFrQb3UZmQN96LycLvYnfw4WZ3qzUfyEeDKHz6BeZJRTI1kVT4vAv-vxdeB1wtgCAJhSYQYw-3Cqh8Cf39_nwQ4XX_2B8NdizBeyXJaoMT7cpzdvSNTDXkUEND4XE26dhEkmbE6baDBgBQsv9YIWlBgZGMWascYjPelacMlvxA4MYLcWt9yYtAUcR07hnI9bTNx5bbaLDqw=="
+        },
+        "Oct, 2023": {
+          "AM": "youarenoob.gradify/Bfx7dirge0LjBRno1QZ6cCGBQY5bDHaqV6CR_7BwTL9KMvJUSILy_9T2CwWVycCvn3xJoZ5SdlKIqdUy9Ex4s9VTcDE1pwMxlW9EQoE2oYl2bR31S1I6WuUqlNORu-BhASmtqOe20pzNcBSf6koLcjdntb0yf1QiwPTHsYQ1njp8aUKUI_O9pVRl_yVdtbNM-_EMvdN4eriNwdj5oX2mfg=="
+        }
+      },
+      "Quiz 2": {
+        "01 Dec, 2024": {
+          "AM": "youarenoob.gradify/FzJktOpSmXHpqT_42Ip97-_4YmcnOxQ7SFtPNznt3PUAz1tmmJSVmMJurOGcQx7TDoHECHAaqalTSp59Eyp7R7AAyIYmw5QgKmuR-yUUlHcPLgfa2NkWjvuzz0H7myvBwcORdqxv57TQS_cFj4odFTbGnBytrsmC_hIGezYmiRRZcW1uZfastoS_o8hSc517JJKUl4Dvhr5fTqsVxSQlXw=="
+        },
+        "04 Aug, 2024": {
+          "AM": "youarenoob.gradify/9RlsXhYzVcdr6McYkAtcYrbqOS0v2V3l7sNjhVobiW2G4W34RSkY9EVZQsVgFzXkqIV-SYEiLGItuE6zfcFHZm1D0B7Cvil6A7g5_-j4LHtZzUL7d5ia-wUbv50_b5mNu5l6XOtUpYUUsN3NOnUDtuW5gTxde8B-z20MjYOcm1dPIYok2MAHVY7Uj7P4PafHsbpowN5rH14QltP5z0yrXw=="
+        },
+        "24 Mar, 2024": {
+          "AM": "youarenoob.gradify/0WuuXJYu8oFdrTEaFUOJxQ9c6KMhwNoKJosDz1l2gQnQtI4ZA12jpFTZLn7j0phTOVqES7EuPZnlGWL9mJ0a4FGi46-i6BIFdidM2CfTmXD38Sj5yX9l1BlHjLy0Ud8dXpgYfnCBFS-BuBajFNWoNtW1DTUrY9xrUlDVbi-uqZ63rjxPpfWuxGSvtPr8qrKx3i_OfHV_rtSA8oD4rLMp-w=="
+        },
+        "03 Dec, 2023": {
+          "AM": "youarenoob.gradify/XhHa09k_hc2ZnyzC90g5I5PjldE11ST1LrX8gS5N70pMCdz-WN-U5qsI8AUR4eZ3kY9pLkeUhwr7E261kUrbKuPkrZaGsphyFLmRsjayXm92_GHiDRvjszX9z_EFugnbxfjZd7iycfFsEn4Ntk7XkD-fkTd2IUuJ2MrNZwp_0Cj8Oj3-LzlU5zVM65lmD527rGjAbUO_zhLV8eD0f1khFA=="
+        },
+        "10 July, 2022": {
+          "AM": "youarenoob.gradify/08n2LYW7L5pKKoHn1DFuhGK4wE0mlBblASzdY0kDf_ejRMPMZhjChEq2edA9XR7qn2zorZmyYDGN8qZqvgNH-O96eTVEcfnqV9kCb5SEeO4uGBIMbTF7eWr2-PLuo4tOXMO1EEiNT7lq3gvQr2ftaOeNXL4dLs8ITXDmTMtBvfeka4RO-M-WilfWyAiffPkuxXXCcZVyBL7JpRjqqn0hsQ=="
+        }
+      }
+    },
+    "MLF": {
+      "Quiz 1": {
+        "July, 2023": {
+          "AM": "youarenoob.gradify/I8v-XgjrIIH41r0z_fDkbEUgk44F2CvdRy9v2QYWPR-kx2Z-a7yDPNcWTlvbVxU8lovMlC7ym_s0ft4kHCRpcYXVUsM7WXH2ds9debNIMcBTBZFncy6KCZAOYpRhZgtKWJXdnJ2kfZNaImXt9tIuHQDpy--A9kTK6NHRyg3tNECpRYiJ0mITuXw6KtOdaoScbUCx9rhlPnitg0Y175HHfQ=="
+        },
+        "Oct, 2022": {
+          "AM": "youarenoob.gradify/RzsFcW-lG9q-t9S6FF-Lr0GDB4_h8J801NsADU52LmJIEyc2VXV9RGj6i5KnytV7bTo7v2U8KeTe5_P6AZnNFaW3sdXHnRhE239TM33hxisLjZFgCAKkmNqBrnH-VMnRVAY4ix7rTrLwymsSyiBPglIsQgc7BA1TFIcpXNKHutMmedZzfRNgmg7u89J7v8mfXZTy0FXds0jbTRVOHQZx9g=="
+        },
+        "July, 2024": {
+          "AM": "youarenoob.gradify/viR4P1lqA9y7tWkWxGf7890YmxSghStYUfkj9Av42hEz0ZrstLN9CuMJUpNMDXnQ1nrpqsB2rGqe0UxuDFCG7mu9CmUaoCn-oFvpB10eCRWctyCpgoPA13qxxt-hr-C6w_4q6JPrlqW4dMYW8BXAT4sjRj5C3JQZWgUxI6kI-mm7rykpKW1AIHQupYE-Wxg-ZpeiXAzUC8XnZXXj35U06A=="
+        },
+        "Oct, 2024": {
+          "AM": "youarenoob.gradify/E3WpzKZSzHA9rpwP6nS9_j3ID3ERi9XnVKPCKX9JfGv16MhAxJCDfnqZvclRqY8AXm4NwfihdBNxZoFzJ7XhmYOTGIs5xnXNe_TfpAM5Pz9yMtb7RGlv0a_X1cG3WnqS-LOlND1elzBt3mAbKxgK0Ttl_7imwQ8iM0CirYobu9I1fay6fQe3WoR3KI3AkfWr3ClmA0LOf6wMKfDwy_jS8w=="
+        },
+        "Feb, 2025": {
+          "AM": "youarenoob.gradify/U8_j1XRshs0oiURT89QcBGZkWss5QalPwCmk6u9WUDIr423F7lAIhsLBOYgBSauTMxzDc0oyep_jAg8GP4j9EQYexmgFUWOzK5U6GPpeTt7dlLaN0se0xN3lGqmEETNmjlNTIqoEVs85CpKrockwSonhQBnKQ5BT0LEqmTEiOmnkJmk5ihtfiEL5H2VMxOqNI71L3lGozN-VgrXYjJualQ=="
+        },
+        "Feb, 2024": {
+          "AM": "youarenoob.gradify/cOR7DVE0SffWeYcwTGb8IcSOLF9FrJjJHvGyB20DdfZZYiEpHFT7PS2GQArb59S2gU9HFuiJYTz1IC7EPS9aUaDF_SW5WBHXWaHOsnqdP9N99prEjESn9qGLJWrW2jQee9ppQAk2etLV-BPda7meyKiB_dg-I4tfsIpIhf7l-SD-4HXj73MJXsoyqANR2nnbL7dz5xylfo2xkiIzP0ivaA=="
+        },
+        "Oct, 2023": {
+          "AM": "youarenoob.gradify/oXXdzwsY7ZnA6JVj9e_3AT-YMXnTJdc4_KA390JvvrwQ3W7oWCMQx-40UFdGl2Q0joHSPfWwoQUVpb12A0H4E7FXpHueAB3QaaKg6sPfGt90ZBejU2fUE5clmKGQehz6KgHwOPc6NwI_Gmr7gnwvHqCuuieFWX9SirLDsM7wFtZxTRgj1CcrXJcB4pg-rcNuK9KIgzJBBN89tmw0ana_qA=="
+        }
+      },
+      "Quiz 2": {
+        "16 March, 2025": {
+          "AM": "youarenoob.gradify/CAbug6-TNUcCYP5ytrb8MpuKGZMOY9QA37PTrFT4vmCvVNIkRrDKpQtIVb0cUwrov1Vpn3bz2jj-sXDQug_owU27eu7Pd6wdRMVo9wiV4OUhcM_iwvJk7h1xu8yhOd5s6fV2Som5A2C9KTBpBSXsxRe2sq4gsnBlfUt84daWiro0xtAy2NJ0GTfnNQRIXp2QHI7ygKBQQLvWCsSKayiclg=="
+        },
+        "01 Dec, 2024": {
+          "AM": "youarenoob.gradify/foM88JR-hrPVsRUr9jbUrwSsW1cq1FpM0iTmpYcba3udywUtdiaXQ6u7x86BpY3NXznHlvxtY1Dj7B3fwmQ2S7z64WngX5QXmVQlljxBuxvG9_8ClavvP2FGp9-Q8to9NbYbtWMu8w2afzWIyu56-p-97ulf5FpB_xVo4JotTE8HjeqhouRYset1tukrKBJublxmGMAB0ykhUxiEJoJ3XQ=="
+        },
+        "04 Aug, 2024": {
+          "AM": "youarenoob.gradify/fBbSdp9PHKu8s_EfOYlq8-6pA0HctWa0Ve-60rxZvW10M_XWJgJ_SjIOzz5V8B1sPSKzjam_vn_N-eB8jFMaia3cWFkmPxHzRQcXIBx-hU6OVjmPF1FyoFQvKXvVrzTYBsJJfbp6-i2pviYvc8lpboKMxM4JSSkIApP2iCkJHNIPpP4ixrFrCcAc8Ye4cnjzKjKcpBypc9FQ9Ggotnlyig=="
+        },
+        "24 Mar, 2024": {
+          "AM": "youarenoob.gradify/-yUhjeou93uYj4pVFFiBTNCn7cIM9TiFgSkqcFlnpIsZvu4Zr3ewNpDTNtXIMJWFt4IGAbSuLGJZOtR_MT-rDqRLiPT83W55fLgGPlmOKeC3D5i-ossxvLcICTs_0LuHTBYjlKoBSVpy1vEs1AZN0fvp2FwDciLXOQc6maxyjSBpvllfG8s-_JVlYnjOlpv-IwUTV2N4Om3rQ0VGIcfhkw=="
+        },
+        "03 Dec, 2023": {
+          "AM": "youarenoob.gradify/-gl5CdFViposJWs9jTIJjTTq70WaW1amOeLbkRIeoI8pYf2lBYsqYfaIwdtpCpIXzKdHsscqKEglLQ24qxBJkp4F9fThl0QOi6eECTX8_0FYhu2Z4JmQpaxJre84qFfFWPaP4r00mENiggODYof87slPUOpvDs-5yUQwtAVPtRD40qGN5817dzbjBzn1Ov1XOIMIPeJBjECCMWwWPeQ-lQ=="
+        },
+        "06 Aug, 2023": {
+          "AM": "youarenoob.gradify/YFlMfwOhNy4AnMmEgs_SZ3E0hecYhjGYVcfX5g5V7DyOpTuP8COdWrGQ4HyiLyAiMv2YZwjFm9d9RPwnAnRxpQ1vCMpUxEMF9ba9B2rZh2zds4EInAr4Ez1wn_Z67xEFkT8-lsjZSV8FtzNfevWwDIVAwoJoxFN0_YQKMxfJpTOmtHzamxuPY0MB07KnSYTk_lOEU-qP_hzN5IZylBYrSw=="
+        },
+        "10 July, 2022": {
+          "AM": "youarenoob.gradify/kOiNHTpVPy9dojwiKemahd8RhEYmK1PTCta4I0O9QAUe7cIfsij9Soy1AEyYUVQzxx8VAhA2n5KiSV-XPTKYLCbXM5C4WiqqcjkLS6qimdIJe1kf9qLQR2OdmfQODf6fQhsYP2AVPvpImFgtZLtPIrjj-JkIVs3gmKOsB0iIja54xvCTGzSaTeuwenqe3kPn9KnihYyV-pDaaSK9YRquzQ=="
+        }
+      }
+    },
+    "Maths 2": {
+      "Quiz 1": {
+        "Jun, 2022": {
+          "AM": "youarenoob.gradify/URvj_KdTIuDsFE-D0rnq3WwgspV3F2UTw9ChkLjViZci-8d-ut7cBFGOtcTuFz2zIp5N_b1vwWHEzV6mAlO6OZIZQ1rh0czygj643EB72_pa-UoImG167PuCwIGVePSnIw8wlVFKmzbcE0-ruU5-DYNZo3a6zdNcBlnJ_oHUitjA1bFVE13HUx7vUaAZAxr45JuikFfD-qRK6dMj43RilA=="
+        },
+        "July, 2023": {
+          "AM": "youarenoob.gradify/x_2hGpKdPPpA8ypQmmwKIIStyYdHNpJ9lzWd-_kpg2ElJoiCpGrJd-lA9Qny6y4aVbQl1MpdAzgHDdipeT0izOtNgM5NHHjC7e0F0rwO6R-zDop9hdGeCvt70cWfNTobevuvmMxkiQWKVaorKvV0ZMVhy8a1U5g3c4DB9RarcwQ6Bz31hKoUQGR9y-pdZCuoPYs7tpl0ev-YJ2j0rAbEKg=="
+        },
+        "Oct, 2022": {
+          "AM": "youarenoob.gradify/NAqg1xIpQ_t1AHXYXyeWQBHkCjbkm6OUgA-qJO56Hz4eswRlZqzXzp2eRrkGyZ_P56UYLRjdiori-luvMhM7BV1LfDt0ACwbtk0DJ1DN-DLEQcBu-ZjOWPR-ehY5fg6ZdGFEH8eBV6tPWlvmqw1PRJ_WV5bpAi7ou9HCJwO0xnhmePXt073c1lLR0rLKlAif7zs-i0BBeB-FQrpLs98pSg=="
+        },
+        "July, 2024": {
+          "AM": "youarenoob.gradify/IjOvBePCGMemCpdQNYof7a5RO6olRi2v9vLhL6_8ga2loPTYSWKBqFdYQKz5DQVy4VOcfnPQJKxlAvnDaz7uhZFs5_oUbNmdPZcFbb6NTIeZ3yCt7Fy313BBy4O5wmm098su-HJ8zBWOj1MiwTSCObwv7pP7Dw2Zm8WBSATabffBoBRauK7EZM1q21k__f3WAaFYg9haqqJ-w7-0dLLZZA=="
+        },
+        "Oct, 2024": {
+          "AM": "youarenoob.gradify/rAJkWn_K8JaOVGqjp2FdMbKa07B5azSwk7AVQIfEGXLnRYUywwoIuj5Mgumwk1wu_bu0BfzqqAwMvq-lQ-KkohTVwO1aWBNAW4hUuS8U7w4qluKrKf43TAsDF56ZHrBy5g7qGSJvclCQZSTIEnNA8F3F9DOjfSR0pb-yJ2m8AgYX-3GjAyer-utQGZv_X5UCkg0VJJRgkXR6w1vbPjGROA=="
+        },
+        "Feb, 2025": {
+          "AM": "youarenoob.gradify/3RZ-pgAriIzATmQwPO3vuVu0ocpZsJ3irqaVhZC08yUl11gL4QmlOi-O0nr3Jq5ND288VuBP7Af0pDupa8oOMYwKnsrC9fccpYzM7-RKdtzeup2LbnpVOBUsIgY7QHTLQFubzMBfa3QjusXyG1qtIxyKG8uRU9GQi_bcvwyeFX5GQMYZO4y_Box0PUtd5pvHt_51jud0Z3KA5zSbVtaYUw=="
+        },
+        "Feb, 2024": {
+          "AM": "youarenoob.gradify/8wBFVLFMSEOqoeCem9r3vk9zsInR2fFeoiy7wmiju0jKncB7--bPvPaz2bZD6SOFE53GA6IjYn5ORoKvpxRDq8hw25qc8UqK6DzLsWKfbIJlw7v8buUXhqJb5SVxvQawQrF3e4V-kRrmh83WE-qPSwsSjAI3c3Me9U8iYMoGN_bL2nkDxsVAfs76tQC-9MAScUShNlVI0zfvNQBDWcHVTQ=="
+        },
+        "Oct, 2023": {
+          "AM": "youarenoob.gradify/EIV8lJh9pp_NY8uES7v5ncdt4v-cemLVRkHTvVUSyj0KjFswUPEdtWx84VUhbiF-EMfLe0iOvqoQDatiwiBXoZ7k2AzDREbPuDoAdsT_8dvnb9f5YqtNXBLlA1RLAcEkcOqgeTf4yCnjqTbxTaAZPJzQIiXfUn_uYfbW0S7spLdn-wvGYqRJNlVb8U-uITjMUyttsO8L1T1lJ9r51KzEWQ=="
+        }
+      },
+      "Quiz 2": {
+        "16 March, 2025": {
+          "AM": "youarenoob.gradify/Ss6HrI6SSabpWyCfDVQewwWZlWOZItMosWJKQVMij3ocz4WVkCmX7OkGcX3iGZxWaqTu2TcEKrcrXizRP83eytxdUuQ9IrUvO5pJG7fzFUOh5iGFQVmNnBWlOL6Ue7TLeejr8Zs5wabzRUJiVOPtbsl2tfkDHznUGIiZewYIEzDtDwkMc2q5H2XEobLlZE-O3MZmpxwDXsCAn5y-Fu-CGA=="
+        },
+        "01 Dec, 2024": {
+          "AM": "youarenoob.gradify/puGTK9wMfPJH2EyPo_D5bTNDCDbYR6_Plqte6dgVhP5O3xE2_9_lb2fp3klmOHvUgFM3qtpsapmubAu7MGPFrAKGL1y2er_-igD9E14xlbT70pjTGtpi4FnKxm4bHB9TRpa7vAHSuT5UF1GvpNRzG_uecndlZkJp1U5prn2nylzLDBne6uhjv2qCTnq2p0gvMQRXdfFo1Qjhb2WoJ_oupQ=="
+        },
+        "04 Aug, 2024": {
+          "AM": "youarenoob.gradify/SUXlgKGILyazLXhPzhRCQ6GXFjix4f7rmf9CAvrQ1A_TPwUzV39s5GaJtZxnuhw_kKF7FAIomo4yOtzpBDmG3U33056ElO-kD8clXC8lhnXhKp5trGjO8QaSUpYaLOtJasBjklTn3zt1sCiWNhRgc4zpq_WCtZ--uJMgV6C6xBSXYHqwWpDGIRq7N5nf7tg6Yvskker2LtaQLwubI_a_Rg=="
+        },
+        "24 Mar, 2024": {
+          "AM": "youarenoob.gradify/6L44TRfmtK26-NCEvebO0Jlsd1oVYnJ4oD7C_mgSM9G8zKu3jaY76qGrdcXFpVx_lBXjcu9e8LSbcBWffE_Jn-WLJ-wkp300ZeNpU7xmse319TDH54EcJCfCyF5bVW3WUC5N72WZ9VoqizQob7ujWPLvUNtNPd0OZqH3joPqTz2jct-gAjffcOL0CGJEWW68d_iDg4FuSqTKgU_pQXHqyw=="
+        },
+        "02 Apr, 2023": {
+          "AM": "youarenoob.gradify/tNOhBdt_BxRQ3nNK1p5wu_8O6UoshvMIx8vO6bQAX5W9Fn3CuIJlTuPimhfqepnnrmK-QsxSuc2KoysWHbiY-sLspt-KguPB9IGi7EyIJ_EQPtR9Fl0OjL8fmwNB2xKg9EONR07uqSCcT9VBXAFmnBac5tWLNhLomNPn8WUKukzlJNn46JVRUSDNzE8zCVkJfKljwdQ6b2BPuljshWlCMw=="
+        },
+        "03 Dec, 2023": {
+          "AM": "youarenoob.gradify/ogjr-lLACXCmoDz-ZARFIGq-l_9ZBzzoCWK6CLGG3FDQT_2GGndMoC-3NufV4rFsRRoZDaySg9VjnMOu4sJTmupmxo_khfEcmzzn3OQilWIRiIIfWcwRdoxJGtRBMtvpMFhK94zho5KX1iDjacLW2wafpavtawxz9yyrKCQKilO2wLKOJ6AI-mAkLLLqfXfzXxvgq-KQNU-1g0tPE9ckgg=="
+        },
+        "06 Aug, 2023": {
+          "AM": "youarenoob.gradify/r3Zyt7pqupgjm2xViZARt2rDYLMkDsAy6oO4pBgYCUMCK8w1uB2-3r-MqHctbzP12YnwRKj11Z6YsLQ39N_abK37AYfq8EG-03NwziuiP1TA3hHJXnF9-K2iCyezG9ngtdA0YtZ03tNQwyQPJLUXY64k2SNLj8fby9bBSj5CQ-h2eTqcxz9GPmLY1N0xr6oiSnqVrKrBRd1TS1zZ3FJlcw=="
+        },
+        "10 July, 2022": {
+          "AM": "youarenoob.gradify/l6Gp93i1d-4MtxYzaXHjIOZ357Imr4lLSJ5k0LolvQx9MpGhSs_voXYW5WTEfuwI8ayYkpDDyJi42pZNJbE6Og_kOrkJogfXEiO24_okMafewtBicbHt9mKE9Z7FXUglbA_ERmYgPYGvUUXIpcg3nlhH_futuxgDx4aeL95VwmsCRjnX96GtivlcWtO2WxYdlcawS5YiOPNMjjbsEdguFg=="
+        },
+        "20 Nov, 2022": {
+          "AM": "youarenoob.gradify/YXnK8nWQlUlw_ghF-LGpFPa8JllBlBkahda9MKM8X6sR5eKxxb-TVFkfrZMl3PiyJhUMydulCJu-hWuhkOYDfj2U_gK_fEKbC6dR-zZgFPzbLibA6PoeWuFz4p38HFxsVvtliq1lMzG_sClJ31qdfvVb3_mFmkB3eH22M4K67kSV9nPNra_a8btYINvPzeHWS1MNjPlaMbZ47u8SZPeaCQ=="
+        }
+      }
+    },
+    "Maths 1": {
+      "Quiz 1": {
+        "Jun, 2022": {
+          "AM": "youarenoob.gradify/y5PcpwkIvbDE939e8k6x-ZLmNTZ8t85wiQcZGtQvRC5F0xcPuiDqKNU8dVSAule0M4hqK7leHZi2zfc9k2-JGue7Xk0PAtjlgF3bRFpmeaxJQhaKLd5FWSG4PIr0mr19pxHdtlOZHByuosNi8_MKjslNy-iXsW-M9uzD0j91Z1NEw2GFcx7VCIhEO9bvHTJ06SJWa8lGU8DC4dp6qdQhQQ=="
+        },
+        "July, 2023": {
+          "AM": "youarenoob.gradify/JbWqN6Ev3cuR3XX-WFy5f4fDqzXOwwRnSH7TrG-TVO0u7IS86zTsj1qsM9Qvbv9VcHhrO8tyWxLK-Trv8vC6qr3VNGJrn51W2X7KWhIMhubhIzOkFj8ZxyEyWbGbvZXQWJeAyG-AI3sESYqIf9UdDKanwW4QhV0f9z33YeJKhMul_VYr8uBMAUHIocRgp44zIPi_a8rCp9k9CLdAVVtNdw=="
+        },
+        "Oct, 2022": {
+          "AM": "youarenoob.gradify/pNui-hjqLcKov6Aj2R1HVYW2uyJdLTCvR0xWcIhJg-vf_2wWxAGjL0crnv9pg9CdPjltTOpOSyV-2YLQL3HaVZHQBybH8rnUbDfzxLtLK7B74FG9LFFcH2gZPKtotR0NGANkkv9OOBc5Bcqhlx-fl2qBPcVpbH0OJ8P4gL88hQNgwAgzFgZq91crIGWIujjzVH16mcgJGwqG3fyuwvOtnQ=="
+        },
+        "July, 2024": {
+          "AM": "youarenoob.gradify/qtO-oX7oiHQxyzBmm4DNPVlkeSDgJBSYcbXbrBuxNcqbWwZR1tSV2l0uCsRQkhDegxPRaVFJH9T1H8osGb-L_8vlQk2YXSyGrj5ZA4Z3v3DoiKOuX7CfMBtRWWjqzvD5MuPBZMvAvhhgUMO9NnwLQPnqVG_qXSV97BvjpuFTc213eVEnXRoUkzausLq-5vIxocER4aTAEJUXV56oEFHr_Q=="
+        },
+        "Oct, 2024": {
+          "AM": "youarenoob.gradify/pRii5T0zL-LCAcVIjOzf9iINOPNmmDQwMW8JiF4blSlROLYy30TEn_nPajJqkvVKezitxPf_i04YcWE-zaA4NaEiZruA7GY91-_RBknIAzoGIosrzbcz9s500rZvEXtu1uwDKyVD3huExJ7fgqmu1i8EPIi1xV5TjRblr1ljQh2Z9bURnTZ2Li8QiDv5gxgaeGXfXH_LxPd4qnGxNyD-9Q=="
+        },
+        "Feb, 2025": {
+          "AM": "youarenoob.gradify/O7oe7T9J-8vYx9K96bTWa68Jni_lui8sUV28BERFLY0Akta_WTIcRvbHIQnEUZucHTSHd680lKmNbYejjMjElXRJlIt5lxNEVFIe_Uf9kSTkM1VuraBsiiKGQqFJgcH34Z4oK1VbPdryKEHZ6NMkeikCUbgfZN5AsMIwSG_zoaC-ZUhqXMjMrODtjgBtBM3z_qzgbX-U0Y-rGLmKwfgbKw=="
+        },
+        "Feb, 2024": {
+          "AM": "youarenoob.gradify/p60o_qQDj8FT_Kv3JNRc0TUG8chVzofNtU62V40Ho_PUAaHgp1RTn3pNkYuN7P4KQNdawOaBmJXU6iPfoNNOMyVG1ZScPbakTYa41a5qoRhVsSzM4x7B4GZhCdACYLAxDjheVbl_wlHHATLGT5IxvFVAZLubzKf8wQOUMA3SN4buQv-tWIrDE5r6bNSY-opyss8znTanFrCc7Asn0I08Og=="
+        }
+      },
+      "Quiz 2": {
+        "16 March, 2025": {
+          "AM": "youarenoob.gradify/m6Sp_i0cyWejQIMho3rji3kTMzPPNt8RteRzNiHfg8sWavUCwGd7sAx6Qu9ZyMzZEiTHfrZRDX_aTiJ9nNKmpUVNoN46xuq4Ws4FOs_BiQc9rq6tUW90EywFjlNOp-xZ8lbbqDRmvpAJJVYmPx3Xwquz-XbmmrapOJZ7lQn8OpOmbNIPWr104KbL8wnQKzbsnfEBwq15L7KKlG8oDvx3SQ=="
+        },
+        "01 Dec, 2024": {
+          "AM": "youarenoob.gradify/BxN-fCuw2M2dYLOkf2NTNHkp0-NL7FV3DCNN3d5B4ODhibm_rw3nRihtan8_xZMIKxGxtDVBd3IoPvRNjqpYX9pefWZcYdJLaTf6g53VeMuh9i35nTz4JRMhV1XUnRUUj0bL6B09DXeHk_cTwfdgpqK3uT7jQlwFUeUtJPqHDvHzl4NXCHPvyQzuuXOoZSMziKt5uFq8a_Bggs3eenfF9Q=="
+        },
+        "04 Aug, 2024": {
+          "AM": "youarenoob.gradify/MdItGi5I74a7JqD1xXzpLWbwqaWa8OTL9wvBqvkwdSHzW-Bb6vaCegO6dRKQDCTOUE087WKQ31oUNNvM7ja3KcOM4rc_OKPgabPGx98eGcVcdiwAz8tTqwNYg1lx1PUJYbKQNNz5HJgF4uPjRw1t8PFVfJdEBsMgnr4P7O2Y66QODoOj9JRuMtUYcYEf9Sfik2_VBSBJacySnCrT2uYhoQ=="
+        },
+        "02 Apr, 2023": {
+          "AM": "youarenoob.gradify/cc6VKcVZ8q-3q_AKJ36wy6Sr7ipwjqItIQW9xyZT4lF99v09ML0Br1BngjaAxHz3cLH07kc3QhMi0qfq4_IwowyqanVcMJecpuTB3Q7cC4v5SoQAhKxjkiW7cmvGlDCXmD6fIcCgFj2tLukm_cx9MSJlnXfkGc7fxz8dGYFDmHunfMlC5GW0yD4NIEIipZtI82W-0x7wMCG8mAFCjOGBFg=="
+        },
+        "03 Dec, 2023": {
+          "AM": "youarenoob.gradify/5DmKikwZIs-V0576XUeJsc0DW2yDX6OwK8dv-DL5bHDpDQRi9OvstAQW2xQ_gZ1aYbyPgPgAQHNl1aZf1yT_y0FUl3IgY7toxcxipo0WsnJI-CkIt_PbUhxH_TE0mT3jEY0osJtqAYFIHK5YFFbgI8iS1EEyBd3rOD1Sw-yaK6qZPJc5rg5aMHdg0SwnKE_RyHkq-X8IPacORNwIGKHMEw=="
+        },
+        "06 Aug, 2023": {
+          "AM": "youarenoob.gradify/nRcVwpl2yNUeNZmweKdh8EYKIhzPT0XBqMUcWJMxZ-erbFgL4Sv-awNIsr5Rb0zsrWV52UyXvL36tUhzsHNA65_lVBG9mO_mO1wGK6tjH9wY38N3f_WsvzwsLXt9Xoblt29yLwNo8t0ulAMPfZRjWXbpSEs0wFAQbVri2zfBCgloX_Hrr2j9_2OSDi0OXDrxmBiG7Tw3VFultjkeZRiRKg=="
+        },
+        "10 July, 2022": {
+          "AM": "youarenoob.gradify/vRqQz4PHwDF6LhAyxvkCPnEz2JxGq9aojz11RfU2z0Do0oDgXXD7E7ZNaSsa4cVL97kUweQkiHuMAVbDkLIPt2SySBsqntMd2GZH6YtO2AK8zNWCu0_fm9aACNOzQ3SCGumtScbfvqTeoJdFuGp7mMyUmQKvEcTbkoxmtnoagVlh3wH7_i2Z1H-kGOPpOQ9ZivBe4G6-sZWqIpA_6mpf3Q=="
+        },
+        "20 Nov, 2022": {
+          "AM": "youarenoob.gradify/CCAmWjvRyXojs1ZrCfiUPex0o_3-TAeTncgNFH1mUiujIz9CfZB_gohLZ3GjTFuxU25O3OdfSoE3xMZGqLcyZcIFhAUh4s9oM-kR4FbbZhIPbEQIRLFDNPRm2x-Z5I1Y3zIbOCFBsSNjRRBcKpgBNzZQXFGD1NWp7fgyjV7-e8BU4QYf372JKNsyWvDTTkNL-_aVAkMI9J1IuMLBEqRC8Q=="
+        }
+      }
+    },
+    "MAD 2": {
+      "Quiz 1": {
+        "July, 2023": {
+          "AM": "youarenoob.gradify/sFfZTz14U6ckwZUzZetNfRmn9D-gqin1cAHuvyxUB530epSHsdGFHMTWlHMzfUTfZOcY5kHqcdV71I6lWGXLspmEZXzhr-R9qFlj02m_LGeSjqdB-fygCIqOdaC6PmzakSpUY1EUewU-RtZe7q6U20DVYy5mnXIWgxg11IYaGfR5z6SB-0eLSClOlfr4tKla4KRp4GN0dTz4zsoB8Yn9EA=="
+        },
+        "Oct, 2022": {
+          "AM": "youarenoob.gradify/-Mia2b1Q_ZAIIOq0kwYLP00wK0BJNgBcXBOxdOQAvJFOZwWzPdNITl-TRDDXgoGNZ9zE3LU80PayucAdEHwjw7OB3XizSSi7JgLayqLVyCfGw3OleqAoov0mkwNbbC_WVnWZnC1cLUkmDt-AM84J7VHXeX0TeRGRSL5pHXBvwQDPtIY7gC286_BXgpvHd_AR_fiij4bf_BOgDndbIUqtUw=="
+        },
+        "July, 2024": {
+          "AM": "youarenoob.gradify/GzBURYow7SAHEA7y93HbQiVLxt83x2Gp8eEyPOumZB4JehiNIO0ZnazERwPopZc3umtY4I_TECLlXKtxLdSssFJIBQ9TclTDv3VPSB2Gqrab7ZOnFEE_uNc2s_RO3sKxKHVYo79BG6B6aHYo3pQzXlgSkghJ8h6u85tReZjrsj3enbA9WwRzydDZrX_8S1aXuf3fnSWjiYSsgeJjNGjd5A=="
+        },
+        "Oct, 2024": {
+          "AM": "youarenoob.gradify/LWCHZcmqm5irh2yHlB2MkwSsr8KO8t0VzTReLYeQDUqxoSUgkHVrujdW_NuzFPgW0Tsar_bzE8uRuJssFev2peHCq-S8q7gRTUVP8K68kw107K5QsQO7i54OhOANNFb_3yQxtMOnUuO6fSSXQVGOGNWrSQKHx6_1ZTuzPot7-mb41G84J8RMFXzaLIO1FxhJaxjJBZzAA5GpbnyMToYQxw=="
+        },
+        "Feb, 2025": {
+          "AM": "youarenoob.gradify/mVq3_sZUNHkgiLJ109CJM6JexY6eOU5MUWxXy9Q4-LTFhUXwtFnxoqQA5dtnn9oPoTkIWVEt-JCg2qiIc9wkqPgAtNM6v3jRupudcQ5ZXe2NOyLDUgKcTagzdWopultjyBYTffsKRRRMB9v0spACeWUWCNoUBLhH_Mo6m3S5Huz_W_astC8da8fUyK9UfxtHiecwRrt5FjHxpXYYXI8hjg=="
+        },
+        "Feb, 2024": {
+          "AM": "youarenoob.gradify/AwAPhAeW1ufFEL0RTG2fc5Ml2HhN3ryB-4uOD8Tvg8W5ZZxg8tP8DZg0ROVD_QedVS2azEHIKYs0HXARrmjeiNH_RFVZbiMg2J6xZcQomIlxK32_7QHVf4dmkt4gUtcTUi2Gg7Ruv-_0hSlhK3k8YAtr62g8iBeK4AUbtmc9lGOsoxr_DaeHxyf9ONwaAIgDBjJD-nG_LCOjhDHgUM_KQQ=="
+        },
+        "Oct, 2023": {
+          "AM": "youarenoob.gradify/kYgaBgPb2qJTTfUw0-a-9b34AXwE8UWWavgamuf9qF23sVQIwIQBBcYBMeoNzWDpPRYPwFdKv6NJCx3SSvfaC4qNT8xSCJgona2vYn4izhdeFCXeiQg1zWqX36fRFWdb1_8DcW0U-fQqni6A0k2tV1wD7XeqDtq58btARCqomWFTWavAx3_TSH2PmRjS6U-bf4OrD-nLJV3gApwmB98GPw=="
+        }
+      },
+      "Quiz 2": {
+        "16 March, 2025": {
+          "AM": "youarenoob.gradify/Sews5b4dFj3S5bRtzmQNl_TFHQtfevkg0zUF87P7rwOehXjthTUYwv4o4oN9TNndcenr25UnQh_pyZ6WQ9JZRTtCAzeaX313hBcVPOWnWcj5jUvegbZdjhlJaCT_sU5HrvSgnOH8HmBFbMTurVyDSbgZom3aQqYbjyhVZrkOeTcwTCSqXq6baJRrfG7vGDVJPdwLqpb2h59SJ4boYD6ypg=="
+        },
+        "01 Dec, 2024": {
+          "AM": "youarenoob.gradify/gcdSUzL_dAoybKi1z4GlwQ_7m9KfrRQuqxFhrQ6y_9NbkxSWAjnsI4wzYD84ZGvTdvRuYLOkuNhBZeXMAWAjkr71pTtPR7t6obUljG6cfporfkD20PD_rcID2WVi5PLYe0JqeOP6DXt6zPE0rG7VBJV4EDBuw1v0EG-KLVVraOCH4OI-phZQcvy9YHKbHVrvWumb5tJiXBlSKvwMNxHCKA=="
+        },
+        "04 Aug, 2024": {
+          "AM": "youarenoob.gradify/xEcmP90DNKtIFgxyIgQPhTIWvMB_jZrXFR0ZS94pXeyK27GNdX5mQCdYkpDVE2C3Bqj6LrlJuk_X_ki0shyLD8UCCWq3Tym_y28Y8K6pY0DgNW-rtXxCc4J1EjF659w4-UVtp5cYKx10jRlCqveMs7KrO_BOTMiwyqWq9zHManhfIw_p5z_TAHhEWJuaE-igj4fvQ_Lj-oB7MF9FVYBPTQ=="
+        },
+        "24 Mar, 2024": {
+          "AM": "youarenoob.gradify/eNE-iGD_hqmtElEjO8_kphp4GSIHL9-GQNLJu0f070pdIq8DqUvPrbMZimgPnj1yA4i_k0Ex9kVQXRbJoCQQByh4oY3DuMdcdmHt67JikkHyBgsVJOs0jOEYnxQujqK7zP-Z8Hg2ixT2aPmq5LF0rUivdNMFHLTZvbWI3ndEkEiAncnQfxMiM_xc4wwq6TlSJyZ3vQyebZwt6sPYhjkQnw=="
+        },
+        "03 Dec, 2023": {
+          "AM": "youarenoob.gradify/3pnfbISJIjKShi6Z7fuU33ZSuPorPdQarG3N6oSPhEamDDoIgpTuy1H6Xus-KdiheBnAK0Nbh9TBNe_rl1r0FaTVuIk2Jibf6hPAhVkTlRqxcjcss63Iy-W9PyQHe3Jz8hCkbbOf4TFo20neMxSi4CZRmnakE7Ir2790MnUGvTcTJ_z7tj0zZR1srgEihGQclZTLf-5xSFpOlWH69dbiPg=="
+        },
+        "06 Aug, 2023": {
+          "AM": "youarenoob.gradify/djqxDU5oWbos68zUR3_akhsaQGRscuYvwK-sqlM_qM-StD-qJkEXKpE7Rms6G7-RAF5qu4aOdMEHGO_IX_DEZm17OBG-qql3AEU_xtWoNTKAVGHP7HifeyJzn5p4uatg8jCjPzcDDv2kOWLIsKH-u3B7eD3LQN_rP3-IgbzKWF56lbwsGdP58VU-WGSEvY4rV-nQ9XM1iuHDmUmH41HDtg=="
+        },
+        "10 July, 2022": {
+          "AM": "youarenoob.gradify/O62GPO8bhXhyjHl-XIUw_PwnxD7RR51oSwUANyeVuPtgyEHwcJ4aqDhPtIMO11YVLLVSdpH-1P5TKp7v3_mQm7yKMboYjnjUxapAa7S8gLfHYAkv9NYFodMaJ0JqxEseZ_CsfV-0JCsdPe4liXz5P4w4df3yR8qw1oZU5LPy83PwMk_O0juMM-QyNwxb9tEdV7GYFxvUGZJbPo_OCo-jpg=="
+        }
+      }
+    },
+    "MAD 1": {
+      "Quiz 1": {
+        "July, 2023": {
+          "AM": "youarenoob.gradify/6Cz3T16y2ELO1APL68N5xzciv9xGg3qXNEwtmrET3GKumzm5FjtP22uh_33vKOEzo2QM_u8k8TWO-wNuZJi2l33N9RD4EzCa0wJU6U78TDDnqOJR7QIUXccskX_QswkZHuTdi_quzkfvqtIyziecYq9uwzS0lrNsb6XazPdJ3eWC8abpH9m4uJ4IUFnc1YIS6uAvo-owqJIHyStUrd5k2g=="
+        },
+        "Oct, 2022": {
+          "AM": "youarenoob.gradify/rmsZ3Lrns-aP_Uh2CvgUu61q1XPQ0uVEEk-jmYMA4lhaNtfZPwGc6XhcmqCEGQEAb2ivsdD0QgHq67QGgggcrWRyDdDezrxlbjIr2s1c4p6als7pcCjdvjZPVbAIENQEOk4w3CkDJuN-RbmubXUTdLL0Sm3pZe2Lde93-3cYZKKAbPk5Ht5tR2tC8WMDya7MtagzCFAV9jpXCQDvNobfuQ=="
+        },
+        "July, 2024": {
+          "AM": "youarenoob.gradify/F1EC2uVGqPyzqAO1iuC5odU1R_Ppxot2-LFne72oCK-dlGlORyZf6FBx6GB6qH3g3S26Pwi1aU_iWLiU8QBgl0djyMuIhUcrL3QNbmExBYoO5JTHzHlIRkSaO_jegJnENrrazP8lOukAQtzohinoM_XxTJPweOLZn4QuQI4tnD1rP4kWqz7_cKaDR4oXe6-ekXILoiY811bWbj5E85UNNw=="
+        },
+        "Oct, 2024": {
+          "AM": "youarenoob.gradify/plreaK04EhtE928RLECZ_qnQ1CULISMMmEVMmP4z1L_8A33Gak77v2Q2ifm23uXaXzeUgPz0tZWqMS5kfyld1wdm15dODpq-_G02xefvmEu6RS6V7u--tQRBueBwo3b1z2E57_e8Qs1Ye3jdFR67RjkV2h-tLpv1FC375rxRyVu01Y7tA3RieaYiDzDTH9HjKNI6hdYXjIcrW-UAqWtXRg=="
+        },
+        "Feb, 2025": {
+          "AM": "youarenoob.gradify/Q5H2UfcKybvoRC8WSsImYWDYWhx0nHjePi2Me86iqLjl6XybmT11Zkq5TiZLVrNiq-C0SWPxTrPK8tNNGoNFhifta7ydXwPeyui8p9gcNcKaE8IfHg0PKAiJuoCSy47RPdFUR9HYe24JRN4wfkZJGlPsiGWZ42mjhJu9vTtx5aITKwV9G_muemo9QfZVittjMcMNZHHyJ78ouCo3D4sEew=="
+        },
+        "Feb, 2024": {
+          "AM": "youarenoob.gradify/h-81o3OBBn9tFQTyUce_88h8zOFLzgBjyqsHrNAKLXD7tMQipi1l6rSTaENSPm7JldTMgl4IkrhHRKHXB9oH4VmQOVxYiIoA-IEph_eaVfw3N8KiLyswDf9ce-JFIOpzG2Np2eoi7oTJE7vmpANCOx3TaqKg6x4Qz2qELqfqtcihcllmxV0S0JAi1mvEx34PB75gt1s_6cbNbLADO-BmtA=="
+        },
+        "Oct, 2023": {
+          "AM": "youarenoob.gradify/1JURvk3SwB0sw5L1u7HKDuQuslAkServH5oQYSe4QiWUm4sfVxzK5umUG97tR1GQH-urAYYwSUcioffYDRhFUekk9ugI0uG92qWoTStuEBbccXSq0nk1GnMyC7yE1uMd1MHGIvBaaskueaG-HIadVDFtiIKjD3XaFb9LfN4K-Q3P6SmeKZXIG7BdtvKyFoABT5ux2oQ_MHPzakMV_l89Nw=="
+        }
+      },
+      "Quiz 2": {
+        "16 Mar, 2025": {
+          "AM": "youarenoob.gradify/sz3TnZDnlBELTqZ7tTKiKw1aXgP5MeM_LF53uhftO3IrfvJJhkuKBWWNOydtK4s_UdL4zYjHLmTREskA95tSrxtTeR1uxD3FkHTCCcjkfDwHecvi0xhZ0XhZ4mrcTXLzCgcCgoZKZX5jFnL1Ij1YD50-ZfzVu2yrTo5Rm3b2UiLXClvlJhaJXt2Jcnqa-eqkaNlkyl4LogXgHZ9KZ0JBcA=="
+        },
+        "01 Dec, 2024": {
+          "AM": "youarenoob.gradify/DUCXVt05U_GeQP6OuuKjLmHhkOKNr3sTASJ9_itwgAjWiANI5LiNhi5zxycfWi8DgGMasQe26HIBY5jOpzYGQIBp2NUrOYIjXI0staUOuVUXWXNq0TaRuVMcIlhMbLec-sEop8S9Qll70dFbjEuPJ0oAV5B_G1y2G3y8B_2wzf21VCthIxkbQVrNTdYILj8aPN6xrTIsF8GQ_ekfq-OTTw=="
+        },
+        "04 Aug, 2024": {
+          "AM": "youarenoob.gradify/WSgQPqrJBzF3bZvdzitVNtbmXCKIGkwUJnnX3vzTp0yxM3WbUtHfHSCj5bOxIIZ7yMc5EXiL-sHkZeR0RoTfta8Lq1Ff96qjWSWNHLeIzwn4V99MHWImZCTYZ0JZTnhNTYEFIzlmu2M0UVazVJbEp3OpVscksvdgxYKJhHa6K4nCkDn9B8vvOtxiGoHvEowX5eKOgnI4WWPV2XHftzNbPA=="
+        },
+        "24 Mar, 2024": {
+          "AM": "youarenoob.gradify/tS8rRukns4yYNplb2b3Adcb2mzeznaD1BzCTfFUytZIg3E5t8ZRiDReBumAtIRVy5KrVX_fokkI_6HW3V73lohAtsUdxroGnluV2-1QdYxnOIv7EHz8PdPfJbcy2frLEp3d_aeuWCKrmdVZWkb4G_lSI-nPIV0CDyt9qckPn9RiWuyHVY26ipcQB_22JtOHfoowN6_TK4FDpPokLCVvw_A=="
+        },
+        "03 Dec, 2023": {
+          "AM": "youarenoob.gradify/tkGl2xvNZM-RcpTLzBcx6LRNzB5mEHPG6Vk-6Vtj2dc7xaDEBynyU-1BL0wJbZ237n1M8VftjP8EHu8qMs2a6iNS8gdhSLMWJWsZGXyeE5wUYjdM5cbof2RGgfivMsmRYz_HKpkLiFVHjw_kPBibZoTEtypAYry7vCzGnchvDavmuv7ZTVivfhv_Lc2Yjn2ke2n8SVvJ86mKV-oFL_n8hw=="
+        },
+        "06 Aug, 2023": {
+          "AM": "youarenoob.gradify/f_5c2FNBsmeD-JvaxMJscPeO3AtOc2IBz9E_qLc1XWq2GcDwd_8D7IHVLEcZ5fe6hzPd2cXdsDgG08-joNMNBfIj2K1jB2fmCTv9A537VeqGvB2uqW8AG3eTx6OI3SpoaK4hstwdMK0WaE_l1_dpdm5oDa7IqOjjKyH6ETZmz_Po7rOhpuc2P1DvJQrzfJAw_gTQb5qCvoLQEPC5tfP9zA=="
+        },
+        "10 July, 2022": {
+          "AM": "youarenoob.gradify/OnjXNWD_-Ydx8n23Mu5QnzgNuZ-YASMUqgZd1khNYT19PILekDGhP1QGlEHOHM664O2iiU0H21UvT-wkmIh8tDTT8trPl8aAe-jQHVqMN4QpgQ_5vNdm2cyRoeEICZxWFKq2YnmeiBDulKNivbWrFXyUrSOG8I89C6byzlQmb36FvBShD2ZJ31MNgGJ2-ckixpaoLOuwTHyShNQndg2ETw=="
+        }
+      }
+    },
+    "Java": {
+      "Quiz 1": {
+        "July, 2023": {
+          "AM": "youarenoob.gradify/VuRhkdXKeC5XnCQMmZlIJ2AzAt5wWCwA3XRK8lf5OFUCPydSZ6LFfNdxqSQCYr_yZu7Z2KvTYdUFYDahy903mfGP42EsHI96mU6shwNkSt3zcTYxqmBCrkoAHxm8pLZFt9S6d8NyDj42EhKNmzOWThcKxAFD9xIyM8899iYluZL1_zggcoeDB17Afj7QNRtJan7y9lTpWURrdK-MIaW-Tw=="
+        },
+        "Oct, 2022": {
+          "AM": "youarenoob.gradify/53lKb8fQbA7yzFNfWR4YtNkiqQzVv6dh_W6ZUE-fgBHQPjxI2GNDJb_wDoorGBljKVuTze0yXe6INvL24tiUUoYqK4UuzarlSx8dmXCWhmG3_B_F0RXZdxItG9BhuOUnXwx47CNYcsOgPpOMg8uGqXdFXRtvCy7tH9W0jyzSTjjBOcG13LTrlk7hURPJYBRgx83363EuGVYvORBhNTw8sA=="
+        },
+        "July, 2024": {
+          "AM": "youarenoob.gradify/UgiT2YTQNu8zwBsqBh-s25zj2qoJUYzLm42kj0TWvjTK8acUXwO7idfDrq7zZD7hei_Sx9D_bqrmVWDpxlcZgVcCNiGI8iHU6p60dqpmf08QHhB-xZNFMcy-_WLRpW_mdmZp8I4eGdNFb9xnqFxl3X-dkb6lEm4eb8rORx7VVelGRHeRDpSW-YkNtysAxLmWRMUAESCsF_CRT--YqWcYrA=="
+        },
+        "Oct, 2024": {
+          "AM": "youarenoob.gradify/3ohI4C4bP9xsL2jC_UxrllYH1mb5-vdk3uWW0paYLMit9Qi_7xWHMeet5rQqAYix8OiW6QPmFjuxWg2q5H34z4EhuiT247IGNeeDvPJBOTTH2UYw2ez-2e9PGQBNabHlB2uaf6ZKj0NKhtnZJgqPD8t51ZW24rgDINV8wfl8XlORmkYEnK8ML_Y7O9jgJE5v6GJK9cSvSSgGcFxO4MtA-g=="
+        },
+        "Feb, 2025": {
+          "AM": "youarenoob.gradify/KtjJNtuXbc6eMrW8T5ubCQ1eizYq4p-w8B1l_sM_3DP4rcAxGTLHrdKxRN1CxhKGH1srSBxR7lRZYAJ7-qrifu609BXt1SwSvbEi1Qf93sKNMsr8V4FQPCePw092mAfFOCVh_KAVdESfXQFdyFZ1wCSXvSoPmKCNlc3JKbF_nyB_LkB4rAieOZaqoWyGOYbGaOxs0_w3UhxbjEYkNckDEA=="
+        },
+        "Feb, 2024": {
+          "AM": "youarenoob.gradify/INcZFzhbru6GQ0MYneSOGd85qhtFW2a0S1Jp0P5kVrURzWBoFmcCxuGZ5x4qXgnYCB7NA3ofFHykJqyZygqpDd1ymLiLARRUMDjcqZGyd3wgDeOjg0gHjI_3CT9lFJFuGxA8rUXrqoaIlu2sSVk8FMwGthjfDjAoDyujSVOMODpY2qpK6eb6_aHJ-IKO-ni40xP3yCHwO1BycGjC9R0Usg=="
+        },
+        "Oct, 2023": {
+          "AM": "youarenoob.gradify/vfhDR5YRT7kGkoDskp6qQSaDsQinwE6pD9Qnj79Y6ExvNKoe0tXsJ6UnqlCAuf9dvI9dgmO1DdXNKZj0yCdU2afUSZVUbqCTuf3OeK0YI2J_rhQO-lLieBdxapBXrpTTMbAqcV0VIJzSKnKbne7eilCHHmdvY4i5j2lLwJ5pkwv7Y9_lDjD4lmPLVzajHX2R61z2vClpwek4UDoqWnEfIQ=="
+        }
+      },
+      "Quiz 2": {
+        "16 March, 2025": {
+          "AM": "youarenoob.gradify/sDEGAiNveU0L8r--vUyS3YwoojGX63yO9yqeatpKQ1iL4cXbcIso6sBrlhAk3zd3DNeEWxEYqLzOv82crfV7mnktyEoZcqPD6lfmvOtynSXujAPalJNKye1GxwMsw8hAhv4lQtFKxH3-3aTo-NZldQM1PhDqP4EbF27S6snmmRL7z_yjB6O_I26zNmnH909uT3m0vv008vI-DWTci3vbvg=="
+        },
+        "01 Dec, 2024": {
+          "AM": "youarenoob.gradify/Oma2SX-l6N5uyCHcp49FMkXrcPzDOnPpbQ4dGulNyw21Re5-wquZTqDy_l3fTfzaPoWyvVBwopEKyikNYtXgTsEr5iEB-5s0IzwsA3pkeFpS0ycrunZhMDVXKEunCKlprQ8kHVDzLwUusZuOdtnXTw_gyDlWamGmDwpZyYbXUvJ2ye82lm6RDanZvbknKrWIiSCEVItkNNns_DOwnxpXSw=="
+        },
+        "04 Aug, 2024": {
+          "AM": "youarenoob.gradify/HFXoA1k-5cIFIaiFJTlYuDYjkPLOqRMTZYXIa9Yqq1F-JlxYyjZ21kNmOBZ9aVIPeYyLnqivuLdvgvp3jplHT62X41Pchq3BK2x8cY7Q-zObtRkYiFgsiUWe0Iv_Obji35jFsYw9y-lcTHfgsSp7Dxu-NgFA1doVjiN_G7qF8-aVcrivHdcJ6jzXVWGVWGOlftuAumLSzZ5Ekkrw3olhDA=="
+        },
+        "24 Mar, 2024": {
+          "AM": "youarenoob.gradify/hh5VJdb6ZYBuQL1VaCeYzNqC5KSASEWuAmL2s3YTVPwNLiFdBzmsv_mFrZPASbe2XYMVhldKCoxYNO5IVyu7hTNslotMLyrx6BGzO1i7pJCv0XIXM8lVi19RCvYlWUU37qZE37vGurYZZ260Khmej2HlTMH4ayBzVEnvel-NWZ6rHrHWd-TfJOBILscLaLAOLcDtBBUKJq1l5Is-GlFCbw=="
+        },
+        "03 Dec, 2023": {
+          "AM": "youarenoob.gradify/qlbcRyoY-oPXk3Xm-bmTGZxqeyxzvwnAnl4D_3PNa7elVCPL9bMQGvRBF8rPie7P-iphHhfrwa3eMdi4N0Uzdgvqk16B2kpbB5uXrwgDbPzOge1EEoEQAQs3D_rwLkx4tUZy8_Zha4mUgxqkyZBfgkD4JO1dwmukMhbX8RzIE5gTU7Yyt4QqJhDShwGgrPiTwMBOu-D5AfqzON9lSc4PhA=="
+        },
+        "06 Aug, 2023": {
+          "AM": "youarenoob.gradify/EjUIKqoHtQV5hBC_2y05a3cw2qrArcM4ne61CmjrRmu-8tlB1rMn2fLoUbBxPQBwTTPwuny8vhjKwmMGpvgJfA9QLq4QaIf_qF4EyrfECdJst3zAYHZwNXOkIWhNbgo02OT03X2sgjmA4s7i3B4vRKjzS4tKy6te4505idFCyQWIZIJXV7XhUpDstHGTl5l-BbhPHtoS1bzWX7dSGMTcjA=="
+        },
+        "10 July, 2022": {
+          "AM": "youarenoob.gradify/i51t5MZ1W-AayixUNrPU1eByCJjJHXkDgYCem1yrqdumDeyXXY1kfa6iiqOEX7aBV9gyGYxWEulBPJq4v7K-DeFBktmfn3QgE0ZF0oY_FMBA1U1_5eyykVj3k5hnSpd0COSB2XQ7fWUFJG9qD4nTzgSo5oN9MMR1qEHrF5rXszaqF2stM4fAIbF0WFgUPtCDmXUlRIea15L5dRo6ZaaZ4w=="
+        }
+      }
+    },
+    "Python": {
+      "Quiz 1": {
+        "Jun, 2022": {
+          "AM": "youarenoob.gradify/uow1vj_CA7y1jmA-kccFxuIpHaAMpzvDwpM1myVMTrS49TmI_dwIGlhiCzm2HkmxQRQdfhHpfwLlIrctkOMM7qaThkQ0Ya6lA3C0jQqm6r53V4VDx6ti9LrUPxp2qT1ocSuLPlznofkjft6mrpUicRcAXsHhdZP0YIZ-fo-oTJRMkLHrwDD2kVS3ko9weaeC4FU572FS1qgGC8TYNkbme8IEYu-Jsg9aiZ167UN6d1Q="
+        },
+        "July, 2023": {
+          "AM": "youarenoob.gradify/Z4tMKbADrLhZDynIYA7sl6Vt5_g5T9yNOOdegpQn-81KtlQAItyCiwS8eYdKWel3TfodCOXWdnSFXTEeVMBH_6KGWjtlKmsy3pzp9ZATmxdZ2Uzu9QxP4D7F4Lfry86VyORM8dBwWxrwHEyGVmF0X7_62VP2IBzV5JsM6BG37wJ8vXkmdBee-fQ61rjdzzf7-3ZTU0-U_CKY-0dnb8ZO41z6ZuDLcfXp6FCkJvuLfsY="
+        },
+        "Oct, 2022": {
+          "AM": "youarenoob.gradify/0CpKVrDSH6AeeNuSntHw3DkOEc89w_vYN2rRwbFdWd3dkGjhRi9DIzN67s1nsJBH48zAcCYtT6Th08IquGNqVAHZRPmTNhdWT1e8Fj5f3HETvU9nzo9KJEfyBZpx46_tWDg9lyhpK1x8wjE5IvD7dXN-8U05jaXbWHnyYrvHFv92Vy8U9K5VI8x0eQ6XS-jkz4xwLnKswzxA9fwJb5h0gYoAUp2qLczsPRJ6NtuitgQ="
+        },
+        "July, 2024": {
+          "AM": "youarenoob.gradify/tCd0m41Nym7Yn5nXE2ehbl18PzHRx7b-Ln_vYXl2xi4KTg73TIt9NiUAQk8E1VQrOAR9VFj1hY2EEjORZ3yebsBD0o3cns-xAvo5WeVod7YMZT2nnEVoKid9msPrbfqJ_DiS-YnoW3qKcyGkhouKFCpFwzbIghzsj8s6cjoTh1H7nQf6Lh_Paq_QRnXzZcEaOBAty3486NE3-zWQZlm5umkfIUMv-VMgQsNUIHF8Rw4="
+        },
+        "Oct, 2024": {
+          "AM": "youarenoob.gradify/a_A7Qco6DgLiz-XZQyJEfTf1tuaTmj3cfYDFNDEniLWLaaGSgidob0PeHK38kthguVSq0V9y9uQqMpug0FGNf3K9gPj4I-XHLvszluMXLRfqjbwzIMS1lz1ovpAV-aVcFJeoHQ8KVEV37tANAxMRhkFTkNCqrpPXI_kcUZm3pdL_eWQtUD90Xe2ZLfui2c67orHPCsIAm9lt3b0vHUTSVM40U04LiRcaCae0NLdSfaU="
+        },
+        "Feb, 2025": {
+          "AM": "youarenoob.gradify/7C2ViyjcZvY-Ch0DrQLhibpcd79Asa7C7_n4i2yZ9knWLTkouvD23Ddv4uAw6oDD_aZy9R-HKnRDCaceqJDBgLpDzxtStoBQYWg9_Gu8HNQRqv4xQsfogG1RkN2l69P-aE35NsajjUSUeX2rDhBV6Od6BLNd3h9aXVTW-CU_ZIHSpC88M8J8uGr-0S2dkUlG7fGkXiXzX9iFTJk9Zod-W5hd6aI7nPKzDPDFljOMaIs="
+        },
+        "Oct, 2023": {
+          "AM": "youarenoob.gradify/zVTy2pE9EfqJgvq2cI0QHKel0QFqjbD_LiTrq1c7FkLu0ugDijQvcghGKJtEYHSm1pOSRzYNgyPnvOvLqnqrecBLBHNTHBrYi4DU1wUbtxDfczMevdACzB3xlkksOaBB_j3VXonCW4orMxnmAvo2suWejj8mr1OeQI232DpHPTgu8sX51v8mfYh-i7zCuDmgxmOkcYPQDwKNcsnxkLHEYG8iGeuBJ7Q0NnFV3PM1gp4="
+        }
+      }
+    },
+    "English 2": {
+      "Quiz 1": {
+        "Jun, 2022": {
+          "AM": "youarenoob.gradify/VH4lk9vRbYA6kpR0pkdOe3JFJxCfrZtol0CCpWfeLySMYh4MjC-MvjA0hNamxA8m4ELBhPujiab0k9_6eGro89fGqTQn8n_kB1GRNRNeVvuL1FeZrZosCmEE8NyofloXYy9LujFpQzdDvUsXew-W2x1SH_puHp69PmNtDbOg27lK7YAwRnZ27IskTyC3O9AhQzaKKFM7NNhrGLdeWgtkfQ=="
+        },
+        "July, 2023": {
+          "AM": "youarenoob.gradify/fvvfrjuazL6O2CYpglFEc4Iugfn6csQbwVbVw1yRa-0owv01emhR4_tBeaAPovp_bJQqTXgCzHgkw6JL_KGXeYiBVKejpa3mcT0Goq6hD-xed55cR9DID_PdvbIMeDBOiGiTslH472XyjEdrc5N9Pe7UjxaLrhyMVoayn6kJTCj2x15rNPQ2arsm3hXMaNnrmEjOsHMCmALEZLp8Mlczgg=="
+        },
+        "Oct, 2022": {
+          "AM": "youarenoob.gradify/4ubYo-lS3-4xJcJ1otiohghNaHWqaymojMqhU7wJjIJQGiJhPzxcFe-zmCySx3nTL-iLYKTmVmTQyR3x13seZ89MVk_XOT-sIvrErvQyp-HNLLyHZrmpDPf7ALQLnEYowzNPb-vMZOxzu_8QhH_-E40cOcgf9kMaa62I8b_FbQqCcHsO-sKeyklLcpy1_R7tuYVhLPQtxGCUtM-Ur9Ud9Q=="
+        },
+        "July, 2024": {
+          "AM": "youarenoob.gradify/la3gLwY_wMIkkeRd4vYsRGgrnwq2BkEdBfdi8NJZPrZBc4bB1p3YD5JIHJLsNq2B7hSBpEyukSfSzQ9knTO4KRw9svhkcekqKvNjYXjKJqbFgvdtx84rxKSdhNHFVyUQXi3C_Y9eULvnzfFcB140HXOXh_ky8qx58d0anm1WBbAJzls68mKChRogPaeZBL6NFAlB0FOLNl4OO1YHhm6QOQ=="
+        },
+        "Oct, 2024": {
+          "AM": "youarenoob.gradify/MZzEMjBzUk4ENI_MD8hRA4VEWjxliQZ5JsUqG26tP78hClMUABkLgT2TzRnqWni7E_Af_CFaLj0UwtRNFwbD9GbPwMagkd8_uET0xpkhNrDrih6yp1Yuwm_CH7xXqMzJ0MMTqW2tk01WY9c6_sPmGtxYWtQe9nRSxNMwERpspLjVzp8makdil-CJGTLUEajFDNPoXzMjGr8VV4f7rU1rgA=="
+        },
+        "Feb, 2025": {
+          "AM": "youarenoob.gradify/xhkKbt6lc_aUrewfEz51qiqoJU7bu4linmup7oJmMzXJjJoUsF-lD7fCGOZbCeJHaj_wQltO2J12TV3VJYjIgCxKt-n-qI2ecPgakqfpgg_uZ9VgM0OPjGa94PBCy8pfGtNs_HdMgbMbGeTCnHxzFZhlItDbeFCIqSwQ9FMWPaGdNLqsqfIK13AQs7gRPH2fZCbN6Tt5w0CC8amokWhzsg=="
+        }
+      },
+      "Quiz 2": {
+        "16 March, 2025": {
+          "AM": "youarenoob.gradify/vLxAOqQkdwmNRenELqEnq9ZhiG3slGmR_KAGxjccV096T5clGC22Gy9UH5NVqp3NUMoJHCFrMtCOE6SEa0R2DSPJIyYyJq_YaRovz7AL26rNcCZLiUGECeRuhIaQyZQC-fuMefu4Pw-Zni3MvFdbYd5nT6XXHAxq-dF1O9z732YfsgW8nO44NonLaPSlPbqwHmB02KL1bbkHwqwX6888mw=="
+        },
+        "01 Dec, 2024": {
+          "AM": "youarenoob.gradify/DvHzj02KR2U3aDpFYdRfkLG3_1x3JM65DeMOs7Te9M-KogaIRyKHM6D9hTtQCki9fuhskvfopsAw3QkWuIV5U8OYXYD1tO8ekicPvJrxOBYjYCsS2VmLMUsl6IqSSHNcruvZjjzTiXL7idODwM9mk_SH4gm3Gzp7nTXroj0flHXL0d0qK9AxPZMMAyvNCy_uV8WJFWWsztWG_ANIzBb3kw=="
+        },
+        "04 Aug, 2024": {
+          "AM": "youarenoob.gradify/AR9joAWLBAaOHWPOqwduuURXek_BG0xWeAzq4_KZ9bcNjZDyt2S16wUswfb8K1Jm8udgrMQJqyZnfo2osmOQkN8LqE0kQw2Jq4SqCxd8MklpjM82fQ963onLkT_xjgsm2v4rOqbibyJmG6RPI5cbAo7oJ2QYlXrutkdVNkW1-fyHtCzNEfKX_E2ONz6pWvwQvVx681zUYIszX2KBCft-hw=="
+        },
+        "02 Apr, 2023": {
+          "AM": "youarenoob.gradify/qWx6QPUzIJ8c5scElT1zILcuMUcW79dtyJCnhNC-QCuCcceduBMQMBGklY0xBnpOJ8-ZqyiSafg8YF7xD_jQkLNVeO-eNocnJvYL82Nk9KfPFsQC2AkMK5CmQ42VHBmSQX_SNHXgI_JhMjkJSAbCKJJChvyAZiVP0N-hYfYc5Qw3b0pcUCGzRUMBnYHcqgKB66CN54IYnIoyHS_r1vu7eQ=="
+        },
+        "06 Aug, 2023": {
+          "AM": "youarenoob.gradify/2QlsV4CzXvOiDBFBf5n08mvHZ8fkZz4WZGrdMIJ1dmqBktwsJp6-h_S2uP1R5MCspcJ9CqGia8jqYhD_D5md-Ikx1Kq572vXNObLV3PLPbo12xbjEZ9oTIhnpWPiv6-8CZruEmFJtA3Ni14hOiKkCUoWOoPOwjiB87Ao8HR8piOjoqwgAqkAl43vVFMU5KdGipanbRSNWLgusTgddO4szw=="
+        },
+        "10 July, 2022": {
+          "AM": "youarenoob.gradify/DYxgwb3URrViVS7qSmA1L4mKZPmE6vglpg9ERtpUTqRXmGp4WaFwMy6cMeoHwI1kYO1IeUatnzI6YviK6nucmX00STrlw_oXormzFfmEC5DrCoZH0wRmtazrh9G5OzcGQNNmT24HVTMNdsITmyutNjt2rohFz8t-HG1RmsmtTjF-R40gt-PuXq8r_FLgs09A9XmkYF_g22cYu7Nn03FjYQ=="
+        },
+        "20 Nov, 2022": {
+          "AM": "youarenoob.gradify/k4K0ytnMuiJNQ1f9rpiMYdF0IMh7YCvLhQm1mDtDrOexccfJmPf36ZuaV7DWuy2OcD0JlWvoGnRwW45b7S7deesYiSoVe5k2cMj154GLDyAlLIjKdRfQddtlZ_84qxGcKocTFsO5RrUULRb71XicjeiuVqesdXsGkzjpHJtHEGULm1yZ1wZ8yIPCl9LPnGQS7ZQfFvBdLCp_AYiu46cM5w=="
+        }
+      }
+    },
+    "English 1": {
+      "Quiz 1": {
+        "Jun, 2022": {
+          "AM": "youarenoob.gradify/QfNBe9RNLHc3ntY28vQCiNrJYplPE2-l9NchkpmRcseE9dz_Kwzu1pyWqgkn6nw8a1Eb3eRHn2P3BehtRCjAFBxC4s84kDof-YNuHcqnlG01mSC_H6XuURZO9H7tY_I8_FGlEJNpp2wVkKFhMPV1DZYJJZ-x_PIdtHH-NNeKZ8a02R_koUlvotrsA48TBDQhceGa8eu0VodAQlhwV0iF4A=="
+        },
+        "July, 2023": {
+          "AM": "youarenoob.gradify/MZIxe7CTD6E_fCHb5m870eFmIJ-044vQZpScIDqWifkH9DEAKpoh4vAP4WjI9HntgsVKefleYZ3F3sz_UK1_GJFROiKkzGI5GXIaUYWF015xDUkL_t4ZcH9Fyz7oEyyi540MszeYo6NlrIyhelec6MHxdi0ngFdMRMeFryPkMOSOQaib-JPz6zXeQLiGe0ffrNjeu8qmGfcCf4m1N5e6PA=="
+        },
+        "Oct, 2022": {
+          "AM": "youarenoob.gradify/QmiisNX5WYMl-5amTKXinz7TnHryVC1pr0kXfeFZk1MGdfn33CshrFxuMpxAZ527YUXBVsPA3rxXZKBLY65-KR24iYCpgovqvhURMuDJnsRqppyFHGt6zQ9nfWGBYRc73e9t31F2R5yZFEGldJ_WJLQtnm_Nqp_0Bi1G5fxxw4s3cXisH9GAFR6j79bZwfV9OAeXdsy9GzDD587K-HPkcA=="
+        },
+        "July, 2024": {
+          "AM": "youarenoob.gradify/Z5k9JTJAQlugm9rLHC8tcy6gkZc1DMzS2yho8qM6CrmS5xvCiWpeyEnF1W3mu8GwrFVawk9MiADkQcrerMQVpxRchKNy8n5LWXQMkUXXLiTWNIFJxW9N9tdhistCTiOau5pJwwOTAwc1VWs6dYUM4v64QO4QpyJeTSt2ua1bd0XZPyj5hl9HF4l-qGQpEOGaj3K0Uraj12sxgTQsHCnRNw=="
+        },
+        "Oct, 2024": {
+          "AM": "youarenoob.gradify/GZq_3T39Aa7w95GumUy98ODstp86cMlfg0VrNL15KvlgbalP-QhuroO_60i9RgZ7D62_o2IstE8aEvfSHA6B8DXf8duEQCg4-7FtYOJHdJ5So3e4-sKq5D88Y5XFxJkHrCE6QXtWkXIog9udTUOpmg1B1pl2EMU1bhVuaevNnPR2xCTNuRc1OrRr0091aFYcpD-hPycZ3t5oWhXrkqR0yA=="
+        },
+        "Feb, 2025": {
+          "AM": "youarenoob.gradify/JRN1D4sGoSfpjzNf-tr8XQiMDt2IxjUysDaqMJwMSbx8p0hebSTgO6ePqhRJfQ2Sj_Cd-FO5mvUDMDlOrc9FkHMeyLLtLqft1A92OQpHvuqSncL6Yl-oTR1EduT_IttLFnN63K5uuskg70qmLTeqY5wVGnsd0gIa1ZRaLjEIAtzMPIfCM8XvlHvDm-Ws4gFcwNT0tomkcOvpPr3vm3jyVw=="
+        }
+      },
+      "Quiz 2": {
+        "16 March, 2025": {
+          "AM": "youarenoob.gradify/2duMXiASr4W9m2oUHzF4BmwPf0SdVf3uFZ2I-ruqcNzdoqj5v42EgorcnZe9Qx8W0r76NFJnF0cvnWqkbc7COQRj8iUGsZ7EB1WIFQB6zYoy-m3bqZySDq10ZFmfsfM42t_aGdT448VYaWaBG8DtnDw0QWtX2AhyMgRcBn19YR8jAFC2s-L8aQgNKvBTimbk2cNzJHwRnWuE2NpWErIhTw=="
+        },
+        "01 Dec, 2024": {
+          "AM": "youarenoob.gradify/oysZzFamCGsFwLl2BH6IcJoGIukTrU2MB9k3IBxt-xuYZNQSg8b3R0_lG-Ghbu4zQsPI7SvyA8E8W5-8dyOFxFak0UG6rFvJYa-wd8Rym1zQFEdOLhCUdcAaIf5pRzuFmsugmOgguxiMFwYEOZ8vMPUCiCa-9tRTbkhqg00ifUVhtoleFrZbVRgqCsdki26B__rJMH9obOjG0ULDeccgkA=="
+        },
+        "04 Aug, 2024": {
+          "AM": "youarenoob.gradify/Tks6GvW6pqwnM4gg37DQa3OstpygRCytimB3MA_76mgBHsbvLGW4NiBU94Tnr0P3jMsrd1QPW9un8b8yhhWuvII6twO77qGDZUvlWxInXXdlOS4ebzmpphVXkip9WkwUt7CMuI9gn3zao2evX_0wsgEpo1AGJ1l_lFdHmajcUQMgzdjb15NHznqDvfxvVXKzHexXtq1tujpByA3XnnGeug=="
+        },
+        "02 Apr, 2023": {
+          "AM": "youarenoob.gradify/shSAncGscVkAOOmL_5n9jead1S7-HtngZpxfxQrBGgYnroodgi3XNk5_ubNYtB0YJRJXkSlkiKnJ2JS4UlvX83BzgrK22763OIkjVt4dubAJj5Zo3gZqghls_tKiYNI3agB3u1rvz_DylHbMxkak30YNP_kW7Au0jAL3kavygecuCU3W4c_bk7JwP5DuLRdFFdPRBsubHn7F9udYoG7fvg=="
+        },
+        "06 Aug, 2023": {
+          "AM": "youarenoob.gradify/JF0U-X4r-6QdrhUWE3hPbxpwcgVO6KowEo3nTPF-yaHzFeILVeZzV-4Rk88f1XnX90C9vRhrki6Xy_QdR-2hNfjv7jFIOZct-GL0tR2BUQSmyAb3zUuVyJQa3dKeiPQWRZ7-RanrE-8GNXlL4XKNV4oq7uY0B8Tc7VnfjhKJiJA_jBnaAfNdL5s68WrQNS286IT6Tv-ag-FIC2Uyj74Bdg=="
+        },
+        "10 July, 2022": {
+          "AM": "youarenoob.gradify/_eycly7HQM8pYuV-BVeC5N38x0btIJkASzMdPDQ-7LXaug8tPr1_gFgX3GwjbenS0_eX9Va9VMzba9neb-wcsovqBihPJ9GorD-1rAmfOzER_BhO_B_Mz4LvAjl0pmmjZahcUQss8y1Kt-QAlIDW8DIE6EsCdHRDTm3TIHPsHbzrQDsFmhzyiy2a7-CeM10nYqGG6tEjZu-Mokp0CUmGLg=="
+        },
+        "20 Nov, 2022": {
+          "AM": "youarenoob.gradify/MC_8jiQDBgS14Gpth7jz4XYfPomtSVswDMlTjSpB9XsTF1SnhcK3oRPd_YbnIr0gNCqXojNIB9Q_a7BvnIzlBR0YWB7Cbx93y_xsLWx3Ygbrb11BkrHSe8CsJe8xDQzkJwkJ9aV5ZjQotQs-uz7Vj1OekDgDr6CdmQWUTYVWCBaFSIffQ7irW2hN79fVZyYXkLN5AOhPuMCx1Ty2gzcwvw=="
+        }
+      }
+    },
+    "DBMS": {
+      "Quiz 1": {
+        "July, 2023": {
+          "AM": "youarenoob.gradify/wpnf0zHVEWvNsK9faVmEGm2o7eUrYGtzYz57o7drwv4BfPK41uAkFg3mALeSv3eiY0ukkrR8Aj7y6EIZr6spLMGYgmJ1EureOiAfyC0znX0tvOCpxVzhINNamXL-VGG0uyFAubGN1bVVNCeO1vAGk_Syt1U8bltcnYQ_qFyLcHeHX0EX7JGlU0imtWw0QA2O_bpJK9BatVJQ9rjMbwy5PQ=="
+        },
+        "Oct, 2022": {
+          "AM": "youarenoob.gradify/8sKZKsTe6rU2_f_47lKkuLm84UrdJi-_kjDa_OET5CHdGsYJ8HWZqBZdvpTUKc6rzX5slQD8Z3UAYtI94JeeyEU36TDmqDjMZ3m7tAuNj8SRnqahCDLfcKAv1vbwkwrlpRkjmUVZ6gthoaX9ngVnutDrK5R6IO8uRYl3XMWcW01CaTzL5u2kLXNYYLUa8_9Q3ebKVGvKEVpO2UWRrBeKyA=="
+        },
+        "July, 2024": {
+          "AM": "youarenoob.gradify/I21820uBt9pwQrjnczWd77vzL9nB90PzPhLIumVRjAm_HY2HDd6kwpOymSp_GzKLnzkAOfIHYwCbDRt4KHoL6L_rHWy5QdmHF63Gl9Rik96Zs2rXU43pUIiABQ-ZjOPrWr12sX1euEjCw-fGLIsGEQpm98tDPrMy_FrRTlgDs0X37QP_jYVmSnjfS1njOB0qFVVzPn2i9JIrT_J5c9jlVw=="
+        },
+        "Oct, 2024": {
+          "AM": "youarenoob.gradify/rYdqLhKruFPXGkhDV3SLWehjfHGbgAIxhbNJ5KS9VWUuz_R3vWbbPXUU3U4Q7YAf69uICZ0Nu9XTqjNWy1UUWHPEGEg1SFBkYSDqePe31S2GSObaD_xYUbUUis7A1mE0cECjeLwoj0j4eHJO9Fx6FghZbghAQV9hWqPiI4msB8tdvEyFbkW-eR_w3q-mvS-pQKuHuASiEEKSmBAcrR-URw=="
+        },
+        "Feb, 2025": {
+          "AM": "youarenoob.gradify/3NzmHJagu08t6AqdQDITgQzWElhUCArNlCR8fo1F0cxJ8xavv8t_6KEvrrfyqT1XS1YTJLyTfqD-gS7-1m1_0CB9Isvne1Z1F-mH1XP9vxVRTKvbHLHpywc-rHHxW-_pTYUVVmPlne523BPJTAbGCu9XiyNoVbIKP_eCdBysvCgdyqkaHWAAX7X93FX2iAMYSnoVRpoCVcMNXcLAIHoWPg=="
+        },
+        "Feb, 2024": {
+          "AM": "youarenoob.gradify/PDTkozrPrw0gijoA88AwwMRDF0qKh26CitMrCCGjMGDGusKIFr9lVhbW2CdjOKXKl5ACa_l-zsbreHlzqjxuLJBFEXDmOu2OIh5gZYMGPUd_s8AKBhjNn8nFqQxudYSSj2Zwtj2M0o4cm57bIuSjp6KkmJBi_LokMBrGJETeFo13FgOuYbr3WjQbLs0sozChGnxnOCmas-VM2koCVFl_zw=="
+        },
+        "Oct, 2023": {
+          "AM": "youarenoob.gradify/7rK9dwbQQDMc2tM09ppfOkdldIUptai6G7dsHlrYS15NEixbRHAAnB6NxvDi7zRaHBExUUMh-5Sdp3jvSq7LYrTJWGtI5mOvKvrAsTF3Xh9wka0w2W6Jz3KuDDZHye9Dil_2I5AAoRRaHOs4ehgShFj5A4YXsrXYK4sHPGoYadJ2WfwvMX76Yds6-kk8ViHv5pSciNc3GNWnK0bqjanxyQ=="
+        }
+      },
+      "Quiz 2": {
+        "16 March, 2025": {
+          "AM": "youarenoob.gradify/PiUGKclxBSJqqteqnfV7csY7yE-ujqVLqlVIx4taG5bY_xFSQABsMLcID15SAfT61JQM9vpP80f6MX1t95zwyIwVFqvpRYAlj1dgvHJ8RVLz2XzWwMgCUqluD37QhS9yZYo-icPrOk9T-40eFAN1WKQK4k9m1AJcN-rH22hdMgsy3DUl5923n_1fSXBoBfX0JX24DAwqsP8qq9gG_noBXQ=="
+        },
+        "01 Dec, 2024": {
+          "AM": "youarenoob.gradify/J-vI_r-oSl6SCjdTqMfzhdK15SRTz-wIbIrId9JPB2hpnf2son9arjYVZmfoiosaVeR_gbF6Oy1Xbx4XdVozvPpjykQbhUU-xXmasIF0V4Fv57ZouA5xOzKl_PMzdYQd8qrfWUonKJx3rMfhSLieiYSB-JgKRS1HI8BZJZi4lckTZKNMknLN6dBsbld4YP6ldxrtrWOfst3aLlghf-pMug=="
+        },
+        "04 Aug, 2024": {
+          "AM": "youarenoob.gradify/jNvzdbCtlgHGU5Ibf_3AhhOBTeQko1PEKuU15AR-GfK3XNOxgpPp7gh177DOonicxfYcD0hrbpDZQJ3Y9y2MFmp2B8tea8jW-I3i41l7HReRtRCGbifRk-HjwGNpSJw8GFqzkfw1QioQGzCxQXCo45NEjxr0mB3UJvdGK6ao88JvUNV4BkZxaqFNKOvisc541umBHcRi_yyZzAKsp1XVuA=="
+        },
+        "24 Mar, 2024": {
+          "AM": "youarenoob.gradify/r5wPijNsiBfee6xU-5CFTUf-b9v1RXYQzuo238BvEnV2O6yUttV-_Hi4Lozvo05eAoRbCZN1QRvkZ5vMdgBmX5dIxQJiJFmpHkD9NhmWEWF1wKWUE6Dp629uOQTJErBW-4E6teS8cvhLmtPIiObje8aenAHIpbGxW21Q1xsx1ys7hZrT_ZkiRsYKw8xqU7fQm8WwJbY0zJVsKSi6MeeNLw=="
+        },
+        "03 Dec, 2023": {
+          "AM": "youarenoob.gradify/9Nvsec1gu3odpD7LaN1DyM_fn5IS-vweKlHEemelE2cILMH660_eB4hpI1s0KU3QlObzsnMbh6toRJ7NeA3rhUWZ-F4eVtzH97LHS4cyS2DY6wfFRkFSrwkt_J8xT798pgz6Rtgdxy_eKRgGsZ5SbmObeUJ1VNLQxH23uepSPYxjGNINU9gPnwX-CWsASkwNNLiktSZkRFqTT_P6kqd_QA=="
+        },
+        "06 Aug, 2023": {
+          "AM": "youarenoob.gradify/VAx6sIjRb91ZKsY0emLrKM68AXjifaaBd_HYd3XaploqVMYm0zMbtdCCeJG5quFJe3uiJBUaCDxAlqFzEF3Ak__J5xnixnbyjajGxE7kyXOk0brP3xsl6j0kf4XcbiMbLKc3oxg9CCnnxuzK1mka1Z7AN-TcBGzMeKcuf-fdCYYYRlrjgAPH5LeIufZhgL3SZyOKCYPZNL80vUQ_8cjDJw=="
+        },
+        "10 July, 2022": {
+          "AM": "youarenoob.gradify/4Ev-CcErOZx01c7u_tBTq7971CIlqLKI5WV4YeNQf6XiT7WanRkF93GQqSvv1Xw3q3XrFOg2GVrNE2RpwuMTYvlAiW8pj-fNm8iigaT0lQ7ys8qfbBbffKrvsP4e-_Qux06lOG_iutX8_SlUlpbmt1asGPWpLcxHxJt9jOomYJuw-NluBQx2PUlvSzzAK0xpcdhwDJaWQJyC5DPhKA5NMQ=="
+        }
+      }
+    },
+    "CT": {
+      "Quiz 1": {
+        "Jun, 2022": {
+          "AM": "youarenoob.gradify/uPXXMOc1vAWybQnydhs7ug_-SWTSsP3Vc7Xur2QUAvvnox3uZlhsldHfdcrIf2A7mWsmnr3ffo4bNPDHnaMLAObcY2QdFGEAl_uLVbbyLwbP2OJuNwSw4ChnjpesnH8gjKVqjewWHk7PP7H5qUlOlMCnG1vVINifhv324pqIGOIR8JajaKEkG79LexLWcPrRZ7UDzlH5lZSeKDHWbN0tdA=="
+        },
+        "July, 2023": {
+          "AM": "youarenoob.gradify/oo40SmCtZOBqPksgyVL6VRMUwQIN35fkaNCuL1J5d_Q_2HzdOf-TDAWEb1slebZAP7orOgxIlLvl7uHOO2lWXUXX2DcMRmwi22j21Fs_dpjcnoOI89i5Jjxuz3o5-_cwg5Ime8PfaQAWSDJSYKAQA4JpVaYiwUR5Y0NJBjaCQdYLKeUpNyDQSHfvZ2LcrggH1wZMfbienDdleCL-IePlRQ=="
+        },
+        "Oct, 2022": {
+          "AM": "youarenoob.gradify/KEKJSrRJdS8bxwxho8vQl9FRzO7nboSLEyD7i6gIYAKUyD_n9jo2K_Q_3BiEhpX5L8l76bjqEuhWTnCF8dnVadDtn2VQVoZP-a7O5VP8hHS5sqoJ1Gj980YbEkVei9Oe9hg-RXlTLlHpyQdEvsgQAKL7HEZikNAcukXtjovDOAo3Z3u4pDdGHCFNWIPadVnVJ7F-BB8bhLtTJsFvAE7-rw=="
+        },
+        "July, 2024": {
+          "AM": "youarenoob.gradify/GCflDN0deLlPS2Mw9-X-e2bUFvMevAFXz9AbEdnpq063vrK7F8RQUkEnDYtvk1wWeHDiB1DcwCilTZJ2bTNiXzqgEKMG1nonJlEP1Z2dW1t7Z-7M0nuj2mZiXuc8S733kMdN3FvXiIyW054tmgaDDbRRh7MrS9RswPKbflZqjjVg3TlTsiomGW8rDJOL55o74kkebb6XDGGVrQGf-kUrwQ=="
+        },
+        "Oct, 2024": {
+          "AM": "youarenoob.gradify/HjvNKz3eHbhRh7C83CioLonClOl20U0m5VCJ5gLj8I3jUxO7cya8X5FrdzWqtd6UHQoKKMQuHPNyFY9CdunOvke9cOpBPkeRu_w8k9RqytFfVJLtlGNM02Avrkpt60cTuTGFpruJ8WODf3yZ7wjVeKoEEauxY_ENngU8GAGpsW3JM6DEowa5w6obKOJ9JGLyg_hTxnH9dXvKzfaXt084Zg=="
+        },
+        "Feb, 2025": {
+          "AM": "youarenoob.gradify/X8u5FLHSv_SOb2QhQtSlkncvsBTN-X0TgyHo_qmcdCaCIUFsyQWcx8XleAHNtf7uHei998iC5iOUCc5UGJfxPkooIBGp-GQdPMogqY0-Qzj4J_Y3zeoSEiBMflVwITX2cIgu1IClUY_dOVvmi3ptYHnb-OfYJa0fDVwKLxgVJV5fsTAmwv21pxsK4RhF27HQb35nKL9BTnG2VDG-2ah26g=="
+        },
+        "Feb, 2024": {
+          "AM": "youarenoob.gradify/1rq5f9ZjjYO48hgtHPdyAvEZLsn9_kNB_yeXpN8gv0exk9oCKy3980SH_Zoog43AAJv3OJrbiG0WXCsLvcmAwAP0lScFrQxLmG2-m33bLEGqVMC0yMKDIsHYjmTu4Zenci2ZMT-n5agjsppTkBazAukyl-XTeBXlUi7Weh8zJ5EKoHQ5erc2gHDlZ8-Fn33Y_jDy_BNqYgfKgIh1u11mvg=="
+        },
+        "Oct, 2023": {
+          "AM": "youarenoob.gradify/mmHGE1m1MKOjaapxbuC3ddJYl5KhW8kYmkoTXzsDOtbncJzLbbgBNVuPIblQORVurLVy7PRIL2wOjNlCF2y1lsPtBYh95R7HZ6HdrU1Ld6TsmckPJ4gPJ5UWhPPGMR1OUtUbhafDxiNXpl_N_P4O2o_LBTWriXUF5egfSy3A0coXRsJBuexr-3EvmcSRJLMWgPGKLIovGs1U0ioy41Hagg=="
+        }
+      },
+      "Quiz 2": {
+        "16 March, 2025": {
+          "AM": "youarenoob.gradify/rYApD0YX3IeGY8_1GFVxA_tN1q3PwkpAZakKOU63bbOOU1lymj-9Fk6d6Y0eNQdVHb3xhNrYIo4aJu44UxcCED1yK-6bdwfBoyBXDqmIA-fm4HTwkeAbq6IcHA2QiCKV0bGgLzi_paq5BAVbjZYOSTmb36NMzIX6r7QtFse2OCrDtAu-BpQKHQcuRZ7RvANLcMSMtMQxiguba-cNoctsSA=="
+        },
+        "01 Dec, 2024": {
+          "AM": "youarenoob.gradify/P2J-So1bDYpsQT67hnQXAkORMhh5dNLxD6e5xSxGZUnWFrSCGF84YdcuXPjLGgc_kDbqlxGUDU0kETW1MM5r04UBljCPJHfhrnu10yJSgoTOzwl__XDPvd8ztJIM9o61I02Kvoo3antowDKu6n4jZTJgOyurQoU96VI8rUD4N8oQ1MxnKLUPVhZr9yMwFSRcu0RISUR80YmJKXK-ijqkEg=="
+        },
+        "04 Aug, 2024": {
+          "AM": "youarenoob.gradify/J8FNfooAkKux3pSHSW7ZB8SnAXSxIKDx3xQoH_M_At3zZQcouF_NMQiN5TaLfosN7DOtCBxxPNJb2IUqdjIkwIRZKgcFhPydpdSfnJVjAVRx9yroaa_hwce16PAPxrvtQUUFLl1uuiFrMLXCWyn4TfQi9vuchQXba3xAGwzUuumNh4qEusw0dcj3qHTquRoGTsTtE6TkpT8YABU5jU913Q=="
+        },
+        "24 Mar, 2024": {
+          "AM": "youarenoob.gradify/fbqyrHVdMjcXBzIxk3QwQ3u6RmzbbeaPBfv6F9MVgb-ZGGcxWBpiFJIv3O2CnZFhiiQTpPt8QaVzfZ_JjRZAlWp96vWaF57MbdLZCQ6--wL3omjOQ8hfnJb4sNMWL7qzmxGgbCPzSlxKJZws00Ko2EK1l886sboJQyR3sod9mW1L2NSdDTn0tz7ZUzYAk7HLYT5TuLcozcTXorSGBm4clg=="
+        },
+        "02 Apr, 2023": {
+          "AM": "youarenoob.gradify/ac7nT0JCvuXxg5jRhuDod8lFlFDAefFyiDkGkXpzJ36e2VkbHwdxuZU02Rl7_1GMsPta8kvim11_y1hRGaZw9c_jOnY9fEuDJga3jt3wj503Gmp2x6cMg_GdxAVog19MIubpt6lqADzVFhhdGaLzVrLTc8_nGgAkVi64PRBRYyjtgwr78QRKZ4qvm3J7e9_VteoZ4V6WW5YFuRIImJOKnQ=="
+        },
+        "03 Dec, 2023": {
+          "AM": "youarenoob.gradify/W5A5_9v4zl2675wAuplWdSglYiFf4JlsotjvvOjV_dKGnUdwbfcFOB2tbwNxuy1FgGKZJQmmWcmR72NQXRjIVfQfDIvl244bElJNLcBj1MGk0FherbIV9bF2OEpnctINeEFJNMbBdI5uXgiuLHHy6w1xAH-28NPhsRzLQq4W2cuui7J9HLyXw9tE4zUE2wTOGvF8lvwJZZnQvGKtvT9gog=="
+        },
+        "06 Aug, 2023": {
+          "AM": "youarenoob.gradify/KZn3A1_3RTQkhS4x_IVe4sjVl0VB0CMM_YiQOx3qV4Maa_7WvTJX51k1P9qTxYcu8cLUYpqn2SFPH8ZI42vL_8QZdq7c2kx-_CPptGdpyTly5qL94-IWYxSTOvY4kbb1SxXp_vAHn5u37CWO7YFZ3l4SD_AvynU9KvT-eQbOXPgWH1_t-16AjB1SoJ315S8400sUEmhOzbcvpN4UqFK_SA=="
+        },
+        "10 July, 2022": {
+          "AM": "youarenoob.gradify/M00R1zOLFmFaVCoNKhn_mqek2cpw9hKy9OuAMKx1PqxVfTNYvpq7tGzaiK_KB-XsGKMnGVGnpYidWuRXVftg_MuK5canU5-hT5S_JgRcEFoLE_GDeZ42SUUksGmDLpn-Y17r8Xe6bRa3OjG-ma6CzWu25rz2YTS9ZgLM5xk9zzDh1R2r3mpHMTAKFTVuYI5frkSInWsGheJ8_jIl6oYwPQ=="
+        },
+        "20 Nov, 2022": {
+          "AM": "youarenoob.gradify/XF3lkUPDGwz9c4WU7sUuuN2xUxNpn-oYvij5QT2vWhcJeHda1SsALkU2Jyep77YueVFrDufeD7wZF8J2Hpi0hk1XpHClvzOFgU5Sigl37KOcj-7NakevkYGmOAelv7Hc7gsVeQif6EMKX0qBBh22Q0bIRrIQo2dJBf1P2Fts-Fvm-wlM3qoKgTyRXIqHWcQo8L8awEcCAz-EqmUdM6FJpA=="
+        }
+      }
+    },
+    "Business Analytics": {
+      "Quiz 1": {
+        "Oct, 2022": {
+          "AM": "youarenoob.gradify/Lrx0-c0eRrxwW3K56dq4KMFc-k4E_o-ilWps5DMlBEQOoepky5fNoOHpACNLHsOLuOc0YAQ4kY2AjQmvniK7FMS9Si5cx4K0Fv2Z-YY9mvA747ptIxiZm0agNbYZqc60JLRtQ6nAUCGsifqBrdk7gj6J9YUtc5SCjgZ6YXn12pobVdGaiTU3IBMlymqM4235gH6jhB3Yy16LgtH4-T-4kQwcntqtoifHcl5P_9L5_l8="
+        },
+        "July, 2024": {
+          "AM": "youarenoob.gradify/lzUhEUjZvoomuQ6_eVg8MaqMYmQSH4zag3HycIyQiu733e2tv6zB1jB0IX6nYW1F2-bUcGdMplarpnQubsUoFuAJCAG9m2bHd0Y2hgtTBWqQCBvxZ7AWKOOq26cA_NwglAcdNkRGSdIkDQz5TzpvlLVFeR08tks0dwUVkqHX__9mFS4v6iCnCgBDvUlpfk2S5sWlPVjBNrK9buhfy4TFTPS1ZnAQycm8buFdF6tfQ1Y="
+        },
+        "Feb, 2025": {
+          "AM": "youarenoob.gradify/SQRBO7bhCws1zKvvxf6LUX3tJ_PWTr9bFNgRFV0J8x5kfbPblta4rlCOd4Bspcwe-Ih_-Ipno3Qtv15dM5xyt4vyzZN_lGqUAPfjXTqEyPnXQiSoH3MxSSgTQ6xFzt1yMPEVNnyKmbQYV9OkpndbugWOMBA-Ic0-9Pei8rIEI0LiwMCmmuMS9w8Hw4D1F4GF8xQq0W-VeDrB0U61T95cELBNWilaZtorMnB_xjNseOU="
+        },
+        "Feb, 2024": {
+          "AM": "youarenoob.gradify/JoF9amBVfTvteVmYr5W-VA94_T6_W1aFMUVzZL1yO5W6zOxNUh1pN8pUvfZL47Mip5m5Dw5EOBw4XFhrfqsc76RTZ8V5xhMcxHZvJAXgjeimdqFdUGImvl_NI0wQKONPVNNusZbWAK1j76I1uGw2bIUGFzut2xiqcdLcD85S0HB6S0EURiymY7I610pQ7j5RkE1mn500VHtwW4qtcNojXZoyO7cuQhzUiiOGTCvCjD8="
+        },
+        "Oct, 2023": {
+          "AM": "youarenoob.gradify/EKtXF7Rj_5FudLZo-Af4RiFzzH1BOljwaupVZupVI9g4YOr5QIK3VuBCei_9vPMpnHvEKUVkM64WRv3v5hD91r66SexIHC4VhG-bFgzOGBmT5Pm2qAPL7TQrJnqyBOuK9-QcDnFrlUU43huB8dqlQ_0AWklMaEeM9dmOakEUdiQR7ylt9A_vWgWS9SoQaqoDsEE9yKmAC-z54U-4EUox3t2i_-DTy23ych58RdlFJjc="
+        }
+      },
+      "Quiz 2": {
+        "16 March, 2025": {
+          "AM": "youarenoob.gradify/3ktbupFan1xB_pa6IHKzKGvffVeYChSJEhh1apkgrYR0Yul3V4qn2buCJxOfWDO6xAwcWwCvF1Q_B-7eCMmrxgo0hEM1Sk4_vzRHlIOX9nmQsPi1K5bD8uGyP73rtnbBIrzB2o0JGABbwtydOBBCqE01boUCJ3nw43HKavAmVgV9fp3O16pcv3JFXrKmpJhQz4QvnSrCMFBpcF1sNHLoD6KDsuz0OEImGolV3a0vups="
+        },
+        "01 Dec, 2024": {
+          "AM": "youarenoob.gradify/PvPE1y1Jxaz3qXsP82OBykD2uji8UoO983Bd-NnaeF5jWGk5F5tkCu0jQLuppSg3ugrt4BU0nPvI3ueu2naNOoTdvvUIucpVo3a7yZuzTvYd78FO-fvZganz_hlIwmcY4dlxUaWDLnkndeh0RJo64TPZ0SpESknk04QGxGa6Si8F4YRApF2r1yoBuPswPnaBOaDKxdv1Bz1x5suoHqegeRwrncrEM1GHtKJ7lJMDdhs="
+        },
+        "04 Aug, 2024": {
+          "AM": "youarenoob.gradify/m3qC93EubgX0A1wl_D6KaUiP_YMTR6T6mlUlOw4AC0IubRlUJsuNO9LIfbPlezpyXdl_Q0Q8nZWevszHtZfScLgo7__8zlvM-igV-FstWtz74t12X0EAj-1Os13XwaRXRIz6j40vI2wzfIW1LPZ9MiLOaW8Q6hFno1JtLXzybR8uwvVtCsqGX11mzkLcxJEygm-sliTk7rZP3fHEP48VjR7zSMLAOm26pwl3ZgNFWTk="
+        },
+        "24 Mar, 2024": {
+          "AM": "youarenoob.gradify/fN0Xs2aiGRxob4iCHyBrHR3zqgQ3FbnhvZMRoS07ngbdwW8hqA4IVWVdZ-SHCBtiiWfFoPHkcYZnb3aNbZ5Mi6H_WVKJUMt2l9dyNL6sxsBfhH-UKhhqBfB9EPL5zmVP-MxUpFCzV-Q3gGQ8YSPyoTdmEqXiUI207DyuKDzs4iFLH4PsW1DFM6f250hrHs4lkf2QK8KOWjFgfhNSR1q6Bho3KAT4ZpKPsGdQt8ynfmA="
+        },
+        "03 Dec, 2023": {
+          "AM": "youarenoob.gradify/x_zOIb2pIPyT7RZlND30ddDwN_DB6rzJTQoJRvh4DftBEc1vNPxGQTol6ENh_9u8ZwOGzGDQdjfvYLX28UqQCBmDKO1jU3tD1FohTMmLNe4biOX48q8_XEhEUQ5yeUPS7heAL_20-oIvM6lFcDBjjYTj4kdFc4CFFyMRcUpTYBxXw2jkhbEb2wu0HpJeXhmyqPErM21oxqFzRaHbhi6hu9z7AIlVmNPXB1j0qpAtC2E="
+        },
+        "10 July, 2022": {
+          "AM": "youarenoob.gradify/0tsVMWCi5uVy0jIv7SJ9u1R3gdEmVlp__6nN3KaRWzCWHmXHgmvYCFAQe7d1laYfbg8eFvlGN0Uxi-Woz3GpZGzrxa_mb55p1NBuC5U5gdz-3Me3bsA8394AKNrJW-4yXL2SKjddDfuSInrQIbaPGLTfOU8eruN4Glv8D3O2L_zF8iSpA7TPXD9y7_mV7xmrYEgYI0uTVBXlBmUEif0xYRxBIteTpG7VqZEgOwIKbQY="
+        }
+      }
+    },
+    "BDM": {
+      "Quiz 1": {
+        "Oct, 2022": {
+          "AM": "youarenoob.gradify/XGAz6WkZFpkfQZynu_rSqKwbfb69kVy_tSMpPLPJLgqGYPJZScAcQVFGMyd2xME7G0wFKWaXuo4g9ztTeO4OQznBKxN6SfkEOpg0-mHBkK1iEx7rhamU_8OQZ-9ir6JRs5ELSrBryzxI_rIgqbjdNfeBjn0FdPAuGvjfYdgnu0NQ8qlODg5BiaPWuySA6zLL2Kr-Z0T7dZ5BJWNhFt5U1A=="
+        }
+      },
+      "Quiz 2": {
+        "16 March, 2025": {
+          "AM": "youarenoob.gradify/941P3ueg0ao-p-8Nk9WJxyRDB6InJLv79nEzDeRTudJBHrkvIndBz-qy-k6CFMPfg8L4SWrQNw5a-Gqkn4lUKYNksQGkUknZJB3eqz-dcgX5RchGNOu-SP6JxLM2K-GxUTciXwsj7hPUHXofbs7LToUmEwsrpsb6JSi_ozYboFWCjQ49li6hKcuILX0mP5eIWZVnlHH9vqhVON4toPSLxA=="
+        },
+        "10 July, 2022": {
+          "AM": "youarenoob.gradify/bDGuI12vK6QujeDmJL-bGru7VnvQrxNVi-PEM_5CXoUlpqKPmWqvIZ1oSOLjDpMNK5Q61oHU03uoX9CV8RjKLKrMDnNETgS7G_A7g1ELesL_iZ3M0nVZUblAclvqMUuY17vNV_DBvx_AeuQ2QJEQIAiloqdkGYhviMKaWM4XF5jKJfXPJAOpkvcoYml2VdZeMIYzVYwXyGXLdb8DaexbgQ=="
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,422 @@
+{
+  "formulas": {
+    "Maths 1": {
+      "type": "subject",
+      "inputs": [
+        "GAA",
+        "Qz1",
+        "Qz2",
+        "F"
+      ],
+      "formula": "0.1 * GAA + Math.max(0.6 * F + 0.2 * Math.max(Qz1, Qz2), 0.4 * F + 0.2 * Qz1 + 0.3 * Qz2)"
+    },
+    "English 1": {
+      "type": "subject",
+      "inputs": [
+        "GAA",
+        "Qz1",
+        "Qz2",
+        "F"
+      ],
+      "formula": "0.1 * GAA + Math.max(0.6 * F + 0.2 * Math.max(Qz1, Qz2), 0.4 * F + 0.2 * Qz1 + 0.3 * Qz2)"
+    },
+    "Computational Thinking": {
+      "type": "subject",
+      "inputs": [
+        "GAA",
+        "Qz1",
+        "Qz2",
+        "F"
+      ],
+      "formula": "0.1 * GAA + Math.max(0.6 * F + 0.2 * Math.max(Qz1, Qz2), 0.4 * F + 0.2 * Qz1 + 0.3 * Qz2)"
+    },
+    "Stats 1": {
+      "type": "subject",
+      "inputs": [
+        "GAA",
+        "Qz1",
+        "Qz2",
+        "F",
+        "Bonus"
+      ],
+      "formula": "0.1 * GAA + Math.max(0.6 * F + 0.2 * Math.max(Qz1, Qz2), 0.4 * F + 0.2 * Qz1 + 0.3 * Qz2) + Bonus"
+    },
+    "Maths 2": {
+      "type": "subject",
+      "inputs": [
+        "GAA",
+        "Qz1",
+        "Qz2",
+        "F"
+      ],
+      "formula": "0.1 * GAA + Math.max(0.6 * F + 0.2 * Math.max(Qz1, Qz2), 0.4 * F + 0.2 * Qz1 + 0.3 * Qz2)"
+    },
+    "English 2": {
+      "type": "subject",
+      "inputs": [
+        "GAA",
+        "Qz1",
+        "Qz2",
+        "F"
+      ],
+      "formula": "0.1 * GAA + Math.max(0.6 * F + 0.2 * Math.max(Qz1, Qz2), 0.4 * F + 0.2 * Qz1 + 0.3 * Qz2)"
+    },
+    "Python": {
+      "type": "subject",
+      "inputs": [
+        "GAA1",
+        "GAA2",
+        "Qz1",
+        "PE1",
+        "PE2",
+        "F"
+      ],
+      "formula": "0.1 * GAA1 + 0.1 * GAA2 + 0.1 * Qz1 + 0.4 * F + 0.25 * Math.max(PE1, PE2) + 0.15 * Math.min(PE1, PE2)"
+    },
+    "Stats 2": {
+      "type": "subject",
+      "inputs": [
+        "GAA",
+        "Qz1",
+        "Qz2",
+        "F",
+        "Bonus"
+      ],
+      "formula": "0.1 * GAA + Math.max(0.6 * F + 0.2 * Math.max(Qz1, Qz2), 0.4 * F + 0.2 * Qz1 + 0.3 * Qz2) + Bonus"
+    },
+    "MLF": {
+      "type": "subject",
+      "inputs": [
+        "GAA",
+        "Qz1",
+        "Qz2",
+        "F"
+      ],
+      "formula": "0.1 * GAA + 0.4 * F + 0.25 * Qz1 + 0.25 * Qz2"
+    },
+    "MLT": {
+      "type": "subject",
+      "inputs": [
+        "GAA",
+        "Qz1",
+        "Qz2",
+        "F"
+      ],
+      "formula": "0.1 * GAA + 0.4 * F + Math.max(0.25 * Qz1 + 0.25 * Qz2, 0.4 * Math.max(Qz1, Qz2))"
+    },
+    "MLP": {
+      "type": "project",
+      "inputs": [
+        "GAA",
+        "OPE1",
+        "OPE2",
+        "KA",
+        "F"
+      ],
+      "formula": "0.1 * GAA + 0.30 * F + 0.20 * OPEE1 + 0.20 * OPEE2 + 0.20 * KA"
+    },
+    "BDM": {
+      "type": "project",
+      "inputs": [
+        "GA",
+        "Q2",
+        "ROE",
+        "F"
+      ],
+      "formula": "0.3 * GA + 0.20 * Q2 + 0.2 * ROE + 0.3 * F"
+    },
+    "Business Analytics": {
+      "type": "subject",
+      "inputs": [
+        "A",
+        "Qz",
+        "F"
+      ],
+      "formula": "A + 0.7 * Math.max(Qz1, Qz2) + F"
+    },
+    "Tools in DS": {
+      "type": "subject",
+      "inputs": [
+        "GA",
+        "ROE",
+        "F"
+      ],
+      "formula": "Error"
+    },
+    "PDSA": {
+      "type": "subject",
+      "inputs": [
+        "assignments",
+        "quizzes",
+        "final"
+      ],
+      "formula": "Error"
+    },
+    "DBMS": {
+      "type": "subject",
+      "inputs": [
+        "GAA2",
+        "GAA3",
+        "OPPE",
+        "F"
+      ],
+      "formula": "Error"
+    },
+    "App Dev 1": {
+      "type": "project",
+      "inputs": [
+        "GLA",
+        "GA",
+        "F",
+        "Qz1",
+        "Qz2"
+      ],
+      "formula": "0.15 * GLA + 0.05 * GA + Math.max(0.35 * F + 0.2 * Qz1 + 0.25 * Qz2, 0.4 * F + 0.3 * Math.max(Qz1, Qz2))"
+    },
+    "Java": {
+      "type": "subject",
+      "inputs": [
+        "GAA1",
+        "GAA2",
+        "GAA3",
+        "Qz1",
+        "Qz2",
+        "OPE",
+        "F"
+      ],
+      "formula": "0.04 * GAA1 + 0.03 * GAA2 + 0.03 * GAA3 + 0.2 * OPE + Math.max(0.45 * F + 0.15 * Math.max(Qz1, Qz2), 0.4 * F + 0.10 * Qz1 + 0.20 * Qz2)"
+    },
+    "System Commands": {
+      "type": "subject",
+      "inputs": [
+        "assignments",
+        "quizzes",
+        "final"
+      ],
+      "formula": "Error"
+    },
+    "App Dev 2": {
+      "type": "project",
+      "inputs": [
+        "GAA",
+        "Qz1",
+        "Qz2",
+        "F",
+        "OPE"
+      ],
+      "formula": "Error"
+    },
+    "Software Testing": {
+      "type": "subject",
+      "inputs": [
+        "GAA",
+        "Qz2",
+        "GP1",
+        "GP2",
+        "PP",
+        "CP",
+        "F"
+      ],
+      "formula": "0.05 * GAA + 0.2 * Qz2 + 0.4 * F + 0.1 * GP1 + 0.1 * GP2 + 0.1 * PP + 0.05 * CP"
+    },
+    "Software Engineering": {
+      "type": "subject",
+      "inputs": [
+        "GAA",
+        "Qz2",
+        "GP1",
+        "GP2",
+        "PP",
+        "CP",
+        "F"
+      ],
+      "formula": "0.05 * GAA + 0.2 * Qz2 + 0.4 * F + 0.1 * GP1 + 0.1 * GP2 + 0.1 * PP + 0.05 * CP"
+    },
+    "Deep Learning": {
+      "type": "subject",
+      "inputs": [
+        "GAA",
+        "Qz1",
+        "Qz2",
+        "F",
+        "Bonus"
+      ],
+      "formula": "0.1 * GAA + 0.4 * F + 0.25 * Qz1 + 0.25 * Qz2 + Bonus"
+    },
+    "A.I.": {
+      "type": "subject",
+      "inputs": [
+        "assignments",
+        "quizzes",
+        "final"
+      ],
+      "formula": "Error"
+    },
+    "Introduction to Big Data": {
+      "type": "subject",
+      "inputs": [
+        "assignments",
+        "quizzes",
+        "final"
+      ],
+      "formula": "Error"
+    },
+    "Programming in C": {
+      "type": "subject",
+      "inputs": [
+        "GAA1",
+        "GAA2",
+        "GAA3",
+        "OP",
+        "F",
+        "Qz1",
+        "Qz2"
+      ],
+      "formula": "0.04 * GAA1 + 0.03 * GAA2 + 0.03 * GAA3 + 0.2 * OPE + Math.max(0.45 * F + 0.15 * Math.max(Qz1, Qz2), 0.4 * F + 0.10 * Qz1 + 0.20 * Qz2)"
+    },
+    "Deep Learning for CV": {
+      "type": "subject",
+      "inputs": [
+        "GAA",
+        "Qz1",
+        "Qz2",
+        "F"
+      ],
+      "formula": "0.1 * GAA + 0.4 * F + 0.25 * Qz1 + 0.25 * Qz2"
+    },
+    "Managerial Economics": {
+      "type": "subject",
+      "inputs": [
+        "assignments",
+        "quizzes",
+        "final"
+      ],
+      "formula": "Error"
+    },
+    "LLM": {
+      "type": "subject",
+      "inputs": [
+        "assignments",
+        "quizzes",
+        "final"
+      ],
+      "formula": "Error"
+    },
+    "Speech Technology": {
+      "type": "subject",
+      "inputs": [
+        "assignments",
+        "quizzes",
+        "final"
+      ],
+      "formula": "Error"
+    },
+    "DT for App Development": {
+      "type": "subject",
+      "inputs": [
+        "assignments",
+        "quizzes",
+        "final"
+      ],
+      "formula": "Error"
+    },
+    "Market Research": {
+      "type": "subject",
+      "inputs": [
+        "assignments",
+        "quizzes",
+        "final"
+      ],
+      "formula": "Error"
+    },
+    "Statistical Computing": {
+      "type": "subject",
+      "inputs": [
+        "assignments",
+        "quizzes",
+        "final"
+      ],
+      "formula": "Error"
+    },
+    "Advanced Algorithms": {
+      "type": "subject",
+      "inputs": [
+        "assignments",
+        "quizzes",
+        "final"
+      ],
+      "formula": "Error"
+    },
+    "Game Theory and Strategy": {
+      "type": "subject",
+      "inputs": [
+        "assignments",
+        "quizzes",
+        "final"
+      ],
+      "formula": "Error"
+    },
+    "Computer System Design": {
+      "type": "subject",
+      "inputs": [
+        "GAA",
+        "Qz1",
+        "Qz2",
+        "F",
+        "Circuit Assignment"
+      ],
+      "formula": "0.1 * GAA + 0.4 * F + 0.2 * Qz1 + 0.25 * Qz2 + 0.05 * Circuit Assignment"
+    },
+    "Deep Learning Practice": {
+      "type": "subject",
+      "inputs": [
+        "GA",
+        "Quiz1",
+        "Quiz2",
+        "Quiz3",
+        "NPPE1",
+        "NPPE2",
+        "NPPE3"
+      ],
+      "formula": "0.2 * GA + 0.15 * Quiz1 + 0.15 * Quiz2 + 0.15 * Quiz3 + 0.15 * Math.max(NPPE1, NPPE2, NPPE3) + 0.1 * Second Best + 0.1 * Lowest"
+    },
+    "Generative AI": {
+      "type": "subject",
+      "inputs": [
+        "GAA",
+        "F",
+        "Qz1",
+        "Qz2",
+        "OPPE"
+      ],
+      "formula": "0.2 * GAA + 0.35 * F + 0.1 * Qz1 + 0.15 * Qz2 + 0.2 * OPEPE"
+    },
+    "ADS": {
+      "type": "subject",
+      "inputs": [
+        "GAA",
+        "F",
+        "Qz2"
+      ],
+      "formula": "0.2 * GAA + 0.45 * F + 0.35 * Qz2"
+    },
+    "MLOPS": {
+      "type": "subject",
+      "inputs": [
+        "GAA",
+        "F"
+      ],
+      "formula": "Error"
+    },
+    "SPG": {
+      "type": "subject",
+      "inputs": [
+        "GAA",
+        "GP",
+        "Qz2",
+        "F"
+      ],
+      "formula": "0.15 * GAA + 0.25 * GP + 0.25 * Qz2 + 0.35 * F"
+    }
+  }
+}
