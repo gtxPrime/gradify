@@ -179,7 +179,6 @@ public class SubjectsActivity extends AppCompatActivity implements SubjectsAdapt
     @Override
     protected void onResume() {
         super.onResume();
-        // Refresh subjects list when activity resumes
         loadSubjects();
         if (blurView != null) {
             blurView.setBlurAutoUpdate(true);
@@ -195,32 +194,27 @@ public class SubjectsActivity extends AppCompatActivity implements SubjectsAdapt
     }
 
     private void loadSubjects() {
-        // Get subjects from SharedPreferences
-        SharedPreferences sharedPreferences = getSharedPreferences("UserPreferences", MODE_PRIVATE);
-        Set<String> savedSubjects = sharedPreferences.getStringSet("selectedSubjects", new HashSet<>());
-
-        // Clear and update the list
+        List<String> loadedSubjects = Utils.getSubjects(this);
         subjects.clear();
-        if (!savedSubjects.isEmpty()) {
-            subjects.addAll(savedSubjects);
-            recyclerView.setVisibility(View.VISIBLE);
-            emptyView.setVisibility(View.GONE);
-        } else {
+
+        if (loadedSubjects.size() == 1 && loadedSubjects.get(0).equals("Select subjects in profile")) {
             recyclerView.setVisibility(View.GONE);
             emptyView.setVisibility(View.VISIBLE);
-        }
+        } else {
+            subjects.addAll(loadedSubjects);
+            recyclerView.setVisibility(View.VISIBLE);
+            emptyView.setVisibility(View.GONE);
 
-        // Notify adapter of changes
+            Utils.updateLectureCounts(this, subjects, () -> {
+                runOnUiThread(() -> adapter.notifyDataSetChanged());
+            });
+        }
         adapter.notifyDataSetChanged();
     }
 
     @Override
     public void onSubjectClick(String subjectName) {
-        if (Utils.getLectureCount(subjectName) == 0) {
-            Toast.makeText(this, "No lectures found!", Toast.LENGTH_SHORT).show();
-        } else {
-            fetchUrlFromDatabase(subjectName);
-        }
+        fetchUrlFromDatabase(subjectName);
     }
 
     private void fetchUrlFromDatabase(String subjectName) {

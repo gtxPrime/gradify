@@ -382,28 +382,16 @@ public class MainActivity extends AppCompatActivity {
     private void calculateCurrentWeek() {
         if (startDateStr == null || lecturesSubtitle == null)
             return;
-        try {
-            SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT_STR, Locale.getDefault());
-            sdf.setTimeZone(IST_TIMEZONE);
-            Date startDate = sdf.parse(startDateStr);
-            if (startDate != null) {
-                long diff = System.currentTimeMillis() - startDate.getTime();
-                long days = TimeUnit.MILLISECONDS.toDays(diff);
-                long week = (days / 7) + 1;
-
-                String weekText;
-                if (week < 1) {
-                    weekText = "Starting Soon";
-                } else if (week > 12) {
-                    weekText = "Week 12+";
-                } else {
-                    weekText = "Week " + week;
-                }
-                lecturesSubtitle.setText(weekText);
-            }
-        } catch (Exception e) {
-            Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
+        int week = Utils.getRunningWeek(startDateStr);
+        String weekText;
+        if (week < 1) {
+            weekText = "Starting Soon";
+        } else if (week > 12) {
+            weekText = "Week 12+";
+        } else {
+            weekText = "Week " + week;
         }
+        lecturesSubtitle.setText(weekText);
     }
 
     private void checkForMandatoryUpdates() {
@@ -952,14 +940,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Lectures: Current Running Week
         if (lecturesSubtitle != null) {
-            int currentWeek = calculateCurrentTermWeek();
-            if (currentWeek > 0 && currentWeek <= 12) {
-                lecturesSubtitle.setText("Current: Week " + currentWeek);
-            } else if (currentWeek > 12) {
-                lecturesSubtitle.setText("Term Revision");
-            } else {
-                lecturesSubtitle.setText("Term Break");
-            }
+            calculateCurrentWeek();
         }
 
         // Notes: Describes the utility
@@ -989,43 +970,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private int calculateCurrentTermWeek() {
-        Calendar today = Calendar.getInstance();
-        int month = today.get(Calendar.MONTH); // 0-based
-        int year = today.get(Calendar.YEAR);
-
-        Calendar termStart = getCalendar(year, month);
-
-        if (today.before(termStart)) {
-            return 0;
-        }
-
-        long diffMillis = today.getTimeInMillis() - termStart.getTimeInMillis();
-        long diffDays = TimeUnit.MILLISECONDS.toDays(diffMillis);
-
-        return (int) (diffDays / 7) + 1;
-    }
-
-    @NonNull
-    private static Calendar getCalendar(int year, int month) {
-        Calendar termStart = Calendar.getInstance();
-        termStart.set(Calendar.YEAR, year);
-
-        if (month >= Calendar.JANUARY && month < Calendar.MAY) {
-            // Jan Term (Starts ~3rd Week of Jan)
-            termStart.set(Calendar.MONTH, Calendar.JANUARY);
-            termStart.set(Calendar.DAY_OF_MONTH, 19);
-        } else if (month >= Calendar.MAY && month < Calendar.SEPTEMBER) {
-            // May Term (Starts ~3rd Week of May)
-            termStart.set(Calendar.MONTH, Calendar.MAY);
-            termStart.set(Calendar.DAY_OF_MONTH, 24);
-        } else {
-            // Sept Term (Starts ~3rd Week of Sept)
-            termStart.set(Calendar.MONTH, Calendar.SEPTEMBER);
-            termStart.set(Calendar.DAY_OF_MONTH, 21);
-        }
-        return termStart;
-    }
+    // Removed static calculateCurrentTermWeek and getCalendar to use dynamic
+    // index-based data
 
     private void runEntranceAnimations() {
         // Macro animations: Tile bounce/shine/fade-in

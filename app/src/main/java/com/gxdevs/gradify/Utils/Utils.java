@@ -150,6 +150,14 @@ public class Utils {
             callback.onReady(indexCache);
             return;
         }
+
+        if (!isNetworkAvailable(context)) {
+            String errorMsg = "No internet connection. Please check your network.";
+            showToast(context, errorMsg);
+            callback.onError(errorMsg);
+            return;
+        }
+
         makeApiRequest(context, INDEX_URL, response -> {
             indexCache = response;
             callback.onReady(indexCache);
@@ -575,6 +583,7 @@ public class Utils {
                             .getString(session);
 
                     link = decryptUrl(link);
+                    link = githubToJsDelivr(link);
 
                     if (link == null || link.isEmpty()) {
                         callback.onError("Link is empty");
@@ -677,6 +686,78 @@ public class Utils {
         indicator.setLayoutParams(params);
     }
 
+    public static void updateLectureCounts(Context context, List<String> subjects, Runnable onComplete) {
+        if (!isNetworkAvailable(context)) {
+            showToast(context, "No internet connection. Some data may not load.");
+            onComplete.run();
+            return;
+        }
+        fetchLectures(context, new DatabaseCallback() {
+            @Override
+            public void onReady(JSONObject result) {
+                try {
+                    JSONObject lecturesMap = result.getJSONObject("lectures");
+                    final int[] remaining = { 0 };
+
+                    // Count valid subjects first to manage callbacks
+                    List<String> validSubjects = new ArrayList<>();
+                    for (String subject : subjects) {
+                        if (lecturesMap.has(subject)) {
+                            validSubjects.add(subject);
+                        }
+                    }
+
+                    if (validSubjects.isEmpty()) {
+                        onComplete.run();
+                        return;
+                    }
+
+                    remaining[0] = validSubjects.size();
+                    for (String subject : validSubjects) {
+                        try {
+                            String url = lecturesMap.getString(subject);
+                            makeApiRequest(context, url, response -> {
+                                try {
+                                    int count = 0;
+                                    if (response.has("weeks")) {
+                                        JSONObject weeks = response.getJSONObject("weeks");
+                                        Iterator<String> keys = weeks.keys();
+                                        while (keys.hasNext()) {
+                                            String weekKey = keys.next();
+                                            JSONArray weekLectures = weeks.getJSONArray(weekKey);
+                                            count += weekLectures.length();
+                                        }
+                                    }
+                                    subjectToLectureCount.put(subject, count);
+                                } catch (JSONException ignored) {
+                                } finally {
+                                    remaining[0]--;
+                                    if (remaining[0] == 0)
+                                        onComplete.run();
+                                }
+                            }, error -> {
+                                remaining[0]--;
+                                if (remaining[0] == 0)
+                                    onComplete.run();
+                            });
+                        } catch (JSONException e) {
+                            remaining[0]--;
+                            if (remaining[0] == 0)
+                                onComplete.run();
+                        }
+                    }
+                } catch (JSONException e) {
+                    onComplete.run();
+                }
+            }
+
+            @Override
+            public void onError(String error) {
+                onComplete.run();
+            }
+        });
+    }
+
     public static String getGreeting() {
         Calendar c = Calendar.getInstance();
         int timeOfDay = c.get(java.util.Calendar.HOUR_OF_DAY);
@@ -687,6 +768,45 @@ public class Utils {
             return "Good Afternoon";
         } else {
             return "Good Evening";
+        }
+    }
+
+    public static int getRunningWeek(String startDateStr) {
+        if (startDateStr == null || startDateStr.isEmpty())
+            return 1;
+        try {
+            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss",
+                    java.util.Locale.getDefault());
+            java.util.Date startDate = sdf.parse(startDateStr);
+            if (startDate == null)
+                return 1;
+            long diff = System.currentTimeMillis() - startDate.getTime();
+            long days = diff / (1000 * 60 * 60 * 24);
+            int week = (int) (days / 7) + 1;
+            return Math.max(1, week);
+        } catch (Exception e) {
+            return 1;
+        }
+    }
+
+    public static boolean isNetworkAvailable(Context context) {
+        android.net.ConnectivityManager connectivityManager = (android.net.ConnectivityManager) context
+                .getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connectivityManager == null)
+            return false;
+        android.net.NetworkCapabilities capabilities = connectivityManager
+                .getNetworkCapabilities(connectivityManager.getActiveNetwork());
+        return capabilities != null && (capabilities.hasTransport(android.net.NetworkCapabilities.TRANSPORT_WIFI)
+                || capabilities.hasTransport(android.net.NetworkCapabilities.TRANSPORT_CELLULAR)
+                || capabilities.hasTransport(android.net.NetworkCapabilities.TRANSPORT_ETHERNET));
+    }
+
+    public static void showToast(Context context, String message) {
+        if (context instanceof Activity) {
+            ((Activity) context).runOnUiThread(
+                    () -> android.widget.Toast.makeText(context, message, android.widget.Toast.LENGTH_SHORT).show());
+        } else {
+            android.widget.Toast.makeText(context, message, android.widget.Toast.LENGTH_SHORT).show();
         }
     }
 }

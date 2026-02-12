@@ -45,6 +45,13 @@ public class PYQActivity extends AppCompatActivity {
 
         initViews();
         setupListeners();
+        refreshSubjects();
+        Utils.setupDropDown(this, quizDrop, List.of(Utils.QUIZ_TYPES));
+        Utils.setupDropDown(this, sessionDrop, List.of()); // Start empty
+        findViewById(R.id.backBtn).setOnClickListener(v -> getOnBackPressedDispatcher().onBackPressed());
+    }
+
+    private void refreshSubjects() {
         subjects = Utils.getSubjects(this);
         if (subjects.get(0).equals("Select subjects in profile")) {
             pyqFormContainer.setVisibility(GONE);
@@ -54,9 +61,6 @@ public class PYQActivity extends AppCompatActivity {
             empty_view_pyq.setVisibility(GONE);
             Utils.setupDropDown(this, subjectDrop, subjects);
         }
-        Utils.setupDropDown(this, quizDrop, List.of(Utils.QUIZ_TYPES));
-        Utils.setupDropDown(this, sessionDrop, List.of()); // Start empty
-        findViewById(R.id.backBtn).setOnClickListener(v -> getOnBackPressedDispatcher().onBackPressed());
     }
 
     private void setupListeners() {
@@ -128,7 +132,8 @@ public class PYQActivity extends AppCompatActivity {
         startQuizButton.setOnClickListener(v -> startQuiz(examJsonLink, examCheck));
 
         addSubjects.setOnClickListener(v -> startActivity(new Intent(PYQActivity.this, ProfileActivity.class)));
-        findViewById(R.id.goToProfileBtnPyq).setOnClickListener(v -> startActivity(new Intent(PYQActivity.this, ProfileActivity.class)));
+        findViewById(R.id.goToProfileBtnPyq)
+                .setOnClickListener(v -> startActivity(new Intent(PYQActivity.this, ProfileActivity.class)));
     }
 
     private void startQuiz(String examJsonLink, boolean isExamMode) {
@@ -215,5 +220,6 @@ public class PYQActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        refreshSubjects();
     }
 }
