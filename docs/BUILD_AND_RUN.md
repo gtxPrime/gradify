@@ -22,7 +22,7 @@ Before you begin, ensure you have the following installed:
 1. **Clone the Repository**:
 
    ```bash
-   git clone https://github.com/gtxPrime/gradify.git
+   git clone https://github.com/gtxPrime/Gradify-App.git
    ```
 
 2. **Open Project**:

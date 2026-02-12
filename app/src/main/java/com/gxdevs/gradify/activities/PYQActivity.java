@@ -5,18 +5,11 @@ import static android.view.View.VISIBLE;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.TextView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -69,7 +62,6 @@ public class PYQActivity extends AppCompatActivity {
     private void setupListeners() {
         subjectDrop.setOnItemClickListener(((parent, view, position, id) -> {
             subject = (String) parent.getItemAtPosition(position);
-            Log.d("PYQ_DEBUG", "Step 1: Subject selected - " + subject);
             resetAndHideViews(quizDrop, quizContainer);
             resetAndHideViews(yearDrop, yearContainer);
             resetAndHideViews(sessionDrop, sessionContainer);
@@ -79,7 +71,6 @@ public class PYQActivity extends AppCompatActivity {
 
             modeContainer.setVisibility(GONE);
             if (!subject.equals("Select subjects in profile")) {
-                Log.d("PYQ_DEBUG", "Step 1: Showing quiz type dropdown");
                 quizContainer.setVisibility(VISIBLE);
                 if (addSubjects.getVisibility() == VISIBLE) {
                     addSubjects.setVisibility(GONE);
@@ -89,57 +80,43 @@ public class PYQActivity extends AppCompatActivity {
 
         quizDrop.setOnItemClickListener(((parent, view, position, id) -> {
             quiz = (String) parent.getItemAtPosition(position);
-            Log.d("PYQ_DEBUG", "Step 2: Quiz type selected - " + quiz);
             resetAndHideViews(yearDrop, yearContainer);
             resetAndHideViews(sessionDrop, sessionContainer);
             resetAndHideViews(sessionDrop, modeContainer);
             resetAndHideViews(sessionDrop, startQuizButton);
-            Log.d("PYQ_DEBUG", "Step 2: Fetching years for subject=" + subject + ", quiz=" + quiz);
             progressHolder.setVisibility(VISIBLE);
             loadDropdownData(yearDrop, yearContainer, subject, quiz, null);
         }));
 
         yearDrop.setOnItemClickListener(((parent, view, position, id) -> {
             year = (String) parent.getItemAtPosition(position);
-            Log.d("PYQ_DEBUG", "Step 3: Year selected - " + year);
             resetAndHideViews(sessionDrop, sessionContainer);
             resetAndHideViews(sessionDrop, modeContainer);
             resetAndHideViews(sessionDrop, startQuizButton);
             if (!year.equals("No data found")) {
-                Log.d("PYQ_DEBUG",
-                        "Step 3: Fetching sessions for subject=" + subject + ", quiz=" + quiz + ", year=" + year);
                 progressHolder.setVisibility(VISIBLE);
                 loadDropdownData(sessionDrop, sessionContainer, subject, quiz, year);
             } else {
-                Log.w("PYQ_DEBUG", "Step 3: No data found for this year");
                 sessionContainer.setVisibility(GONE);
             }
         }));
 
         sessionDrop.setOnItemClickListener(((parent, view, position, id) -> {
             session = (String) parent.getItemAtPosition(position);
-            Log.d("PYQ_DEBUG", "Step 4: Session selected - " + session);
-            Log.d("PYQ_DEBUG", "Step 4: Fetching exam link for subject=" + subject + ", quiz=" + quiz + ", year=" + year
-                    + ", session=" + session);
             progressHolder.setVisibility(VISIBLE);
             Utils.fetchExamJsonLink(this, new Utils.ExamLinkCallback() {
                 @Override
                 public void onSingleLink(String link) {
-                    Log.d("PYQ_DEBUG", "Step 5: Exam link received - " + link);
                     if (link.contains("dl.dropboxusercontent.com")) {
-                        Log.d("PYQ_DEBUG", "Step 5: Valid Dropbox link, showing start button");
                         startQuizButton.setVisibility(VISIBLE);
                         modeContainer.setVisibility(VISIBLE);
                         progressHolder.setVisibility(GONE);
                         examJsonLink = link;
-                    } else {
-                        Log.w("PYQ_DEBUG", "Step 5: Link doesn't contain Dropbox URL: " + link);
                     }
                 }
 
                 @Override
                 public void onError(String error) {
-                    Log.e("PYQ_DEBUG", "Step 5: Error fetching exam link - " + error);
                     progressHolder.setVisibility(GONE);
                     Toast.makeText(PYQActivity.this, "No PYQ Found: " + error, Toast.LENGTH_LONG).show();
                 }
@@ -151,8 +128,7 @@ public class PYQActivity extends AppCompatActivity {
         startQuizButton.setOnClickListener(v -> startQuiz(examJsonLink, examCheck));
 
         addSubjects.setOnClickListener(v -> startActivity(new Intent(PYQActivity.this, ProfileActivity.class)));
-        findViewById(R.id.goToProfileBtnPyq)
-                .setOnClickListener(v -> startActivity(new Intent(PYQActivity.this, ProfileActivity.class)));
+        findViewById(R.id.goToProfileBtnPyq).setOnClickListener(v -> startActivity(new Intent(PYQActivity.this, ProfileActivity.class)));
     }
 
     private void startQuiz(String examJsonLink, boolean isExamMode) {
@@ -172,22 +148,18 @@ public class PYQActivity extends AppCompatActivity {
         sessionDrop = findViewById(R.id.sessionDrop);
         progressBar = findViewById(R.id.progressBar);
         modeToggle = findViewById(R.id.modeToggle);
-
         quizContainer = findViewById(R.id.quizContainer);
         yearContainer = findViewById(R.id.yearContainer);
         sessionContainer = findViewById(R.id.sessionContainer);
         progressHolder = findViewById(R.id.progressHolder);
         modeContainer = findViewById(R.id.modeContainer);
         modeToggleContainer = findViewById(R.id.modeToggleContainer);
-
         subjectHolder = findViewById(R.id.subjectHolder);
         quizHolder = findViewById(R.id.quizHolder);
         yearHolder = findViewById(R.id.yearHolder);
         sessionHolder = findViewById(R.id.sessionHolder);
-
         pyqFormContainer = findViewById(R.id.pyqFormContainer);
         empty_view_pyq = findViewById(R.id.empty_view_pyq);
-
         quizContainer.setVisibility(GONE);
         yearContainer.setVisibility(GONE);
         sessionContainer.setVisibility(GONE);
@@ -205,26 +177,20 @@ public class PYQActivity extends AppCompatActivity {
 
     private void loadDropdownData(MaterialAutoCompleteTextView dropdown, View containerToVisible, String subject,
             String quizType, String year) {
-        Log.d("PYQ_DEBUG",
-                "loadDropdownData called - Subject: " + subject + ", QuizType: " + quizType + ", Year: " + year);
         Utils.fetchData(this, new Utils.dataReturn() {
             @Override
             public void onSuccess(String[] data) {
-                // Convert String[] to List<String>
                 List<String> dataList = Arrays.asList(data);
 
                 if (dataList.isEmpty()) {
-                    Log.d("PYQ_DEBUG", "Data received is empty.");
                     Toast.makeText(PYQActivity.this, "No PYQ Found", Toast.LENGTH_SHORT).show();
                     if (containerToVisible != null) {
                         containerToVisible.setVisibility(GONE);
                     }
                 } else {
-                    Log.d("PYQ_DEBUG", "Data received: " + dataList.toString());
                     if (containerToVisible != null) {
                         containerToVisible.setVisibility(VISIBLE);
                     }
-                    // Call setupDropDown with the fetched data
                     Utils.setupDropDown(PYQActivity.this, dropdown, dataList);
                 }
 
@@ -236,7 +202,6 @@ public class PYQActivity extends AppCompatActivity {
             @Override
             public void onError(String error) {
                 Toast.makeText(PYQActivity.this, "No PYQ Found", Toast.LENGTH_SHORT).show();
-                Log.e("PYQ_DEBUG", "Error: " + error);
                 if (progressHolder.getVisibility() == VISIBLE) {
                     progressHolder.setVisibility(GONE);
                 }

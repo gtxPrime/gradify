@@ -5,25 +5,26 @@ import static android.content.Context.MODE_PRIVATE;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
-import android.os.Build;
 import android.util.Base64;
-import android.util.Log;
 import android.util.TypedValue;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.transition.AutoTransition;
+import androidx.transition.TransitionManager;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.NetworkError;
@@ -38,11 +39,15 @@ import com.gxdevs.gradify.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -55,14 +60,21 @@ public class Utils {
     static Map<String, String> subjectToType = new HashMap<>();
     static Map<String, Integer> subjectToLectureCount = new HashMap<>();
 
+    public static String getAvatarSeed(Context context) {
+        SharedPreferences prefs = context.getSharedPreferences("UserPreferences", MODE_PRIVATE);
+        String seed = prefs.getString("avatar_seed", null);
+        if (seed == null) {
+            seed = String.valueOf(System.currentTimeMillis());
+            prefs.edit().putString("avatar_seed", seed).apply();
+        }
+        return seed;
+    }
+
     public static String decryptUrl(String url) {
-        Log.d("PYQ_DEBUG", "decryptUrl: Attempting to decrypt URL");
         if (url == null) {
-            Log.e("PYQ_DEBUG", "decryptUrl: URL is null");
             return null;
         }
         if (!url.startsWith("youarenoob.gradify/")) {
-            Log.w("PYQ_DEBUG", "decryptUrl: URL does not have encryption prefix: " + url);
             return url;
         }
 
@@ -72,11 +84,8 @@ public class Utils {
 
             // Base64 decode (URL_SAFE)
             byte[] encryptedData = Base64.decode(b64, Base64.URL_SAFE);
-            Log.d("PYQ_DEBUG", "decryptUrl: Base64 decoded length: " + encryptedData.length);
 
             if (encryptedData.length < 16) {
-                Log.e("PYQ_DEBUG", "decryptUrl: Invalid encrypted data length (" + encryptedData.length + " < 16)");
-                Log.e("Decryption", "Invalid encrypted data length");
                 return url;
             }
 
@@ -105,13 +114,9 @@ public class Utils {
             cipher.init(Cipher.DECRYPT_MODE, secretKeySpec, ivParameterSpec);
 
             byte[] decryptedBytes = cipher.doFinal(ciphertext);
-            String decryptedString = new String(decryptedBytes, StandardCharsets.UTF_8);
-            Log.d("PYQ_DEBUG", "decryptUrl: Decryption successful: " + decryptedString);
-            return decryptedString;
+            return new String(decryptedBytes, StandardCharsets.UTF_8);
 
         } catch (Exception e) {
-            Log.e("PYQ_DEBUG", "decryptUrl: Failed to decrypt URL - " + e.getMessage());
-            Log.e("Decryption", "Failed to decrypt URL", e);
             return url; // Fallback to original (which is broken anyway if encrypted, but avoids crash)
         }
     }
@@ -126,8 +131,8 @@ public class Utils {
                 .replace("/blob/", "@");
     }
 
-    private static org.json.JSONObject indexCache;
-    private static org.json.JSONObject formulasCache;
+    private static JSONObject indexCache;
+    private static JSONObject formulasCache;
 
     public static int dpToPx(Context context, int i) {
         final float scale = context.getResources().getDisplayMetrics().density;
@@ -141,60 +146,39 @@ public class Utils {
     }
 
     public static void fetchIndexData(Context context, final DatabaseCallback callback) {
-        Log.d("PYQ_DEBUG", "fetchIndexData: Checking cache");
         if (indexCache != null) {
-            Log.d("PYQ_DEBUG", "fetchIndexData: Returning cached index");
             callback.onReady(indexCache);
             return;
         }
-        Log.d("PYQ_DEBUG", "fetchIndexData: Fetching from URL: " + INDEX_URL);
         makeApiRequest(context, INDEX_URL, response -> {
-            Log.d("PYQ_DEBUG", "fetchIndexData: Successfully fetched index.json");
             indexCache = response;
             callback.onReady(indexCache);
-        }, error -> {
-            Log.e("PYQ_DEBUG", "fetchIndexData: Error - " + error);
-            callback.onError(error);
-        });
+        }, callback::onError);
     }
 
     public static void fetchSubjectQuizData(Context context, String subject, final DatabaseCallback callback) {
-        Log.d("PYQ_DEBUG", "fetchSubjectQuizData: Fetching quiz data for subject - " + subject);
         fetchIndexData(context, new DatabaseCallback() {
             @Override
-            public void onReady(org.json.JSONObject index) {
+            public void onReady(JSONObject index) {
                 try {
-                    Log.d("PYQ_DEBUG", "fetchSubjectQuizData: Index received, looking for quizzes section");
                     if (!index.has("quizzes")) {
-                        Log.e("PYQ_DEBUG", "fetchSubjectQuizData: Quizzes section not found in index");
                         callback.onError("Quizzes section not found in index");
                         return;
                     }
-                    org.json.JSONObject quizzes = index.getJSONObject("quizzes");
+                    JSONObject quizzes = index.getJSONObject("quizzes");
                     if (!quizzes.has(subject)) {
-                        Log.e("PYQ_DEBUG",
-                                "fetchSubjectQuizData: Subject '" + subject + "' not found in quizzes index");
                         callback.onError("Subject " + subject + " not found in quizzes index");
                         return;
                     }
                     String url = githubToJsDelivr(quizzes.getString(subject));
-                    Log.d("PYQ_DEBUG", "fetchSubjectQuizData: Fetching quiz file from: " + url);
-                    makeApiRequest(context, url, response -> {
-                        Log.d("PYQ_DEBUG", "fetchSubjectQuizData: Successfully fetched quiz data for " + subject);
-                        callback.onReady(response);
-                    }, error -> {
-                        Log.e("PYQ_DEBUG", "fetchSubjectQuizData: Error fetching quiz file - " + error);
-                        callback.onError(error);
-                    });
+                    makeApiRequest(context, url, callback::onReady, callback::onError);
                 } catch (JSONException e) {
-                    Log.e("PYQ_DEBUG", "fetchSubjectQuizData: JSON Error - " + e.getMessage());
                     callback.onError("JSON Error: " + e.getMessage());
                 }
             }
 
             @Override
             public void onError(String error) {
-                Log.e("PYQ_DEBUG", "fetchSubjectQuizData: Error from fetchIndexData - " + error);
                 callback.onError(error);
             }
         });
@@ -203,23 +187,23 @@ public class Utils {
     public static void fetchLectures(Context context, final DatabaseCallback callback) {
         fetchIndexData(context, new DatabaseCallback() {
             @Override
-            public void onReady(org.json.JSONObject index) {
+            public void onReady(JSONObject index) {
                 try {
                     if (!index.has("lectures")) {
                         callback.onError("Lectures section not found in index");
                         return;
                     }
-                    org.json.JSONObject lecturesNested = index.getJSONObject("lectures");
-                    org.json.JSONObject flattened = new org.json.JSONObject();
+                    JSONObject lecturesNested = index.getJSONObject("lectures");
+                    JSONObject flattened = new JSONObject();
 
                     // Flatten Diploma and Foundation subjects for compatibility
-                    java.util.Iterator<String> levels = lecturesNested.keys();
+                    Iterator<String> levels = lecturesNested.keys();
                     while (levels.hasNext()) {
                         String level = levels.next();
                         Object levelObj = lecturesNested.get(level);
-                        if (levelObj instanceof org.json.JSONObject) {
-                            org.json.JSONObject subjects = (org.json.JSONObject) levelObj;
-                            java.util.Iterator<String> subs = subjects.keys();
+                        if (levelObj instanceof JSONObject) {
+                            JSONObject subjects = (JSONObject) levelObj;
+                            Iterator<String> subs = subjects.keys();
                             while (subs.hasNext()) {
                                 String sub = subs.next();
                                 flattened.put(sub, githubToJsDelivr(subjects.getString(sub)));
@@ -227,7 +211,7 @@ public class Utils {
                         }
                     }
 
-                    org.json.JSONObject result = new org.json.JSONObject();
+                    JSONObject result = new JSONObject();
                     result.put("lectures", flattened);
                     callback.onReady(result);
 
@@ -250,7 +234,7 @@ public class Utils {
         }
         fetchIndexData(context, new DatabaseCallback() {
             @Override
-            public void onReady(org.json.JSONObject index) {
+            public void onReady(JSONObject index) {
                 try {
                     if (!index.has("formulas")) {
                         callback.onError("Formulas link not found in index");
@@ -276,7 +260,7 @@ public class Utils {
     public static void fetchDates(Context context, final DatabaseCallback callback) {
         fetchIndexData(context, new DatabaseCallback() {
             @Override
-            public void onReady(org.json.JSONObject index) {
+            public void onReady(JSONObject index) {
                 try {
                     if (index.has("dates")) {
                         callback.onReady(index.getJSONObject("dates"));
@@ -387,48 +371,35 @@ public class Utils {
 
     public static void fetchData(Context context, final dataReturn callback, String subject, String quizType,
             String year) {
-        Log.d("PYQ_DEBUG", "fetchData: subject=" + subject + ", quizType=" + quizType + ", year=" + year);
         fetchSubjectQuizData(context, subject, new DatabaseCallback() {
             @Override
-            public void onReady(org.json.JSONObject database) {
+            public void onReady(JSONObject database) {
                 try {
-                    Log.d("PYQ_DEBUG", "fetchData: Quiz database received");
-                    org.json.JSONObject papers;
+                    JSONObject papers;
                     if (database.has("papers")) {
                         papers = database.getJSONObject("papers");
-                        Log.d("PYQ_DEBUG", "fetchData: Found 'papers' key");
                     } else {
                         papers = database;
-                        Log.d("PYQ_DEBUG", "fetchData: No 'papers' key, using root object");
                     }
 
                     if (!papers.has(subject)) {
-                        if (papers.length() == 1 && papers.keys().next().equals(subject)) {
-                            Log.d("PYQ_DEBUG", "fetchData: Subject found as single key");
-                        } else {
-                            Log.e("PYQ_DEBUG", "fetchData: Subject '" + subject + "' not found in papers");
+                        if (papers.length() != 1 || !papers.keys().next().equals(subject)) {
                             callback.onError("Subject not found");
                             return;
                         }
                     }
-                    org.json.JSONObject subjectObj = papers.getJSONObject(subject);
-                    Log.d("PYQ_DEBUG", "fetchData: Subject object retrieved");
+                    JSONObject subjectObj = papers.getJSONObject(subject);
 
                     if (!subjectObj.has(quizType)) {
-                        Log.e("PYQ_DEBUG",
-                                "fetchData: Quiz type '" + quizType + "' not found. Available: " + subjectObj.keys());
                         callback.onError("Quiz type not found");
                         return;
                     }
-                    org.json.JSONObject quizObj = subjectObj.getJSONObject(quizType);
-                    Log.d("PYQ_DEBUG", "fetchData: Quiz type object retrieved");
+                    JSONObject quizObj = subjectObj.getJSONObject(quizType);
 
                     if (year == null) {
                         // Return years
-                        Log.d("PYQ_DEBUG", "fetchData: Returning years list");
                         JSONArray names = quizObj.names();
                         if (names == null) {
-                            Log.w("PYQ_DEBUG", "fetchData: No years found");
                             callback.onSuccess(new String[0]);
                             return;
                         }
@@ -438,7 +409,7 @@ public class Utils {
                         }
 
                         // Custom sorting for formats like "Oct, 2024" or "Feb, 2024"
-                        java.util.Collections.sort(yearsList, (s1, s2) -> {
+                        yearsList.sort((s1, s2) -> {
                             try {
                                 String[] parts1 = s1.split(", ");
                                 String[] parts2 = s2.split(", ");
@@ -451,7 +422,7 @@ public class Utils {
                                         return Integer.compare(y2, y1); // Latest year first
 
                                     // Same year, compare months
-                                    java.util.Map<String, Integer> monthMap = new java.util.HashMap<>();
+                                    Map<String, Integer> monthMap = new HashMap<>();
                                     String[] months = { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep",
                                             "Oct", "Nov", "Dec" };
                                     for (int i = 0; i < months.length; i++)
@@ -468,21 +439,16 @@ public class Utils {
                             return s2.compareTo(s1);
                         });
 
-                        Log.d("PYQ_DEBUG", "fetchData: Found years (chronologically sorted): " + yearsList);
                         callback.onSuccess(yearsList.toArray(new String[0]));
                     } else {
                         // Return sessions
-                        Log.d("PYQ_DEBUG", "fetchData: Returning sessions for year: " + year);
                         if (!quizObj.has(year)) {
-                            Log.e("PYQ_DEBUG",
-                                    "fetchData: Year '" + year + "' not found. Available: " + quizObj.keys());
                             callback.onError("Year not found");
                             return;
                         }
-                        org.json.JSONObject yearObj = quizObj.getJSONObject(year);
+                        JSONObject yearObj = quizObj.getJSONObject(year);
                         JSONArray names = yearObj.names();
                         if (names == null) {
-                            Log.w("PYQ_DEBUG", "fetchData: No sessions found");
                             callback.onSuccess(new String[0]);
                             return;
                         }
@@ -490,19 +456,16 @@ public class Utils {
                         for (int i = 0; i < names.length(); i++) {
                             sessionsList.add(names.getString(i));
                         }
-                        java.util.Collections.sort(sessionsList); // Sort sessions alphabetically
-                        Log.d("PYQ_DEBUG", "fetchData: Found sessions (sorted): " + sessionsList);
+                        Collections.sort(sessionsList); // Sort sessions alphabetically
                         callback.onSuccess(sessionsList.toArray(new String[0]));
                     }
                 } catch (JSONException e) {
-                    Log.e("PYQ_DEBUG", "fetchData: JSON Error - " + e.getMessage());
                     callback.onError("JSON Error: " + e.getMessage());
                 }
             }
 
             @Override
             public void onError(String error) {
-                Log.e("PYQ_DEBUG", "fetchData: Error from fetchSubjectQuizData - " + error);
                 callback.onError(error);
             }
         });
@@ -565,27 +528,7 @@ public class Utils {
         subjectToType.put("LLM", "Res");
         subjectToType.put("ATB", "Res");
 
-        // Subject to Lecture Count (dummy data)
-        subjectToLectureCount.put("Maths 1", 87);
-        subjectToLectureCount.put("Maths 2", 105);
-        subjectToLectureCount.put("Stats 1", 135);
-        subjectToLectureCount.put("Stats 2", 84);
-        subjectToLectureCount.put("CT", 104);
-        subjectToLectureCount.put("English 1", 74);
-        subjectToLectureCount.put("English 2", 73);
-        subjectToLectureCount.put("Python", 85);
-        subjectToLectureCount.put("Business Analytics", 58);
-        subjectToLectureCount.put("MLF", 85);
-        subjectToLectureCount.put("BDM", 88);
-        subjectToLectureCount.put("DBMS", 80);
-        subjectToLectureCount.put("Java", 57);
-        subjectToLectureCount.put("MAD 1", 90);
-        subjectToLectureCount.put("MAD 2", 56);
-        subjectToLectureCount.put("MLP", 76);
-        subjectToLectureCount.put("MLT", 80);
-        subjectToLectureCount.put("PDSA", 73);
-        subjectToLectureCount.put("System Commands", 33);
-        subjectToLectureCount.put("TDS", 0);
+        // Subject to Lecture Count
     }
 
     public static String getSubjectType(String subject) {
@@ -631,15 +574,11 @@ public class Utils {
                             .getJSONObject(year)
                             .getString(session);
 
-                    Log.d("PYQ_DEBUG", "fetchExamJsonLink: Encrypted link - " + link);
                     link = decryptUrl(link);
-                    Log.d("PYQ_DEBUG", "fetchExamJsonLink: Decrypted link - " + link);
 
                     if (link == null || link.isEmpty()) {
-                        Log.e("PYQ_DEBUG", "fetchExamJsonLink: Link is null or empty after decryption");
                         callback.onError("Link is empty");
                     } else {
-                        Log.d("PYQ_DEBUG", "fetchExamJsonLink: Returning link to callback");
                         callback.onSingleLink(link);
                     }
 
@@ -655,6 +594,35 @@ public class Utils {
         });
     }
 
+    public static void makeApiRequest(Context context, String url, VolleySuccessCallback successCallback,
+            VolleyErrorCallback errorCallback) {
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, successCallback::onSuccess,
+                error -> {
+                    String message = "Unknown Error";
+                    if (error instanceof NetworkError) {
+                        message = "No Internet Connection";
+                    } else if (error instanceof TimeoutError) {
+                        message = "Connection Timed Out";
+                    } else if (error instanceof ServerError) {
+                        if (error.networkResponse != null) {
+                            message = "Server Error: " + error.networkResponse.statusCode;
+                        } else {
+                            message = "Server Error";
+                        }
+                    } else if (error instanceof ParseError) {
+                        message = "Data Parsing Error";
+                    }
+                    errorCallback.onError(message);
+                });
+
+        request.setRetryPolicy(new DefaultRetryPolicy(
+                10000,
+                1, // 1 retry
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+        Volley.newRequestQueue(context).add(request);
+    }
+
     public interface ExamLinkCallback {
         void onSingleLink(String link);
 
@@ -667,43 +635,6 @@ public class Utils {
 
     public interface VolleyErrorCallback {
         void onError(String errorMessage);
-    }
-
-    public static void makeApiRequest(Context context, String url, VolleySuccessCallback successCallback,
-            VolleyErrorCallback errorCallback) {
-        Log.d("API Request", "URL: " + url);
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, response -> {
-            Log.d("API Response", "Success for URL: " + url);
-            successCallback.onSuccess(response);
-        }, error -> {
-            String message = "Unknown Error";
-            if (error instanceof NetworkError) {
-                message = "No Internet Connection";
-            } else if (error instanceof TimeoutError) {
-                message = "Connection Timed Out";
-            } else if (error instanceof ServerError) {
-                if (error.networkResponse != null) {
-                    message = "Server Error: " + error.networkResponse.statusCode;
-                    Log.e("API Error", "Response data: " + new String(error.networkResponse.data));
-                } else {
-                    message = "Server Error";
-                }
-            } else if (error instanceof ParseError) {
-                message = "Data Parsing Error";
-            }
-            Log.e("API Error", "URL: " + url + " | Error: " + message);
-            if (error.getMessage() != null) {
-                Log.e("API Error", "Details: " + error.getMessage());
-            }
-            errorCallback.onError(message);
-        });
-
-        request.setRetryPolicy(new DefaultRetryPolicy(
-                10000,
-                1, // 1 retry
-                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-
-        Volley.newRequestQueue(context).add(request);
     }
 
     public static GradientDrawable shadowMaker(Context context) {
@@ -725,7 +656,7 @@ public class Utils {
 
     public static void applyBounceAnimation(View view) {
         view.setOnTouchListener((v, event) -> {
-            if (event.getAction() == android.view.MotionEvent.ACTION_DOWN) {
+            if (event.getAction() == MotionEvent.ACTION_DOWN) {
                 Animation anim = AnimationUtils.loadAnimation(v.getContext(), R.anim.bounce);
                 v.startAnimation(anim);
             }
@@ -734,15 +665,28 @@ public class Utils {
     }
 
     public static void updateTabIndicator(View indicator, View target, ViewGroup container) {
-        androidx.transition.AutoTransition transition = new androidx.transition.AutoTransition();
+        AutoTransition transition = new AutoTransition();
         transition.setDuration(300);
-        transition.setInterpolator(new android.view.animation.AccelerateDecelerateInterpolator());
-        androidx.transition.TransitionManager.beginDelayedTransition(container, transition);
+        transition.setInterpolator(new AccelerateDecelerateInterpolator());
+        TransitionManager.beginDelayedTransition(container, transition);
 
-        androidx.constraintlayout.widget.ConstraintLayout.LayoutParams params = (androidx.constraintlayout.widget.ConstraintLayout.LayoutParams) indicator
+        ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams) indicator
                 .getLayoutParams();
         params.startToStart = target.getId();
         params.endToEnd = target.getId();
         indicator.setLayoutParams(params);
+    }
+
+    public static String getGreeting() {
+        Calendar c = Calendar.getInstance();
+        int timeOfDay = c.get(java.util.Calendar.HOUR_OF_DAY);
+
+        if (timeOfDay >= 5 && timeOfDay < 12) {
+            return "Good Morning";
+        } else if (timeOfDay >= 12 && timeOfDay < 17) {
+            return "Good Afternoon";
+        } else {
+            return "Good Evening";
+        }
     }
 }

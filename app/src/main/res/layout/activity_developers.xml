@@ -14,7 +14,7 @@
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="50dp"
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="24dp"
         app:cardElevation="0dp"
@@ -22,12 +22,14 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/backBtn"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:id="@+id/backBtnS"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:background="@drawable/white_circle_bg"
+            android:elevation="2dp"
+            android:padding="8dp"
+            android:src="@drawable/ic_left"
             android:contentDescription="@string/back"
-            android:padding="12dp"
-            android:src="@drawable/ic_back"
             app:tint="@color/textIcons" />
 
     </androidx.cardview.widget.CardView>
@@ -49,7 +51,6 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="24dp"
         android:clipToPadding="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/backBtnCard">

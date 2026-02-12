@@ -4,6 +4,9 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.app.ComponentCaller;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.SharedPreferences;
@@ -13,7 +16,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.provider.Settings;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +36,7 @@ import androidx.core.content.ContextCompat;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.play.core.appupdate.AppUpdateInfo;
 import com.google.android.play.core.appupdate.AppUpdateManager;
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory;
@@ -55,8 +58,6 @@ import java.util.Locale;
 import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 
-import com.google.android.material.bottomsheet.BottomSheetDialog;
-
 import eightbitlab.com.blurview.BlurView;
 
 public class MainActivity extends AppCompatActivity {
@@ -64,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView greet, totalStudyTimeText;
     private TimeTrackingDbHelper dbHelper;
     private View customNavDrawer;
-    private ImageView navProfileImage;
+    private ImageView navProfileImage, mainProfileImage;
     private TextView navProfileName;
     private float navDrawerWidthInPixels;
     private BlurView blurView;
@@ -98,8 +99,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Utils.setPad(findViewById(R.id.root_activity_layout), "bottom", this);
-        // Utils.fetchAndCacheApiUrl(this, apiUrl -> Log.d("API_URL", "URL ready: " +
-        // apiUrl));
         auth = FirebaseAuth.getInstance();
 
         appUpdateManager = AppUpdateManagerFactory.create(this);
@@ -125,8 +124,10 @@ public class MainActivity extends AppCompatActivity {
         LinearLayout navContribute = actualDrawerContent.findViewById(R.id.nav_contribute);
         LinearLayout navDevelopers = actualDrawerContent.findViewById(R.id.nav_developers);
         LinearLayout navDonation = actualDrawerContent.findViewById(R.id.nav_donation);
+        LinearLayout navGithub = actualDrawerContent.findViewById(R.id.nav_github);
         navProfileImage = actualDrawerContent.findViewById(R.id.nav_profile_image);
         navProfileName = actualDrawerContent.findViewById(R.id.nav_profile_name);
+        mainProfileImage = findViewById(R.id.profile_image);
 
         // Exam Dates Views
         examDatesDetailsLayout = actualDrawerContent.findViewById(R.id.exam_dates_details_layout);
@@ -264,6 +265,14 @@ public class MainActivity extends AppCompatActivity {
             });
         }
 
+        if (navGithub != null) {
+            navGithub.setOnClickListener(v -> {
+                String url = "https://github.com/gtxPrime/Gradify";
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
+                toggleNavDrawer();
+            });
+        }
+
         if (navProfileSection != null) {
             navProfileSection.setOnClickListener(v -> {
                 startActivity(new Intent(MainActivity.this, ProfileActivity.class));
@@ -280,7 +289,6 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(new Intent(Settings.ACTION_DATE_SETTINGS));
                 } catch (Exception e) {
                     Toast.makeText(MainActivity.this, "Could not open Date & Time settings", Toast.LENGTH_SHORT).show();
-                    Log.d("Date and Time", String.valueOf(e.getMessage()));
                 }
             });
         }
@@ -301,13 +309,13 @@ public class MainActivity extends AppCompatActivity {
                         updateFocusCardExamInfo();
                     });
                 } catch (org.json.JSONException e) {
-                    Log.e("MainActivity", "Error parsing dates: " + e.getMessage());
+                    // Error parsing dates
                 }
             }
 
             @Override
             public void onError(String error) {
-                Log.e("MainActivity", "Error fetching dates: " + error);
+                // Error fetching dates
             }
         });
     }
@@ -367,7 +375,6 @@ public class MainActivity extends AppCompatActivity {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
             upcomingExamName.setText("Error");
         }
     }
@@ -395,7 +402,7 @@ public class MainActivity extends AppCompatActivity {
                 lecturesSubtitle.setText(weekText);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -408,7 +415,7 @@ public class MainActivity extends AppCompatActivity {
                     appUpdateManager.startUpdateFlowForResult(appUpdateInfo, updateLauncher,
                             AppUpdateOptions.newBuilder(AppUpdateType.IMMEDIATE).build());
                 } catch (Exception e) {
-                    Log.e("Update", "Error starting update flow " + e.getMessage());
+                    // Error starting update flow
                 }
             }
         });
@@ -460,6 +467,25 @@ public class MainActivity extends AppCompatActivity {
         TextView navLogoutText = navLogoutLayout.findViewById(R.id.nav_logout_text);
         ImageView nav_logout_img = navLogoutLayout.findViewById(R.id.nav_logout_img);
 
+        String seed = Utils.getAvatarSeed(this);
+        if (currentUser != null) {
+            String detectedSeed = null;
+            if (currentUser.isAnonymous()) {
+                detectedSeed = "tester";
+            } else if (currentUser.getDisplayName() != null && !currentUser.getDisplayName().isEmpty()) {
+                detectedSeed = currentUser.getDisplayName();
+            } else if (currentUser.getEmail() != null) {
+                detectedSeed = currentUser.getEmail();
+            }
+
+            if (detectedSeed != null) {
+                seed = detectedSeed;
+            }
+        }
+
+        String diceBearUrl = "https://api.dicebear.com/7.x/notionists/png?seed=" + seed
+                + "&backgroundColor=DDE89D";
+
         if (currentUser != null) {
             if (!currentUser.isAnonymous() && currentUser.getDisplayName() != null
                     && !currentUser.getDisplayName().isEmpty()) {
@@ -479,29 +505,12 @@ public class MainActivity extends AppCompatActivity {
                     String imageUrl = currentUser.getPhotoUrl().toString();
                     String imgX = imageUrl.replace("=s96-c", "=s500");
 
-                    Glide.with(this)
-                            .load(imgX)
-                            .placeholder(R.drawable.ic_profile_placeholder)
-                            .error(R.drawable.ic_profile_placeholder)
-                            .into(navProfileImage);
+                    loadProfileImage(imgX);
                 } else {
-                    Glide.with(this)
-                            .load(R.drawable.ic_profile_placeholder) // Load placeholder if no photo URL
-                            .into(navProfileImage);
+                    loadProfileImage(diceBearUrl);
                 }
 
-                Calendar c = Calendar.getInstance();
-                int timeOfDay = c.get(Calendar.HOUR_OF_DAY);
-                String greetingTime;
-                if (timeOfDay >= 5 && timeOfDay < 12)
-                    greetingTime = "Good Morning";
-                else if (timeOfDay >= 12 && timeOfDay < 17)
-                    greetingTime = "Good Afternoon";
-                else
-                    greetingTime = "Good Evening";
-
-                String greetText = greetingTime;
-                greet.setText(greetText);
+                greet.setText(Utils.getGreeting());
                 navProfileName.setText(nameToDisplay);
 
                 // User is logged in
@@ -517,36 +526,14 @@ public class MainActivity extends AppCompatActivity {
                     toggleNavDrawer();
                 });
             } else {
-                Calendar c = Calendar.getInstance();
-                int timeOfDay = c.get(Calendar.HOUR_OF_DAY);
-                String greetingTime;
-                if (timeOfDay >= 5 && timeOfDay < 12)
-                    greetingTime = "Good Morning";
-                else if (timeOfDay >= 12 && timeOfDay < 17)
-                    greetingTime = "Good Afternoon";
-                else
-                    greetingTime = "Good Evening";
-
-                String greetText = greetingTime;
-                greet.setText(greetText);
-                navProfileName.setText("Tester");
+                greet.setText(Utils.getGreeting());
+                navProfileName.setText(R.string.hello);
+                loadProfileImage(diceBearUrl);
             }
         } else {
-            Calendar c = Calendar.getInstance();
-            int timeOfDay = c.get(Calendar.HOUR_OF_DAY);
-            String greetingTime;
-            if (timeOfDay >= 5 && timeOfDay < 12)
-                greetingTime = "Good Morning";
-            else if (timeOfDay >= 12 && timeOfDay < 17)
-                greetingTime = "Good Afternoon";
-            else
-                greetingTime = "Good Evening";
-
-            greet.setText(greetingTime);
+            greet.setText(Utils.getGreeting());
             navProfileName.setText(R.string.hello);
-            Glide.with(this)
-                    .load(R.drawable.ic_profile_placeholder) // Load placeholder if no user
-                    .into(navProfileImage);
+            loadProfileImage(diceBearUrl);
 
             // User is not logged in
             if (navLogoutText != null) {
@@ -558,6 +545,22 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, ProfileActivity.class));
                 toggleNavDrawer();
             });
+        }
+    }
+
+    private void loadProfileImage(Object source) {
+        Glide.with(this)
+                .load(source)
+                .placeholder(R.drawable.ic_profile_placeholder)
+                .error(R.drawable.ic_profile_placeholder)
+                .into(navProfileImage);
+
+        if (mainProfileImage != null) {
+            Glide.with(this)
+                    .load(source)
+                    .placeholder(R.drawable.ic_profile_placeholder)
+                    .error(R.drawable.ic_profile_placeholder)
+                    .into(mainProfileImage);
         }
     }
 
@@ -682,7 +685,7 @@ public class MainActivity extends AppCompatActivity {
                     appUpdateManager.startUpdateFlowForResult(appUpdateInfo, MainActivity.this,
                             AppUpdateOptions.defaultOptions(AppUpdateType.IMMEDIATE), REQUEST_CODE_UPDATE);
                 } catch (IntentSender.SendIntentException e) {
-                    Log.e("Update", "Error starting update flow " + e.getMessage());
+                    // Error starting update flow
                 }
             }
         });
@@ -733,7 +736,6 @@ public class MainActivity extends AppCompatActivity {
         try {
             return Settings.Global.getInt(getContentResolver(), Settings.Global.AUTO_TIME) == 1;
         } catch (Settings.SettingNotFoundException e) {
-            Log.d("Check auto Time", String.valueOf(e.getMessage()));
             return false;
         }
     }
@@ -846,7 +848,6 @@ public class MainActivity extends AppCompatActivity {
             updateTimerText(etTimerText, targetET.getTime() - currentTimeMillis);
 
         } catch (Exception e) {
-            e.printStackTrace();
             if (q1TimerText != null)
                 q1TimerText.setText(getString(R.string.error));
             if (q2TimerText != null)
@@ -1010,7 +1011,6 @@ public class MainActivity extends AppCompatActivity {
         Calendar termStart = Calendar.getInstance();
         termStart.set(Calendar.YEAR, year);
 
-        // Approximate IITM Term Starts
         if (month >= Calendar.JANUARY && month < Calendar.MAY) {
             // Jan Term (Starts ~3rd Week of Jan)
             termStart.set(Calendar.MONTH, Calendar.JANUARY);
@@ -1056,8 +1056,71 @@ public class MainActivity extends AppCompatActivity {
         View bottomSheetView = getLayoutInflater().inflate(R.layout.bottom_sheet_support, null);
         bottomSheetDialog.setContentView(bottomSheetView);
 
+        TextView emailText = bottomSheetView.findViewById(R.id.support_email_text);
+        TextView phoneText = bottomSheetView.findViewById(R.id.support_phone_text);
+        TextView addressText = bottomSheetView.findViewById(R.id.support_address_text);
+
+        LinearLayout emailLayout = bottomSheetView.findViewById(R.id.support_email_layout);
+        LinearLayout phoneLayout = bottomSheetView.findViewById(R.id.support_phone_layout);
+        LinearLayout addressLayout = bottomSheetView.findViewById(R.id.support_address_layout);
+
+        // Tap to open
+        emailLayout.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_SENDTO);
+            intent.setData(Uri.parse("mailto:" + emailText.getText().toString()));
+            try {
+                startActivity(intent);
+            } catch (Exception e) {
+                Toast.makeText(this, "No email app found", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        phoneLayout.setOnClickListener(v -> {
+            String phone = "850999966";
+            Intent intent = new Intent(Intent.ACTION_DIAL);
+            intent.setData(Uri.parse("tel:" + phone));
+            startActivity(intent);
+        });
+
+        addressLayout.setOnClickListener(v -> {
+            String address = addressText.getText().toString();
+            Uri gmmIntentUri = Uri.parse("geo:0,0?q=" + Uri.encode(address));
+            Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+            mapIntent.setPackage("com.google.android.apps.maps");
+            if (mapIntent.resolveActivity(getPackageManager()) != null) {
+                startActivity(mapIntent);
+            } else {
+                startActivity(new Intent(Intent.ACTION_VIEW, gmmIntentUri));
+            }
+        });
+
+        // Long press to copy
+        emailLayout.setOnLongClickListener(v -> {
+            copyToClipboard("Email", emailText.getText().toString());
+            return true;
+        });
+
+        phoneLayout.setOnLongClickListener(v -> {
+            copyToClipboard("Phone Number", "850999966");
+            return true;
+        });
+
+        addressLayout.setOnLongClickListener(v -> {
+            copyToClipboard("Address", addressText.getText().toString());
+            return true;
+        });
+
         bottomSheetView.findViewById(R.id.close_support_btn).setOnClickListener(v -> bottomSheetDialog.dismiss());
 
         bottomSheetDialog.show();
+    }
+
+    private void copyToClipboard(String label, String text) {
+        ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+        ClipData clip = ClipData.newPlainText(label, text);
+        if (clipboard != null) {
+            clipboard.setPrimaryClip(clip);
+            Toast.makeText(this, label + " copied to clipboard", Toast.LENGTH_SHORT).show();
+        }
     }
 }

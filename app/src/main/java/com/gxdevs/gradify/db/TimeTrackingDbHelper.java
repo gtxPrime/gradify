@@ -4,7 +4,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import androidx.annotation.Nullable;
 
@@ -29,13 +28,12 @@ public class TimeTrackingDbHelper extends SQLiteOpenHelper {
     public static final String COLUMN_DATE = "date"; // Store as milliseconds since epoch
     public static final String COLUMN_DURATION_MILLIS = "duration_millis";
 
-    private static final String TABLE_CREATE_TIME_ENTRIES =
-            "CREATE TABLE " + TABLE_TIME_ENTRIES + " (" +
-                    COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                    COLUMN_SUBJECT_NAME + " TEXT, " +
-                    COLUMN_ACTIVITY_TYPE + " TEXT, " +
-                    COLUMN_DATE + " INTEGER, " +
-                    COLUMN_DURATION_MILLIS + " INTEGER);";
+    private static final String TABLE_CREATE_TIME_ENTRIES = "CREATE TABLE " + TABLE_TIME_ENTRIES + " (" +
+            COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            COLUMN_SUBJECT_NAME + " TEXT, " +
+            COLUMN_ACTIVITY_TYPE + " TEXT, " +
+            COLUMN_DATE + " INTEGER, " +
+            COLUMN_DURATION_MILLIS + " INTEGER);";
 
     public TimeTrackingDbHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -44,14 +42,10 @@ public class TimeTrackingDbHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(TABLE_CREATE_TIME_ENTRIES);
-        Log.i("TimeTrackingDbHelper", "Database tables created.");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        Log.w(TimeTrackingDbHelper.class.getName(),
-                "Upgrading database from version " + oldVersion + " to "
-                        + newVersion + ", which will destroy all old data");
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_TIME_ENTRIES);
         onCreate(db);
     }
@@ -67,13 +61,8 @@ public class TimeTrackingDbHelper extends SQLiteOpenHelper {
         long newRowId = -1;
         try {
             newRowId = db.insert(TABLE_TIME_ENTRIES, null, values);
-            if (newRowId != -1) {
-                Log.d("TimeTrackingDbHelper", "Inserted time entry for " + subjectName + ", type: " + activityType + ", duration: " + durationMillis + "ms, rowId: " + newRowId);
-            } else {
-                Log.e("TimeTrackingDbHelper", "Failed to insert time entry for " + subjectName);
-            }
         } catch (Exception e) {
-            Log.e("TimeTrackingDbHelper", "Error inserting time entry", e);
+            // Ignored
         } finally {
             db.close();
         }
@@ -81,12 +70,14 @@ public class TimeTrackingDbHelper extends SQLiteOpenHelper {
     }
 
     /**
-     * Fetches aggregated time spent for each subject, categorized by activity type (lecture/pyq),
+     * Fetches aggregated time spent for each subject, categorized by activity type
+     * (lecture/pyq),
      * within a given date range.
      *
      * @param startTimeMillis The start of the period (inclusive).
      * @param endTimeMillis   The end of the period (inclusive).
-     * @return A list of SubjectStatsData objects, each representing a subject's aggregated time.
+     * @return A list of SubjectStatsData objects, each representing a subject's
+     *         aggregated time.
      *         Progress is currently set to 0 as total goal time is not defined yet.
      */
     public List<SubjectStatsData> getAggregatedSubjectStats(long startTimeMillis, long endTimeMillis) {
@@ -106,15 +97,16 @@ public class TimeTrackingDbHelper extends SQLiteOpenHelper {
 
         String groupBy = COLUMN_SUBJECT_NAME + ", " + COLUMN_ACTIVITY_TYPE;
 
-        try (SQLiteDatabase db = this.getReadableDatabase(); Cursor cursor = db.query(
-                TABLE_TIME_ENTRIES,
-                projection,
-                selection,
-                selectionArgs,
-                groupBy,
-                null, // having
-                COLUMN_SUBJECT_NAME + " ASC" // orderBy
-        )) {
+        try (SQLiteDatabase db = this.getReadableDatabase();
+                Cursor cursor = db.query(
+                        TABLE_TIME_ENTRIES,
+                        projection,
+                        selection,
+                        selectionArgs,
+                        groupBy,
+                        null, // having
+                        COLUMN_SUBJECT_NAME + " ASC" // orderBy
+                )) {
             // having
             // orderBy
 
@@ -157,7 +149,7 @@ public class TimeTrackingDbHelper extends SQLiteOpenHelper {
                 }
             }
         } catch (Exception e) {
-            Log.e("TimeTrackingDbHelper", "Error fetching aggregated subject stats", e);
+            // Ignored
         }
         return new ArrayList<>(subjectDataMap.values());
     }
@@ -167,17 +159,19 @@ public class TimeTrackingDbHelper extends SQLiteOpenHelper {
      *
      * @param startTimeMillis The start of the period (inclusive).
      * @param endTimeMillis   The end of the period (inclusive).
-     * @return A List of Long values, each representing the total study duration in milliseconds for a day.
-     *         The list is ordered by date. Days with no study time are not included.
+     * @return A List of Long values, each representing the total study duration in
+     *         milliseconds for a day.
+     *         The list is ordered by date. Days with no study time are not
+     *         included.
      */
     public List<Long> getDailyTotalStudyTime(long startTimeMillis, long endTimeMillis) {
         List<Long> dailyTotals = new ArrayList<>();
 
         String query = "SELECT SUM(" + COLUMN_DURATION_MILLIS + ") as daily_total " +
-                       "FROM " + TABLE_TIME_ENTRIES + " " +
-                       "WHERE " + COLUMN_DATE + " >= ? AND " + COLUMN_DATE + " <= ? " +
-                       "GROUP BY strftime('%Y-%m-%d', " + COLUMN_DATE + " / 1000, 'unixepoch') " +
-                       "ORDER BY " + COLUMN_DATE + " ASC";
+                "FROM " + TABLE_TIME_ENTRIES + " " +
+                "WHERE " + COLUMN_DATE + " >= ? AND " + COLUMN_DATE + " <= ? " +
+                "GROUP BY strftime('%Y-%m-%d', " + COLUMN_DATE + " / 1000, 'unixepoch') " +
+                "ORDER BY " + COLUMN_DATE + " ASC";
 
         String[] selectionArgs = {
                 String.valueOf(startTimeMillis),
@@ -195,7 +189,7 @@ public class TimeTrackingDbHelper extends SQLiteOpenHelper {
                 }
             }
         } catch (Exception e) {
-            Log.e("TimeTrackingDbHelper", "Error fetching daily total study time", e);
+            // Ignored
         }
         return dailyTotals;
     }
@@ -205,7 +199,8 @@ public class TimeTrackingDbHelper extends SQLiteOpenHelper {
      *
      * @param dayStartTimeMillis The start of the day (inclusive).
      * @param dayEndTimeMillis   The end of the day (inclusive).
-     * @return A List of DailySubjectTotalData objects, each representing a subject and its total study time for that day.
+     * @return A List of DailySubjectTotalData objects, each representing a subject
+     *         and its total study time for that day.
      */
     public List<DailySubjectTotalData> getDailySubjectTotals(long dayStartTimeMillis, long dayEndTimeMillis) {
         List<DailySubjectTotalData> dailySubjectTotals = new ArrayList<>();
@@ -221,15 +216,16 @@ public class TimeTrackingDbHelper extends SQLiteOpenHelper {
                 String.valueOf(dayEndTimeMillis)
         };
 
-        try (SQLiteDatabase db = this.getReadableDatabase(); Cursor cursor = db.query(
-                TABLE_TIME_ENTRIES,
-                projection,
-                selection,
-                selectionArgs,
-                COLUMN_SUBJECT_NAME,
-                null, // having
-                COLUMN_SUBJECT_NAME + " ASC" // orderBy
-        )) {
+        try (SQLiteDatabase db = this.getReadableDatabase();
+                Cursor cursor = db.query(
+                        TABLE_TIME_ENTRIES,
+                        projection,
+                        selection,
+                        selectionArgs,
+                        COLUMN_SUBJECT_NAME,
+                        null, // having
+                        COLUMN_SUBJECT_NAME + " ASC" // orderBy
+                )) {
             // having
             // orderBy
 
@@ -252,20 +248,20 @@ public class TimeTrackingDbHelper extends SQLiteOpenHelper {
                 }
             }
         } catch (Exception e) {
-            Log.e("TimeTrackingDbHelper", "Error fetching daily subject totals", e);
+            // Ignored
         }
         return dailySubjectTotals;
     }
 
     // TODO: Add method to get daily time data for the graph
-    // public List<DailyGraphData> getDailyGraphData(long startTimeMillis, long endTimeMillis) { ... }
+    // public List<DailyGraphData> getDailyGraphData(long startTimeMillis, long
+    // endTimeMillis) { ... }
 
     public void clearAllTimeEntries() {
         try (SQLiteDatabase db = this.getWritableDatabase()) {
             db.delete(TABLE_TIME_ENTRIES, null, null);
-            Log.i("TimeTrackingDbHelper", "All time entries deleted.");
         } catch (Exception e) {
-            Log.e("TimeTrackingDbHelper", "Error clearing time entries", e);
+            // Ignored
         }
     }
-} 
+}

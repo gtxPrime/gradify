@@ -9,7 +9,6 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,7 +53,6 @@ import java.util.concurrent.Executors;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    private static final String TAG = "ProfileActivity";
     private static final String ALLOWED_DOMAIN = "ds.study.iitm.ac.in";
     private static final int MAX_SELECTED_SUBJECTS = 4;
 
@@ -84,12 +82,10 @@ public class ProfileActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         credentialManager = CredentialManager.create(this);
 
-        // Initialize UI components
         initializeViews();
 
         findViewById(R.id.top_nav).setPadding(20, 100, 20, 0);
 
-        // Initialize SharedPreferences
         sharedPreferences = getSharedPreferences("UserPreferences", MODE_PRIVATE);
 
         setupLevelPicker();
@@ -116,7 +112,6 @@ public class ProfileActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        // Check if user is signed in and update UI accordingly
         FirebaseUser currentUser = auth.getCurrentUser();
         updateUI(currentUser);
     }
@@ -285,15 +280,22 @@ public class ProfileActivity extends AppCompatActivity {
             chip.setChecked(true);
             chip.setChipBackgroundColor(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.selectedChip)));
             chip.setTextColor(ContextCompat.getColor(this, R.color.heroCards));
-            chip.setCheckedIconTint(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.heroCards)));
+
+            // Move tick to the right using closeIcon
+            chip.setCloseIcon(ContextCompat.getDrawable(this, R.drawable.ic_check));
+            chip.setCloseIconVisible(true);
+            chip.setCloseIconTint(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.heroCards)));
+            chip.setCheckedIconVisible(false); // Hide the default left tick
+
             chip.setChipStrokeWidth(0f);
-            chip.setCheckedIconVisible(true);
         } else {
             chip.setChecked(false);
             chip.setChipBackgroundColor(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.unselectedChip)));
             chip.setTextColor(ContextCompat.getColor(this, R.color.textIcons));
             chip.setChipStrokeColor(ColorStateList.valueOf(Color.parseColor("#E0E0E0")));
             chip.setChipStrokeWidth(density * 1.5f);
+
+            chip.setCloseIconVisible(false);
             chip.setCheckedIconVisible(false);
         }
         chip.setShapeAppearanceModel(
@@ -302,10 +304,13 @@ public class ProfileActivity extends AppCompatActivity {
         chip.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
         chip.setChipMinHeight(density * 48);
 
-        chip.setChipStartPadding(density * 12);
-        chip.setChipEndPadding(density * 12);
-        chip.setTextStartPadding(density * 8);
-        chip.setTextEndPadding(density * 8);
+        chip.setChipStartPadding(density * 16);
+        chip.setChipEndPadding(density * 16);
+        chip.setTextStartPadding(density * 4);
+        chip.setTextEndPadding(density * 4);
+
+        // Ensure clicking the tick (close icon) also unchecks the chip
+        chip.setOnCloseIconClickListener(v -> chip.setChecked(false));
     }
 
     private int getSelectedCount() {
@@ -429,7 +434,6 @@ public class ProfileActivity extends AppCompatActivity {
                             } else if (e instanceof NoCredentialException) {
                                 Toast.makeText(ProfileActivity.this, "No credentials found", Toast.LENGTH_SHORT).show();
                             } else {
-                                Log.e("Auth", e.getMessage());
                                 Toast.makeText(ProfileActivity.this, "Sign-in failed" + e.getMessage(),
                                         Toast.LENGTH_SHORT).show();
                             }
@@ -461,7 +465,6 @@ public class ProfileActivity extends AppCompatActivity {
                         });
                     }
                 } catch (Exception e) {
-                    Log.e(TAG, "Error parsing Google ID token credential: " + e.getMessage(), e);
                     runOnUiThread(() -> {
                         showSignInError("Authentication error: " + e.getLocalizedMessage());
                     });
@@ -484,10 +487,8 @@ public class ProfileActivity extends AppCompatActivity {
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
                         // Sign in success
-                        Log.d(TAG, "signInWithCredential:success");
                         FirebaseUser user = auth.getCurrentUser();
 
-                        // Check if email domain is allowed
                         if (user != null && user.getEmail() != null && user.getEmail().endsWith("@" + ALLOWED_DOMAIN)) {
                             updateUI(user);
                         } else {
@@ -500,7 +501,6 @@ public class ProfileActivity extends AppCompatActivity {
                         }
                     } else {
                         // Sign in failed
-                        Log.w(TAG, "signInWithCredential:failure", task.getException());
                         showSignInError("Authentication Failed");
                         updateUI(null);
                     }
@@ -508,6 +508,24 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void updateUI(FirebaseUser user) {
+        String seed = Utils.getAvatarSeed(this);
+        if (user != null) {
+            String detectedSeed = null;
+            if (user.isAnonymous()) {
+                detectedSeed = "tester";
+            } else if (user.getDisplayName() != null && !user.getDisplayName().isEmpty()) {
+                detectedSeed = user.getDisplayName();
+            } else if (user.getEmail() != null) {
+                detectedSeed = user.getEmail();
+            }
+
+            if (detectedSeed != null) {
+                seed = detectedSeed;
+            }
+        }
+        String diceBearUrl = "https://api.dicebear.com/7.x/notionists/png?seed=" + seed
+                + "&backgroundColor=DDE89D";
+
         if (user != null) {
             // Load preferences only when logged in
             if (!user.isAnonymous()) {
@@ -517,21 +535,17 @@ public class ProfileActivity extends AppCompatActivity {
                 // Extract actual name by removing roll number (format: "24F1000625 Garvit
                 // Sharma")
                 if (displayName != null && displayName.contains(" ")) {
-                    // Find the first space which separates roll number from name
                     String actualName = displayName.substring(displayName.indexOf(" ")).trim();
                     userNameTextView.setText(actualName);
                 } else {
-                    // Fallback if format is different
                     userNameTextView.setText(displayName);
                 }
 
-                // Format email (showing just domain part or full email as needed)
                 String email = user.getEmail();
                 if (email != null) {
                     profileMailTextView.setText(email);
                 }
 
-                // Load profile image using Glide
                 profileImageView.setVisibility(VISIBLE);
                 if (user.getPhotoUrl() != null) {
                     String imageUrl = user.getPhotoUrl().toString();
@@ -543,15 +557,20 @@ public class ProfileActivity extends AppCompatActivity {
                             .error(R.drawable.ic_profile_placeholder)
                             .into(profileImageView);
                 } else {
-                    profileImageView.setImageResource(R.drawable.ic_profile_placeholder);
-                    profileImageView.setOnLongClickListener(null); // Remove listener if no URL
+                    Glide.with(this)
+                            .load(diceBearUrl)
+                            .placeholder(R.drawable.ic_profile_placeholder)
+                            .into(profileImageView);
                 }
 
-                // Update sign in button to sign out
             } else {
                 userNameTextView.setText("Tester");
                 profileMailTextView.setText("tester@gradify.com");
                 profileImageView.setVisibility(VISIBLE);
+                Glide.with(this)
+                        .load(diceBearUrl)
+                        .placeholder(R.drawable.ic_profile_placeholder)
+                        .into(profileImageView);
             }
             logOut.setVisibility(VISIBLE);
             enableSelectionUI();
@@ -563,13 +582,17 @@ public class ProfileActivity extends AppCompatActivity {
 
         } else {
             // User is signed out
-            userNameTextView.setText("Guest User"); // Changed to generic text
-            profileMailTextView.setText("Please log in"); // Changed to generic text
-            profileImageView.setImageResource(R.drawable.ic_profile_placeholder);
-            profileImageView.setVisibility(VISIBLE); // Keep placeholder visible
-            profileImageView.setOnLongClickListener(null); // Remove listener when logged out
+            userNameTextView.setText("Guest User");
+            profileMailTextView.setText("Please log in");
 
-            // Update sign in button
+            Glide.with(this)
+                    .load(diceBearUrl)
+                    .placeholder(R.drawable.ic_profile_placeholder)
+                    .into(profileImageView);
+
+            profileImageView.setVisibility(VISIBLE);
+            profileImageView.setOnLongClickListener(null);
+
             signInButton.setVisibility(VISIBLE);
             signInButton.setText(R.string.sign_in_with_google);
             signInButton.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_google));
@@ -586,11 +609,9 @@ public class ProfileActivity extends AppCompatActivity {
     private void signInAnonymously() {
         auth.signInAnonymously().addOnCompleteListener(this, task -> {
             if (task.isSuccessful()) {
-                Log.d(TAG, "signInAnonymously:success");
                 Toast.makeText(this, "Tester login successful!", Toast.LENGTH_SHORT).show();
                 updateUI(auth.getCurrentUser());
             } else {
-                Log.w(TAG, "signInAnonymously:failure", task.getException());
                 Toast.makeText(this, "Tester login failed!", Toast.LENGTH_SHORT).show();
             }
         });

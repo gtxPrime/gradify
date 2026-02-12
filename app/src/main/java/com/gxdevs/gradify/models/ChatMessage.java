@@ -1,9 +1,9 @@
 package com.gxdevs.gradify.models;
 
 public class ChatMessage {
-    private String message;
-    private boolean isUserMessage;
-    private long timestamp;
+    private final String message;
+    private final boolean isUserMessage;
+    private final long timestamp;
 
     public ChatMessage(String message, boolean isUserMessage, long timestamp) {
         this.message = message;

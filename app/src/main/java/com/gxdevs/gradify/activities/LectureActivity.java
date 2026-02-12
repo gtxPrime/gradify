@@ -13,7 +13,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewStub;
 import android.view.WindowManager;
@@ -23,20 +22,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.gxdevs.gradify.R;
-import com.gxdevs.gradify.Utils.Utils;
 import com.gxdevs.gradify.adapters.ChatAdapter;
 import com.gxdevs.gradify.adapters.LectureRecyclerAdapter;
 import com.gxdevs.gradify.db.AppDatabase;
@@ -164,7 +160,6 @@ public class LectureActivity extends AppCompatActivity {
         subjectName = getIntent().getStringExtra("subject_name");
         if (subjectName == null || subjectName.isEmpty()) {
             subjectName = "Unknown Subject";
-            Log.w("TimeTracker", "Subject not passed via intent for LectureActivity. Using default.");
         }
 
         String jsonUrl = getIntent().getStringExtra("json_url");
@@ -228,7 +223,7 @@ public class LectureActivity extends AppCompatActivity {
         if (chatMessagesRecyclerView != null) {
             chatMessagesRecyclerView.setLayoutManager(new LinearLayoutManager(this));
             chatMessageList = new ArrayList<>();
-            chatAdapter = new ChatAdapter(chatMessageList, this);
+            chatAdapter = new ChatAdapter(chatMessageList);
             chatMessagesRecyclerView.setAdapter(chatAdapter);
         }
 
@@ -322,7 +317,7 @@ public class LectureActivity extends AppCompatActivity {
         RecyclerView notesRecyclerView = notesLayout.findViewById(R.id.recycler_view_notes);
 
         // Auto-Formatting
-        etNoteContent.addTextChangedListener(new AutoFormatTextWatcher(etNoteContent));
+        etNoteContent.addTextChangedListener(new AutoFormatTextWatcher());
 
         // RecyclerView Setup
         notesAdapter = new LectureNotesAdapter(
@@ -433,8 +428,6 @@ public class LectureActivity extends AppCompatActivity {
             // Try to resolve again
             resolveCurrentVideoId();
             if (currentVideoId == null) {
-                Log.e("Notes", "Video ID is null, cannot save note linked to video.");
-                // Fallback: save with "unknown" ID or subject name as ID
                 currentVideoId = "unknown_" + subjectName;
             }
         }
@@ -475,7 +468,6 @@ public class LectureActivity extends AppCompatActivity {
     private void resolveCurrentVideoId() {
         if (currentVideoId == null && lectureData != null) {
             try {
-                // Need to find the key for currentWeekIndex
                 List<String> weekKeys = new ArrayList<>(lectureData.getWeeks().keySet());
                 if (currentWeekIndex >= 0 && currentWeekIndex < weekKeys.size()) {
                     String key = weekKeys.get(currentWeekIndex);
@@ -484,15 +476,13 @@ public class LectureActivity extends AppCompatActivity {
                         VideoItem item = videos.get(currentVideoIndex);
                         currentVideoId = item.getId();
                         if (currentVideoId == null || currentVideoId.isEmpty()) {
-                            // Fallback to generating ID from link
                             currentVideoId = extractYoutubeId(item.getLink());
-                            // Update the item so we don't recalculate next time
                             item.setId(currentVideoId);
                         }
                     }
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                Toast.makeText(this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -512,19 +502,10 @@ public class LectureActivity extends AppCompatActivity {
         etNoteContent.getText().replace(Math.min(start, end), Math.max(start, end), symbol, 0, symbol.length());
     }
 
-    private void setupFormattingKey(int btnId, Object spanType) {
-        // Removed manual formatting buttons as we use auto-formatting now
-    }
-
-    private void toggleFormatting(Object spanType) {
-        // Removed
-    }
-
     @Override
     protected void onResume() {
         super.onResume();
         lectureStartTimeMillis = System.currentTimeMillis();
-        Log.d("TimeTracker", "LectureActivity resumed for subject: " + subjectName + " at " + lectureStartTimeMillis);
     }
 
     @Override
@@ -549,32 +530,28 @@ public class LectureActivity extends AppCompatActivity {
         httpClient.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                if (retryCount < 2) { // Retry up to 2 times (total 3 attempts)
-                    Log.w("LectureActivty", "Fetch failed, retrying... (" + (retryCount + 1) + ")");
+                if (retryCount < 2) {
                     fetchLectureDataWithRetry(url, retryCount + 1);
                 } else {
-                    runOnUiThread(() -> Toast.makeText(LectureActivity.this,
-                            "Failed to load data. Please check your internet.", Toast.LENGTH_LONG).show());
+                    runOnUiThread(() -> Toast.makeText(LectureActivity.this, "Failed to load data. Please check your internet.", Toast.LENGTH_LONG).show());
                 }
             }
 
             @Override
-            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+            public void onResponse(@NonNull Call call, @NonNull Response response) {
                 if (!response.isSuccessful()) {
                     runOnUiThread(() -> Toast.makeText(LectureActivity.this,
                             "Server Error: " + response.code(), Toast.LENGTH_LONG).show());
                     return;
                 }
-                if (response.body() != null) {
-                    try (InputStreamReader reader = new InputStreamReader(response.body().byteStream())) {
-                        Type type = new TypeToken<LectureData>() {
-                        }.getType();
-                        lectureData = new Gson().fromJson(reader, type);
-                        runOnUiThread(LectureActivity.this::setupUI);
-                    } catch (Exception e) {
-                        runOnUiThread(() -> Toast.makeText(LectureActivity.this,
-                                "Data parsing error.", Toast.LENGTH_LONG).show());
-                    }
+                try (InputStreamReader reader = new InputStreamReader(response.body().byteStream())) {
+                    Type type = new TypeToken<LectureData>() {
+                    }.getType();
+                    lectureData = new Gson().fromJson(reader, type);
+                    runOnUiThread(LectureActivity.this::setupUI);
+                } catch (Exception e) {
+                    runOnUiThread(() -> Toast.makeText(LectureActivity.this,
+                            "Data parsing error.", Toast.LENGTH_LONG).show());
                 }
             }
         });
@@ -586,14 +563,10 @@ public class LectureActivity extends AppCompatActivity {
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);
         fullscreenContainer.removeAllViews();
         fullscreenContainer.setVisibility(GONE);
-
-        // Make player and its controls visible
         youTubePlayerView.setVisibility(VISIBLE);
 
-        // Restore visibility of the content area or chat layout based on current state
         if (chatLayout != null && chatLayout.getVisibility() == VISIBLE) {
             contentAreaBelowPlayer.setVisibility(GONE);
-            // chatLayout remains visible
         } else {
             contentAreaBelowPlayer.setVisibility(VISIBLE);
             if (chatLayout != null)
@@ -613,8 +586,8 @@ public class LectureActivity extends AppCompatActivity {
                         View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
 
         // Move player to fullscreen container
-        youTubePlayerView.setVisibility(GONE); // Hide original player view
-        fullscreenContainer.addView(view); // Add the player's fullscreen view
+        youTubePlayerView.setVisibility(GONE);
+        fullscreenContainer.addView(view);
         fullscreenContainer.setVisibility(VISIBLE);
 
         // Hide other UI elements that were part of the main screen
@@ -711,22 +684,56 @@ public class LectureActivity extends AppCompatActivity {
             @Override
             public void onError(@NonNull YouTubePlayer youTubePlayer, @NonNull PlayerConstants.PlayerError error) {
                 super.onError(youTubePlayer, error);
-                Log.e("YouTubePlayer", "Error loading video: " + error.name());
 
                 if (ytLink != null && !ytLink.isEmpty() && !ytLink.equals("Error!")) {
-                    Toast.makeText(LectureActivity.this, "Falling back to YouTube App...", Toast.LENGTH_SHORT).show();
-                    try {
-                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(ytLink));
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(intent);
-                    } catch (Exception e) {
-                        Toast.makeText(LectureActivity.this, "Could not open YouTube App: " + e.getMessage(),
-                                Toast.LENGTH_LONG).show();
-                        Log.e("YouTubePlayer", "Error fallback: " + e.getMessage());
-                    }
+                    String videoId = extractYoutubeId(ytLink);
+
+                    // Try to load in original ways as fallback
+                    handlePlaybackFallback(videoId);
                 }
             }
         }, options);
+    }
+
+    private void handlePlaybackFallback(String videoId) {
+        // Step 2: Try Original Google Library approach (specific YT intent)
+        boolean success = openInOriginalLibrary(videoId);
+
+        if (!success) {
+            // Step 3: Try standard browser/app intent
+            openInYouTubeApp(ytLink);
+        }
+    }
+
+    private boolean openInOriginalLibrary(String videoId) {
+        try {
+            // Intent to trigger the official YouTube app in its standalone player mode
+            // This is the "Original Library" behavior fallback
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:" + videoId));
+            intent.putExtra("force_fullscreen", true);
+            intent.putExtra("finish_on_ended", true);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+            // Check if there is an app to handle this
+            if (intent.resolveActivity(getPackageManager()) != null) {
+                Toast.makeText(this, "Loading in Original Library...", Toast.LENGTH_SHORT).show();
+                startActivity(intent);
+                return true;
+            }
+        } catch (Exception ignored) {
+        }
+        return false;
+    }
+
+    private void openInYouTubeApp(String url) {
+        try {
+            Toast.makeText(this, "Opening in YouTube App...", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        } catch (Exception e) {
+            Toast.makeText(this, "Could not open YouTube: " + e.getMessage(), Toast.LENGTH_LONG).show();
+        }
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -797,14 +804,11 @@ public class LectureActivity extends AppCompatActivity {
                 return m.group(1);
         } catch (Exception ignored) {
         }
-        Log.w(TAG, "Could not extract YouTube ID from URL: " + url
-                + ". Using full URL as fallback for chat key, but video might not play.");
         return url; // Fallback, though player might not like this
     }
 
     private void toggleChatLayout(boolean show) {
         if (contentAreaBelowPlayer == null) {
-            Log.e(TAG, "contentAreaBelowPlayer is null. Cannot toggle chat layout.");
             return;
         }
 
@@ -839,22 +843,15 @@ public class LectureActivity extends AppCompatActivity {
                             || lastMsg.getMessage().startsWith("Watching")
                             || lastMsg.getMessage().startsWith("Analyzing")
                             || lastMsg.getMessage().startsWith("Almost there"))) {
-                        // It's an animation message, ensure adapter knows
                         if (chatAdapter != null)
                             chatAdapter.notifyItemChanged(chatMessageList.size() - 1);
-                    } else if (!lastMsg.isUserMessage()) {
-                        // It's some other AI message, but we are responding, so put animation message.
-                        // This case should ideally not happen if logic is correct elsewhere.
-                        // For safety, we could re-add an animation message.
-                        // However, for now, let's assume the animation message is correctly managed in
-                        // callGeminiApi.
                     }
+
                 } else if (chatMessageList != null) {
-                    // AI is responding but list is empty, add initial animation message.
                     addAiChatMessage(new ChatMessage(animasiMessages[currentAnimasiStep % animasiMessages.length],
                             false, System.currentTimeMillis()), false);
                 }
-                startLoadingAnimation(); // Ensure animation handler is running
+                startLoadingAnimation();
             }
 
             if (chatMessageList != null && chatMessageList.isEmpty() && !isAiResponding) {
@@ -947,19 +944,12 @@ public class LectureActivity extends AppCompatActivity {
                     }
                     if (userMessagesCount >= messageHistoryCount && modelMessagesCount >= messageHistoryCount
                             && !added) {
-                        break; // Stop if we have enough of both and current message wasn't added (it means
-                               // it's too old)
+                        break;
                     }
                 }
             }
         }
-
-        // Current userPrompt is handled by the service's
-        // buildCurrentUserContentForGoogleApi method.
-
-        // Start loading animation
         currentAnimasiStep = 0;
-        // Add initial animation message, don't save to DB
         addAiChatMessage(new ChatMessage(animasiMessages[0], false, System.currentTimeMillis()), false);
         startLoadingAnimation();
 
@@ -968,9 +958,7 @@ public class LectureActivity extends AppCompatActivity {
             if (findViewById(R.id.openApiSettings).getVisibility() == GONE) {
                 findViewById(R.id.openApiSettings).setVisibility(VISIBLE);
             }
-            // Don't save API key error to DB
-            addAiChatMessage(new ChatMessage("API Key not found. Please add your API key in settings.", false,
-                    System.currentTimeMillis()), false);
+            addAiChatMessage(new ChatMessage("API Key not found. Please add your API key in settings.", false, System.currentTimeMillis()), false);
             stopLoadingAnimation();
             removeLastNonUserMessage(); // Remove the animation message
             isAiResponding = false;
@@ -1050,7 +1038,6 @@ public class LectureActivity extends AppCompatActivity {
             int lastIndex = chatMessageList.size() - 1;
             ChatMessage lastMessage = chatMessageList.get(lastIndex);
             if (!lastMessage.isUserMessage()) {
-                // Check if it's one of our known animation prefixes
                 boolean isOurAnimationMessage = false;
                 for (String animMsgPrefix : new String[] { "Waking up", "Watching", "Analyzing", "Almost there" }) {
                     if (lastMessage.getMessage().startsWith(animMsgPrefix)) {
@@ -1075,24 +1062,18 @@ public class LectureActivity extends AppCompatActivity {
             if (!lastMessage.isUserMessage()) {
                 chatMessageList.remove(lastIndex);
                 if (chatAdapter != null && chatLayout != null && chatLayout.getVisibility() == VISIBLE) {
-                    // Use notifyItemRemoved for better animation if visible
                     chatAdapter.notifyItemRemoved(lastIndex);
                 } else if (chatAdapter != null) {
-                    // If not visible, a full notifyDataSetChanged might be safer or just no visual
-                    // update needed yet
                     chatAdapter.notifyDataSetChanged();
                 }
             }
         }
     }
 
-    // Renamed from addChatMessage to make its purpose clear (user messages are
-    // always saved)
     private void addUserChatMessage(ChatMessage message) {
         addChatMessageInternal(message, true);
     }
 
-    // New method for AI messages, allows controlling DB save
     private void addAiChatMessage(ChatMessage message, boolean saveToDb) {
         addChatMessageInternal(message, saveToDb);
     }
@@ -1103,12 +1084,8 @@ public class LectureActivity extends AppCompatActivity {
             if (chatLayout != null && chatLayout.getVisibility() == VISIBLE) {
                 chatAdapter.notifyItemInserted(chatMessageList.size() - 1);
                 chatMessagesRecyclerView.scrollToPosition(chatAdapter.getItemCount() - 1);
-            } else {
-                // If chat is not visible, adapter will pick it up when it becomes visible
-                // or during loadChatHistory. A full refresh might be needed then.
             }
 
-            // Hide welcome text as soon as a message is added
             if (findViewById(R.id.welcomeAITxt).getVisibility() == VISIBLE) {
                 findViewById(R.id.welcomeAITxt).setVisibility(GONE);
             }
@@ -1120,20 +1097,17 @@ public class LectureActivity extends AppCompatActivity {
 
     private void saveChatMessageToDb(ChatMessage message) {
         if (ytLink == null || ytLink.equals("Error!") || ytLink.isEmpty()) {
-            Log.w(TAG, "Cannot save chat message, video link (ID) is missing.");
             return;
         }
         ChatMessageEntity entity = new ChatMessageEntity(ytLink, message.getMessage(), message.isUserMessage(),
                 message.getTimestamp());
         Executors.newSingleThreadExecutor().execute(() -> {
             chatDao.insertMessage(entity);
-            Log.d(TAG, "Message saved to DB for video: " + ytLink);
         });
     }
 
     private void loadChatHistory(String videoId) {
         if (videoId == null || videoId.equals("Error!") || videoId.isEmpty()) {
-            Log.w(TAG, "Cannot load chat history, video link (ID) is missing.");
             if (chatMessageList != null)
                 chatMessageList.clear();
             if (chatAdapter != null)
@@ -1164,9 +1138,6 @@ public class LectureActivity extends AppCompatActivity {
                             findViewById(R.id.welcomeAITxt).setVisibility(VISIBLE);
                         }
                     }
-                    Log.d(TAG, "Loaded " + historyMessages.size() + " messages from DB for video: " + videoId);
-                } else {
-                    Log.e(TAG, "chatMessageList is null, cannot display loaded history");
                 }
             });
         });
@@ -1199,8 +1170,6 @@ public class LectureActivity extends AppCompatActivity {
                 String currentSubjectName = (subjectName != null && !subjectName.isEmpty()) ? subjectName
                         : "Unknown Subject";
                 dbHelper.addTimeEntry(currentSubjectName, "lecture", new Date().getTime(), timeSpentMillis);
-                Log.d("TimeTracker", "LectureActivity paused. Subject: " + currentSubjectName + ". Time spent: "
-                        + timeSpentMillis / 1000 + "s. Saved to DB.");
             }
             lectureStartTimeMillis = 0;
         }
@@ -1215,5 +1184,4 @@ public class LectureActivity extends AppCompatActivity {
         }
     }
 
-    private static final String TAG = "LectureActivity"; // Added TAG for logging
 }

@@ -3,28 +3,21 @@ package com.gxdevs.gradify.activities;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.gxdevs.gradify.R;
 import com.gxdevs.gradify.Utils.Utils;
@@ -50,8 +43,6 @@ import java.util.Map;
  * The current user-specific notes are handled by UserNotesActivity.
  */
 public class NotesActivity extends AppCompatActivity {
-
-    private static final String TAG = "NotesActivity";
 
     private TextInputLayout subjectDropdownLayout;
     private MaterialAutoCompleteTextView levelAutocompleteTextView, subjectAutocompleteTextView;
@@ -85,13 +76,10 @@ public class NotesActivity extends AppCompatActivity {
         selectionLayout = findViewById(R.id.selection_layout);
         notesRecyclerView = findViewById(R.id.notes_recycler_view);
         pageTitle = findViewById(R.id.pageTitle);
-        pageTitle = findViewById(R.id.pageTitle);
 
         // Initialize new UI elements
         contributionLayout = findViewById(R.id.contribution_layout);
         contributeButton = findViewById(R.id.contribute_button);
-        // contributionTextView = findViewById(R.id.contribution_textview); // Not
-        // strictly needed if text is static
 
         noteItemList = new ArrayList<>();
 
@@ -117,7 +105,6 @@ public class NotesActivity extends AppCompatActivity {
                         runOnUiThread(() -> setupLevelSelector());
                     }
                 } catch (JSONException e) {
-                    Log.e(TAG, "Error parsing index for subjects: " + e.getMessage());
                     // Fallback to hardcoded
                     subjectsByLevel = Utils.getSubjectsByLevel();
                     setupLevelSelector();
@@ -126,7 +113,6 @@ public class NotesActivity extends AppCompatActivity {
 
             @Override
             public void onError(String error) {
-                Log.e(TAG, "Failed to fetch index for subjects: " + error);
                 subjectsByLevel = Utils.getSubjectsByLevel();
                 setupLevelSelector();
             }
@@ -145,9 +131,6 @@ public class NotesActivity extends AppCompatActivity {
             }
             fetchNotesData(selectedSubject);
         });
-
-        findViewById(R.id.backBtnN).setOnClickListener(v -> onBackPressed());
-        findViewById(R.id.contiNotes).setOnClickListener(v -> sendContribute());
 
         findViewById(R.id.backBtnN).setOnClickListener(v -> onBackPressed());
         findViewById(R.id.contiNotes).setOnClickListener(v -> sendContribute());
@@ -192,8 +175,6 @@ public class NotesActivity extends AppCompatActivity {
     }
 
     private void fetchNotesData(String subject) {
-        Log.d(TAG, "Fetching notes link for subject: " + subject);
-
         // Fetch from index.json
         Utils.fetchIndexData(this, new Utils.DatabaseCallback() {
             @Override
@@ -221,14 +202,12 @@ public class NotesActivity extends AppCompatActivity {
                         showContributionLayout();
                     }
                 } catch (JSONException e) {
-                    Log.e(TAG, "JSON Error: " + e.getMessage());
                     showContributionLayout();
                 }
             }
 
             @Override
             public void onError(String error) {
-                Log.e(TAG, "Index fetch error: " + error);
                 Toast.makeText(NotesActivity.this, "Failed to load index", Toast.LENGTH_SHORT).show();
             }
         });
@@ -243,13 +222,9 @@ public class NotesActivity extends AppCompatActivity {
     }
 
     private void fetchNotesFromJson(String jsonUrl) {
-        Log.d(TAG, "Fetching notes JSON from: " + jsonUrl);
-
         JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, jsonUrl, null,
                 response -> {
                     try {
-                        Log.d(TAG, "Notes JSON response: " + response.toString());
-
                         responseSubject = response.optString("subject", ""); // optional
                         JSONArray contentsArray = response.getJSONArray("contents");
                         noteItemList.clear();
@@ -268,12 +243,10 @@ public class NotesActivity extends AppCompatActivity {
                         contributionLayout.setVisibility(View.GONE);
 
                     } catch (JSONException e) {
-                        Log.e(TAG, "JSON Parsing error: " + e.getMessage());
                         Toast.makeText(NotesActivity.this, "Error parsing notes.", Toast.LENGTH_LONG).show();
                     }
                 },
                 error -> {
-                    Log.e(TAG, "Error loading notes JSON: " + error.getMessage());
                     Toast.makeText(NotesActivity.this, "Failed to load notes file.", Toast.LENGTH_LONG).show();
                 });
 

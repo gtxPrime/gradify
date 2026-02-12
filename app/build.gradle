@@ -19,8 +19,8 @@ android {
         minSdk 24
         //noinspection EditedTargetSdkVersion
         targetSdk 36
-        versionCode 7
-        versionName 'Mark 7'
+        versionCode 8
+        versionName 'Grade 8'
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         

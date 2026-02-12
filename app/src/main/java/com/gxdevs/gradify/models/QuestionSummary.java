@@ -1,11 +1,11 @@
 package com.gxdevs.gradify.models;
 
 public class QuestionSummary {
-    private int actualPosition; // Real index in JSON array
-    private int displayPosition; // Display number (excluding extra info)
-    private double totalMarks;
-    private double userScore;
-    private boolean isExtraInfo;
+    private final int actualPosition; // Real index in JSON array
+    private final int displayPosition; // Display number (excluding extra info)
+    private final double totalMarks;
+    private final double userScore;
+    private final boolean isExtraInfo;
 
     public QuestionSummary(int actualPosition, int displayPosition, double totalMarks, double userScore, boolean isExtraInfo) {
         this.actualPosition = actualPosition;

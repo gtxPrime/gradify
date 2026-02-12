@@ -15,13 +15,15 @@
 
         <ImageView
             android:id="@+id/backBtnSS"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="30dp"
+            android:layout_width="45dp"
             android:layout_marginTop="50dp"
-            android:layout_marginBottom="80dp"
+            android:layout_marginStart="24dp"
+            android:layout_height="45dp"
+            android:background="@drawable/white_circle_bg"
             android:contentDescription="@string/back"
-            android:src="@drawable/ic_back"
+            android:elevation="2dp"
+            android:padding="8dp"
+            android:src="@drawable/ic_left"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:tint="@color/textIcons" />
@@ -31,14 +33,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
-            android:layout_marginTop="48dp"
+            android:layout_marginStart="16dp"
             android:fontFamily="@font/inter18regular"
             android:text="@string/subjects"
             android:textColor="@color/textIcons"
             android:textSize="24sp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/backBtnSS"
             app:layout_constraintStart_toEndOf="@+id/backBtnSS"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@+id/backBtnSS" />
 
         <ImageView
             android:id="@+id/menuS"
@@ -135,12 +138,12 @@
         layout="@layout/custom_nav_subjects"
         android:layout_width="280dp"
         android:layout_height="match_parent"
-        android:visibility="gone"
         android:layout_gravity="end"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="10dp"
-        android:elevation="20dp"/>
+        android:elevation="20dp"
+        android:visibility="gone" />
 
 </FrameLayout>
 

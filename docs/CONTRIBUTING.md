@@ -97,22 +97,33 @@ Thank you for your interest in contributing to Gradify! This guide will help you
 
 3. **Submit via pull request**
 
-### Adding Formulas
+### Updating Grade Calculation Formulas
 
-Edit `data/formulas.json`:
+The grade calculation logic is powered by `data/formulas.json`. These formulas are used by the `GradeCalculationFragment` to dynamically generate input fields and calculate subject totals.
+
+**Steps to edit/add a formula:**
+
+1. **Locate the subject**: Open `data/formulas.json` and find the subject entry.
+2. **Define `inputs`**: Add an array of strings for each variable required (e.g., `GAA`, `Qz1`, `Qz2`, `F`, `Bonus`).
+   - _Note_: These strings will be used as labels for the input fields in the app.
+3. **Write the `formula`**:
+   - Use standard mathematical operators: `+`, `-`, `*`, `/`.
+   - For "Best of" logic, use `Math.max(a, b)` or `Math.min(a, b)`.
+   - Ensure every variable used in the formula is present in the `inputs` array.
+   - Example: `"0.1 * GAA + Math.max(0.6 * F + 0.2 * Math.max(Qz1, Qz2), 0.4 * F + 0.2 * Qz1 + 0.3 * Qz2)"`
+4. **Set `type`**: Use `"subject"` or `"project"`.
+
+**Full Example:**
 
 ```json
-{
-  "category": "Mathematics",
-  "formulas": [
-    {
-      "name": "Quadratic Formula",
-      "formula": "x = (-b ± √(b²-4ac)) / 2a",
-      "description": "Solves ax² + bx + c = 0"
-    }
-  ]
+"Stats 1": {
+  "type": "subject",
+  "inputs": ["GAA", "Qz1", "Qz2", "F", "Bonus"],
+  "formula": "0.1 * GAA + Math.max(0.6 * F + 0.2 * Math.max(Qz1, Qz2), 0.4 * F + 0.2 * Qz1 + 0.3 * Qz2) + Bonus"
 }
 ```
+
+For more details on how these are processed, check the **[Grade Calculation & Formulas](../README.md#-%EF%B8%8F-grade-calculation--formulas)** section in the main README.
 
 ---
 
@@ -145,7 +156,7 @@ Edit `data/formulas.json`:
 
 ## 🐛 Reporting Bugs
 
-Use [GitHub Issues](https://github.com/gtxPrime/gradify/issues) with:
+Use [GitHub Issues](https://github.com/gtxPrime/Gradify-App/issues) with:
 
 - Clear title
 - Steps to reproduce

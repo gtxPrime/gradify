@@ -24,8 +24,9 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:background="@drawable/white_circle_bg"
+            android:contentDescription="@string/back"
             android:elevation="2dp"
-            android:padding="12dp"
+            android:padding="8dp"
             android:src="@drawable/ic_left"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -39,7 +40,7 @@
             android:fontFamily="@font/kanit"
             android:text="@string/stats"
             android:textColor="@color/textIcons"
-            android:textSize="32sp"
+            android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/backBtnS"
             app:layout_constraintStart_toEndOf="@+id/backBtnS"
@@ -126,13 +127,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
-        android:elevation="4dp"
         android:id="@+id/date_nav_row"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:elevation="4dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:layout_marginTop="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/view_selector_container">

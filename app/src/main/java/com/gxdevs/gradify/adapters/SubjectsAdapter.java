@@ -49,7 +49,7 @@ public class SubjectsAdapter extends RecyclerView.Adapter<SubjectsAdapter.Subjec
                 holder.patterHolder.setImageResource(R.drawable.ic_bot);
                 break;
             case "DB":
-                holder.patterHolder.setImageResource(R.drawable.database);
+                holder.patterHolder.setImageResource(R.drawable.ic_database);
                 break;
             case "App":
                 holder.patterHolder.setImageResource(R.drawable.ic_code);

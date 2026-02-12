@@ -1,7 +1,6 @@
 package com.gxdevs.gradify.adapters;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,9 +16,9 @@ import java.util.List;
 
 public class QuestionSummaryAdapter extends RecyclerView.Adapter<QuestionSummaryAdapter.ViewHolder> {
 
-    private List<QuestionSummary> questions;
-    private Context context;
-    private OnQuestionClickListener listener;
+    private final List<QuestionSummary> questions;
+    private final Context context;
+    private final OnQuestionClickListener listener;
 
     public interface OnQuestionClickListener {
         void onQuestionClick(int position);
@@ -73,8 +72,8 @@ public class QuestionSummaryAdapter extends RecyclerView.Adapter<QuestionSummary
         } else if (question.isPartiallyCorrect()) {
             holder.questionStatusTextView.setText("Partially Correct");
             holder.questionStatusTextView.setTextColor(android.graphics.Color.parseColor("#FFA000")); // Darker amber
-                                                                                                      // for better
-                                                                                                      // contrast
+            // for better
+            // contrast
         } else {
             holder.questionStatusTextView.setText("Incorrect");
             holder.questionStatusTextView

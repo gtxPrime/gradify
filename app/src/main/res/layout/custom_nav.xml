@@ -28,6 +28,7 @@
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/nav_profile_image"
                 android:layout_width="55dp"
+                android:padding="4dp"
                 android:layout_height="55dp"
                 android:contentDescription="@string/profile_picture"
                 android:src="@drawable/ic_profile_placeholder"
@@ -104,7 +105,7 @@
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:contentDescription="@string/exam_dates"
-                        android:src="@drawable/ic_date"
+                        android:src="@drawable/ic_calendar"
                         app:tint="@color/textIcons" />
 
                     <TextView
@@ -281,7 +282,7 @@
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:contentDescription="@string/paradox"
-                        android:src="@drawable/ic_fastfood"
+                        android:src="@drawable/ic_martini"
                         app:tint="@color/textIcons" />
 
                     <TextView
@@ -311,7 +312,7 @@
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:contentDescription="@string/margazhi"
-                        android:src="@drawable/ic_computer"
+                        android:src="@drawable/ic_gamepad"
                         app:tint="@color/textIcons" />
 
                     <TextView
@@ -341,7 +342,7 @@
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:contentDescription="@string/contribute"
-                        android:src="@drawable/ic_handshake"
+                        android:src="@drawable/ic_heart"
                         app:tint="@color/textIcons" />
 
                     <TextView
@@ -371,7 +372,7 @@
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:contentDescription="@string/developers"
-                        android:src="@drawable/ic_pin"
+                        android:src="@drawable/ic_circle_pile"
                         app:tint="@color/textIcons" />
 
                     <TextView
@@ -380,6 +381,36 @@
                         android:layout_marginStart="16dp"
                         android:fontFamily="@font/kanit"
                         android:text="@string/developers"
+                        android:textColor="@color/textIcons"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <!-- Navigation Item: GitHub -->
+                <LinearLayout
+                    android:id="@+id/nav_github"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/nav_item_selector"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="12dp">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:contentDescription="GitHub"
+                        android:src="@drawable/ic_github"
+                        app:tint="@color/textIcons" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:fontFamily="@font/kanit"
+                        android:text="GitHub"
                         android:textColor="@color/textIcons"
                         android:textSize="16sp" />
                 </LinearLayout>
@@ -418,7 +449,7 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:contentDescription="@string/donation"
-                    android:src="@drawable/ic_handshake"
+                    android:src="@drawable/ic_indian_rupee"
                     app:tint="@color/green" />
 
                 <TextView
@@ -448,7 +479,7 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:contentDescription="@string/logout"
-                    android:src="@android:drawable/ic_lock_power_off"
+                    android:src="@drawable/ic_logout"
                     app:tint="@color/red" />
 
                 <TextView

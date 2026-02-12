@@ -96,7 +96,6 @@ public class SubjectsActivity extends AppCompatActivity implements SubjectsAdapt
 
         // Setup RecyclerView
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-        // Optimized spacing for modern look: 16dp between items and at edges
         recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, Utils.dpToPx(this, 16), true));
         adapter = new SubjectsAdapter(subjects, this);
         recyclerView.setAdapter(adapter);
@@ -142,10 +141,10 @@ public class SubjectsActivity extends AppCompatActivity implements SubjectsAdapt
             blurView.setVisibility(View.VISIBLE);
             blurView.animate().alpha(1f).setDuration(300).setListener(null);
 
-            customNavDrawer.setTranslationX(navDrawerWidthInPixels); // Start from right
+            customNavDrawer.setTranslationX(navDrawerWidthInPixels);
             customNavDrawer.setVisibility(View.VISIBLE);
             customNavDrawer.animate()
-                    .translationX(0f) // Animate to 0
+                    .translationX(0f)
                     .setDuration(300)
                     .setListener(null);
         } else {
@@ -266,7 +265,7 @@ public class SubjectsActivity extends AppCompatActivity implements SubjectsAdapt
         startActivity(intent);
     }
 
-    public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
+    public static class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
         private final int spanCount;
         private final int spacing;
         private final boolean includeEdge;

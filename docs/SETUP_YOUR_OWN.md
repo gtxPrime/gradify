@@ -17,7 +17,7 @@ Want to create your own version of Gradify for your institution? Follow this gui
 
 ### 1. Fork the Repository
 
-Click "Fork" on [GitHub](https://github.com/gtxPrime/gradify)
+Click "Fork" on [GitHub](https://github.com/gtxPrime/Gradify-App)
 
 ### 2. Clone Your Fork
 
@@ -119,7 +119,7 @@ Stay tuned!
 
 ## 🆘 Need Help?
 
-Open an issue on [GitHub](https://github.com/gtxPrime/gradify/issues)
+Open an issue on [GitHub](https://github.com/gtxPrime/Gradify-App/issues)
 
 ---
 

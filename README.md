@@ -71,13 +71,13 @@ Whether you're tackling Statistics, mastering Python, or diving into Machine Lea
 - Encrypted content delivery for security
 - Practice mode and exam simulation
 
-### 🧮 **Formula Sheet**
+### 🧮 **Grade Calculation & Formulas**
 
-- Comprehensive formula database for Math, Statistics, and Science
-- Quick search and categorization
-- Bookmark frequently used formulas
-- Visual representations with proper formatting
-- Offline access
+- **Dynamic Grade Predictor**: Comprehensive database of marking schemes for all IITM BS subjects.
+- **Subject-Specific Inputs**: Automatically generates input fields (GAA, Quizzes, End Term, etc.) based on the subject's specific criteria.
+- **Real-time Prediction**: Uses `mXparser` to calculate total scores and predict final grades (S, A, B, etc.) instantly.
+- **Extensible Database**: Easily update marking schemes as they change each term via `formulas.json`.
+- **Visual Formatting**: Formulas are presented clearly with proper mathematical notation.
 
 ### 🤖 **AI-Powered Study Assistant**
 
@@ -208,8 +208,34 @@ We love contributions! Whether you're adding content, fixing bugs, or improving 
 
 - **Add Lectures**: Submit new video lecture links
 - **Create Quizzes**: Add questions for any subject
-- **Update Formulas**: Contribute to the formula database
+- **Update Grade Formulas**: Contribute to the `formulas.json` database to keep marking schemes up-to-date.
 - **Improve Notes**: Share study materials and notes
+
+#### 📐 **Updating Grade Calculation Formulas**
+
+The app uses `data/formulas.json` to dynamically generate the UI and calculate grades in the `GradeCalculationFragment`.
+
+**How to update a formula:**
+
+1. Locate the subject in `data/formulas.json`.
+2. **`inputs`**: An array of strings representing the variables (e.g., `"Qz1"`, `"F"`). These will become the labels for the input fields.
+3. **`formula`**: A mathematical string using the inputs.
+   - Use standard operators (`+`, `-`, `*`, `/`).
+   - Use `Math.max(a, b)` or `Math.min(a, b)` for best-of logic.
+   - The app's parser (`mXparser`) will automatically map your `inputs` to variables in this string.
+4. **`type`**: Either `"subject"` or `"project"` (used for categorization).
+
+**Example Entry:**
+
+```json
+"Stats 1": {
+  "type": "subject",
+  "inputs": ["GAA", "Qz1", "Qz2", "F", "Bonus"],
+  "formula": "0.1 * GAA + Math.max(0.6 * F + 0.2 * Math.max(Qz1, Qz2), 0.4 * F + 0.2 * Qz1 + 0.3 * Qz2) + Bonus"
+}
+```
+
+_Note: Ensure variable names in the `formula` string exactly match those in the `inputs` array._
 
 See [Contributing Guide](docs/CONTRIBUTING.md) for detailed instructions.
 

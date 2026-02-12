@@ -2,11 +2,9 @@ package com.gxdevs.gradify.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -28,17 +26,12 @@ import org.mariuszgromada.math.mxparser.Argument;
 import org.mariuszgromada.math.mxparser.Expression;
 import org.mariuszgromada.math.mxparser.PrimitiveElement;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class GradeCalculationFragment extends Fragment {
-
-    private static final String TAG = "GradeCalcFragment";
 
     private MaterialAutoCompleteTextView levelDropdown;
     private MaterialAutoCompleteTextView subjectDropdown;
@@ -50,7 +43,6 @@ public class GradeCalculationFragment extends Fragment {
 
     private Map<String, List<String>> subjectsByLevel;
     private List<SubjectFormula> allFormulas;
-    private Map<String, String> currentFormulaInputs; // To hold EditText values for calculation
     private Map<String, EditText> inputEditTexts = new HashMap<>(); // To store EditTexts for later retrieval
 
     // Data structure for holding formula details
@@ -89,8 +81,6 @@ public class GradeCalculationFragment extends Fragment {
         levelHolder = view.findViewById(R.id.levelHolder);
         subjectHolder = view.findViewById(R.id.subjectHolder);
 
-        currentFormulaInputs = new HashMap<>();
-
         loadFormulas(requireContext());
         subjectsByLevel = Utils.getSubjectsByLevel();
 
@@ -111,7 +101,6 @@ public class GradeCalculationFragment extends Fragment {
             public void onReady(JSONObject database) {
                 try {
                     if (!database.has("formulas")) {
-                        Log.e(TAG, "Database missing 'formulas' object");
                         resultTextView.setText("Error: No formulas found.");
                         return;
                     }
@@ -123,12 +112,6 @@ public class GradeCalculationFragment extends Fragment {
                     for (int i = 0; i < names.length(); i++) {
                         String subjectName = names.getString(i);
                         JSONObject subjectJson = formulasObj.getJSONObject(subjectName);
-
-                        // "type" might be optional or different in new JSON?
-                        // In merge script I just put the object from array into dict.
-                        // Original JSON had "subject", "type", "formula", "inputs".
-                        // New JSON dict value has "type", "formula", "inputs". "subject" key is removed
-                        // from body and used as key.
 
                         String type = subjectJson.optString("type", "subject");
                         String formulaStr = subjectJson.getString("formula");
@@ -142,29 +125,33 @@ public class GradeCalculationFragment extends Fragment {
                     }
 
                     // Refresh UI
-                    requireActivity().runOnUiThread(() -> {
-                        resultCard.setVisibility(View.GONE);
-                        resultTextView.setText("");
-                        setupLevelSpinner(); // Re-setup to ensure subjects are filtered correctly
-                    });
+                    if (isAdded()) {
+                        requireActivity().runOnUiThread(() -> {
+                            resultCard.setVisibility(View.GONE);
+                            resultTextView.setText("");
+                            setupLevelSpinner(); // Re-setup to ensure subjects are filtered correctly
+                        });
+                    }
 
                 } catch (JSONException e) {
-                    Log.e(TAG, "Error parsing formulas JSON", e);
-                    requireActivity().runOnUiThread(() -> resultTextView.setText("Error: Could not parse formulas."));
+                    if (isAdded()) {
+                        requireActivity()
+                                .runOnUiThread(() -> resultTextView.setText("Error: Could not parse formulas."));
+                    }
                 }
             }
 
             @Override
             public void onError(String error) {
-                Log.e(TAG, "Error fetching formulas: " + error);
-                requireActivity().runOnUiThread(() -> resultTextView.setText("Error: " + error));
+                if (isAdded()) {
+                    requireActivity().runOnUiThread(() -> resultTextView.setText("Error: " + error));
+                }
             }
         });
     }
 
     private void setupLevelSpinner() {
         if (subjectsByLevel == null) {
-            Log.e(TAG, "subjectsByLevel is null. Cannot setup level spinner.");
             return;
         }
         List<String> levels = new ArrayList<>(subjectsByLevel.keySet());
@@ -181,7 +168,6 @@ public class GradeCalculationFragment extends Fragment {
 
     private void setupSubjectSpinner(String selectedLevel) {
         if (subjectsByLevel == null || allFormulas == null) {
-            Log.e(TAG, "Data not loaded for subject spinner.");
             return;
         }
         List<String> subjectsForLevel = subjectsByLevel.get(selectedLevel);
@@ -248,8 +234,7 @@ public class GradeCalculationFragment extends Fragment {
                         break;
                 }
 
-                TextInputLayout textInputLayout = new TextInputLayout(requireContext(), null,
-                        com.google.android.material.R.style.Widget_MaterialComponents_TextInputLayout_FilledBox);
+                TextInputLayout textInputLayout = new TextInputLayout(requireContext(), null);
                 textInputLayout.setHint(inputName);
                 textInputLayout.setHintEnabled(true);
                 textInputLayout.setBoxBackgroundColor(getResources().getColor(R.color.white));
@@ -313,7 +298,6 @@ public class GradeCalculationFragment extends Fragment {
         for (String inputName : currentSubjectFormula.inputs) {
             EditText et = inputEditTexts.get(inputName);
             if (et == null) {
-                Log.e(TAG, "EditText not found for input: " + inputName);
                 resultTextView.setText("Internal error: Input field missing for " + inputName);
                 allInputsValid = false;
                 break;
@@ -354,20 +338,13 @@ public class GradeCalculationFragment extends Fragment {
 
         String formulaString = getString(currentSubjectFormula, selectedSubjectName);
 
-        Log.d(TAG, "Processing formula: " + formulaString);
         Expression expression = new Expression(formulaString, arguments.toArray(new PrimitiveElement[0]));
-
-        // Add custom functions if not added globally or if they need to be
-        // expression-specific
-        // expression.addFunctions(new SecondBestFunction()); // Already added globally
-        // in onViewCreated
 
         if (expression.checkSyntax()) {
             double result = expression.calculate();
             if (Double.isNaN(result)) {
                 resultCard.setVisibility(View.VISIBLE);
                 resultTextView.setText("Calculation error (NaN).");
-                Log.e(TAG, "Calculation resulted in NaN. Message: " + expression.getErrorMessage());
             } else {
                 String grade = getString(result);
                 String score = String.format(java.util.Locale.US, "Result: %.2f", result) + " / Grade: " + grade;
@@ -376,8 +353,6 @@ public class GradeCalculationFragment extends Fragment {
                 resultTextView.setText(score);
             }
         } else {
-            String errorMessage = expression.getErrorMessage();
-            Log.e(TAG, "Syntax error in formula: " + formulaString + " Error: " + errorMessage);
             resultCard.setVisibility(View.VISIBLE);
             resultTextView.setText("Error in formula syntax.");
         }
@@ -391,19 +366,11 @@ public class GradeCalculationFragment extends Fragment {
         formulaString = formulaString.replace("Math.min", "min");
         formulaString = formulaString.replace("Best(", "max("); // Assuming 'Best' is equivalent to 'max'
 
-        // Specific handling for "Deep Learning Practice" formula parts if they exist
         if (selectedSubjectName.equals("Deep Learning Practice")) {
-            // Ensure NPPE1, NPPE2, NPPE3 are defined if SecondBest or Lowest are used
             formulaString = formulaString.replace("Lowest", "min(NPPE1, NPPE2, NPPE3)");
-            // If SecondBest refers to NPPE1,2,3 specifically
             formulaString = formulaString.replace("Second Best", "SecondBest(NPPE1, NPPE2, NPPE3)");
         }
 
-        // Handle potential typos like OPEE1 -> OPE1 by replacing based on actual input
-        // names
-        // This is a bit simplistic and assumes naming conventions.
-        // A more robust way would be to parse the formula and check each variable
-        // against inputNames.
         if (selectedSubjectName.equals("MLP")) {
             formulaString = formulaString.replace("OPEE1", "OPE1");
             formulaString = formulaString.replace("OPEE2", "OPE2");

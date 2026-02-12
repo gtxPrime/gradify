@@ -6,6 +6,7 @@ import static android.view.View.VISIBLE;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -21,7 +22,6 @@ import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import androidx.appcompat.widget.AppCompatRadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,6 +32,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -45,6 +46,8 @@ import com.bumptech.glide.load.DecodeFormat;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
 import com.github.chrisbanes.photoview.PhotoView;
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.radiobutton.MaterialRadioButton;
 import com.google.android.material.textfield.TextInputEditText;
@@ -99,9 +102,9 @@ public class PYQQuestionActivity extends AppCompatActivity {
     private final Map<Integer, Integer> userSingleMcqAnswers = new HashMap<>();
     private final Map<Integer, Double> questionScores = new HashMap<>();
     private final Map<Integer, Set<Integer>> extraInfoToQuestionsMap = new HashMap<>(); // Maps extra info indices to
-                                                                                        // question indices
+    // question indices
     private final Map<Integer, Integer> questionToExtraInfoMap = new HashMap<>(); // Maps question indices to extra info
-                                                                                  // indices
+    // indices
     private int totalQuestions = 0;
     private int totalDisplayQuestions = 0;
     private double totalMarks = 0;
@@ -119,14 +122,12 @@ public class PYQQuestionActivity extends AppCompatActivity {
 
         Utils.setPad(findViewById(R.id.containerPYQQuestion), "bottom", this);
 
-        // Get intent data
         Intent intent = getIntent();
         isExamMode = intent.getBooleanExtra("EXAM_MODE", false);
         subjectNameForTimeTracking = intent.getStringExtra("SUBJECT");
         subjectNameForTimeTracking = subjectNameForTimeTracking.replace("_", " ");
         if (subjectNameForTimeTracking.isEmpty()) {
             subjectNameForTimeTracking = "Unknown Subject"; // Default if not provided
-            Log.w("TimeTracker", "Subject not passed via intent for PYQQuestionActivity. Using default.");
         }
         link = intent.getStringExtra("link");
 
@@ -148,8 +149,6 @@ public class PYQQuestionActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         pyqStartTimeMillis = System.currentTimeMillis();
-        Log.d("TimeTracker",
-                "PYQQuestionActivity resumed for subject: " + subjectNameForTimeTracking + " at " + pyqStartTimeMillis);
     }
 
     private void initViews() {
@@ -235,7 +234,7 @@ public class PYQQuestionActivity extends AppCompatActivity {
                 try {
                     showExtraInfoDialog(extraInfoIndex);
                 } catch (JSONException e) {
-                    Log.e("ExtraInfoError", "Error showing extra info: " + e.getMessage());
+                    // Ignored
                 }
             }
         });
@@ -246,7 +245,8 @@ public class PYQQuestionActivity extends AppCompatActivity {
             com.google.android.material.button.MaterialButton btnCancel = abortView.findViewById(R.id.btnCancelAbort);
             com.google.android.material.button.MaterialButton btnAbort = abortView.findViewById(R.id.btnConfirmAbort);
 
-            androidx.appcompat.app.AlertDialog dialog = new com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
+            androidx.appcompat.app.AlertDialog dialog = new com.google.android.material.dialog.MaterialAlertDialogBuilder(
+                    this)
                     .setView(abortView)
                     .setCancelable(true)
                     .create();
@@ -277,19 +277,14 @@ public class PYQQuestionActivity extends AppCompatActivity {
                         questions = quizData.getJSONArray("questions");
                         totalQuestions = questions.length();
 
-                        // Process extra info sections and map them to questions
                         processExtraInfoSections();
 
-                        // Calculate display question count (excluding extra info sections)
                         calculateDisplayQuestionCount();
 
-                        // Update paper name
                         paperNameTextView.setText(subjectNameForTimeTracking);
 
-                        // Calculate total marks
                         calculateTotalMarks();
 
-                        // Start timer if in exam mode
                         if (isExamMode) {
                             // Assuming "total_time_minutes" in JSON might be a string.
                             String timeStr = paperInfo.getString("total_time_minutes");
@@ -303,12 +298,10 @@ public class PYQQuestionActivity extends AppCompatActivity {
                         showQuestion(0);
                     } catch (JSONException e) {
                         Toast.makeText(this, "Error parsing data: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                        Log.e("JSONError", Objects.requireNonNull(e.getMessage()));
                     }
                 },
                 error -> {
                     Toast.makeText(this, "Error fetching quiz data: " + error.getMessage(), Toast.LENGTH_SHORT).show();
-                    Log.e("APIError", error.toString());
                 });
 
         queue.add(jsonObjectRequest);
@@ -426,7 +419,6 @@ public class PYQQuestionActivity extends AppCompatActivity {
 
         } catch (JSONException e) {
             Toast.makeText(this, "Error loading question: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-            Log.e("QuestionError", Objects.requireNonNull(e.getMessage()));
         }
     }
 
@@ -440,20 +432,14 @@ public class PYQQuestionActivity extends AppCompatActivity {
             extraInfoView = null;
         }
 
-        // Clear any existing correct answer indicators
         clearCorrectAnswerIndicators();
 
-        // Show the question card
         questionCardView.setVisibility(VISIBLE);
 
-        // Get the question number directly from the JSON
         int questionNumber = question.getInt("question_number");
 
-        // Update progress text
-        progressTextView
-                .setText(String.format(Locale.getDefault(), "Question %d/%d", questionNumber, totalDisplayQuestions));
+        progressTextView.setText(String.format(Locale.getDefault(), "Question %d/%d", questionNumber, totalDisplayQuestions));
 
-        // Show/hide submit button on last question
         updateNavigationButtons();
 
         // Update question info
@@ -765,7 +751,7 @@ public class PYQQuestionActivity extends AppCompatActivity {
             // Hide the separate submit button completely
             submitQuizButton.setVisibility(GONE);
         } catch (JSONException e) {
-            Log.e("NavigationError", Objects.requireNonNull(e.getMessage()));
+            Log.d("Error", e.getMessage());
         }
     }
 
@@ -776,7 +762,6 @@ public class PYQQuestionActivity extends AppCompatActivity {
 
         // Get the current selected answer for this question
         Integer selectedOption = userSingleMcqAnswers.get(currentQuestionIndex);
-        Log.d("RadioButtonSetup", "Question " + currentQuestionIndex + " selected option: " + selectedOption);
 
         // Track all radio buttons to implement custom RadioGroup behavior
         List<MaterialRadioButton> allRadioButtons = new ArrayList<>();
@@ -787,22 +772,14 @@ public class PYQQuestionActivity extends AppCompatActivity {
             radioButton.setId(View.generateViewId());
             radioButton.setText(Html.fromHtml(option.getString("text").trim(), Html.FROM_HTML_MODE_LEGACY));
             radioButton.setTextColor(ContextCompat.getColor(this, R.color.textIcons));
-            radioButton.setTypeface(androidx.core.content.res.ResourcesCompat.getFont(this, R.font.kanit));
+            radioButton.setTypeface(ResourcesCompat.getFont(this, R.font.kanit));
             radioButton.setTextSize(16); // Increased text size
             radioButton.setTag(i);
-            radioButton.setButtonTintList(android.content.res.ColorStateList.valueOf(ContextCompat.getColor(this, R.color.textIcons)));
+            radioButton.setButtonTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.textIcons)));
 
-            // Add to our tracking list
             allRadioButtons.add(radioButton);
 
-            
-            // Check if this option is selected
-            if (selectedOption != null && selectedOption == i) {
-                radioButton.setChecked(true);
-                Log.d("RadioButtonSetup", "Setting option " + i + " checked");
-            } else {
-                radioButton.setChecked(false);
-            }
+            radioButton.setChecked(selectedOption != null && selectedOption == i);
 
             // Custom click listener for all radio buttons to implement mutual exclusion
             int finalI = i;
@@ -814,12 +791,9 @@ public class PYQQuestionActivity extends AppCompatActivity {
                     }
                 }
 
-                // Ensure this one is checked
                 radioButton.setChecked(true);
 
-                // Save the selection
                 userSingleMcqAnswers.put(currentQuestionIndex, finalI);
-                Log.d("RadioButton", "Selected option " + finalI + " for question " + currentQuestionIndex);
             });
 
             // If the option has an image, add it
@@ -875,7 +849,7 @@ public class PYQQuestionActivity extends AppCompatActivity {
                             showImageFullScreen(imageView);
                         }
                     } catch (JSONException e) {
-                        Log.e("ImageError", "Error showing image: " + e.getMessage());
+                        // Ignored
                     }
                 });
 
@@ -895,8 +869,6 @@ public class PYQQuestionActivity extends AppCompatActivity {
             }
         }
 
-        // We don't need the RadioGroup's listener anymore since we handle selection in
-        // the RadioButtons
         singleChoiceGroup.setOnCheckedChangeListener(null);
     }
 
@@ -906,29 +878,26 @@ public class PYQQuestionActivity extends AppCompatActivity {
 
         // Get existing selected options for this question
         List<Integer> selectedOptions = userMcqAnswers.getOrDefault(currentQuestionIndex, new ArrayList<>());
-        Log.d("CheckboxSetup", "Question " + currentQuestionIndex + " selected options: " + selectedOptions);
 
         for (int i = 0; i < options.length(); i++) {
             JSONObject option = options.getJSONObject(i);
             CheckBox checkBox = new CheckBox(this);
             checkBox.setText(Html.fromHtml(option.getString("text").trim(), Html.FROM_HTML_MODE_LEGACY));
             checkBox.setTextColor(ContextCompat.getColor(this, R.color.textIcons));
-            checkBox.setTypeface(androidx.core.content.res.ResourcesCompat.getFont(this, R.font.kanit));
-            checkBox.setButtonTintList(android.content.res.ColorStateList.valueOf(ContextCompat.getColor(this, R.color.textIcons)));
+            checkBox.setTypeface(ResourcesCompat.getFont(this, R.font.kanit));
+            checkBox.setButtonTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.textIcons)));
             checkBox.setTextSize(16); // Increased text size
             checkBox.setTag(i);
 
             // Set checked state from saved selections
             boolean isChecked = selectedOptions.contains(i);
             checkBox.setChecked(isChecked);
-            Log.d("CheckboxSetup", "Option " + i + " checked: " + isChecked);
 
             // Checkbox click listener (not change listener)
             int finalI = i;
             checkBox.setOnClickListener(v -> {
                 boolean newCheckedState = checkBox.isChecked();
                 updateMultipleChoiceSelection(finalI, newCheckedState);
-                Log.d("Checkbox", "Option " + finalI + " " + (newCheckedState ? "checked" : "unchecked"));
             });
 
             // If the option has an image, add it
@@ -979,9 +948,7 @@ public class PYQQuestionActivity extends AppCompatActivity {
                 // Make the image clickable for full-screen viewing
                 imageView.setOnClickListener(v -> showImageFullScreen(imageView));
 
-                // Make the container clickable to toggle the checkbox
                 container.setOnClickListener(v -> {
-                    // Trigger the checkbox's click handler
                     checkBox.performClick();
                 });
 
@@ -998,7 +965,6 @@ public class PYQQuestionActivity extends AppCompatActivity {
     }
 
     private void updateMultipleChoiceSelection(int optionIndex, boolean isSelected) {
-        // Get or create the list of selected options for this question
         List<Integer> selectedOptions = userMcqAnswers.getOrDefault(currentQuestionIndex, new ArrayList<>());
 
         // Update the list
@@ -1012,10 +978,6 @@ public class PYQQuestionActivity extends AppCompatActivity {
 
         // Save the updated list
         userMcqAnswers.put(currentQuestionIndex, selectedOptions);
-
-        Log.d("MultipleChoice", "Updated selections for question " + currentQuestionIndex +
-                ": option " + optionIndex + " " + (isSelected ? "selected" : "deselected") +
-                ", current selections: " + selectedOptions);
     }
 
     private void setupTextInputQuestion(JSONObject question) throws JSONException {
@@ -1043,8 +1005,7 @@ public class PYQQuestionActivity extends AppCompatActivity {
             LinearLayout container = (LinearLayout) textInputGroup.getParent();
 
             // Add a view to show the correct answer
-            View correctAnswerView = LayoutInflater.from(this).inflate(
-                    R.layout.item_correct_answer, container, false);
+            View correctAnswerView = LayoutInflater.from(this).inflate(R.layout.item_correct_answer, container, false);
             TextView correctAnswerInfo = correctAnswerView.findViewById(R.id.correctAnswerInfoTextView);
             String correctAns = "Correct answer: " + correctAnswer;
             correctAnswerInfo.setText(Html.fromHtml(correctAns.trim(), Html.FROM_HTML_MODE_LEGACY));
@@ -1064,10 +1025,9 @@ public class PYQQuestionActivity extends AppCompatActivity {
 
     private void showPreviousQuestion() {
         if (currentQuestionIndex > 0) {
-            // Save current answers
+            // Save current answer
             saveCurrentAnswers();
 
-            // Find the previous non-extra-info question
             int prevIndex = currentQuestionIndex - 1;
             showQuestion(prevIndex);
         }
@@ -1088,7 +1048,6 @@ public class PYQQuestionActivity extends AppCompatActivity {
         try {
             JSONObject question = questions.getJSONObject(currentQuestionIndex);
 
-            // Don't save answers for extra info
             if (isExtraInfoSection(question)) {
                 return;
             }
@@ -1096,12 +1055,10 @@ public class PYQQuestionActivity extends AppCompatActivity {
             String questionType = question.getString("question_type");
 
             if (!questionType.equals("mcq")) {
-                // Save text answer
                 saveTextAnswer();
             }
-            // MCQ answers are saved by their respective listeners
         } catch (JSONException e) {
-            Log.e("SaveAnswerError", Objects.requireNonNull(e.getMessage()));
+            Log.d("Error", e.getMessage());
         }
     }
 
@@ -1115,18 +1072,9 @@ public class PYQQuestionActivity extends AppCompatActivity {
             }
 
             String questionType = question.getString("question_type");
-            Log.d("RestoreAnswers",
-                    "Restoring answers for question " + currentQuestionIndex + " of type " + questionType);
 
-            if (questionType.equals("mcq")) {
-                // We don't need to manually restore MCQ answers here anymore
-                // The setup methods now handle this when creating the UI elements
-                // This avoids conflicts between programmatic changes and listeners
-                Log.d("RestoreAnswers", "MCQ answers will be set directly during setup");
-            } else {
-                // Restore text answer
+            if (!questionType.equals("mcq")) {
                 String answer = userTextAnswers.get(currentQuestionIndex);
-                Log.d("RestoreAnswers", "Text answer: " + (answer != null ? answer : "null"));
                 if (answer != null) {
                     answerEditText.setText(answer);
                 } else {
@@ -1134,7 +1082,7 @@ public class PYQQuestionActivity extends AppCompatActivity {
                 }
             }
         } catch (JSONException e) {
-            Log.e("RestoreAnswerError", Objects.requireNonNull(e.getMessage()));
+            Log.d("Error", e.getMessage());
         }
     }
 
@@ -1148,7 +1096,6 @@ public class PYQQuestionActivity extends AppCompatActivity {
                 double score = questionScores.get(currentQuestionIndex);
                 int totalMarks = question.getInt("marks");
 
-                // Count correct answers to determine if it's multiple or single choice
                 int correctCount = 0;
                 for (int i = 0; i < options.length(); i++) {
                     if (options.getJSONObject(i).getBoolean("is_correct")) {
@@ -1202,11 +1149,9 @@ public class PYQQuestionActivity extends AppCompatActivity {
                 }
             }
         }
-        // Text answer - already handled in setupTextInputQuestion
     }
 
     private void checkAnswer() {
-        // Save the current answer first, especially for text inputs
         saveCurrentAnswers();
 
         try {
@@ -1268,23 +1213,19 @@ public class PYQQuestionActivity extends AppCompatActivity {
                         // Check if fully correct
                         if (selectedOptions.size() == correctOptions.size()
                                 && new HashSet<>(selectedOptions).containsAll(correctOptions)) {
-                            isCorrect = true;
                             score = totalMarks; // Ensure full marks for perfect answer
                         }
                     }
                 } else if (correctOptions.size() == 1) {
-                    // Single choice validation
                     Integer selectedOption = userSingleMcqAnswers.get(currentQuestionIndex);
                     int correctOption = correctOptions.get(0);
                     correctAnswerStr = "Correct Answer: " + options.getJSONObject(correctOption).getString("text");
 
                     if (selectedOption != null && selectedOption == correctOption) {
-                        isCorrect = true;
                         score = totalMarks;
                     }
                 }
             } else {
-                // Text input validation
                 String userAnswer = userTextAnswers.get(currentQuestionIndex);
                 String correctAnswer = question.getString("correct_answer_text").trim();
                 correctAnswerStr = "Correct Answer: " + (correctAnswer.isEmpty() ? "[Empty]" : correctAnswer);
@@ -1293,30 +1234,19 @@ public class PYQQuestionActivity extends AppCompatActivity {
                 if (correctAnswer.isEmpty()) {
                     isTextMatch = (userAnswer == null || userAnswer.trim().isEmpty());
                 } else {
-                    // Attempt numeric comparison first
                     try {
-                        // Ensure userAnswer is not null before trimming and parsing
                         String userAnswerTrimmed = (userAnswer != null) ? userAnswer.trim() : "";
                         double userDouble = Double.parseDouble(userAnswerTrimmed);
                         double correctDouble = Double.parseDouble(correctAnswer);
-                        // Compare with a small tolerance for floating point inaccuracies
-                        if (Math.abs(userDouble - correctDouble) < 0.00001) {
-                            isTextMatch = true;
-                        } else {
-                            isTextMatch = false; // Numeric comparison failed
-                        }
+                        isTextMatch = Math.abs(userDouble - correctDouble) < 0.00001;
                     } catch (NumberFormatException e) {
-                        // If parsing fails (e.g., userAnswer is null, empty, or non-numeric after
-                        // trim),
-                        // fall back to string comparison
                         isTextMatch = userAnswer != null && userAnswer.trim().equalsIgnoreCase(correctAnswer);
                     }
                 }
 
                 if (question.has("range_start")) { // Simplified condition, range_end check comes later
                     boolean inRange = false;
-                    String rangeEndStr = question.optString("range_end", ""); // Get range_end, default to empty if not
-                                                                              // present
+                    String rangeEndStr = question.optString("range_end", "");
 
                     if (userAnswer != null && !userAnswer.trim().isEmpty()) {
                         try {
@@ -1324,7 +1254,6 @@ public class PYQQuestionActivity extends AppCompatActivity {
                             double userValue = Double.parseDouble(userAnswer.trim());
 
                             if (rangeEndStr.isEmpty()) {
-                                // Case: range_end is empty, check if userAnswer equals range_start
                                 if (Math.abs(userValue - rangeStart) < 0.00001) { // Tolerance for double comparison
                                     inRange = true;
                                 }
@@ -1336,10 +1265,9 @@ public class PYQQuestionActivity extends AppCompatActivity {
                                 }
                             }
                         } catch (NumberFormatException nfe) {
-                            // Not a number, inRange remains false.
-                            Log.w("CheckAnswer", "User answer for ranged question was not a number: " + userAnswer);
+                            Log.d("Error", nfe.getMessage());
                         } catch (JSONException je) {
-                            Log.e("CheckAnswerError", "JSON issue with range keys: " + je.getMessage());
+                            Log.d("Error", je.getMessage());
                         }
                     }
 
@@ -1356,8 +1284,6 @@ public class PYQQuestionActivity extends AppCompatActivity {
                 }
             }
 
-            // Update isCorrect based on score
-            // Set to false if not full marks, "Partially Correct" handles score > 0
             isCorrect = score == totalMarks;
 
             // Save the score for this question
@@ -1368,7 +1294,7 @@ public class PYQQuestionActivity extends AppCompatActivity {
             resultTitleTextView.setText(isCorrect ? "Correct!" : (score > 0 ? "Partially Correct" : "Incorrect"));
             resultTitleTextView.setTextColor(isCorrect ? ContextCompat.getColor(this, android.R.color.holo_green_light)
                     : (score > 0 ? ContextCompat.getColor(this, android.R.color.holo_orange_light)
-                            : ContextCompat.getColor(this, android.R.color.holo_red_light)));
+                    : ContextCompat.getColor(this, android.R.color.holo_red_light)));
             correctAnswerTextView.setText(Html.fromHtml(correctAnswerStr.trim(), Html.FROM_HTML_MODE_LEGACY));
 
             // Show score for this question
@@ -1379,7 +1305,6 @@ public class PYQQuestionActivity extends AppCompatActivity {
 
         } catch (JSONException e) {
             Toast.makeText(this, "Error checking answer: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-            Log.e("CheckAnswerError", Objects.requireNonNull(e.getMessage()));
         }
     }
 
@@ -1389,12 +1314,13 @@ public class PYQQuestionActivity extends AppCompatActivity {
 
         // Sexy dialog
         View resultView = LayoutInflater.from(this).inflate(R.layout.confirm_exit, null);
-        com.google.android.material.button.MaterialButton closeButton = resultView.findViewById(R.id.closeButton);
-        com.google.android.material.button.MaterialButton submitExitButton = resultView.findViewById(R.id.submitExitButton);
+        MaterialButton closeButton = resultView.findViewById(R.id.closeButton);
+        MaterialButton submitExitButton = resultView.findViewById(R.id.submitExitButton);
         TextView dialogHead = resultView.findViewById(R.id.dialogHead);
         TextView dialogDesc = resultView.findViewById(R.id.dialogDesc);
 
-        androidx.appcompat.app.AlertDialog dialog = new com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
+        AlertDialog dialog = new MaterialAlertDialogBuilder(
+                this)
                 .setView(resultView)
                 .setCancelable(false)
                 .create();
@@ -1408,7 +1334,7 @@ public class PYQQuestionActivity extends AppCompatActivity {
             submitQuiz();
             dialog.cancel();
         });
-        
+
         if (dialog.getWindow() != null) {
             dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         }
@@ -1423,9 +1349,6 @@ public class PYQQuestionActivity extends AppCompatActivity {
         // Save the current answer first
         saveCurrentAnswers();
 
-        // Log all answers before scoring
-        logAllAnswers();
-
         // Calculate score
         calculateScore();
 
@@ -1433,41 +1356,17 @@ public class PYQQuestionActivity extends AppCompatActivity {
         showQuizResults();
     }
 
-    // New method to log all saved answers for debugging
-    private void logAllAnswers() {
-        Log.d("SubmitQuiz", "==== LOGGING ALL ANSWERS ====");
-
-        // Log single choice answers
-        for (Map.Entry<Integer, Integer> entry : userSingleMcqAnswers.entrySet()) {
-            Log.d("SubmitQuiz", "Single choice - Question " + entry.getKey() + ": Option " + entry.getValue());
-        }
-
-        // Log multiple choice answers
-        for (Map.Entry<Integer, List<Integer>> entry : userMcqAnswers.entrySet()) {
-            Log.d("SubmitQuiz", "Multiple choice - Question " + entry.getKey() + ": Options " + entry.getValue());
-        }
-
-        // Log text answers
-        for (Map.Entry<Integer, String> entry : userTextAnswers.entrySet()) {
-            Log.d("SubmitQuiz", "Text answer - Question " + entry.getKey() + ": \"" + entry.getValue() + "\"");
-        }
-
-        Log.d("SubmitQuiz", "==== END ANSWER LOG ====");
-    }
-
     private void calculateScore() {
         userScore = 0;
         questionSummaries.clear();
 
         try {
-            logAllAnswers(); // Log answers again before scoring
 
             for (int i = 0; i < totalQuestions; i++) {
                 JSONObject question = questions.getJSONObject(i);
                 boolean isExtraInfo = isExtraInfoSection(question);
 
                 if (isExtraInfo) {
-                    // Add extra info to summary but with no score
                     questionSummaries.add(new QuestionSummary(i, 0, 0, 0, true));
                     continue;
                 }
@@ -1488,9 +1387,6 @@ public class PYQQuestionActivity extends AppCompatActivity {
                         }
                     }
 
-                    Log.d("CalculateScore",
-                            "Question " + i + " has " + correctOptions.size() + " correct options: " + correctOptions);
-
                     if (correctOptions.size() > 1) {
                         // Multiple choice validation
                         List<Integer> selectedOptions = userMcqAnswers.get(i);
@@ -1507,9 +1403,6 @@ public class PYQQuestionActivity extends AppCompatActivity {
                                     correctSelectedCount++;
                                 }
                             }
-
-                            Log.d("CalculateScore", "User got " + correctSelectedCount + " correct selections out of "
-                                    + correctOptions.size());
 
                             // Award marks for correct selections
                             if (correctSelectedCount > 0) {
@@ -1531,8 +1424,6 @@ public class PYQQuestionActivity extends AppCompatActivity {
                     } else if (correctOptions.size() == 1) {
                         // Single choice validation
                         Integer selectedOption = userSingleMcqAnswers.get(i);
-                        Log.d("CalculateScore",
-                                "Single choice - correct: " + correctOptions.get(0) + ", selected: " + selectedOption);
                         if (selectedOption != null && selectedOption.equals(correctOptions.get(0))) {
                             score = questionMarks;
                         }
@@ -1548,20 +1439,11 @@ public class PYQQuestionActivity extends AppCompatActivity {
                     } else {
                         // Attempt numeric comparison first
                         try {
-                            // Ensure userAnswer is not null before trimming and parsing
                             String userAnswerTrimmed = (userAnswer != null) ? userAnswer.trim() : "";
                             double userDouble = Double.parseDouble(userAnswerTrimmed);
                             double correctDouble = Double.parseDouble(correctAnswer);
-                            // Compare with a small tolerance for floating point inaccuracies
-                            if (Math.abs(userDouble - correctDouble) < 0.00001) {
-                                isTextMatch = true;
-                            } else {
-                                isTextMatch = false; // Numeric comparison failed
-                            }
+                            isTextMatch = Math.abs(userDouble - correctDouble) < 0.00001;
                         } catch (NumberFormatException e) {
-                            // If parsing fails (e.g., userAnswer is null, empty, or non-numeric after
-                            // trim),
-                            // fall back to string comparison
                             isTextMatch = userAnswer != null && userAnswer.trim().equalsIgnoreCase(correctAnswer);
                         }
                     }
@@ -1569,7 +1451,7 @@ public class PYQQuestionActivity extends AppCompatActivity {
                     if (question.has("range_start")) { // Simplified condition, range_end check comes later
                         boolean inRange = false;
                         String rangeEndStr = question.optString("range_end", ""); // Get range_end, default to empty if
-                                                                                  // not present
+                        // not present
 
                         if (userAnswer != null && !userAnswer.trim().isEmpty()) {
                             try {
@@ -1590,10 +1472,8 @@ public class PYQQuestionActivity extends AppCompatActivity {
                                 }
                             } catch (NumberFormatException nfe) {
                                 // Not a number, inRange remains false.
-                                Log.w("CalculateScore",
-                                        "User answer for ranged question was not a number: " + userAnswer);
                             } catch (JSONException je) {
-                                Log.e("CalculateScore", "JSON issue with range keys: " + je.getMessage());
+                                Log.d("Error", je.getMessage());
                             }
                         }
 
@@ -1625,8 +1505,8 @@ public class PYQQuestionActivity extends AppCompatActivity {
 
     private void showQuizResults() {
         View resultView = LayoutInflater.from(this).inflate(R.layout.dialog_quiz_result, null);
-        com.google.android.material.button.MaterialButton closeButton = resultView.findViewById(R.id.closeButton);
-        com.google.android.material.button.MaterialButton reviewButton = resultView.findViewById(R.id.reviewButton);
+        MaterialButton closeButton = resultView.findViewById(R.id.closeButton);
+        MaterialButton reviewButton = resultView.findViewById(R.id.reviewButton);
         TextView scoreTextView = resultView.findViewById(R.id.scoreTextView);
         TextView totalTextView = resultView.findViewById(R.id.totalTextView);
         TextView percentageTextView = resultView.findViewById(R.id.percentageTextView);
@@ -1661,9 +1541,7 @@ public class PYQQuestionActivity extends AppCompatActivity {
 
         // Setup question summary recyclerview
         questionSummaryRecyclerView.setVisibility(VISIBLE);
-        questionSummaryRecyclerView.setLayoutManager(new
-
-        LinearLayoutManager(this));
+        questionSummaryRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         QuestionSummaryAdapter adapter = new QuestionSummaryAdapter(
                 this,
@@ -1683,7 +1561,8 @@ public class PYQQuestionActivity extends AppCompatActivity {
         questionSummaryRecyclerView.setAdapter(adapter);
 
         // Create and show the dialog
-        androidx.appcompat.app.AlertDialog dialog = new com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
+        AlertDialog dialog = new MaterialAlertDialogBuilder(
+                this)
                 .setView(resultView)
                 .setCancelable(false)
                 .create();
@@ -1731,14 +1610,15 @@ public class PYQQuestionActivity extends AppCompatActivity {
 
             // Sexy dialog
             View resultView = LayoutInflater.from(this).inflate(R.layout.confirm_exit, null);
-            com.google.android.material.button.MaterialButton closeButton = resultView.findViewById(R.id.closeButton);
-            com.google.android.material.button.MaterialButton submitExitButton = resultView.findViewById(R.id.submitExitButton);
+            MaterialButton closeButton = resultView.findViewById(R.id.closeButton);
+            MaterialButton submitExitButton = resultView.findViewById(R.id.submitExitButton);
 
-            androidx.appcompat.app.AlertDialog dialog = new com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
+            AlertDialog dialog = new MaterialAlertDialogBuilder(
+                    this)
                     .setView(resultView)
                     .setCancelable(false)
                     .create();
-            
+
             if (dialog.getWindow() != null) {
                 dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
             }
@@ -1804,8 +1684,6 @@ public class PYQQuestionActivity extends AppCompatActivity {
         // Change color to red and update background when less than 5 minutes remaining
         if (millis < 5 * 60 * 1000) {
             timerTextView.setTextColor(ContextCompat.getColor(this, R.color.red));
-            // Add a light background for better visibility
-            // Add padding for better appearance
             timerTextView.setPadding(16, 8, 16, 8);
         } else {
             timerTextView.setTextColor(ContextCompat.getColor(this, R.color.textIcons));

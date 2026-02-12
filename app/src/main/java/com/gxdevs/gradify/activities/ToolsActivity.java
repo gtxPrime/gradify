@@ -1,15 +1,13 @@
 package com.gxdevs.gradify.activities;
 
-import android.graphics.Color;
 import android.os.Bundle;
-import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.gxdevs.gradify.R;
-import android.widget.TextView;
 import com.gxdevs.gradify.Utils.Utils;
 import com.gxdevs.gradify.adapters.ViewPagerAdapter;
 
@@ -29,7 +27,7 @@ public class ToolsActivity extends AppCompatActivity {
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(this);
         viewPager.setAdapter(viewPagerAdapter);
 
-        findViewById(R.id.backBtnT).setOnClickListener(v -> onBackPressed());
+        findViewById(R.id.backBtnT).setOnClickListener(v -> getOnBackPressedDispatcher().onBackPressed());
 
         tabGrade.setOnClickListener(v -> viewPager.setCurrentItem(0));
         tabCgpa.setOnClickListener(v -> viewPager.setCurrentItem(1));

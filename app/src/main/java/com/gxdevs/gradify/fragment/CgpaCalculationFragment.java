@@ -13,10 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.gxdevs.gradify.R;
-import com.gxdevs.gradify.Utils.Utils;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
+import com.gxdevs.gradify.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,8 +23,6 @@ import java.util.Locale;
 public class CgpaCalculationFragment extends Fragment {
 
     private LinearLayout subjectsContainer;
-    private Button addSubjectButton;
-    private Button calculateCgpaButton;
     private TextView cgpaResultTextView;
     private View resultCard;
     private int subjectCount = 1;
@@ -41,23 +37,19 @@ public class CgpaCalculationFragment extends Fragment {
         }
     }
 
-    private List<SubjectEntry> subjectEntries = new ArrayList<>();
+    private final List<SubjectEntry> subjectEntries = new ArrayList<>();
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-            @Nullable Bundle savedInstanceState) {
+                             @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_cgpa, container, false);
 
         subjectsContainer = view.findViewById(R.id.subjectsContainer);
-        addSubjectButton = view.findViewById(R.id.addSubjectButton);
-        calculateCgpaButton = view.findViewById(R.id.calculateCgpaButton);
+        Button addSubjectButton = view.findViewById(R.id.addSubjectButton);
+        Button calculateCgpaButton = view.findViewById(R.id.calculateCgpaButton);
         cgpaResultTextView = view.findViewById(R.id.cgpaResultTextView);
         resultCard = view.findViewById(R.id.resultCardCgpa);
-
-        // Add the first subject entry
-        TextInputLayout creditsHolder = view.findViewById(R.id.creditsHolder1);
-        TextInputLayout gradeHolder = view.findViewById(R.id.gradeHolder1);
 
         TextInputEditText initialCreditsEditText = view.findViewById(R.id.creditsEditText1);
         TextInputEditText initialGradeEditText = view.findViewById(R.id.gradeEditText1);
@@ -78,9 +70,7 @@ public class CgpaCalculationFragment extends Fragment {
                 subjectsContainer, false);
 
         TextView subjectLabel = subjectEntryLayout.findViewById(R.id.subjectLabel);
-        TextInputLayout creditsHolder = subjectEntryLayout.findViewById(R.id.creditsHolder);
         TextInputEditText creditsEditText = subjectEntryLayout.findViewById(R.id.creditsEditText);
-        TextInputLayout gradeHolder = subjectEntryLayout.findViewById(R.id.gradeInputLayout);
         TextInputEditText gradeEditText = subjectEntryLayout.findViewById(R.id.gradeEditText);
 
         subjectLabel.setText(String.format(Locale.getDefault(), "Subject %d", subjectCount));
@@ -169,24 +159,16 @@ public class CgpaCalculationFragment extends Fragment {
             }
         }
 
+        resultCard.setVisibility(View.VISIBLE);
         if (validInput) {
-            resultCard.setVisibility(View.VISIBLE);
             if (actualSubjectsConsidered == 0) {
-                if (subjectEntries.stream()
-                        .allMatch(entry -> entry.gradeEditText.getText().toString().trim().equalsIgnoreCase("I"))) {
-                    cgpaResultTextView.setText("CGPA: N/A");
-                } else {
-                    cgpaResultTextView.setText("CGPA: N/A");
-                }
+                cgpaResultTextView.setText("CGPA: N/A");
             } else if (totalCredits == 0) {
                 cgpaResultTextView.setText("CGPA: N/A");
             } else {
                 double cgpa = totalWeightedPoints / totalCredits;
                 cgpaResultTextView.setText(String.format(Locale.getDefault(), "CGPA: %.2f", cgpa));
             }
-        } else {
-            resultCard.setVisibility(View.VISIBLE);
-            // Error text already set
         }
     }
 }

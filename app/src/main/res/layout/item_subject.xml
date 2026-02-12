@@ -22,7 +22,7 @@
             android:layout_marginEnd="-20dp"
             android:layout_marginBottom="-30dp"
             android:alpha="0.1"
-            android:src="@drawable/database"
+            android:src="@drawable/ic_database"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:tint="@color/mainBg" />

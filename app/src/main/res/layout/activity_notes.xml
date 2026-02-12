@@ -14,7 +14,6 @@
         android:layout_marginTop="-260dp"
         android:alpha="0.8"
         android:contentDescription="@string/decor"
-        android:src="@drawable/oval_gradient"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -27,7 +26,6 @@
         android:layout_marginBottom="-230dp"
         android:alpha="0.8"
         android:contentDescription="@string/decor"
-        android:src="@drawable/oval_gradient2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -39,7 +37,6 @@
         android:layout_marginBottom="80dp"
         android:alpha="0.6"
         android:contentDescription="@string/decor"
-        android:src="@drawable/oval_gradient3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

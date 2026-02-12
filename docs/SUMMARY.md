@@ -26,7 +26,7 @@ Welcome to the **Gradify** documentation. Here you will find everything you need
 If you get stuck:
 
 1. Check the **[Troubleshooting](BUILD_AND_RUN.md#-troubleshooting)** section.
-2. Open an **Issue** on [GitHub](https://github.com/gtxPrime/gradify/issues).
+2. Open an **Issue** on [GitHub](https://github.com/gtxPrime/Gradify-App/issues).
 3. Contact the maintainers via GitHub.
 
 <div align="center">

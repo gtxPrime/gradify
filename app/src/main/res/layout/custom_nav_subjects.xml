@@ -5,7 +5,7 @@
     android:layout_width="280dp"
     android:layout_height="match_parent"
     android:layout_gravity="end"
-    android:background="@drawable/bg_gre"
+    android:background="@color/mainBg"
     android:elevation="10dp"
     android:orientation="vertical"
     android:padding="16dp">

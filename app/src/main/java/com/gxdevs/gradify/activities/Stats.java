@@ -1,15 +1,12 @@
 package com.gxdevs.gradify.activities;
 
 import android.annotation.SuppressLint;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -42,20 +39,12 @@ public class Stats extends AppCompatActivity implements SubjectStatsAdapter.OnIt
     private TimeTrackingDbHelper dbHelper;
     private final List<SubjectStatsData> subjectStatsList = new ArrayList<>();
     private final List<DailySubjectTotalData> currentDailyRawData = new ArrayList<>();
-    private final List<SubjectStatsData> currentMonthlyRawStats = new ArrayList<>();
 
     private TextView button_daily_view_toggle, button_weekly_view_toggle, button_monthly_view_toggle;
     private PieChart pieChart;
-
     private TextView textViewSelectedDate;
-
     private Calendar currentSelectedDate;
     private Calendar currentDisplayMonth;
-
-    private final SimpleDateFormat dailyDateFormat = new SimpleDateFormat("MMMM dd, yyyy", Locale.getDefault());
-    private final SimpleDateFormat monthlyDateFormat = new SimpleDateFormat("MMMM yyyy", Locale.getDefault());
-
-    // TextViews for center pie chart information
     private TextView textViewCenterPieTitle;
     private TextView textViewCenterPieValue;
 
@@ -67,10 +56,7 @@ public class Stats extends AppCompatActivity implements SubjectStatsAdapter.OnIt
 
     private ViewMode currentViewMode = ViewMode.DAILY;
 
-    private static final String TAG = "StatsActivity";
-
     private String currentlySelectedSubjectName = null;
-    private final List<Long> tempEntryIds = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,11 +95,6 @@ public class Stats extends AppCompatActivity implements SubjectStatsAdapter.OnIt
         buttonNextDay.setOnClickListener(v -> navigateNext());
 
         setupPieChart();
-
-        findViewById(R.id.pyqTitle).setOnLongClickListener(v -> {
-            addTempData();
-            return true;
-        });
 
         switchToDailyView();
 
@@ -187,36 +168,9 @@ public class Stats extends AppCompatActivity implements SubjectStatsAdapter.OnIt
         }
     }
 
-    private void addTempData() {
-        long now = System.currentTimeMillis();
-        String[] subjects = { "Mathematics", "Science", "History", "Coding" };
-        for (int i = 0; i < subjects.length; i++) {
-            long id = dbHelper.addTimeEntry(subjects[i], "lecture", now, (i + 1) * 30 * 60 * 1000L);
-            tempEntryIds.add(id);
-            id = dbHelper.addTimeEntry(subjects[i], "pyq", now, (i + 1) * 20 * 60 * 1000L);
-            tempEntryIds.add(id);
-        }
-        Toast.makeText(this, "Temp data added!", Toast.LENGTH_SHORT).show();
-        if (currentViewMode == ViewMode.DAILY)
-            loadDailyModeData();
-        else if (currentViewMode == ViewMode.WEEKLY)
-            loadWeeklyModeData();
-        else
-            loadMonthlyModeData();
-    }
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (!tempEntryIds.isEmpty()) {
-            SQLiteDatabase db = dbHelper.getWritableDatabase();
-            for (Long id : tempEntryIds) {
-                db.delete(TimeTrackingDbHelper.TABLE_TIME_ENTRIES, TimeTrackingDbHelper.COLUMN_ID + " = ?",
-                        new String[] { String.valueOf(id) });
-            }
-            db.close();
-            Log.d(TAG, "Removed temp test data");
-        }
     }
 
     private void updateTabUI(String mode) {
@@ -255,7 +209,6 @@ public class Stats extends AppCompatActivity implements SubjectStatsAdapter.OnIt
     @SuppressLint("NotifyDataSetChanged")
     private void loadDailyModeData() {
         updateDateDisplays();
-        Log.d(TAG, "Loading DAILY mode data for: " + dailyDateFormat.format(currentSelectedDate.getTime()));
         currentlySelectedSubjectName = null;
 
         Calendar dayStart = (Calendar) currentSelectedDate.clone();
@@ -280,7 +233,6 @@ public class Stats extends AppCompatActivity implements SubjectStatsAdapter.OnIt
     @SuppressLint("NotifyDataSetChanged")
     private void loadWeeklyModeData() {
         updateDateDisplays();
-        Log.d(TAG, "Loading WEEKLY mode data for week: " + currentSelectedDate.get(Calendar.WEEK_OF_YEAR));
         currentlySelectedSubjectName = null;
 
         Calendar weekStart = (Calendar) currentSelectedDate.clone();
@@ -308,7 +260,6 @@ public class Stats extends AppCompatActivity implements SubjectStatsAdapter.OnIt
     @SuppressLint("NotifyDataSetChanged")
     private void loadMonthlyModeData() {
         updateDateDisplays();
-        Log.d(TAG, "Loading MONTHLY mode data for: " + monthlyDateFormat.format(currentDisplayMonth.getTime()));
         currentlySelectedSubjectName = null;
 
         Calendar monthStart = (Calendar) currentDisplayMonth.clone();

@@ -9,27 +9,20 @@
     tools:context=".activities.PYQQuestionActivity"
     tools:ignore="ContentDescription">
 
-    <androidx.cardview.widget.CardView
+    <ImageView
         android:id="@+id/backBtn"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        app:cardBackgroundColor="@color/white"
-        app:cardCornerRadius="24dp"
-        app:cardElevation="0dp"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/white_circle_bg"
+        android:contentDescription="@string/back"
+        android:elevation="2dp"
+        android:padding="8dp"
+        android:src="@drawable/ic_left"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:contentDescription="@string/back"
-            android:padding="12dp"
-            android:src="@drawable/ic_back"
-            app:tint="@color/textIcons" />
-
-    </androidx.cardview.widget.CardView>
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/textIcons" />
 
     <!-- Top Bar with Title and Timer -->
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -55,6 +48,7 @@
             android:textColor="@color/textIcons"
             android:textSize="18sp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/abortContainer"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -140,9 +134,9 @@
         android:layout_marginTop="16dp"
         android:fontFamily="@font/kanit"
         android:text="@string/question_1_20"
+        android:textAllCaps="true"
         android:textColor="@color/unselectedLevelText"
         android:textSize="12sp"
-        android:textAllCaps="true"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/backBtn" />
@@ -190,12 +184,12 @@
                             android:layout_height="wrap_content"
                             android:background="@drawable/oval_cons"
                             android:backgroundTint="@color/heroCards"
+                            android:fontFamily="@font/kanit"
                             android:paddingStart="12dp"
-                            android:paddingEnd="12dp"
                             android:paddingTop="4dp"
+                            android:paddingEnd="12dp"
                             android:paddingBottom="4dp"
                             android:textColor="@color/textIcons"
-                            android:fontFamily="@font/kanit"
                             android:textSize="12sp"
                             android:textStyle="bold"
                             tools:text="+4 Marks" />
@@ -207,12 +201,12 @@
                             android:layout_marginStart="8dp"
                             android:background="@drawable/oval_cons"
                             android:backgroundTint="#F2EFE1"
+                            android:fontFamily="@font/kanit"
                             android:paddingStart="12dp"
-                            android:paddingEnd="12dp"
                             android:paddingTop="4dp"
+                            android:paddingEnd="12dp"
                             android:paddingBottom="4dp"
                             android:textColor="@color/textIcons"
-                            android:fontFamily="@font/kanit"
                             android:textSize="12sp"
                             android:textStyle="bold"
                             tools:text="MCQ" />
@@ -235,10 +229,10 @@
                         android:id="@+id/questionImageView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
                         android:layout_marginTop="16dp"
                         android:adjustViewBounds="true"
                         android:scaleType="fitCenter"
-                        android:layout_gravity="center_horizontal"
                         android:visibility="gone"
                         tools:ignore="ContentDescription" />
 
@@ -265,11 +259,11 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/select_answer"
-                        android:textColor="@color/textIcons"
                         android:fontFamily="@font/kanit"
-                        android:textSize="16sp"
+                        android:text="@string/select_answer"
                         android:textAllCaps="true"
+                        android:textColor="@color/textIcons"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
 
                     <!-- MCQ Options Container - Shown for MCQ type -->
@@ -353,8 +347,8 @@
                         android:id="@+id/resultTitleTextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/correct"
                         android:fontFamily="@font/kanit"
+                        android:text="@string/correct"
                         android:textColor="@android:color/holo_green_dark"
                         android:textSize="18sp"
                         android:textStyle="bold" />
@@ -397,11 +391,11 @@
             android:layout_height="55dp"
             android:layout_marginEnd="8dp"
             android:backgroundTint="@color/textIcons"
+            android:fontFamily="@font/kanit"
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
             android:text="@string/back"
             android:textAllCaps="false"
-            android:fontFamily="@font/kanit"
             android:textColor="@color/heroCards"
             android:textSize="14sp"
             app:cornerRadius="16dp"
@@ -419,11 +413,11 @@
             android:layout_marginStart="4dp"
             android:layout_marginEnd="4dp"
             android:backgroundTint="@color/textIcons"
+            android:fontFamily="@font/kanit"
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
             android:text="@string/check"
             android:textAllCaps="false"
-            android:fontFamily="@font/kanit"
             android:textColor="@color/heroCards"
             android:textSize="14sp"
             android:visibility="gone"
@@ -439,11 +433,11 @@
             android:layout_height="55dp"
             android:layout_marginStart="8dp"
             android:backgroundTint="@color/textIcons"
+            android:fontFamily="@font/kanit"
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
             android:text="@string/next"
             android:textAllCaps="false"
-            android:fontFamily="@font/kanit"
             android:textColor="@color/heroCards"
             android:textSize="14sp"
             app:cornerRadius="16dp"
@@ -460,11 +454,11 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:backgroundTint="@color/textIcons"
+            android:fontFamily="@font/kanit"
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
             android:text="@string/submit_quiz"
             android:textAllCaps="false"
-            android:fontFamily="@font/kanit"
             android:textColor="@color/heroCards"
             android:textSize="18sp"
             android:visibility="gone"

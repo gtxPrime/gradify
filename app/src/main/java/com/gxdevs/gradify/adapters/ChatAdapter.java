@@ -31,7 +31,7 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private final List<ChatMessage> chatMessages;
     private final SimpleDateFormat timestampFormatter;
 
-    public ChatAdapter(List<ChatMessage> chatMessages, Context context) {
+    public ChatAdapter(List<ChatMessage> chatMessages) {
         this.chatMessages = chatMessages;
         this.timestampFormatter = new SimpleDateFormat("hh:mm a", Locale.getDefault());
     }
@@ -106,11 +106,6 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     @Override
     public int getItemCount() {
         return chatMessages.size();
-    }
-
-    public void addMessage(ChatMessage message) {
-        chatMessages.add(message);
-        notifyItemInserted(chatMessages.size() - 1);
     }
 
     static class UserMessageViewHolder extends RecyclerView.ViewHolder {
