@@ -74,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
     private LinearLayout examDatesDetailsLayout, examTimersContainer;
     private TextView q1TimerText, q2TimerText, etTimerText;
     private TextView q1DateText, q2DateText, etDateText;
+    private TextView upcomingExamName, upcomingExamDays;
     private ImageView navExamDatesArrow;
     private Button enableAutoTimeButton;
 
@@ -143,6 +144,9 @@ public class MainActivity extends AppCompatActivity {
         updateUserInformation();
         setupExamDateStaticTexts();
         updateExamDateSectionUI();
+
+        upcomingExamName = findViewById(R.id.upcoming_exam_name);
+        upcomingExamDays = findViewById(R.id.upcoming_exam_days);
         setupExamDateStaticTexts();
         updateExamDateSectionUI();
         setupExamDateStaticTexts();
@@ -294,6 +298,7 @@ public class MainActivity extends AppCompatActivity {
                         setupExamDateStaticTexts();
                         updateExamDateSectionUI();
                         calculateCurrentWeek();
+                        updateFocusCardExamInfo();
                     });
                 } catch (org.json.JSONException e) {
                     Log.e("MainActivity", "Error parsing dates: " + e.getMessage());
@@ -305,6 +310,66 @@ public class MainActivity extends AppCompatActivity {
                 Log.e("MainActivity", "Error fetching dates: " + error);
             }
         });
+    }
+
+    private void updateFocusCardExamInfo() {
+        if (upcomingExamName == null || upcomingExamDays == null)
+            return;
+
+        if (q1DateStr == null || q2DateStr == null || etDateStr == null) {
+            upcomingExamName.setText("Loading...");
+            upcomingExamDays.setText("--");
+            return;
+        }
+
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT_STR, Locale.getDefault());
+            sdf.setTimeZone(IST_TIMEZONE);
+            long currentTime = System.currentTimeMillis();
+
+            Date d1 = sdf.parse(q1DateStr);
+            Date d2 = sdf.parse(q2DateStr);
+            Date d3 = sdf.parse(etDateStr);
+
+            long diff1 = d1.getTime() - currentTime;
+            long diff2 = d2.getTime() - currentTime;
+            long diff3 = d3.getTime() - currentTime;
+
+            String nextExamName = "None";
+            long minDiff = Long.MAX_VALUE;
+
+            if (diff1 > 0 && diff1 < minDiff) {
+                minDiff = diff1;
+                nextExamName = "Quiz 1";
+            }
+            if (diff2 > 0 && diff2 < minDiff) {
+                minDiff = diff2;
+                nextExamName = "Quiz 2";
+            }
+            if (diff3 > 0 && diff3 < minDiff) {
+                minDiff = diff3;
+                nextExamName = "End Term";
+            }
+
+            if (nextExamName.equals("None")) {
+                upcomingExamName.setText("No Upcoming Exams");
+                upcomingExamDays.setText("Relax!");
+            } else {
+                upcomingExamName.setText(nextExamName);
+                long days = TimeUnit.MILLISECONDS.toDays(minDiff);
+                if (days == 0) {
+                    upcomingExamDays.setText("Today");
+                } else if (days == 1) {
+                    upcomingExamDays.setText("Tomorrow");
+                } else {
+                    upcomingExamDays.setText(days + " Days Left");
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            upcomingExamName.setText("Error");
+        }
     }
 
     private void calculateCurrentWeek() {
