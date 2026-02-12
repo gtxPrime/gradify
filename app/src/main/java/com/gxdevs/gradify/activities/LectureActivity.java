@@ -91,6 +91,7 @@ public class LectureActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private FrameLayout fullscreenContainer;
     private MaterialTextView videoTitleTextView;
+    private MaterialTextView weekBadgeTextView;
     private LectureRecyclerAdapter adapter;
     private YouTubePlayerView youTubePlayerView;
     private YouTubePlayer youTubePlayer;
@@ -143,6 +144,7 @@ public class LectureActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView_lectures);
         fullscreenContainer = findViewById(R.id.fullscreen_container);
         videoTitleTextView = findViewById(R.id.textView_video_title);
+        weekBadgeTextView = findViewById(R.id.textView_week_badge);
         youTubePlayerView = findViewById(R.id.youtube_player_view);
 
         // Mapped from XML
@@ -533,7 +535,8 @@ public class LectureActivity extends AppCompatActivity {
                 if (retryCount < 2) {
                     fetchLectureDataWithRetry(url, retryCount + 1);
                 } else {
-                    runOnUiThread(() -> Toast.makeText(LectureActivity.this, "Failed to load data. Please check your internet.", Toast.LENGTH_LONG).show());
+                    runOnUiThread(() -> Toast.makeText(LectureActivity.this,
+                            "Failed to load data. Please check your internet.", Toast.LENGTH_LONG).show());
                 }
             }
 
@@ -748,6 +751,10 @@ public class LectureActivity extends AppCompatActivity {
         assert vids != null;
         VideoItem item = vids.get(v);
         videoTitleTextView.setText(item.getTitle());
+        if (weekBadgeTextView != null) {
+            // Robust replacement for "Week 1", "week1", "Week 10", etc.
+            weekBadgeTextView.setText(key.replaceAll("(?i)week\\s*", "W"));
+        }
         adapter.setCurrentPlayingVideo(key, v);
         String id = extractYoutubeId(item.getLink());
         youTubePlayer.loadVideo(id, startSec);
@@ -958,7 +965,8 @@ public class LectureActivity extends AppCompatActivity {
             if (findViewById(R.id.openApiSettings).getVisibility() == GONE) {
                 findViewById(R.id.openApiSettings).setVisibility(VISIBLE);
             }
-            addAiChatMessage(new ChatMessage("API Key not found. Please add your API key in settings.", false, System.currentTimeMillis()), false);
+            addAiChatMessage(new ChatMessage("API Key not found. Please add your API key in settings.", false,
+                    System.currentTimeMillis()), false);
             stopLoadingAnimation();
             removeLastNonUserMessage(); // Remove the animation message
             isAiResponding = false;
