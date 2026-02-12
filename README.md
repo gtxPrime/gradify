@@ -21,25 +21,20 @@
 
 ---
 
-## 🌐 Coming Soon: Gradify Website!
+## 🌐 Web Platform (Coming Soon)
 
-<div align="center">
+> **🚀 We are building a full-featured web version of Gradify!**
+>
+> Soon you'll be able to access your seamless study experience from any device—Desktop, Tablet, or Mobile Web.
 
-### 🚀 **Web Platform Under Development** 🚀
-
-**Access Gradify from anywhere - Desktop, Tablet, or Mobile Browser!**
-
-🎯 **What's Coming:**
+**What to expect:**
 
 - 📊 **Advanced Analytics Dashboard** - Visualize your learning progress
-- 💻 **Cross-Device Sync** - Seamlessly continue your studies across all devices
-- 🌍 **Web-Based Learning** - No installation required, access from any browser
-- 📱 **Responsive Design** - Optimized for all screen sizes
-- 🔄 **Real-time Sync** - Your progress synced between mobile app and website
+- 💻 **Cross-Device Sync** - Start on mobile, continue on web
+- 🌍 **Universal Access** - No installation required
+- 🔄 **Real-time Synchronization** - Always up to date
 
-> 🎉 **Stay tuned for the launch announcement!**
-
-</div>
+_Stay tuned for the launch announcement!_
 
 ## 📱 About Gradify
 
@@ -110,13 +105,10 @@ Whether you're tackling Statistics, mastering Python, or diving into Machine Lea
 
 ## 📸 Screenshots
 
-<div align="center">
-
-<img src="screenshots/1.png" width="200" /> <img src="screenshots/2.png" width="200" /> <img src="screenshots/3.png" width="200" /> <img src="screenshots/4.png" width="200" />
-<br>
-<img src="screenshots/5.png" width="200" /> <img src="screenshots/6.png" width="200" /> <img src="screenshots/7.png" width="200" /> <img src="screenshots/8.png" width="200" />
-
-</div>
+|                                            |                                            |                                            |                                            |
+| :----------------------------------------: | :----------------------------------------: | :----------------------------------------: | :----------------------------------------: |
+| <img src="screenshots/1.png" width="160"/> | <img src="screenshots/2.png" width="160"/> | <img src="screenshots/3.png" width="160"/> | <img src="screenshots/4.png" width="160"/> |
+| <img src="screenshots/5.png" width="160"/> | <img src="screenshots/6.png" width="160"/> | <img src="screenshots/7.png" width="160"/> | <img src="screenshots/8.png" width="160"/> |
 
 ---
 
