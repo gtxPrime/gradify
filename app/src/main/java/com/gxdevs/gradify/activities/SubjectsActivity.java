@@ -4,16 +4,17 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -26,10 +27,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import eightbitlab.com.blurview.BlurView;
@@ -38,15 +37,12 @@ public class SubjectsActivity extends AppCompatActivity implements SubjectsAdapt
 
     private RecyclerView recyclerView;
     private SubjectsAdapter adapter;
-    private TextView emptyView;
+    private View emptyView;
     private final List<String> subjects = new ArrayList<>();
-
-    // Navigation Drawer Fields
     private View customNavDrawer;
     private float navDrawerWidthInPixels;
     private BlurView blurView;
     private ViewGroup rootActivityLayout;
-    private ImageView mainDecor, greDecor1, greDecor2, greDecor3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,12 +55,14 @@ public class SubjectsActivity extends AppCompatActivity implements SubjectsAdapt
         // Initialize UI components
         recyclerView = findViewById(R.id.subjects_recycler_view);
         emptyView = findViewById(R.id.empty_view);
+        View goToProfileBtn = emptyView.findViewById(R.id.goToProfileBtn);
+        if (goToProfileBtn != null) {
+            goToProfileBtn.setOnClickListener(v -> {
+                startActivity(new Intent(this, ProfileActivity.class));
+            });
+        }
         customNavDrawer = findViewById(R.id.customNavDrawerS);
         blurView = findViewById(R.id.blurViewS);
-        mainDecor = findViewById(R.id.subjectsDecor);
-        greDecor1 = findViewById(R.id.subjectDecor1);
-        greDecor2 = findViewById(R.id.subjectDecor2);
-        greDecor3 = findViewById(R.id.subjectDecor3);
 
         View actualDrawerContent = customNavDrawer;
 
@@ -98,11 +96,18 @@ public class SubjectsActivity extends AppCompatActivity implements SubjectsAdapt
 
         // Setup RecyclerView
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+        // Optimized spacing for modern look: 16dp between items and at edges
+        recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, Utils.dpToPx(this, 16), true));
         adapter = new SubjectsAdapter(subjects, this);
         recyclerView.setAdapter(adapter);
 
         findViewById(R.id.backBtnSS).setOnClickListener(v -> onBackPressed());
-        findViewById(R.id.menuS).setOnClickListener(v -> toggleNavDrawer());
+
+        // Menu functionality hidden for now to maintain a focused UI.
+        // Logic preserved for future updates in open source contribution.
+        /*
+         * findViewById(R.id.menuS).setOnClickListener(v -> toggleNavDrawer());
+         */
 
         if (blurView != null) {
             setupBlurView();
@@ -115,7 +120,6 @@ public class SubjectsActivity extends AppCompatActivity implements SubjectsAdapt
 
         // Fetch and display subjects
         loadSubjects();
-        Utils.setTheme(this, mainDecor, greDecor1, greDecor2, greDecor3);
     }
 
     private void setupBlurView() {
@@ -229,7 +233,7 @@ public class SubjectsActivity extends AppCompatActivity implements SubjectsAdapt
                         JSONObject lectures = database.getJSONObject("lectures");
                         if (lectures.has(subjectName)) {
                             String url = lectures.getString(subjectName);
-                            if (url != null && !url.isEmpty()) {
+                            if (!url.isEmpty()) {
                                 launchLectureActivity(subjectName, url);
                             } else {
                                 Toast.makeText(SubjectsActivity.this, "Lectures coming soon!", Toast.LENGTH_SHORT)
@@ -261,4 +265,41 @@ public class SubjectsActivity extends AppCompatActivity implements SubjectsAdapt
         intent.putExtra("subject_name", subjectName);
         startActivity(intent);
     }
+
+    public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
+        private final int spanCount;
+        private final int spacing;
+        private final boolean includeEdge;
+
+        public GridSpacingItemDecoration(int spanCount, int spacing, boolean includeEdge) {
+            this.spanCount = spanCount;
+            this.spacing = spacing;
+            this.includeEdge = includeEdge;
+        }
+
+        @Override
+        public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, RecyclerView parent,
+                @NonNull RecyclerView.State state) {
+            int position = parent.getChildAdapterPosition(view); // item position
+            int column = position % spanCount; // item column
+
+            if (includeEdge) {
+                outRect.left = spacing - column * spacing / spanCount;
+                outRect.right = (column + 1) * spacing / spanCount;
+
+                if (position < spanCount) {
+                    outRect.top = spacing; // top edge
+                }
+                outRect.bottom = spacing; // item bottom
+            } else {
+                outRect.left = column * spacing / spanCount;
+                outRect.right = spacing - (column + 1) * spacing / spanCount;
+
+                if (position >= spanCount) {
+                    outRect.top = spacing;
+                }
+            }
+        }
+    }
+
 }

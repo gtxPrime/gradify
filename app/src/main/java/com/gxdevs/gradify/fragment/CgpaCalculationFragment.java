@@ -28,6 +28,7 @@ public class CgpaCalculationFragment extends Fragment {
     private Button addSubjectButton;
     private Button calculateCgpaButton;
     private TextView cgpaResultTextView;
+    private View resultCard;
     private int subjectCount = 1;
 
     private static class SubjectEntry {
@@ -42,16 +43,17 @@ public class CgpaCalculationFragment extends Fragment {
 
     private List<SubjectEntry> subjectEntries = new ArrayList<>();
 
-
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+            @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_cgpa, container, false);
 
         subjectsContainer = view.findViewById(R.id.subjectsContainer);
         addSubjectButton = view.findViewById(R.id.addSubjectButton);
         calculateCgpaButton = view.findViewById(R.id.calculateCgpaButton);
         cgpaResultTextView = view.findViewById(R.id.cgpaResultTextView);
+        resultCard = view.findViewById(R.id.resultCardCgpa);
 
         // Add the first subject entry
         TextInputLayout creditsHolder = view.findViewById(R.id.creditsHolder1);
@@ -66,18 +68,14 @@ public class CgpaCalculationFragment extends Fragment {
         addSubjectButton.setOnClickListener(v -> addSubjectField());
         calculateCgpaButton.setOnClickListener(v -> calculateCgpa());
 
-        Utils.buttonTint(requireContext(), calculateCgpaButton);
-        Utils.buttonTint(requireContext(), addSubjectButton);
-        Utils.setDropperColors(requireContext(), creditsHolder, R.string.enter_credits);
-        Utils.setDropperColors(requireContext(), gradeHolder, R.string.enter_grade);
-
         return view;
     }
 
     private void addSubjectField() {
         subjectCount++;
         LayoutInflater inflater = LayoutInflater.from(getContext());
-        LinearLayout subjectEntryLayout = (LinearLayout) inflater.inflate(R.layout.subject_input_item, subjectsContainer, false);
+        View subjectEntryLayout = inflater.inflate(R.layout.subject_input_item,
+                subjectsContainer, false);
 
         TextView subjectLabel = subjectEntryLayout.findViewById(R.id.subjectLabel);
         TextInputLayout creditsHolder = subjectEntryLayout.findViewById(R.id.creditsHolder);
@@ -87,10 +85,9 @@ public class CgpaCalculationFragment extends Fragment {
 
         subjectLabel.setText(String.format(Locale.getDefault(), "Subject %d", subjectCount));
 
-        Utils.setDropperColors(requireContext(), creditsHolder, R.string.enter_credits);
-        Utils.setDropperColors(requireContext(), gradeHolder, R.string.enter_grade);
-
-        subjectsContainer.addView(subjectEntryLayout);
+        if (subjectsContainer != null) {
+            subjectsContainer.addView(subjectEntryLayout);
+        }
         subjectEntries.add(new SubjectEntry(creditsEditText, gradeEditText));
     }
 
@@ -115,7 +112,8 @@ public class CgpaCalculationFragment extends Fragment {
             case "I":
                 return -1;
             default:
-                Toast.makeText(getContext(), "Invalid grade '" + grade + "' for Subject " + subjectIndex + ". Valid grades: S, A, B, C, D, E, U, W, I.", Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "Invalid grade '" + grade + "' for Subject " + subjectIndex
+                        + ". Valid grades: S, A, B, C, D, E, U, W, I.", Toast.LENGTH_LONG).show();
                 throw new IllegalArgumentException("Invalid grade");
         }
     }
@@ -132,16 +130,18 @@ public class CgpaCalculationFragment extends Fragment {
             String gradeStr = entry.gradeEditText.getText().toString().trim();
 
             if (creditsStr.isEmpty() || gradeStr.isEmpty()) {
-                Toast.makeText(getContext(), "Please fill all fields for Subject " + (i + 1), Toast.LENGTH_SHORT).show();
+                resultCard.setVisibility(View.VISIBLE);
+                cgpaResultTextView.setText("Please fill all fields.");
                 validInput = false;
                 break;
             }
 
             try {
                 double credits = Double.parseDouble(creditsStr);
-                
+
                 if (credits <= 0) {
-                    Toast.makeText(getContext(), "Credits must be positive for Subject " + (i + 1), Toast.LENGTH_SHORT).show();
+                    resultCard.setVisibility(View.VISIBLE);
+                    cgpaResultTextView.setText("Credits must be positive.");
                     validInput = false;
                     break;
                 }
@@ -149,46 +149,44 @@ public class CgpaCalculationFragment extends Fragment {
                 double points = getPointsFromGrade(gradeStr, i + 1);
 
                 if (points == -1) {
-                    continue; 
+                    continue;
                 }
-                
+
                 totalCredits += credits;
                 totalWeightedPoints += (credits * points);
                 actualSubjectsConsidered++;
 
             } catch (NumberFormatException e) {
-                Toast.makeText(getContext(), "Invalid number format for credits for Subject " + (i + 1), Toast.LENGTH_SHORT).show();
+                resultCard.setVisibility(View.VISIBLE);
+                cgpaResultTextView.setText("Invalid number format.");
                 validInput = false;
                 break;
             } catch (IllegalArgumentException e) {
+                resultCard.setVisibility(View.VISIBLE);
+                cgpaResultTextView.setText("Invalid grade.");
                 validInput = false;
                 break;
             }
         }
 
         if (validInput) {
+            resultCard.setVisibility(View.VISIBLE);
             if (actualSubjectsConsidered == 0) {
-                 if (subjectEntries.stream().allMatch(entry -> entry.gradeEditText.getText().toString().trim().equalsIgnoreCase("I"))) {
-                    cgpaResultTextView.setText("CGPA: N/A (All subjects ignored)");
-                 } else if (totalCredits == 0 && subjectEntries.size() > 0 && !subjectEntries.stream().allMatch(entry -> entry.gradeEditText.getText().toString().trim().isEmpty() && entry.creditsEditText.getText().toString().trim().isEmpty())) {
-                    cgpaResultTextView.setText("CGPA: N/A (No valid subjects for calculation)");
-                 }
-                 else if (totalCredits == 0) {
-                     cgpaResultTextView.setText("CGPA: N/A (No credits entered or all subjects ignored)");
-                 }
-                 else {
-                    double cgpa = totalWeightedPoints / totalCredits;
-                    cgpaResultTextView.setText(String.format(Locale.getDefault(), "CGPA: %.2f", cgpa));
-                 }
+                if (subjectEntries.stream()
+                        .allMatch(entry -> entry.gradeEditText.getText().toString().trim().equalsIgnoreCase("I"))) {
+                    cgpaResultTextView.setText("CGPA: N/A");
+                } else {
+                    cgpaResultTextView.setText("CGPA: N/A");
+                }
             } else if (totalCredits == 0) {
-                 cgpaResultTextView.setText("CGPA: N/A (Total credits are zero or all subjects ignored)");
-            }
-            else {
+                cgpaResultTextView.setText("CGPA: N/A");
+            } else {
                 double cgpa = totalWeightedPoints / totalCredits;
                 cgpaResultTextView.setText(String.format(Locale.getDefault(), "CGPA: %.2f", cgpa));
             }
         } else {
-            cgpaResultTextView.setText("CGPA: Error");
+            resultCard.setVisibility(View.VISIBLE);
+            // Error text already set
         }
     }
-} 
+}

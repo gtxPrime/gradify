@@ -40,25 +40,25 @@ public class SubjectsAdapter extends RecyclerView.Adapter<SubjectsAdapter.Subjec
 
         switch (subType) {
             case "Maths":
-                holder.patterHolder.setImageResource(R.drawable.math_gre);
+                holder.patterHolder.setImageResource(R.drawable.ic_maths);
                 break;
             case "CS":
-                holder.patterHolder.setImageResource(R.drawable.cs_gre);
+                holder.patterHolder.setImageResource(R.drawable.ic_binary);
                 break;
             case "AI":
-                holder.patterHolder.setImageResource(R.drawable.ai_gre);
+                holder.patterHolder.setImageResource(R.drawable.ic_bot);
                 break;
             case "DB":
-                holder.patterHolder.setImageResource(R.drawable.db_gre);
+                holder.patterHolder.setImageResource(R.drawable.database);
                 break;
             case "App":
-                holder.patterHolder.setImageResource(R.drawable.dev_gre);
+                holder.patterHolder.setImageResource(R.drawable.ic_code);
                 break;
             case "Lang":
-                holder.patterHolder.setImageResource(R.drawable.lit_gre);
+                holder.patterHolder.setImageResource(R.drawable.ic_languages);
                 break;
             default:
-                holder.patterHolder.setImageResource(R.drawable.res_gre);
+                holder.patterHolder.setImageResource(R.drawable.ic_business);
                 break;
         }
 

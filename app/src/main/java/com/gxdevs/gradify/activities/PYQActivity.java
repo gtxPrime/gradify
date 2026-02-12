@@ -20,6 +20,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.materialswitch.MaterialSwitch;
 import com.google.android.material.textfield.MaterialAutoCompleteTextView;
 import com.google.android.material.textfield.TextInputLayout;
@@ -27,12 +28,11 @@ import com.gxdevs.gradify.R;
 import com.gxdevs.gradify.Utils.Utils;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 public class PYQActivity extends AppCompatActivity {
 
-    private Button startQuizButton, addSubjects;
+    private MaterialButton startQuizButton, addSubjects;
     MaterialAutoCompleteTextView subjectDrop, quizDrop, yearDrop, sessionDrop;
     String subject, quiz, year, session, examJsonLink;
     ConstraintLayout quizContainer, yearContainer, sessionContainer, modeContainer, modeToggleContainer;
@@ -40,9 +40,9 @@ public class PYQActivity extends AppCompatActivity {
     ProgressBar progressBar;
     MaterialSwitch modeToggle;
     TextInputLayout subjectHolder, quizHolder, yearHolder, sessionHolder;
+    private View empty_view_pyq, pyqFormContainer;
     boolean examCheck;
     List<String> subjects;
-    private ImageView mainDecor, greDecor1, greDecor2, greDecor3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,27 +54,22 @@ public class PYQActivity extends AppCompatActivity {
         setupListeners();
         subjects = Utils.getSubjects(this);
         if (subjects.get(0).equals("Select subjects in profile")) {
-            addSubjects.setVisibility(VISIBLE);
+            pyqFormContainer.setVisibility(GONE);
+            empty_view_pyq.setVisibility(VISIBLE);
+        } else {
+            pyqFormContainer.setVisibility(VISIBLE);
+            empty_view_pyq.setVisibility(GONE);
+            Utils.setupDropDown(this, subjectDrop, subjects);
         }
-
-        setupDropDown(subjectDrop, subjects);
-        setupDropDown(quizDrop, List.of(Utils.QUIZ_TYPES));
-        setupDropDown(sessionDrop, List.of(Utils.QUIZ_TYPES));
+        Utils.setupDropDown(this, quizDrop, List.of(Utils.QUIZ_TYPES));
+        Utils.setupDropDown(this, sessionDrop, List.of()); // Start empty
         findViewById(R.id.backBtn).setOnClickListener(v -> getOnBackPressedDispatcher().onBackPressed());
-
-        Utils.setTheme(this, mainDecor, greDecor1, greDecor2, greDecor3);
-        Utils.setDropperColors(this, subjectHolder, R.string.select_subjects);
-        Utils.setDropperColors(this, quizHolder, R.string.select_quiz_type);
-        Utils.setDropperColors(this, yearHolder, R.string.select_year);
-        Utils.setDropperColors(this, sessionHolder, R.string.select_session);
-        Utils.buttonTint(this, startQuizButton);
-        Utils.switchColors(this, modeToggle);
-        modeToggleContainer.setBackground(Utils.setCardColor(this, 10));
     }
 
     private void setupListeners() {
         subjectDrop.setOnItemClickListener(((parent, view, position, id) -> {
             subject = (String) parent.getItemAtPosition(position);
+            Log.d("PYQ_DEBUG", "Step 1: Subject selected - " + subject);
             resetAndHideViews(quizDrop, quizContainer);
             resetAndHideViews(yearDrop, yearContainer);
             resetAndHideViews(sessionDrop, sessionContainer);
@@ -84,6 +79,7 @@ public class PYQActivity extends AppCompatActivity {
 
             modeContainer.setVisibility(GONE);
             if (!subject.equals("Select subjects in profile")) {
+                Log.d("PYQ_DEBUG", "Step 1: Showing quiz type dropdown");
                 quizContainer.setVisibility(VISIBLE);
                 if (addSubjects.getVisibility() == VISIBLE) {
                     addSubjects.setVisibility(GONE);
@@ -93,53 +89,59 @@ public class PYQActivity extends AppCompatActivity {
 
         quizDrop.setOnItemClickListener(((parent, view, position, id) -> {
             quiz = (String) parent.getItemAtPosition(position);
-            quiz = quiz.replace(" ", "_");
+            Log.d("PYQ_DEBUG", "Step 2: Quiz type selected - " + quiz);
             resetAndHideViews(yearDrop, yearContainer);
             resetAndHideViews(sessionDrop, sessionContainer);
             resetAndHideViews(sessionDrop, modeContainer);
             resetAndHideViews(sessionDrop, startQuizButton);
+            Log.d("PYQ_DEBUG", "Step 2: Fetching years for subject=" + subject + ", quiz=" + quiz);
             progressHolder.setVisibility(VISIBLE);
-            loadDropdownData(yearDrop, subject, quiz, null);
-            yearContainer.setVisibility(VISIBLE);
+            loadDropdownData(yearDrop, yearContainer, subject, quiz, null);
         }));
 
         yearDrop.setOnItemClickListener(((parent, view, position, id) -> {
             year = (String) parent.getItemAtPosition(position);
-            year = year.replace(" ", "_");
+            Log.d("PYQ_DEBUG", "Step 3: Year selected - " + year);
             resetAndHideViews(sessionDrop, sessionContainer);
             resetAndHideViews(sessionDrop, modeContainer);
             resetAndHideViews(sessionDrop, startQuizButton);
-            if (!year.equals("No_data_found")) {
+            if (!year.equals("No data found")) {
+                Log.d("PYQ_DEBUG",
+                        "Step 3: Fetching sessions for subject=" + subject + ", quiz=" + quiz + ", year=" + year);
                 progressHolder.setVisibility(VISIBLE);
-                loadDropdownData(sessionDrop, subject, quiz, year);
-                sessionContainer.setVisibility(VISIBLE);
+                loadDropdownData(sessionDrop, sessionContainer, subject, quiz, year);
+            } else {
+                Log.w("PYQ_DEBUG", "Step 3: No data found for this year");
+                sessionContainer.setVisibility(GONE);
             }
         }));
 
         sessionDrop.setOnItemClickListener(((parent, view, position, id) -> {
             session = (String) parent.getItemAtPosition(position);
+            Log.d("PYQ_DEBUG", "Step 4: Session selected - " + session);
+            Log.d("PYQ_DEBUG", "Step 4: Fetching exam link for subject=" + subject + ", quiz=" + quiz + ", year=" + year
+                    + ", session=" + session);
             progressHolder.setVisibility(VISIBLE);
             Utils.fetchExamJsonLink(this, new Utils.ExamLinkCallback() {
                 @Override
                 public void onSingleLink(String link) {
+                    Log.d("PYQ_DEBUG", "Step 5: Exam link received - " + link);
                     if (link.contains("dl.dropboxusercontent.com")) {
+                        Log.d("PYQ_DEBUG", "Step 5: Valid Dropbox link, showing start button");
                         startQuizButton.setVisibility(VISIBLE);
                         modeContainer.setVisibility(VISIBLE);
                         progressHolder.setVisibility(GONE);
                         examJsonLink = link;
+                    } else {
+                        Log.w("PYQ_DEBUG", "Step 5: Link doesn't contain Dropbox URL: " + link);
                     }
                 }
 
                 @Override
-                public void onMultipleLinks(String[] links) {
-                    progressHolder.setVisibility(GONE);
-                    Toast.makeText(PYQActivity.this, "Multiple links found", Toast.LENGTH_SHORT).show();
-                }
-
-                @Override
                 public void onError(String error) {
+                    Log.e("PYQ_DEBUG", "Step 5: Error fetching exam link - " + error);
                     progressHolder.setVisibility(GONE);
-                    Toast.makeText(PYQActivity.this, "No PYQ Found", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PYQActivity.this, "No PYQ Found: " + error, Toast.LENGTH_LONG).show();
                 }
             }, subject, quiz, year, session);
         }));
@@ -149,6 +151,8 @@ public class PYQActivity extends AppCompatActivity {
         startQuizButton.setOnClickListener(v -> startQuiz(examJsonLink, examCheck));
 
         addSubjects.setOnClickListener(v -> startActivity(new Intent(PYQActivity.this, ProfileActivity.class)));
+        findViewById(R.id.goToProfileBtnPyq)
+                .setOnClickListener(v -> startActivity(new Intent(PYQActivity.this, ProfileActivity.class)));
     }
 
     private void startQuiz(String examJsonLink, boolean isExamMode) {
@@ -157,23 +161,6 @@ public class PYQActivity extends AppCompatActivity {
         intent.putExtra("EXAM_MODE", isExamMode);
         intent.putExtra("SUBJECT", subject);
         startActivity(intent);
-    }
-
-    private void setupDropDown(MaterialAutoCompleteTextView dropdown, List<String> data) {
-        runOnUiThread(() -> {
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, data) {
-                @NonNull
-                @Override
-                public View getView(int position, View convertView, @NonNull ViewGroup parent) {
-                    TextView view = (TextView) super.getView(position, convertView, parent);
-                    view.setTextColor(Utils.setTextColorBasedOnBackground(PYQActivity.this, "primary"));
-                    return view;
-                }
-            };
-            dropdown.setDropDownBackgroundDrawable(Utils.shadowMaker(this));
-            dropdown.setDropDownVerticalOffset(5);
-            dropdown.setAdapter(adapter);
-        });
     }
 
     private void initViews() {
@@ -193,15 +180,13 @@ public class PYQActivity extends AppCompatActivity {
         modeContainer = findViewById(R.id.modeContainer);
         modeToggleContainer = findViewById(R.id.modeToggleContainer);
 
-        mainDecor = findViewById(R.id.pyqHolder);
-        greDecor1 = findViewById(R.id.pyqDecor1);
-        greDecor2 = findViewById(R.id.pyqDecor2);
-        greDecor3 = findViewById(R.id.pyqDecor3);
-
         subjectHolder = findViewById(R.id.subjectHolder);
         quizHolder = findViewById(R.id.quizHolder);
         yearHolder = findViewById(R.id.yearHolder);
         sessionHolder = findViewById(R.id.sessionHolder);
+
+        pyqFormContainer = findViewById(R.id.pyqFormContainer);
+        empty_view_pyq = findViewById(R.id.empty_view_pyq);
 
         quizContainer.setVisibility(GONE);
         yearContainer.setVisibility(GONE);
@@ -218,30 +203,45 @@ public class PYQActivity extends AppCompatActivity {
         }
     }
 
-    private void loadDropdownData(MaterialAutoCompleteTextView dropdown, String subject, String quizType, String year) {
+    private void loadDropdownData(MaterialAutoCompleteTextView dropdown, View containerToVisible, String subject,
+            String quizType, String year) {
+        Log.d("PYQ_DEBUG",
+                "loadDropdownData called - Subject: " + subject + ", QuizType: " + quizType + ", Year: " + year);
         Utils.fetchData(this, new Utils.dataReturn() {
             @Override
             public void onSuccess(String[] data) {
                 // Convert String[] to List<String>
                 List<String> dataList = Arrays.asList(data);
+
                 if (dataList.isEmpty()) {
-                    dataList = Collections.singletonList("No data found");
+                    Log.d("PYQ_DEBUG", "Data received is empty.");
+                    Toast.makeText(PYQActivity.this, "No PYQ Found", Toast.LENGTH_SHORT).show();
+                    if (containerToVisible != null) {
+                        containerToVisible.setVisibility(GONE);
+                    }
+                } else {
+                    Log.d("PYQ_DEBUG", "Data received: " + dataList.toString());
+                    if (containerToVisible != null) {
+                        containerToVisible.setVisibility(VISIBLE);
+                    }
+                    // Call setupDropDown with the fetched data
+                    Utils.setupDropDown(PYQActivity.this, dropdown, dataList);
                 }
-                Log.d("API Response", dataList.toString());
+
                 if (progressHolder.getVisibility() == VISIBLE) {
                     progressHolder.setVisibility(GONE);
                 }
-
-                // Call setupDropDown with the fetched data
-                setupDropDown(dropdown, dataList);
             }
 
             @Override
             public void onError(String error) {
-                Toast.makeText(PYQActivity.this, "API Error", Toast.LENGTH_SHORT).show();
-                Log.e("API Error, try again later", error);
+                Toast.makeText(PYQActivity.this, "No PYQ Found", Toast.LENGTH_SHORT).show();
+                Log.e("PYQ_DEBUG", "Error: " + error);
                 if (progressHolder.getVisibility() == VISIBLE) {
                     progressHolder.setVisibility(GONE);
+                }
+                if (containerToVisible != null) {
+                    containerToVisible.setVisibility(GONE);
                 }
             }
         }, subject, quizType, year);
@@ -250,6 +250,5 @@ public class PYQActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Utils.setTheme(this, mainDecor, greDecor1, greDecor2, greDecor3);
     }
 }

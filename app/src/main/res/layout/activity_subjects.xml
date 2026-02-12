@@ -11,51 +11,7 @@
         android:id="@+id/main_content_to_blurS"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/background">
-
-        <!-- Decorative Top Arc -->
-        <ImageView
-            android:id="@+id/subjectDecor1"
-            android:layout_width="420dp"
-            android:layout_height="420dp"
-            android:layout_marginTop="-260dp"
-            android:alpha="0.8"
-            android:contentDescription="@string/decor"
-            android:src="@drawable/oval_gradient"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/subjectDecor2"
-            android:layout_width="420dp"
-            android:layout_height="420dp"
-            android:layout_marginEnd="-200dp"
-            android:layout_marginBottom="-230dp"
-            android:alpha="0.8"
-            android:contentDescription="@string/decor"
-            android:src="@drawable/oval_gradient2"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-        <ImageView
-            android:id="@+id/subjectDecor3"
-            android:layout_width="420dp"
-            android:layout_height="420dp"
-            android:layout_marginStart="-270dp"
-            android:layout_marginBottom="80dp"
-            android:alpha="0.6"
-            android:contentDescription="@string/decor"
-            android:src="@drawable/oval_gradient3"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/subjectsDecor"
-            android:visibility="gone"
-            tools:ignore="ContentDescription" />
+        android:background="@color/mainBg">
 
         <ImageView
             android:id="@+id/backBtnSS"
@@ -68,7 +24,7 @@
             android:src="@drawable/ic_back"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/white" />
+            app:tint="@color/textIcons" />
 
         <TextView
             android:id="@+id/subjectTitle"
@@ -78,7 +34,7 @@
             android:layout_marginTop="48dp"
             android:fontFamily="@font/inter18regular"
             android:text="@string/subjects"
-            android:textColor="@color/white"
+            android:textColor="@color/textIcons"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/backBtnSS"
@@ -92,37 +48,78 @@
             android:layout_marginEnd="30dp"
             android:contentDescription="@string/menu"
             android:src="@drawable/menu"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/white" />
+            app:tint="@color/textIcons" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/subjects_recycler_view"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:clipToPadding="false"
-            android:padding="8dp"
+            android:layout_marginTop="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/subjectTitle"
             tools:listitem="@layout/item_subject" />
 
-        <TextView
+        <LinearLayout
             android:id="@+id/empty_view"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:textColor="@color/white"
-            android:padding="16dp"
-            android:text="@string/no_subjects_selected_please_add_subjects_in_your_profile"
-            android:textSize="16sp"
+            android:orientation="vertical"
+            android:padding="32dp"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/subjectTitle" />
+            app:layout_constraintTop_toBottomOf="@id/subjectTitle">
 
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:src="@drawable/ic_subject"
+                app:tint="@color/emailPillBg" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/kanit"
+                android:text="No Subjects Found"
+                android:textColor="@color/textIcons"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:text="Please select your subjects in the profile section to see your lectures here."
+                android:textColor="@color/unselectedLevelText"
+                android:textSize="14sp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/goToProfileBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:layout_marginTop="32dp"
+                android:backgroundTint="@color/textIcons"
+                android:paddingStart="24dp"
+                android:paddingEnd="24dp"
+                android:text="Go to Profile"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:cornerRadius="30dp"
+                app:icon="@drawable/ic_profile_placeholder"
+                app:iconGravity="textStart"
+                app:iconPadding="12dp"
+                app:iconTint="@color/white" />
+
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

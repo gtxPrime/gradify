@@ -10,9 +10,11 @@
         android:id="@+id/textView_ai_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/pill_button_background"
-        android:textColor="@color/white"
-        android:padding="10dp"
-        android:textSize="16sp" />
+        android:background="@drawable/rounded_chat_bubble_ai"
+        android:backgroundTint="@color/cardBg"
+        android:textColor="@color/textIcons"
+        android:padding="12dp"
+        android:textSize="16sp"
+        android:fontFamily="@font/inter18regular" />
 
 </LinearLayout> 

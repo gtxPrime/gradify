@@ -6,6 +6,7 @@ import android.animation.ValueAnimator;
 import android.app.ComponentCaller;
 import android.content.Intent;
 import android.content.IntentSender;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -28,7 +29,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 
 import com.bumptech.glide.Glide;
@@ -54,12 +55,13 @@ import java.util.Locale;
 import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+
 import eightbitlab.com.blurview.BlurView;
 
 public class MainActivity extends AppCompatActivity {
     private FirebaseAuth auth;
-    private TextView greet;
-    private TextView timeTxt;
+    private TextView greet, totalStudyTimeText;
     private TimeTrackingDbHelper dbHelper;
     private View customNavDrawer;
     private ImageView navProfileImage;
@@ -78,24 +80,25 @@ public class MainActivity extends AppCompatActivity {
     private Handler timerHandler;
     private Runnable timerRunnable;
 
-    private static final String Q1_DATE_STR = "2025-10-26T00:00:00"; // IST
-    private static final String Q2_DATE_STR = "2025-11-23T00:00:00"; // IST
-    private static final String ET_DATE_STR = "2025-12-21T00:00:00"; // IST
+    private String q1DateStr;
+    private String q2DateStr;
+    private String etDateStr;
+    private String startDateStr;
     private static final String DATE_FORMAT_STR = "yyyy-MM-dd'T'HH:mm:ss";
     private static final TimeZone IST_TIMEZONE = TimeZone.getTimeZone("Asia/Kolkata");
     private static final int REQUEST_CODE_UPDATE = 100;
     private AppUpdateManager appUpdateManager;
 
-    ConstraintLayout pyqCard, notesCard, lecturesCard, toolCard, timeHolder;
-
-    private ImageView mainDecor, greDecor1, greDecor2, greDecor3;
+    TextView foundationText, pyqSubtitle, lecturesSubtitle, notesSubtitle;
+    CardView pyq_card, notes_card, lectures_card, toolCard, supportCard, timeHolder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Utils.setPad(findViewById(R.id.root_activity_layout), "bottom", this);
-        Utils.fetchAndCacheApiUrl(this, apiUrl -> Log.d("API_URL", "URL ready: " + apiUrl));
+        // Utils.fetchAndCacheApiUrl(this, apiUrl -> Log.d("API_URL", "URL ready: " +
+        // apiUrl));
         auth = FirebaseAuth.getInstance();
 
         appUpdateManager = AppUpdateManagerFactory.create(this);
@@ -103,24 +106,18 @@ public class MainActivity extends AppCompatActivity {
 
         rootActivityLayout = findViewById(R.id.root_activity_layout);
         greet = findViewById(R.id.greet);
-        timeTxt = findViewById(R.id.timeTxt);
         blurView = findViewById(R.id.blurView);
         customNavDrawer = findViewById(R.id.custom_nav_drawer_layout);
-        navDrawerWidthInPixels = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 280, getResources().getDisplayMetrics());
-        mainDecor = findViewById(R.id.mainDecor);
-        greDecor1 = findViewById(R.id.greDecor1);
-        greDecor2 = findViewById(R.id.greDecor2);
-        greDecor3 = findViewById(R.id.greDecor3);
+        navDrawerWidthInPixels = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 280,
+                getResources().getDisplayMetrics());
 
         dbHelper = new TimeTrackingDbHelper(this);
 
-        TextView welcomeTxt = findViewById(R.id.welcomeTxt);
         View actualDrawerContent = customNavDrawer;
         // Navigation items
         LinearLayout navSettings = actualDrawerContent.findViewById(R.id.nav_settings);
         LinearLayout navLogout = actualDrawerContent.findViewById(R.id.nav_logout);
         LinearLayout navProfileSection = actualDrawerContent.findViewById(R.id.nav_profile_section);
-        LinearLayout navGaaAnswers = actualDrawerContent.findViewById(R.id.nav_gaa_answers);
         LinearLayout navExamDates = actualDrawerContent.findViewById(R.id.nav_exam_dates);
         LinearLayout navParadox = actualDrawerContent.findViewById(R.id.nav_paradox);
         LinearLayout navMargazhi = actualDrawerContent.findViewById(R.id.nav_Margazhi);
@@ -146,17 +143,38 @@ public class MainActivity extends AppCompatActivity {
         updateUserInformation();
         setupExamDateStaticTexts();
         updateExamDateSectionUI();
-        Utils.setTheme(this, mainDecor, greDecor1, greDecor2, greDecor3);
+        setupExamDateStaticTexts();
+        updateExamDateSectionUI();
+        setupExamDateStaticTexts();
+        updateExamDateSectionUI();
 
-        pyqCard = findViewById(R.id.pyqCard);
-        notesCard = findViewById(R.id.notesCard);
-        lecturesCard = findViewById(R.id.lecturesCard);
-        toolCard = findViewById(R.id.toolCard);
-        timeHolder = findViewById(R.id.timeHolder);
+        totalStudyTimeText = findViewById(R.id.total_study_time_text);
 
-        String welTxt = ContextCompat.getString(this, R.string.welcome) + " to " + ContextCompat.getString(this, R.string.app_name);
-        welcomeTxt.setText(welTxt);
+        pyq_card = findViewById(R.id.pyq_card);
+        notes_card = findViewById(R.id.notes_card);
+        lectures_card = findViewById(R.id.lectures_card);
+        toolCard = findViewById(R.id.calc_card); // Corrected ID based on XML
+        supportCard = findViewById(R.id.support_card);
+        timeHolder = findViewById(R.id.focus_mode_card); // Corrected ID based on XML (Focus Card)
 
+        // Initialize views that were previously just found by ID in listeners or not at
+        // all
+        foundationText = findViewById(R.id.foundation_text);
+        pyqSubtitle = findViewById(R.id.pyq_subtitle);
+        lecturesSubtitle = findViewById(R.id.lectures_subtitle);
+        notesSubtitle = findViewById(R.id.notes_subtitle);
+
+        updateDashboardUI();
+        runEntranceAnimations();
+
+        Utils.applyBounceAnimation(timeHolder);
+        Utils.applyBounceAnimation(pyq_card);
+        Utils.applyBounceAnimation(notes_card);
+        Utils.applyBounceAnimation(lectures_card);
+        Utils.applyBounceAnimation(toolCard);
+        Utils.applyBounceAnimation(supportCard);
+        Utils.applyBounceAnimation(findViewById(R.id.profile_image));
+        Utils.applyBounceAnimation(findViewById(R.id.menu));
         findViewById(R.id.menu).setOnClickListener(v -> toggleNavDrawer());
 
         blurView.setOnClickListener(v -> {
@@ -166,27 +184,20 @@ public class MainActivity extends AppCompatActivity {
         });
         customNavDrawer.setOnClickListener(v -> {
         });
-        customNavDrawer.setBackground(Utils.drawerMaker(this));
-
-        pyqCard.setBackground(Utils.setCardColor(this, 20));
-        notesCard.setBackground(Utils.setCardColor(this, 20));
-        lecturesCard.setBackground(Utils.setCardColor(this, 20));
-        toolCard.setBackground(Utils.setCardColor(this, 20));
-        timeHolder.setBackground(Utils.setCardColor(this, 20));
 
         timeHolder.setOnClickListener(v -> {
             startActivity(new Intent(MainActivity.this, Stats.class));
         });
 
-        pyqCard.setOnClickListener(v -> {
+        pyq_card.setOnClickListener(v -> {
             startActivity(new Intent(MainActivity.this, PYQActivity.class));
         });
 
-        notesCard.setOnClickListener(v -> {
-            startActivity(new Intent(MainActivity.this, NotesActivity.class));
+        notes_card.setOnClickListener(v -> {
+            startActivity(new Intent(MainActivity.this, UserNotesActivity.class));
         });
 
-        lecturesCard.setOnClickListener(v -> {
+        lectures_card.setOnClickListener(v -> {
             startActivity(new Intent(MainActivity.this, SubjectsActivity.class));
         });
 
@@ -194,20 +205,15 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(MainActivity.this, ToolsActivity.class));
         });
 
-        findViewById(R.id.settings).setOnClickListener(v -> {
+        supportCard.setOnClickListener(v -> showSupportBottomSheet());
+
+        findViewById(R.id.profile_image).setOnClickListener(v -> {
             startActivity(new Intent(MainActivity.this, ProfileActivity.class));
         });
 
         if (navSettings != null) {
             navSettings.setOnClickListener(v -> {
                 startActivity(new Intent(MainActivity.this, SettingsActivity.class));
-                toggleNavDrawer();
-            });
-        }
-
-        if (navGaaAnswers != null) {
-            navGaaAnswers.setOnClickListener(v -> {
-                Toast.makeText(MainActivity.this, "Coming soon", Toast.LENGTH_SHORT).show();
                 toggleNavDrawer();
             });
         }
@@ -274,14 +280,68 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
+        // Fetch dates from GitHub
+        Utils.fetchDates(this, new Utils.DatabaseCallback() {
+            @Override
+            public void onReady(org.json.JSONObject dates) {
+                try {
+                    q1DateStr = dates.getString("quiz_1");
+                    q2DateStr = dates.getString("quiz_2");
+                    etDateStr = dates.getString("end_term");
+                    startDateStr = dates.getString("start_date");
+
+                    runOnUiThread(() -> {
+                        setupExamDateStaticTexts();
+                        updateExamDateSectionUI();
+                        calculateCurrentWeek();
+                    });
+                } catch (org.json.JSONException e) {
+                    Log.e("MainActivity", "Error parsing dates: " + e.getMessage());
+                }
+            }
+
+            @Override
+            public void onError(String error) {
+                Log.e("MainActivity", "Error fetching dates: " + error);
+            }
+        });
+    }
+
+    private void calculateCurrentWeek() {
+        if (startDateStr == null || lecturesSubtitle == null)
+            return;
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT_STR, Locale.getDefault());
+            sdf.setTimeZone(IST_TIMEZONE);
+            Date startDate = sdf.parse(startDateStr);
+            if (startDate != null) {
+                long diff = System.currentTimeMillis() - startDate.getTime();
+                long days = TimeUnit.MILLISECONDS.toDays(diff);
+                long week = (days / 7) + 1;
+
+                String weekText;
+                if (week < 1) {
+                    weekText = "Starting Soon";
+                } else if (week > 12) {
+                    weekText = "Week 12+";
+                } else {
+                    weekText = "Week " + week;
+                }
+                lecturesSubtitle.setText(weekText);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void checkForMandatoryUpdates() {
         Task<AppUpdateInfo> appUpdateInfoTask = appUpdateManager.getAppUpdateInfo();
         appUpdateInfoTask.addOnSuccessListener(appUpdateInfo -> {
-            if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE && appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)) {
+            if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
+                    && appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)) {
                 try {
-                    appUpdateManager.startUpdateFlowForResult(appUpdateInfo, updateLauncher, AppUpdateOptions.newBuilder(AppUpdateType.IMMEDIATE).build());
+                    appUpdateManager.startUpdateFlowForResult(appUpdateInfo, updateLauncher,
+                            AppUpdateOptions.newBuilder(AppUpdateType.IMMEDIATE).build());
                 } catch (Exception e) {
                     Log.e("Update", "Error starting update flow " + e.getMessage());
                 }
@@ -292,13 +352,15 @@ public class MainActivity extends AppCompatActivity {
     private final ActivityResultLauncher<IntentSenderRequest> updateLauncher = registerForActivityResult(
             new ActivityResultContracts.StartIntentSenderForResult(), result -> {
                 if (result.getResultCode() != RESULT_OK) {
-                    Toast.makeText(MainActivity.this, "Update failed, try again using PlayStore", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Update failed, try again using PlayStore", Toast.LENGTH_SHORT)
+                            .show();
                     checkForMandatoryUpdates();
                 }
             });
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data, @NonNull ComponentCaller caller) {
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data,
+            @NonNull ComponentCaller caller) {
         super.onActivityResult(requestCode, resultCode, data, caller);
         if (requestCode == REQUEST_CODE_UPDATE) {
             if (resultCode != RESULT_OK) {
@@ -307,7 +369,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-
 
     private void setupBlurView() {
         float radius = 15f;
@@ -335,7 +396,8 @@ public class MainActivity extends AppCompatActivity {
         ImageView nav_logout_img = navLogoutLayout.findViewById(R.id.nav_logout_img);
 
         if (currentUser != null) {
-            if (!currentUser.isAnonymous() && currentUser.getDisplayName() != null && !currentUser.getDisplayName().isEmpty()) {
+            if (!currentUser.isAnonymous() && currentUser.getDisplayName() != null
+                    && !currentUser.getDisplayName().isEmpty()) {
                 String fullName = currentUser.getDisplayName();
                 String[] words = fullName.split(" ");
                 String nameToDisplay;
@@ -362,7 +424,18 @@ public class MainActivity extends AppCompatActivity {
                             .load(R.drawable.ic_profile_placeholder) // Load placeholder if no photo URL
                             .into(navProfileImage);
                 }
-                String greetText = "Hello " + nameToDisplay;
+
+                Calendar c = Calendar.getInstance();
+                int timeOfDay = c.get(Calendar.HOUR_OF_DAY);
+                String greetingTime;
+                if (timeOfDay >= 5 && timeOfDay < 12)
+                    greetingTime = "Good Morning";
+                else if (timeOfDay >= 12 && timeOfDay < 17)
+                    greetingTime = "Good Afternoon";
+                else
+                    greetingTime = "Good Evening";
+
+                String greetText = greetingTime;
                 greet.setText(greetText);
                 navProfileName.setText(nameToDisplay);
 
@@ -379,12 +452,32 @@ public class MainActivity extends AppCompatActivity {
                     toggleNavDrawer();
                 });
             } else {
-                String greetText = "Hello Tester";
+                Calendar c = Calendar.getInstance();
+                int timeOfDay = c.get(Calendar.HOUR_OF_DAY);
+                String greetingTime;
+                if (timeOfDay >= 5 && timeOfDay < 12)
+                    greetingTime = "Good Morning";
+                else if (timeOfDay >= 12 && timeOfDay < 17)
+                    greetingTime = "Good Afternoon";
+                else
+                    greetingTime = "Good Evening";
+
+                String greetText = greetingTime;
                 greet.setText(greetText);
                 navProfileName.setText("Tester");
             }
         } else {
-            greet.setText(R.string.hello);
+            Calendar c = Calendar.getInstance();
+            int timeOfDay = c.get(Calendar.HOUR_OF_DAY);
+            String greetingTime;
+            if (timeOfDay >= 5 && timeOfDay < 12)
+                greetingTime = "Good Morning";
+            else if (timeOfDay >= 12 && timeOfDay < 17)
+                greetingTime = "Good Afternoon";
+            else
+                greetingTime = "Good Evening";
+
+            greet.setText(greetingTime);
             navProfileName.setText(R.string.hello);
             Glide.with(this)
                     .load(R.drawable.ic_profile_placeholder) // Load placeholder if no user
@@ -447,7 +540,8 @@ public class MainActivity extends AppCompatActivity {
             navExamDatesArrow.animate().rotation(180f).setDuration(300).start();
 
             if (!isAutomaticDateAndTimeEnabled()) {
-                Toast.makeText(this, "Please enable Automatic Date & Time for accurate timers.", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Please enable Automatic Date & Time for accurate timers.", Toast.LENGTH_LONG)
+                        .show();
             }
 
             if (isAutomaticDateAndTimeEnabled()) {
@@ -501,13 +595,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Utils.setTheme(this, mainDecor, greDecor1, greDecor2, greDecor3);
-        pyqCard.setBackground(Utils.setCardColor(this, 20));
-        notesCard.setBackground(Utils.setCardColor(this, 20));
-        lecturesCard.setBackground(Utils.setCardColor(this, 20));
-        toolCard.setBackground(Utils.setCardColor(this, 20));
-        timeHolder.setBackground(Utils.setCardColor(this, 20));
-        customNavDrawer.setBackground(Utils.drawerMaker(this));
 
         displayTodaysTotalStudyTime();
         updateUserInformation();
@@ -521,10 +608,14 @@ public class MainActivity extends AppCompatActivity {
             stopTimerUpdates();
         }
 
+        updateDashboardUI();
+        runEntranceAnimations();
+
         appUpdateManager.getAppUpdateInfo().addOnSuccessListener(appUpdateInfo -> {
             if (appUpdateInfo.updateAvailability() == UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS) {
                 try {
-                    appUpdateManager.startUpdateFlowForResult(appUpdateInfo, MainActivity.this, AppUpdateOptions.defaultOptions(AppUpdateType.IMMEDIATE), REQUEST_CODE_UPDATE);
+                    appUpdateManager.startUpdateFlowForResult(appUpdateInfo, MainActivity.this,
+                            AppUpdateOptions.defaultOptions(AppUpdateType.IMMEDIATE), REQUEST_CODE_UPDATE);
                 } catch (IntentSender.SendIntentException e) {
                     Log.e("Update", "Error starting update flow " + e.getMessage());
                 }
@@ -554,26 +645,23 @@ public class MainActivity extends AppCompatActivity {
         todayEnd.set(Calendar.SECOND, 59);
         todayEnd.set(Calendar.MILLISECOND, 999);
 
-        List<DailySubjectTotalData> todaysStats = dbHelper.getDailySubjectTotals(todayStart.getTimeInMillis(), todayEnd.getTimeInMillis());
+        List<DailySubjectTotalData> todaysStats = dbHelper.getDailySubjectTotals(todayStart.getTimeInMillis(),
+                todayEnd.getTimeInMillis());
 
         long totalMillisToday = 0;
         for (DailySubjectTotalData stat : todaysStats) {
             totalMillisToday += stat.getTotalDurationMillis();
         }
 
-        timeTxt.setText(formatMillisToHhMm(totalMillisToday));
+        if (totalStudyTimeText != null) {
+            totalStudyTimeText.setText(formatMillisToHhMm(totalMillisToday));
+        }
     }
 
     private String formatMillisToHhMm(long millis) {
-        if (millis < 0) millis = 0;
-        long hours = millis / (1000 * 60 * 60);
-        long minutes = (millis / (1000 * 60)) % 60;
-
-        if (hours > 0) {
-            return String.format(Locale.getDefault(), "%dh %dm", hours, minutes);
-        } else {
-            return String.format(Locale.getDefault(), "%dm", minutes);
-        }
+        long hours = TimeUnit.MILLISECONDS.toHours(millis);
+        long minutes = TimeUnit.MILLISECONDS.toMinutes(millis) % 60;
+        return String.format(Locale.getDefault(), "%dh %02dm", hours, minutes);
     }
 
     private boolean isAutomaticDateAndTimeEnabled() {
@@ -629,6 +717,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupExamDateStaticTexts() {
+        if (q1DateStr == null || q2DateStr == null || etDateStr == null) {
+            if (q1DateText != null)
+                q1DateText.setText("Loading...");
+            if (q2DateText != null)
+                q2DateText.setText("Loading...");
+            if (etDateText != null)
+                etDateText.setText("Loading...");
+            return;
+        }
+
         SimpleDateFormat displayFormat = new SimpleDateFormat("dd MMM yyyy", Locale.getDefault());
         displayFormat.setTimeZone(IST_TIMEZONE);
 
@@ -636,18 +734,24 @@ public class MainActivity extends AppCompatActivity {
             SimpleDateFormat parseFormat = new SimpleDateFormat(DATE_FORMAT_STR, Locale.getDefault());
             parseFormat.setTimeZone(IST_TIMEZONE);
 
-            Date q1Date = parseFormat.parse(Q1_DATE_STR);
-            Date q2Date = parseFormat.parse(Q2_DATE_STR);
-            Date etDate = parseFormat.parse(ET_DATE_STR);
+            Date q1Date = parseFormat.parse(q1DateStr);
+            Date q2Date = parseFormat.parse(q2DateStr);
+            Date etDate = parseFormat.parse(etDateStr);
 
-            if (q1DateText != null) q1DateText.setText("Date: " + displayFormat.format(q1Date));
-            if (q2DateText != null) q2DateText.setText("Date: " + displayFormat.format(q2Date));
-            if (etDateText != null) etDateText.setText("Date: " + displayFormat.format(etDate));
+            if (q1DateText != null)
+                q1DateText.setText("Date: " + displayFormat.format(q1Date));
+            if (q2DateText != null)
+                q2DateText.setText("Date: " + displayFormat.format(q2Date));
+            if (etDateText != null)
+                etDateText.setText("Date: " + displayFormat.format(etDate));
 
         } catch (Exception e) {
-            if (q1DateText != null) q1DateText.setText(getString(R.string.error));
-            if (q2DateText != null) q2DateText.setText(getString(R.string.error));
-            if (etDateText != null) etDateText.setText(getString(R.string.error));
+            if (q1DateText != null)
+                q1DateText.setText(getString(R.string.error));
+            if (q2DateText != null)
+                q2DateText.setText(getString(R.string.error));
+            if (etDateText != null)
+                etDateText.setText(getString(R.string.error));
         }
     }
 
@@ -657,15 +761,20 @@ public class MainActivity extends AppCompatActivity {
             stopTimerUpdates();
             return;
         }
+
+        if (q1DateStr == null || q2DateStr == null || etDateStr == null) {
+            return;
+        }
+
         try {
             SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT_STR, Locale.getDefault());
             sdf.setTimeZone(IST_TIMEZONE);
 
             long currentTimeMillis = Calendar.getInstance().getTimeInMillis();
 
-            Date targetQ1 = sdf.parse(Q1_DATE_STR);
-            Date targetQ2 = sdf.parse(Q2_DATE_STR);
-            Date targetET = sdf.parse(ET_DATE_STR);
+            Date targetQ1 = sdf.parse(q1DateStr);
+            Date targetQ2 = sdf.parse(q2DateStr);
+            Date targetET = sdf.parse(etDateStr);
 
             updateTimerText(q1TimerText, targetQ1.getTime() - currentTimeMillis);
             updateTimerText(q2TimerText, targetQ2.getTime() - currentTimeMillis);
@@ -673,14 +782,18 @@ public class MainActivity extends AppCompatActivity {
 
         } catch (Exception e) {
             e.printStackTrace();
-            if (q1TimerText != null) q1TimerText.setText(getString(R.string.error));
-            if (q2TimerText != null) q2TimerText.setText(getString(R.string.error));
-            if (etTimerText != null) etTimerText.setText(getString(R.string.error));
+            if (q1TimerText != null)
+                q1TimerText.setText(getString(R.string.error));
+            if (q2TimerText != null)
+                q2TimerText.setText(getString(R.string.error));
+            if (etTimerText != null)
+                etTimerText.setText(getString(R.string.error));
         }
     }
 
     private void updateTimerText(TextView textView, long millisRemaining) {
-        if (textView == null) return;
+        if (textView == null)
+            return;
 
         if (millisRemaining <= 0) {
             textView.setText("Ho chuka");
@@ -701,23 +814,185 @@ public class MainActivity extends AppCompatActivity {
     private void updateExamDateSectionUI() {
         boolean autoTimeEnabled = isAutomaticDateAndTimeEnabled();
         if (autoTimeEnabled) {
-            if (examTimersContainer != null) examTimersContainer.setVisibility(View.VISIBLE);
-            if (enableAutoTimeButton != null) enableAutoTimeButton.setVisibility(View.GONE);
+            if (examTimersContainer != null)
+                examTimersContainer.setVisibility(View.VISIBLE);
+            if (enableAutoTimeButton != null)
+                enableAutoTimeButton.setVisibility(View.GONE);
 
             String enableButtonText = getString(R.string.enable_auto_timezone);
-            if (q1TimerText != null && (q1TimerText.getText().toString().equals(enableButtonText) || q1TimerText.getText().toString().equals(getString(R.string.error))))
+            if (q1TimerText != null && (q1TimerText.getText().toString().equals(enableButtonText)
+                    || q1TimerText.getText().toString().equals(getString(R.string.error))))
                 q1TimerText.setText(getString(R.string.calculating));
-            if (q2TimerText != null && (q2TimerText.getText().toString().equals(enableButtonText) || q2TimerText.getText().toString().equals(getString(R.string.error))))
+            if (q2TimerText != null && (q2TimerText.getText().toString().equals(enableButtonText)
+                    || q2TimerText.getText().toString().equals(getString(R.string.error))))
                 q2TimerText.setText(getString(R.string.calculating));
-            if (etTimerText != null && (etTimerText.getText().toString().equals(enableButtonText) || etTimerText.getText().toString().equals(getString(R.string.error))))
+            if (etTimerText != null && (etTimerText.getText().toString().equals(enableButtonText)
+                    || etTimerText.getText().toString().equals(getString(R.string.error))))
                 etTimerText.setText(getString(R.string.calculating));
 
         } else {
-            if (examTimersContainer != null) examTimersContainer.setVisibility(View.GONE);
+            if (examTimersContainer != null)
+                examTimersContainer.setVisibility(View.GONE);
             if (enableAutoTimeButton != null) {
                 enableAutoTimeButton.setVisibility(View.VISIBLE);
             }
             stopTimerUpdates();
+            stopTimerUpdates();
+            updateExamDateSectionUI();
         }
+    }
+
+    private void updateDashboardUI() {
+        // 1. Greeting
+        updateGreeting();
+
+        // 2. Foundation Level & Subjects
+        updateLevelAndSubjects();
+    }
+
+    private void updateGreeting() {
+        Calendar c = Calendar.getInstance();
+        int timeOfDay = c.get(Calendar.HOUR_OF_DAY);
+        String greetingPre;
+
+        if (timeOfDay >= 5 && timeOfDay < 12) {
+            greetingPre = "Good Morning";
+        } else if (timeOfDay >= 12 && timeOfDay < 17) {
+            greetingPre = "Good Afternoon";
+        } else {
+            greetingPre = "Good Evening";
+        }
+    }
+
+    private void updateLevelAndSubjects() {
+        SharedPreferences prefs = getSharedPreferences("UserPreferences", MODE_PRIVATE);
+
+        // Level
+        String level = prefs.getString("studyLevel", "Foundation");
+        if (foundationText != null) {
+            foundationText.setText(level.toUpperCase() + " LEVEL");
+        }
+
+        // PYQ: Last Practice
+        // We assume "last_practice_timestamp" is saved when user exits a PYQ session
+        long lastPracticeTime = prefs.getLong("last_practice_timestamp", 0);
+        if (pyqSubtitle != null) {
+            if (lastPracticeTime == 0) {
+                pyqSubtitle.setText("Start Practicing");
+            } else {
+                pyqSubtitle.setText("Last: " + getRelativeTimeSpanString(lastPracticeTime));
+            }
+        }
+
+        // Lectures: Current Running Week
+        if (lecturesSubtitle != null) {
+            int currentWeek = calculateCurrentTermWeek();
+            if (currentWeek > 0 && currentWeek <= 12) {
+                lecturesSubtitle.setText("Current: Week " + currentWeek);
+            } else if (currentWeek > 12) {
+                lecturesSubtitle.setText("Term Revision");
+            } else {
+                lecturesSubtitle.setText("Term Break");
+            }
+        }
+
+        // Notes: Describes the utility
+        if (notesSubtitle != null) {
+            notesSubtitle.setText("Smart Revision");
+        }
+    }
+
+    private String getRelativeTimeSpanString(long timeMillis) {
+        long now = System.currentTimeMillis();
+        long diff = now - timeMillis;
+
+        if (diff < TimeUnit.MINUTES.toMillis(1)) {
+            return "Just now";
+        } else if (diff < TimeUnit.HOURS.toMillis(1)) {
+            long minutes = TimeUnit.MILLISECONDS.toMinutes(diff);
+            return minutes + "m ago";
+        } else if (diff < TimeUnit.DAYS.toMillis(1)) {
+            long hours = TimeUnit.MILLISECONDS.toHours(diff);
+            return hours + "h ago";
+        } else if (diff < TimeUnit.DAYS.toMillis(7)) {
+            long days = TimeUnit.MILLISECONDS.toDays(diff);
+            return days + (days == 1 ? " day ago" : " days ago");
+        } else {
+            SimpleDateFormat sdf = new SimpleDateFormat("dd MMM", Locale.getDefault());
+            return sdf.format(new Date(timeMillis));
+        }
+    }
+
+    private int calculateCurrentTermWeek() {
+        Calendar today = Calendar.getInstance();
+        int month = today.get(Calendar.MONTH); // 0-based
+        int year = today.get(Calendar.YEAR);
+
+        Calendar termStart = getCalendar(year, month);
+
+        if (today.before(termStart)) {
+            return 0;
+        }
+
+        long diffMillis = today.getTimeInMillis() - termStart.getTimeInMillis();
+        long diffDays = TimeUnit.MILLISECONDS.toDays(diffMillis);
+
+        return (int) (diffDays / 7) + 1;
+    }
+
+    @NonNull
+    private static Calendar getCalendar(int year, int month) {
+        Calendar termStart = Calendar.getInstance();
+        termStart.set(Calendar.YEAR, year);
+
+        // Approximate IITM Term Starts
+        if (month >= Calendar.JANUARY && month < Calendar.MAY) {
+            // Jan Term (Starts ~3rd Week of Jan)
+            termStart.set(Calendar.MONTH, Calendar.JANUARY);
+            termStart.set(Calendar.DAY_OF_MONTH, 19);
+        } else if (month >= Calendar.MAY && month < Calendar.SEPTEMBER) {
+            // May Term (Starts ~3rd Week of May)
+            termStart.set(Calendar.MONTH, Calendar.MAY);
+            termStart.set(Calendar.DAY_OF_MONTH, 24);
+        } else {
+            // Sept Term (Starts ~3rd Week of Sept)
+            termStart.set(Calendar.MONTH, Calendar.SEPTEMBER);
+            termStart.set(Calendar.DAY_OF_MONTH, 21);
+        }
+        return termStart;
+    }
+
+    private void runEntranceAnimations() {
+        // Macro animations: Tile bounce/shine/fade-in
+        View[] views = { findViewById(R.id.focus_mode_card), pyq_card, lectures_card, notes_card, toolCard,
+                findViewById(R.id.support_card) };
+
+        long delay = 100;
+        for (View v : views) {
+            if (v == null)
+                continue;
+            v.setAlpha(0f);
+            v.setTranslationY(50f);
+
+            v.animate()
+                    .alpha(1f)
+                    .translationY(0f)
+                    .setStartDelay(delay)
+                    .setDuration(400)
+                    .setInterpolator(new android.view.animation.OvershootInterpolator(1.0f))
+                    .start();
+
+            delay += 100;
+        }
+    }
+
+    private void showSupportBottomSheet() {
+        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this, R.style.BottomSheetDialogTheme);
+        View bottomSheetView = getLayoutInflater().inflate(R.layout.bottom_sheet_support, null);
+        bottomSheetDialog.setContentView(bottomSheetView);
+
+        bottomSheetView.findViewById(R.id.close_support_btn).setOnClickListener(v -> bottomSheetDialog.dismiss());
+
+        bottomSheetDialog.show();
     }
 }

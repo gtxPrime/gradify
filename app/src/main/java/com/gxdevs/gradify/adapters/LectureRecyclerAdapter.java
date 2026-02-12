@@ -1,6 +1,10 @@
 package com.gxdevs.gradify.adapters;
 
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
+
 import android.content.Context;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,17 +12,20 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.gxdevs.gradify.R;
-import com.gxdevs.gradify.Utils.Utils;
 import com.gxdevs.gradify.models.VideoItem;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import com.bumptech.glide.Glide;
 
 public class LectureRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
@@ -53,17 +60,12 @@ public class LectureRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
 
     private void buildItemsList() {
         items.clear();
-
         for (String week : weekNames) {
-            // Add week header
             items.add(week);
-
-            // If expanded, add all videos
             if (expandedState.get(week)) {
                 items.addAll(weeksMap.get(week));
             }
         }
-
         notifyDataSetChanged();
     }
 
@@ -71,7 +73,6 @@ public class LectureRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-
         if (viewType == TYPE_WEEK_HEADER) {
             View view = inflater.inflate(R.layout.item_week_header, parent, false);
             return new WeekHeaderViewHolder(view);
@@ -84,19 +85,12 @@ public class LectureRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         Object item = items.get(position);
-
         if (holder instanceof WeekHeaderViewHolder) {
-            WeekHeaderViewHolder weekHolder = (WeekHeaderViewHolder) holder;
-            String week = (String) item;
-            weekHolder.bind(week, expandedState.get(week));
+            ((WeekHeaderViewHolder) holder).bind((String) item, expandedState.get((String) item));
         } else if (holder instanceof VideoItemViewHolder) {
-            VideoItemViewHolder videoHolder = (VideoItemViewHolder) holder;
             VideoItem videoItem = (VideoItem) item;
-
-            // Find which week and index this video belongs to
             String videoWeek = null;
             int videoIndex = -1;
-
             for (String weekName : weekNames) {
                 List<VideoItem> videos = weeksMap.get(weekName);
                 int index = videos.indexOf(videoItem);
@@ -106,12 +100,9 @@ public class LectureRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                     break;
                 }
             }
-
-            boolean isCurrentPlaying = videoWeek != null &&
-                    videoWeek.equals(currentWeek) &&
-                    videoIndex == currentVideoIndex;
-
-            videoHolder.bind(videoItem, isCurrentPlaying);
+            boolean isCurrentPlaying = videoWeek != null && videoWeek.equals(currentWeek)
+                    && videoIndex == currentVideoIndex;
+            ((VideoItemViewHolder) holder).bind(videoItem, isCurrentPlaying);
         }
     }
 
@@ -128,7 +119,12 @@ public class LectureRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     public void setCurrentPlayingVideo(String week, int videoIndex) {
         this.currentWeek = week;
         this.currentVideoIndex = videoIndex;
-        notifyDataSetChanged();
+
+        // Collapse all weeks and expand only the current week
+        for (String w : weekNames) {
+            expandedState.put(w, w.equals(week));
+        }
+        buildItemsList();
     }
 
     public void setOnVideoClickListener(OnVideoClickListener listener) {
@@ -139,15 +135,14 @@ public class LectureRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         void onVideoClick(String week, int videoIndex);
     }
 
-    // View Holders
     class WeekHeaderViewHolder extends RecyclerView.ViewHolder {
+        private final TextView weekLabel;
         private final TextView weekTitle;
-        private final TextView lecturesNum;
         private final ImageView expandIcon;
 
         WeekHeaderViewHolder(@NonNull View itemView) {
             super(itemView);
-            lecturesNum = itemView.findViewById(R.id.lecturesNum);
+            weekLabel = itemView.findViewById(R.id.textView_week_label);
             weekTitle = itemView.findViewById(R.id.textView_week_title);
             expandIcon = itemView.findViewById(R.id.imageView_expand);
 
@@ -159,35 +154,28 @@ public class LectureRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         }
 
         void bind(String week, boolean isExpanded) {
-            List<VideoItem> videos = weeksMap.get(week);
-            if (videos != null) {
-                lecturesNum.setText("Total Lectures: " + videos.size());
-            }
-            weekTitle.setText(week);
+            weekLabel.setText(week.toUpperCase());
+            weekTitle.setText(week); // Or part of week info if available
             expandIcon.setRotation(isExpanded ? 180 : 0);
         }
     }
 
     class VideoItemViewHolder extends RecyclerView.ViewHolder {
         private final TextView videoTitle;
-        private final View currentIndicator;
-        private final ConstraintLayout videoHolder;
+        private final ImageView thumbnail;
+        private final ImageView playingIndicator;
 
         VideoItemViewHolder(@NonNull View itemView) {
             super(itemView);
             videoTitle = itemView.findViewById(R.id.textView_video_title);
-            currentIndicator = itemView.findViewById(R.id.view_current);
-            videoHolder = itemView.findViewById(R.id.videoHolder);
+            thumbnail = itemView.findViewById(R.id.imageView_video_thumbnail);
+            playingIndicator = itemView.findViewById(R.id.playing);
 
             itemView.setOnClickListener(v -> {
                 if (videoClickListener != null) {
-                    int position = getAdapterPosition();
-                    VideoItem videoItem = (VideoItem) items.get(position);
-
-                    // Find which week this video belongs to
+                    VideoItem videoItem = (VideoItem) items.get(getAdapterPosition());
                     String week = null;
                     int videoIndex = -1;
-
                     for (String weekName : weekNames) {
                         List<VideoItem> videos = weeksMap.get(weekName);
                         videoIndex = videos.indexOf(videoItem);
@@ -196,18 +184,46 @@ public class LectureRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                             break;
                         }
                     }
-
-                    if (week != null) {
+                    if (week != null)
                         videoClickListener.onVideoClick(week, videoIndex);
-                    }
                 }
             });
         }
 
         void bind(VideoItem videoItem, boolean isCurrentPlaying) {
             videoTitle.setText(videoItem.getTitle());
-            currentIndicator.setVisibility(isCurrentPlaying ? View.VISIBLE : View.INVISIBLE);
-            videoHolder.setBackground(Utils.setCardColor(context, 10));
+
+            // Handle Playing State
+            if (isCurrentPlaying) {
+                videoTitle.setTextColor(ContextCompat.getColor(context, R.color.primaryColor));
+                thumbnail.setAlpha(0.6f); // Dim thumbnail slightly
+                playingIndicator.setVisibility(VISIBLE);
+            } else {
+                playingIndicator.setVisibility(GONE);
+                videoTitle.setTextColor(ContextCompat.getColor(context, R.color.textIcons));
+                thumbnail.setAlpha(1.0f);
+            }
+
+            String videoId = extractYoutubeId(videoItem.getLink());
+            String thumbUrl = "https://img.youtube.com/vi/" + videoId + "/0.jpg";
+            Glide.with(context).load(thumbUrl).into(thumbnail);
+        }
+
+        private String extractYoutubeId(String url) {
+            try {
+                Uri uri = Uri.parse(url);
+                String vParam = uri.getQueryParameter("v");
+                if (vParam != null)
+                    return vParam;
+                if ("youtu.be".equals(uri.getHost()))
+                    return uri.getLastPathSegment();
+                Matcher m = Pattern
+                        .compile("(?:youtu\\.be/|v=|/embed/|watch\\?v=|&v=)([^#&?]+)").matcher(url);
+                if (m.find())
+                    return m.group(1);
+            } catch (Exception ignored) {
+            }
+            return "";
         }
     }
-} 
+}

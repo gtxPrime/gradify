@@ -2,7 +2,6 @@ package com.gxdevs.gradify.activities;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
-import static com.gxdevs.gradify.activities.SettingsActivity.PRIMARY_COLOR_KEY;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -58,6 +57,11 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.FullscreenListener;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.options.IFramePlayerOptions;
+import com.gxdevs.gradify.adapters.LectureNotesAdapter;
+import com.gxdevs.gradify.db.entities.NoteEntity;
+import com.gxdevs.gradify.Utils.AutoFormatTextWatcher;
+import java.util.Locale;
+
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
 
 import java.io.IOException;
@@ -95,7 +99,7 @@ public class LectureActivity extends AppCompatActivity {
     private YouTubePlayerView youTubePlayerView;
     private YouTubePlayer youTubePlayer;
     private LectureData lectureData;
-    private ConstraintLayout contentAreaBelowPlayer; // The new group
+    private View contentAreaBelowPlayer; // changed from ConstraintLayout to View to support NestedScrollView
     private ConstraintLayout chatLayout; // This is the root of chat_layout.xml, inflated by ViewStub
     private RecyclerView chatMessagesRecyclerView;
     private EditText editTextChatMessage;
@@ -127,12 +131,13 @@ public class LectureActivity extends AppCompatActivity {
     private String subjectName;
     private long lectureStartTimeMillis;
     private boolean isAiResponding = false; // Flag to track AI response state
+    private String targetVideoId;
+    private float targetTimestamp = -1f;
 
     private SharedPreferences lecturePrefs;
     private SharedPreferences settingsPrefs; // For app-wide settings
     private TimeTrackingDbHelper dbHelper;
     private ChatDao chatDao;
-    private ImageView lectDecor, lectDecor1, lectDecor2, lectDecor3;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -143,16 +148,10 @@ public class LectureActivity extends AppCompatActivity {
         fullscreenContainer = findViewById(R.id.fullscreen_container);
         videoTitleTextView = findViewById(R.id.textView_video_title);
         youTubePlayerView = findViewById(R.id.youtube_player_view);
-        CardView reviewCard = findViewById(R.id.reviewCard);
-        CardView aiCard = findViewById(R.id.aiCard);
-        contentAreaBelowPlayer = findViewById(R.id.content_area_below_player);
-        lectDecor = findViewById(R.id.lectDecor);
-        lectDecor1 = findViewById(R.id.lectDecor1);
-        lectDecor2 = findViewById(R.id.lectDecor2);
-        lectDecor3 = findViewById(R.id.lectDecor3);
 
-        SharedPreferences preferences = getSharedPreferences(SettingsActivity.PREFS_NAME, MODE_PRIVATE);
-        int startColor = preferences.getInt(PRIMARY_COLOR_KEY, ContextCompat.getColor(this, R.color.primaryColor));
+        // Mapped from XML
+        View aiButton = findViewById(R.id.btn_ai_doubt);
+        contentAreaBelowPlayer = findViewById(R.id.nestedScrollView); // Was ConstraintLayout, now View/ScrollView
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -173,22 +172,33 @@ public class LectureActivity extends AppCompatActivity {
             jsonUrl = "https://cdn.jsdelivr.net/gh/gtxPrime/gradify@main/data/lectures/Foundation/stats1.json";
         }
 
+        targetVideoId = getIntent().getStringExtra("video_id");
+        targetTimestamp = getIntent().getFloatExtra("timestamp", -1f);
+
         dbHelper = new TimeTrackingDbHelper(this);
         AppDatabase chatDb = AppDatabase.getDatabase(this);
         chatDao = chatDb.chatDao();
         fetchLectureData(jsonUrl);
 
-        reviewCard.setCardBackgroundColor(startColor);
-        aiCard.setCardBackgroundColor(startColor);
+        // reviewCard logic removed as ID missing
+        // reviewCard.setCardBackgroundColor(startColor);
+        // reviewCard.setOnClickListener(v -> Toast.makeText(this, "Coming Soon",
+        // Toast.LENGTH_SHORT).show());
 
-        reviewCard.setOnClickListener(v -> Toast.makeText(this, "Coming Soon", Toast.LENGTH_SHORT).show());
-        aiCard.setOnClickListener(v -> toggleChatLayout(true));
+        if (aiButton != null) {
+            aiButton.setOnClickListener(v -> toggleChatLayout(true));
+        }
+
+        // Setup Notes Button
+        View btnNotes = findViewById(R.id.btn_notes);
+        if (btnNotes != null) {
+            btnNotes.setOnClickListener(v -> toggleNotesLayout(true));
+        }
 
         // Initialize Gemini Chat Service
         geminiChatService = new GeminiChatService(ContextCompat.getMainExecutor(this));
         animasiHandler = new Handler(Looper.getMainLooper());
 
-        Utils.setTheme(this, lectDecor, lectDecor1, lectDecor2, lectDecor3);
     }
 
     private void initializeChatViews() {
@@ -241,6 +251,275 @@ public class LectureActivity extends AppCompatActivity {
         }
     }
 
+    // --- Notes / Text Editor Logic ---
+    private ConstraintLayout notesLayout;
+    private EditText etNoteContent;
+    private com.google.android.material.button.MaterialButton btnCaptureTimestamp;
+    private android.widget.CheckBox cbImportantNote;
+    private long currentNoteTimestamp = -1; // in seconds
+    private boolean isTimestampLocked = false;
+    private LectureNotesAdapter notesAdapter;
+    private String currentVideoId;
+
+    private void toggleNotesLayout(boolean show) {
+        if (contentAreaBelowPlayer == null)
+            return;
+
+        if (show) {
+            if (notesLayout == null) {
+                ViewStub notesStub = findViewById(R.id.notes_layout_stub);
+                if (notesStub != null) {
+                    notesLayout = (ConstraintLayout) notesStub.inflate();
+                    initializeNotesViews();
+                } else {
+                    return;
+                }
+            } else if (notesLayout.getVisibility() == VISIBLE) {
+                return;
+            }
+
+            Animation slideIn = AnimationUtils.loadAnimation(this, R.anim.slide_in_bottom);
+            notesLayout.startAnimation(slideIn);
+            notesLayout.setVisibility(VISIBLE);
+            contentAreaBelowPlayer.setVisibility(GONE);
+            if (chatLayout != null)
+                chatLayout.setVisibility(GONE);
+
+            // Load notes for current video
+            loadNotesForCurrentVideo();
+
+        } else {
+            if (notesLayout == null || notesLayout.getVisibility() == GONE)
+                return;
+
+            Animation slideOut = AnimationUtils.loadAnimation(this, R.anim.slide_out_bottom);
+            slideOut.setAnimationListener(new Animation.AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {
+                }
+
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    notesLayout.setVisibility(GONE);
+                    contentAreaBelowPlayer.setVisibility(VISIBLE);
+                }
+
+                @Override
+                public void onAnimationRepeat(Animation animation) {
+                }
+            });
+            notesLayout.startAnimation(slideOut);
+        }
+    }
+
+    private void initializeNotesViews() {
+        if (notesLayout == null)
+            return;
+
+        etNoteContent = notesLayout.findViewById(R.id.et_note_content);
+        btnCaptureTimestamp = notesLayout.findViewById(R.id.btn_capture_timestamp);
+        cbImportantNote = notesLayout.findViewById(R.id.cb_important_note);
+        RecyclerView notesRecyclerView = notesLayout.findViewById(R.id.recycler_view_notes);
+
+        // Auto-Formatting
+        etNoteContent.addTextChangedListener(new AutoFormatTextWatcher(etNoteContent));
+
+        // RecyclerView Setup
+        notesAdapter = new LectureNotesAdapter(
+                note -> {
+                    // Delete Note
+                    new Thread(() -> AppDatabase.getDatabase(this).noteDao().delete(note)).start();
+                },
+                note -> {
+                    // Click Note -> Seek to timestamp
+                    if (youTubePlayer != null) {
+                        youTubePlayer.seekTo(note.timestamp);
+                    }
+                });
+        notesRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        notesRecyclerView.setAdapter(notesAdapter);
+
+        // Capture Button
+        updateCaptureButton(false); // Default state
+        btnCaptureTimestamp.setOnClickListener(v -> {
+            if (youTubePlayer != null) {
+                isTimestampLocked = !isTimestampLocked;
+
+                if (isTimestampLocked) {
+                    // Lock the current time
+                    currentNoteTimestamp = (long) resumePosition;
+                    updateTimestampText(currentNoteTimestamp);
+                    updateCaptureButton(true); // Selected state
+                } else {
+                    // Unlock to resume live updates
+                    currentNoteTimestamp = -1;
+                    updateCaptureButton(false); // Reset state
+                }
+            }
+        });
+
+        notesLayout.findViewById(R.id.btn_close_notes).setOnClickListener(v -> toggleNotesLayout(false));
+        notesLayout.findViewById(R.id.btn_save_note).setOnClickListener(v -> {
+            String noteText = etNoteContent.getText().toString().trim();
+            if (!noteText.isEmpty()) {
+                boolean isImportant = cbImportantNote != null && cbImportantNote.isChecked();
+                saveNoteToDb(noteText, isImportant);
+
+                // Reset UI
+                etNoteContent.setText("");
+                if (cbImportantNote != null)
+                    cbImportantNote.setChecked(false);
+                isTimestampLocked = false;
+                currentNoteTimestamp = -1;
+                updateCaptureButton(false); // Reset state
+                Toast.makeText(this, "Note Saved", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "Empty note discarded", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        // Symbol Buttons
+        setupSymbolKey(R.id.btn_sym_sqrt, "√");
+        setupSymbolKey(R.id.btn_sym_int, "∫");
+        setupSymbolKey(R.id.btn_sym_pi, "π");
+        setupSymbolKey(R.id.btn_sym_theta, "θ");
+        setupSymbolKey(R.id.btn_sym_sigma, "Σ");
+        setupSymbolKey(R.id.btn_sym_lambda, "λ");
+    }
+
+    private void updateTimestampText(long seconds) {
+        if (btnCaptureTimestamp == null)
+            return;
+        long mins = seconds / 60;
+        long secs = seconds % 60;
+        String timeString = String.format(Locale.getDefault(), "Link timestamp %02d:%02d", mins, secs);
+        btnCaptureTimestamp.setText(timeString);
+    }
+
+    private void updateCaptureButton(boolean selected) {
+        if (btnCaptureTimestamp == null)
+            return;
+
+        int bgColor = selected ? ContextCompat.getColor(this, R.color.heroCards)
+                : ContextCompat.getColor(this, R.color.emailPillBg);
+        int textColor = ContextCompat.getColor(this, R.color.primaryColor); // Keep text dark/primary
+
+        btnCaptureTimestamp.setBackgroundTintList(android.content.res.ColorStateList.valueOf(bgColor));
+        btnCaptureTimestamp.setTextColor(textColor);
+        btnCaptureTimestamp.setIconTint(android.content.res.ColorStateList.valueOf(textColor));
+    }
+
+    private void saveNoteToDb(String content, boolean isImportant) {
+        String videoTitle = "Unknown Video";
+        String weekName = "Unknown Week";
+        long creationTime = System.currentTimeMillis();
+
+        if (lectureData != null) {
+            List<String> weekKeys = new ArrayList<>(lectureData.getWeeks().keySet());
+            if (currentWeekIndex >= 0 && currentWeekIndex < weekKeys.size()) {
+                weekName = weekKeys.get(currentWeekIndex);
+                List<VideoItem> videos = lectureData.getWeeks().get(weekName);
+                if (videos != null && currentVideoIndex >= 0 && currentVideoIndex < videos.size()) {
+                    VideoItem item = videos.get(currentVideoIndex);
+                    videoTitle = item.getTitle();
+                    if (currentVideoId == null) {
+                        currentVideoId = item.getId();
+                    }
+                }
+            }
+        }
+
+        if (currentVideoId == null) {
+            // Try to resolve again
+            resolveCurrentVideoId();
+            if (currentVideoId == null) {
+                Log.e("Notes", "Video ID is null, cannot save note linked to video.");
+                // Fallback: save with "unknown" ID or subject name as ID
+                currentVideoId = "unknown_" + subjectName;
+            }
+        }
+
+        // Use locked timestamp if set, otherwise current position
+        long timestamp = isTimestampLocked ? currentNoteTimestamp : (long) resumePosition;
+
+        // Run on background thread
+        String finalVideoTitle = videoTitle;
+        String finalWeekName = weekName;
+        int finalWeekIdx = currentWeekIndex;
+        int finalVideoIdx = currentVideoIndex;
+        new Thread(() -> {
+            NoteEntity note = new NoteEntity(
+                    subjectName,
+                    content,
+                    timestamp,
+                    currentVideoId,
+                    isImportant,
+                    finalVideoTitle,
+                    finalWeekName,
+                    finalWeekIdx,
+                    finalVideoIdx,
+                    creationTime);
+            AppDatabase.getDatabase(this).noteDao().insert(note);
+        }).start();
+    }
+
+    private void loadNotesForCurrentVideo() {
+        resolveCurrentVideoId();
+
+        if (currentVideoId != null && notesAdapter != null) {
+            AppDatabase.getDatabase(this).noteDao().getNotesByVideoId(currentVideoId)
+                    .observe(this, notes -> notesAdapter.submitList(notes));
+        }
+    }
+
+    private void resolveCurrentVideoId() {
+        if (currentVideoId == null && lectureData != null) {
+            try {
+                // Need to find the key for currentWeekIndex
+                List<String> weekKeys = new ArrayList<>(lectureData.getWeeks().keySet());
+                if (currentWeekIndex >= 0 && currentWeekIndex < weekKeys.size()) {
+                    String key = weekKeys.get(currentWeekIndex);
+                    List<VideoItem> videos = lectureData.getWeeks().get(key);
+                    if (videos != null && currentVideoIndex >= 0 && currentVideoIndex < videos.size()) {
+                        VideoItem item = videos.get(currentVideoIndex);
+                        currentVideoId = item.getId();
+                        if (currentVideoId == null || currentVideoId.isEmpty()) {
+                            // Fallback to generating ID from link
+                            currentVideoId = extractYoutubeId(item.getLink());
+                            // Update the item so we don't recalculate next time
+                            item.setId(currentVideoId);
+                        }
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void setupSymbolKey(int btnId, String symbol) {
+        View btn = notesLayout.findViewById(btnId);
+        if (btn != null) {
+            btn.setOnClickListener(v -> insertSymbol(symbol));
+        }
+    }
+
+    private void insertSymbol(String symbol) {
+        if (etNoteContent == null)
+            return;
+        int start = Math.max(etNoteContent.getSelectionStart(), 0);
+        int end = Math.max(etNoteContent.getSelectionEnd(), 0);
+        etNoteContent.getText().replace(Math.min(start, end), Math.max(start, end), symbol, 0, symbol.length());
+    }
+
+    private void setupFormattingKey(int btnId, Object spanType) {
+        // Removed manual formatting buttons as we use auto-formatting now
+    }
+
+    private void toggleFormatting(Object spanType) {
+        // Removed
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -254,6 +533,8 @@ public class LectureActivity extends AppCompatActivity {
             exitFullScreen();
         } else if (chatLayout != null && chatLayout.getVisibility() == VISIBLE) {
             toggleChatLayout(false);
+        } else if (notesLayout != null && notesLayout.getVisibility() == VISIBLE) {
+            toggleNotesLayout(false);
         } else {
             super.onBackPressed();
         }
@@ -346,6 +627,36 @@ public class LectureActivity extends AppCompatActivity {
     private void setupUI() {
         List<String> weekNames = new ArrayList<>(lectureData.getWeeks().keySet());
         Map<String, List<VideoItem>> weeksMap = lectureData.getWeeks();
+
+        if (targetVideoId != null) {
+            boolean found = false;
+            for (int w = 0; w < weekNames.size(); w++) {
+                String wName = weekNames.get(w);
+                List<VideoItem> vids = weeksMap.get(wName);
+                if (vids != null) {
+                    for (int v = 0; v < vids.size(); v++) {
+                        VideoItem item = vids.get(v);
+                        String vidId = item.getId();
+                        if (vidId == null || vidId.isEmpty()) {
+                            vidId = extractYoutubeId(item.getLink());
+                        }
+
+                        if (targetVideoId.equals(vidId)) {
+                            currentWeekIndex = w;
+                            currentVideoIndex = v;
+                            if (targetTimestamp >= 0) {
+                                resumePosition = targetTimestamp;
+                            }
+                            found = true;
+                            break;
+                        }
+                    }
+                }
+                if (found)
+                    break;
+            }
+        }
+
         adapter = new LectureRecyclerAdapter(this, weekNames, weeksMap);
         recyclerView.setAdapter(adapter);
 
@@ -392,6 +703,9 @@ public class LectureActivity extends AppCompatActivity {
             @Override
             public void onCurrentSecond(@NonNull YouTubePlayer youTubePlayer, float second) {
                 resumePosition = second; // Update resumePosition here
+                if (notesLayout != null && notesLayout.getVisibility() == VISIBLE && !isTimestampLocked) {
+                    updateTimestampText((long) second);
+                }
             }
 
             @Override
@@ -440,6 +754,12 @@ public class LectureActivity extends AppCompatActivity {
                 loadChatHistory(ytLink);
             }
         }
+
+        // Reload notes for the new video
+        // We reset the currentVideoId so it gets re-resolved correctly for the new
+        // video index
+        currentVideoId = null;
+        loadNotesForCurrentVideo();
     }
 
     private void playNextVideo() {

@@ -2,31 +2,35 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/subjectStatsHolder"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="20dp"
-    android:layout_marginTop="5dp"
-    android:id="@+id/subjectStatsHolder"
-    android:layout_marginEnd="20dp"
-    android:layout_marginBottom="5dp"
-    app:cardBackgroundColor="@color/primaryColor"
-    app:cardCornerRadius="8dp"
-    app:cardElevation="2dp">
+    android:layout_marginStart="24dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginEnd="24dp"
+    android:layout_marginBottom="8dp"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="24dp"
+    app:cardElevation="0dp"
+    app:strokeColor="#F0F0F0"
+    app:strokeWidth="1dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="20dp">
 
         <TextView
             android:id="@+id/text_view_subject_name"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:textAppearance="?attr/textAppearanceTitleMedium"
-            android:textColor="@color/white"
-            tools:text="Subject Name (e.g., Mathematics)" />
+            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/kanit"
+            android:textColor="@color/textIcons"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:text="Machine Learning F." />
 
         <!-- PYQ Progress -->
         <LinearLayout
@@ -37,23 +41,30 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:alpha="0.9"
-                android:text="PYQs Solved:"
-                android:textAppearance="?attr/textAppearanceBodyMedium"
-                android:textColor="@color/white" />
+                android:fontFamily="@font/inter18regular"
+                android:alpha="0.8"
+                android:text="PYQS"
+                android:textAllCaps="true"
+                android:textColor="@color/textIcons"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"/>
 
             <TextView
                 android:id="@+id/text_view_pyq_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:alpha="0.9"
-                android:textAppearance="?attr/textAppearanceBodyMedium"
-                android:textColor="@color/white"
-                tools:text="2h 30m" />
+                android:fontFamily="@font/inter18regular"
+                android:textColor="@color/textIcons"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                tools:text="12 / 15" />
         </LinearLayout>
 
         <com.google.android.material.progressindicator.LinearProgressIndicator
@@ -61,8 +72,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
+            app:trackColor="@color/emailPillBg"
             app:trackCornerRadius="4dp"
-            tools:progress="60" />
+            app:trackThickness="6dp"
+            tools:indicatorColor="@color/pie_green_4"
+            tools:progress="80" />
 
         <!-- Lecture Progress -->
         <LinearLayout
@@ -73,32 +87,41 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:alpha="0.9"
-                android:text="Lectures Watched:"
-                android:textAppearance="?attr/textAppearanceBodyMedium"
-                android:textColor="@color/white" />
+                android:fontFamily="@font/inter18regular"
+                android:alpha="0.8"
+                android:text="LECTURES"
+                android:textAllCaps="true"
+                android:textColor="@color/textIcons"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"/>
 
             <TextView
                 android:id="@+id/text_view_lecture_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:alpha="0.9"
-                android:textAppearance="?attr/textAppearanceBodyMedium"
-                android:textColor="@color/white"
-                tools:text="5h 15m" />
+                android:fontFamily="@font/inter18regular"
+                android:textColor="@color/textIcons"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                tools:text="3 / 5" />
         </LinearLayout>
 
         <com.google.android.material.progressindicator.LinearProgressIndicator
             android:id="@+id/progress_bar_lecture"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:trackColor="?attr/colorSecondaryContainer"
+            app:trackColor="@color/emailPillBg"
             app:trackCornerRadius="4dp"
-            tools:progress="75" />
+            app:trackThickness="6dp"
+            tools:indicatorColor="@color/pie_green_1"
+            tools:progress="60" />
 
     </LinearLayout>
-</com.google.android.material.card.MaterialCardView> 
+</com.google.android.material.card.MaterialCardView>

@@ -1,441 +1,469 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/root_activity_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/main_content_to_blur" 
+        android:id="@+id/main_content_to_blur"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/background">
+        android:background="@color/mainBg"
+        android:padding="20dp">
 
-        <ImageView
-            android:id="@+id/greDecor1"
-            android:layout_width="420dp"
-            android:layout_height="420dp"
-            android:layout_marginTop="-260dp"
-            android:alpha="0.8"
-            android:contentDescription="@string/decor"
-            android:src="@drawable/oval_gradient"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/greDecor2"
-            android:layout_width="420dp"
-            android:layout_height="420dp"
-            android:layout_marginEnd="-200dp"
-            android:layout_marginBottom="-230dp"
-            android:alpha="0.8"
-            android:contentDescription="@string/decor"
-            android:src="@drawable/oval_gradient2"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-        <ImageView
-            android:id="@+id/greDecor3"
-            android:layout_width="420dp"
-            android:layout_height="420dp"
-            android:layout_marginStart="-270dp"
-            android:layout_marginBottom="80dp"
-            android:alpha="0.6"
-            android:contentDescription="@string/decor"
-            android:src="@drawable/oval_gradient3"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="gone"
-            android:id="@+id/mainDecor"
-            tools:ignore="ContentDescription" />
-
+        <!-- Top Bar -->
         <ImageView
             android:id="@+id/menu"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="65dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:contentDescription="@string/menu"
             android:src="@drawable/menu"
+            app:layout_constraintBottom_toBottomOf="@+id/greet"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/white" />
+            app:layout_constraintTop_toTopOf="@+id/foundation_text"
+            app:tint="@color/textIcons" />
+
+        <TextView
+            android:id="@+id/foundation_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/kanit"
+            android:letterSpacing="0.05"
+            android:text="@string/foundation_level"
+            android:textAllCaps="true"
+            android:textColor="@color/gray"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/menu"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/greet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="40dp"
             android:fontFamily="@font/kanit"
-            android:text="@string/hello"
-            android:textColor="@color/white"
-            android:textSize="35sp"
+            android:text="Good Afternoon"
+            android:textColor="@color/textIcons"
+            android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/menu" />
-
-        <TextView
-            android:id="@+id/welcomeTxt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="-8dp"
-            android:alpha="0.7"
-            android:fontFamily="@font/kanit"
-            android:text="@string/welcome"
-            android:textColor="@color/white"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/greet" />
+            app:layout_constraintStart_toStartOf="@+id/foundation_text"
+            app:layout_constraintTop_toBottomOf="@+id/foundation_text" />
 
         <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/settings"
+            android:id="@+id/profile_image"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginTop="65dp"
-            android:layout_marginEnd="30dp"
-            android:layout_marginBottom="20dp"
             android:src="@drawable/settings"
-            android:tint="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/greet"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/foundation_text"
             app:shapeAppearanceOverlay="@style/circleImageView" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/timeHolder"
+        <!-- Focus Mode Card -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/focus_mode_card"
             android:layout_width="match_parent"
-            android:layout_height="65dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="25dp"
-            android:layout_marginEnd="30dp"
-            android:background="@drawable/oval_cons"
-            app:layout_constraintTop_toBottomOf="@+id/welcomeTxt">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardBackgroundColor="@color/heroCards"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/greet">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/clockHolder"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="15dp"
-                android:background="@drawable/circle_gra"
-                android:padding="5dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:contentDescription="@string/decor"
-                    android:src="@drawable/ic_time"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:tint="@color/white" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <TextView
-                android:id="@+id/timeTxt"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="5dp"
-                android:fontFamily="@font/kanit"
-                android:text="@string/_50_min"
-                android:textColor="@color/white"
-                android:textSize="25sp"
-                app:layout_constraintStart_toEndOf="@+id/clockHolder"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="-5dp"
-                android:layout_marginBottom="10dp"
-                android:alpha="0.7"
-                android:fontFamily="@font/kanit"
-                android:text="@string/total_time_studied"
-                android:textColor="@color/white"
-                android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/clockHolder"
-                app:layout_constraintTop_toBottomOf="@+id/timeTxt" />
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/timeDetails"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_marginEnd="20dp"
-                app:cardBackgroundColor="@color/primaryDarkColor"
-                app:cardCornerRadius="10dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:contentDescription="@string/back"
-                    android:padding="5dp"
-                    android:src="@drawable/ic_arrow"
-                    app:tint="@color/white" />
-
-            </androidx.cardview.widget.CardView>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/optionsHolder"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/timeHolder">
-
-            <androidx.constraintlayout.helper.widget.Flow
-                android:id="@+id/flow"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="100dp"
-                android:orientation="horizontal"
-                app:constraint_referenced_ids="pyqCard,notesCard,lecturesCard,toolCard"
-                app:flow_horizontalGap="32dp"
-                app:flow_maxElementsWrap="2"
-                app:flow_verticalGap="32dp"
-                app:flow_wrapMode="aligned"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/pyqCard"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:background="@drawable/oval_cons">
-
-                <ImageView
-                    android:id="@+id/image1"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:contentDescription="@string/pyq"
-                    android:padding="5dp"
-                    android:src="@drawable/pyq"
-                    app:layout_constraintBottom_toTopOf="@id/heading1"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHeight_percent="0.6"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintWidth_percent="0.6" />
+                android:padding="20dp">
 
                 <TextView
-                    android:id="@+id/heading1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ellipsize="end"
-                    android:fontFamily="@font/kanit"
-                    android:maxLines="1"
-                    android:text="@string/practice_pyq"
-                    android:textColor="@color/white"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toTopOf="@+id/subheading1"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
-
-                <TextView
-                    android:id="@+id/subheading1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:alpha="0.6"
-                    android:ellipsize="end"
-                    android:fontFamily="@font/baloo"
-                    android:maxLines="2"
-                    android:text="@string/practice_you_knowledge"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textSize="12sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/notesCard"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:background="@drawable/oval_cons">
-
-                <ImageView
-                    android:id="@+id/image2"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:contentDescription="@string/notes"
-                    android:padding="5dp"
-                    android:src="@drawable/notes"
-                    app:layout_constraintBottom_toTopOf="@id/heading2"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHeight_percent="0.6"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintWidth_percent="0.6" />
-
-                <TextView
-                    android:id="@+id/heading2"
+                    android:id="@+id/focus_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/kanit"
-                    android:text="@string/notes"
-                    android:textColor="@color/white"
+                    android:text="@string/time_studied"
+                    android:textColor="@color/textIcons"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toTopOf="@+id/subheading2"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
-
-                <TextView
-                    android:id="@+id/subheading2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:alpha="0.6"
-                    android:ellipsize="end"
-                    android:fontFamily="@font/baloo"
-                    android:maxLines="2"
-                    android:text="@string/life_saving_notes"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textSize="12sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/lecturesCard"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:background="@drawable/oval_cons">
-
-                 <ImageView
-                    android:id="@+id/image3"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:contentDescription="@string/lectures"
-                    android:padding="5dp"
-                    android:src="@drawable/lectures"
-                    app:layout_constraintBottom_toTopOf="@id/heading3"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHeight_percent="0.6"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintWidth_percent="0.6" />
-
-                <TextView
-                    android:id="@+id/heading3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ellipsize="end"
-                    android:fontFamily="@font/baloo"
-                    android:maxLines="1"
-                    android:text="@string/lectures"
-                    android:textColor="@color/white"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toTopOf="@+id/subheading3"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
-
-                <TextView
-                    android:id="@+id/subheading3"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:alpha="0.6"
-                    android:ellipsize="end"
-                    android:fontFamily="@font/baloo"
-                    android:maxLines="2"
-                    android:text="@string/boring_part"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textSize="12sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/toolCard"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:background="@drawable/oval_cons">
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
-                    android:id="@+id/image4"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:contentDescription="@string/tools"
-                    android:padding="5dp"
-                    android:scaleX="-1"
-                    android:src="@drawable/tools"
-                    app:layout_constraintBottom_toTopOf="@id/heading4"
+                    android:id="@+id/flash_icon"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:background="@drawable/oval_cons"
+                    android:backgroundTint="#80FFFFFF"
+                    android:importantForAccessibility="no"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_time"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHeight_percent="0.6"
-                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintWidth_percent="0.6" />
+                    app:tint="@color/textIcons" />
 
                 <TextView
-                    android:id="@+id/heading4"
+                    android:id="@+id/focus_subtitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="16dp"
+                    android:alpha="0.8"
+                    android:fontFamily="@font/kanit"
+                    android:text="@string/total_time_studied"
+                    android:textColor="@color/textIcons"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toStartOf="@+id/flash_icon"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/focus_title" />
+
+                <TextView
+                    android:id="@+id/total_study_time_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:ellipsize="end"
-                    android:fontFamily="@font/baloo"
-                    android:maxLines="1"
-                    android:text="@string/tools"
-                    android:textColor="@color/white"
-                    android:textSize="16sp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/pill_button_background"
+                    android:backgroundTint="@color/textIcons"
+                    android:fontFamily="@font/kanit"
+                    android:paddingStart="20dp"
+                    android:paddingTop="8dp"
+                    android:paddingEnd="20dp"
+                    android:paddingBottom="8dp"
+                    android:text="0h 00m"
+                    android:textColor="@color/heroCards"
+                    android:textSize="18sp"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toTopOf="@+id/subheading4"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/focus_subtitle" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <!-- Grid Row 1 -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/pyq_card"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="0dp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toStartOf="@+id/lectures_card"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/focus_mode_card">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="16dp">
+
+                <ImageView
+                    android:id="@+id/pyq_icon"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:background="@drawable/oval_cons"
+                    android:backgroundTint="#FFF8E1"
+                    android:importantForAccessibility="no"
+                    android:padding="10dp"
+                    android:src="@drawable/pen_tool"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/textIcons" />
 
                 <TextView
-                    android:id="@+id/subheading4"
-                    android:layout_width="0dp"
+                    android:id="@+id/pyq_title"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/kanit"
+                    android:text="@string/practice_pyq"
+                    android:textColor="@color/textIcons"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@+id/pyq_subtitle"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed" />
+
+                <TextView
+                    android:id="@+id/pyq_subtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:alpha="0.6"
-                    android:ellipsize="end"
-                    android:fontFamily="@font/baloo"
-                    android:maxLines="2"
-                    android:text="@string/just_to_make_your_life_easy"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textSize="12sp"
+                    android:fontFamily="@font/kanit"
+                    android:text="Stats II"
+                    android:textColor="@color/textIcons"
+                    android:textSize="15sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/lectures_card"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="0dp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@+id/pyq_card"
+            app:layout_constraintTop_toBottomOf="@+id/focus_mode_card">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="16dp">
+
+                <ImageView
+                    android:id="@+id/lectures_icon"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:background="@drawable/oval_cons"
+                    android:backgroundTint="#FFF3E0"
+                    android:importantForAccessibility="no"
+                    android:padding="10dp"
+                    android:src="@drawable/video"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/textIcons" />
+
+                <TextView
+                    android:id="@+id/lectures_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/kanit"
+                    android:text="@string/lectures"
+                    android:textColor="@color/textIcons"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@+id/lectures_subtitle"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed" />
+
+                <TextView
+                    android:id="@+id/lectures_subtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:alpha="0.6"
+                    android:fontFamily="@font/kanit"
+                    android:text="3 Pending"
+                    android:textColor="@color/textIcons"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Revision Notes Card -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/notes_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pyq_card">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp">
+
+                <ImageView
+                    android:id="@+id/notes_icon"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:background="@drawable/oval_cons"
+                    android:backgroundTint="#FFF8E1"
+                    android:importantForAccessibility="no"
+                    android:padding="10dp"
+                    android:src="@drawable/book_open"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/textIcons" />
+
+                <TextView
+                    android:id="@+id/notes_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:fontFamily="@font/kanit"
+                    android:text="@string/revision_notes"
+                    android:textColor="@color/textIcons"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/notes_icon"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/notes_subtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:alpha="0.6"
+                    android:fontFamily="@font/kanit"
+                    android:text="Math for Data Science"
+                    android:textColor="@color/textIcons"
+                    android:textSize="15sp"
+                    app:layout_constraintStart_toStartOf="@+id/notes_title"
+                    app:layout_constraintTop_toBottomOf="@+id/notes_title" />
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:contentDescription="@string/go"
+                    android:src="@drawable/ic_arrow"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/gray" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Quick Tools -->
+        <TextView
+            android:id="@+id/tools_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/kanit"
+            android:text="@string/quick_tools"
+            android:textColor="@color/textIcons"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/notes_card" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/calc_card"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="0dp"
+            app:layout_constraintEnd_toStartOf="@+id/support_card"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tools_header">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="12dp">
+
+                <ImageView
+                    android:id="@+id/calc_icon"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/calculator"
+                    app:layout_constraintBottom_toTopOf="@+id/calc_text"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/textIcons" />
+
+                <TextView
+                    android:id="@+id/calc_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/kanit"
+                    android:text="@string/tools"
+                    android:textAlignment="center"
+                    android:textColor="@color/textIcons"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/support_card"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@+id/calc_card"
+            app:layout_constraintTop_toBottomOf="@+id/tools_header">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="12dp">
+
+                <ImageView
+                    android:id="@+id/support_icon"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/headset"
+                    app:layout_constraintBottom_toTopOf="@+id/support_text"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/textIcons" />
+
+                <TextView
+                    android:id="@+id/support_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/kanit"
+                    android:text="@string/student_support"
+                    android:textAlignment="center"
+                    android:textColor="@color/textIcons"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -444,21 +472,20 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone"
-        app:blurOverlayColor="#4D000000">
-    </eightbitlab.com.blurview.BlurView>
+        app:blurOverlayColor="#26000000" />
 
     <include
         android:id="@+id/custom_nav_drawer_layout"
         layout="@layout/custom_nav"
-        android:layout_width="280dp" 
-        android:layout_height="match_parent" 
+        android:layout_width="280dp"
+        android:layout_height="match_parent"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="40dp"
         android:layout_marginBottom="10dp"
-        android:layout_marginStart="16dp"
-        android:visibility="gone" 
-        android:elevation="20dp" 
-        app:layout_constraintBottom_toBottomOf="parent" 
-        app:layout_constraintStart_toStartOf="parent" 
-        app:layout_constraintTop_toTopOf="parent" /> 
+        android:elevation="20dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout> 
+</FrameLayout>

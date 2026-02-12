@@ -1,58 +1,45 @@
 package com.gxdevs.gradify.Utils;
 
 import static android.content.Context.MODE_PRIVATE;
-import static android.graphics.drawable.GradientDrawable.LINEAR_GRADIENT;
-import static com.gxdevs.gradify.activities.SettingsActivity.GRADIENT_1_COLOR_KEY;
-import static com.gxdevs.gradify.activities.SettingsActivity.PRIMARY_COLOR_KEY;
-import static com.gxdevs.gradify.activities.SettingsActivity.SECONDARY_COLOR_KEY;
-import static com.gxdevs.gradify.activities.SettingsActivity.THEME_STYLE_KEY;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
+import android.util.Base64;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.ImageView;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ArrayAdapter;
+import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.security.crypto.EncryptedSharedPreferences;
-import androidx.security.crypto.MasterKeys;
 
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.NetworkError;
+import com.android.volley.ParseError;
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
+import com.android.volley.ServerError;
+import com.android.volley.TimeoutError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.android.material.materialswitch.MaterialSwitch;
-import com.google.android.material.radiobutton.MaterialRadioButton;
-import com.google.android.material.textfield.TextInputLayout;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.gxdevs.gradify.R;
-import com.gxdevs.gradify.activities.SettingsActivity;
 import com.gxdevs.gradify.BuildConfig;
-
-import javax.crypto.Cipher;
-import javax.crypto.spec.IvParameterSpec;
-import javax.crypto.spec.SecretKeySpec;
-import android.util.Base64;
+import com.gxdevs.gradify.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 
-import java.io.IOException;
-import java.security.GeneralSecurityException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -60,14 +47,22 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.crypto.Cipher;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
+
 public class Utils {
     static Map<String, String> subjectToType = new HashMap<>();
     static Map<String, Integer> subjectToLectureCount = new HashMap<>();
 
     public static String decryptUrl(String url) {
-        if (url == null)
+        Log.d("PYQ_DEBUG", "decryptUrl: Attempting to decrypt URL");
+        if (url == null) {
+            Log.e("PYQ_DEBUG", "decryptUrl: URL is null");
             return null;
+        }
         if (!url.startsWith("youarenoob.gradify/")) {
+            Log.w("PYQ_DEBUG", "decryptUrl: URL does not have encryption prefix: " + url);
             return url;
         }
 
@@ -77,8 +72,10 @@ public class Utils {
 
             // Base64 decode (URL_SAFE)
             byte[] encryptedData = Base64.decode(b64, Base64.URL_SAFE);
+            Log.d("PYQ_DEBUG", "decryptUrl: Base64 decoded length: " + encryptedData.length);
 
             if (encryptedData.length < 16) {
+                Log.e("PYQ_DEBUG", "decryptUrl: Invalid encrypted data length (" + encryptedData.length + " < 16)");
                 Log.e("Decryption", "Invalid encrypted data length");
                 return url;
             }
@@ -94,10 +91,6 @@ public class Utils {
 
             // Get Key
             String keyHex = BuildConfig.SECRET_KEY;
-            if (keyHex == null || keyHex.isEmpty()) {
-                Log.e("Decryption", "Secret Key not found in BuildConfig");
-                return url;
-            }
 
             byte[] keyBytes = new byte[32];
             for (int i = 0; i < keyHex.length(); i += 2) {
@@ -112,9 +105,12 @@ public class Utils {
             cipher.init(Cipher.DECRYPT_MODE, secretKeySpec, ivParameterSpec);
 
             byte[] decryptedBytes = cipher.doFinal(ciphertext);
-            return new String(decryptedBytes, "UTF-8");
+            String decryptedString = new String(decryptedBytes, StandardCharsets.UTF_8);
+            Log.d("PYQ_DEBUG", "decryptUrl: Decryption successful: " + decryptedString);
+            return decryptedString;
 
         } catch (Exception e) {
+            Log.e("PYQ_DEBUG", "decryptUrl: Failed to decrypt URL - " + e.getMessage());
             Log.e("Decryption", "Failed to decrypt URL", e);
             return url; // Fallback to original (which is broken anyway if encrypted, but avoids crash)
         }
@@ -133,6 +129,11 @@ public class Utils {
     private static org.json.JSONObject indexCache;
     private static org.json.JSONObject formulasCache;
 
+    public static int dpToPx(Context context, int i) {
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return (int) (i * scale);
+    }
+
     public interface DatabaseCallback {
         void onReady(org.json.JSONObject database);
 
@@ -140,43 +141,60 @@ public class Utils {
     }
 
     public static void fetchIndexData(Context context, final DatabaseCallback callback) {
+        Log.d("PYQ_DEBUG", "fetchIndexData: Checking cache");
         if (indexCache != null) {
+            Log.d("PYQ_DEBUG", "fetchIndexData: Returning cached index");
             callback.onReady(indexCache);
             return;
         }
+        Log.d("PYQ_DEBUG", "fetchIndexData: Fetching from URL: " + INDEX_URL);
         makeApiRequest(context, INDEX_URL, response -> {
+            Log.d("PYQ_DEBUG", "fetchIndexData: Successfully fetched index.json");
             indexCache = response;
             callback.onReady(indexCache);
-        }, callback::onError);
-    }
-
-    public static void fetchQuizData(Context context, final DatabaseCallback callback) {
-        fetchIndexData(context, callback);
+        }, error -> {
+            Log.e("PYQ_DEBUG", "fetchIndexData: Error - " + error);
+            callback.onError(error);
+        });
     }
 
     public static void fetchSubjectQuizData(Context context, String subject, final DatabaseCallback callback) {
+        Log.d("PYQ_DEBUG", "fetchSubjectQuizData: Fetching quiz data for subject - " + subject);
         fetchIndexData(context, new DatabaseCallback() {
             @Override
             public void onReady(org.json.JSONObject index) {
                 try {
+                    Log.d("PYQ_DEBUG", "fetchSubjectQuizData: Index received, looking for quizzes section");
                     if (!index.has("quizzes")) {
+                        Log.e("PYQ_DEBUG", "fetchSubjectQuizData: Quizzes section not found in index");
                         callback.onError("Quizzes section not found in index");
                         return;
                     }
                     org.json.JSONObject quizzes = index.getJSONObject("quizzes");
                     if (!quizzes.has(subject)) {
+                        Log.e("PYQ_DEBUG",
+                                "fetchSubjectQuizData: Subject '" + subject + "' not found in quizzes index");
                         callback.onError("Subject " + subject + " not found in quizzes index");
                         return;
                     }
                     String url = githubToJsDelivr(quizzes.getString(subject));
-                    makeApiRequest(context, url, callback::onReady, callback::onError);
+                    Log.d("PYQ_DEBUG", "fetchSubjectQuizData: Fetching quiz file from: " + url);
+                    makeApiRequest(context, url, response -> {
+                        Log.d("PYQ_DEBUG", "fetchSubjectQuizData: Successfully fetched quiz data for " + subject);
+                        callback.onReady(response);
+                    }, error -> {
+                        Log.e("PYQ_DEBUG", "fetchSubjectQuizData: Error fetching quiz file - " + error);
+                        callback.onError(error);
+                    });
                 } catch (JSONException e) {
+                    Log.e("PYQ_DEBUG", "fetchSubjectQuizData: JSON Error - " + e.getMessage());
                     callback.onError("JSON Error: " + e.getMessage());
                 }
             }
 
             @Override
             public void onError(String error) {
+                Log.e("PYQ_DEBUG", "fetchSubjectQuizData: Error from fetchIndexData - " + error);
                 callback.onError(error);
             }
         });
@@ -243,6 +261,28 @@ public class Utils {
                         formulasCache = response;
                         callback.onReady(formulasCache);
                     }, callback::onError);
+                } catch (JSONException e) {
+                    callback.onError("JSON Error: " + e.getMessage());
+                }
+            }
+
+            @Override
+            public void onError(String error) {
+                callback.onError(error);
+            }
+        });
+    }
+
+    public static void fetchDates(Context context, final DatabaseCallback callback) {
+        fetchIndexData(context, new DatabaseCallback() {
+            @Override
+            public void onReady(org.json.JSONObject index) {
+                try {
+                    if (index.has("dates")) {
+                        callback.onReady(index.getJSONObject("dates"));
+                    } else {
+                        callback.onError("Dates not found in index");
+                    }
                 } catch (JSONException e) {
                     callback.onError("JSON Error: " + e.getMessage());
                 }
@@ -347,44 +387,48 @@ public class Utils {
 
     public static void fetchData(Context context, final dataReturn callback, String subject, String quizType,
             String year) {
+        Log.d("PYQ_DEBUG", "fetchData: subject=" + subject + ", quizType=" + quizType + ", year=" + year);
         fetchSubjectQuizData(context, subject, new DatabaseCallback() {
             @Override
             public void onReady(org.json.JSONObject database) {
                 try {
+                    Log.d("PYQ_DEBUG", "fetchData: Quiz database received");
                     org.json.JSONObject papers;
                     if (database.has("papers")) {
                         papers = database.getJSONObject("papers");
+                        Log.d("PYQ_DEBUG", "fetchData: Found 'papers' key");
                     } else {
-                        // In the new split structure, the subject object might be at the root
-                        // OR inside 'papers'
                         papers = database;
+                        Log.d("PYQ_DEBUG", "fetchData: No 'papers' key, using root object");
                     }
 
                     if (!papers.has(subject)) {
-                        // Some split files might only contain the subject's data directly
-                        // If it's the BDM file, and it's root is { "papers": { "BDM": ... } }
-                        // Then we already handle it. If it's just { "BDM": ... } then:
                         if (papers.length() == 1 && papers.keys().next().equals(subject)) {
-                            // Already correct
+                            Log.d("PYQ_DEBUG", "fetchData: Subject found as single key");
                         } else {
-                            // Check if the current object IS the subject data
-                            // (Based on looking at quiz_BDM.json, it HAS 'papers' key)
+                            Log.e("PYQ_DEBUG", "fetchData: Subject '" + subject + "' not found in papers");
                             callback.onError("Subject not found");
                             return;
                         }
                     }
                     org.json.JSONObject subjectObj = papers.getJSONObject(subject);
+                    Log.d("PYQ_DEBUG", "fetchData: Subject object retrieved");
 
                     if (!subjectObj.has(quizType)) {
+                        Log.e("PYQ_DEBUG",
+                                "fetchData: Quiz type '" + quizType + "' not found. Available: " + subjectObj.keys());
                         callback.onError("Quiz type not found");
                         return;
                     }
                     org.json.JSONObject quizObj = subjectObj.getJSONObject(quizType);
+                    Log.d("PYQ_DEBUG", "fetchData: Quiz type object retrieved");
 
                     if (year == null) {
                         // Return years
+                        Log.d("PYQ_DEBUG", "fetchData: Returning years list");
                         JSONArray names = quizObj.names();
                         if (names == null) {
+                            Log.w("PYQ_DEBUG", "fetchData: No years found");
                             callback.onSuccess(new String[0]);
                             return;
                         }
@@ -392,18 +436,53 @@ public class Utils {
                         for (int i = 0; i < names.length(); i++) {
                             yearsList.add(names.getString(i));
                         }
-                        // Use a simple sort logic or keep as is? The names() order is not guaranteed.
-                        // Let's just return as is for now.
+
+                        // Custom sorting for formats like "Oct, 2024" or "Feb, 2024"
+                        java.util.Collections.sort(yearsList, (s1, s2) -> {
+                            try {
+                                String[] parts1 = s1.split(", ");
+                                String[] parts2 = s2.split(", ");
+
+                                if (parts1.length == 2 && parts2.length == 2) {
+                                    int y1 = Integer.parseInt(parts1[1].trim());
+                                    int y2 = Integer.parseInt(parts2[1].trim());
+
+                                    if (y1 != y2)
+                                        return Integer.compare(y2, y1); // Latest year first
+
+                                    // Same year, compare months
+                                    java.util.Map<String, Integer> monthMap = new java.util.HashMap<>();
+                                    String[] months = { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep",
+                                            "Oct", "Nov", "Dec" };
+                                    for (int i = 0; i < months.length; i++)
+                                        monthMap.put(months[i].toLowerCase(), i);
+
+                                    int m1 = monthMap.getOrDefault(parts1[0].trim().toLowerCase(), -1);
+                                    int m2 = monthMap.getOrDefault(parts2[0].trim().toLowerCase(), -1);
+
+                                    return Integer.compare(m2, m1); // Latest month first
+                                }
+                            } catch (Exception e) {
+                                // Fallback to string comparison if format is unexpected
+                            }
+                            return s2.compareTo(s1);
+                        });
+
+                        Log.d("PYQ_DEBUG", "fetchData: Found years (chronologically sorted): " + yearsList);
                         callback.onSuccess(yearsList.toArray(new String[0]));
                     } else {
                         // Return sessions
+                        Log.d("PYQ_DEBUG", "fetchData: Returning sessions for year: " + year);
                         if (!quizObj.has(year)) {
+                            Log.e("PYQ_DEBUG",
+                                    "fetchData: Year '" + year + "' not found. Available: " + quizObj.keys());
                             callback.onError("Year not found");
                             return;
                         }
                         org.json.JSONObject yearObj = quizObj.getJSONObject(year);
                         JSONArray names = yearObj.names();
                         if (names == null) {
+                            Log.w("PYQ_DEBUG", "fetchData: No sessions found");
                             callback.onSuccess(new String[0]);
                             return;
                         }
@@ -411,15 +490,19 @@ public class Utils {
                         for (int i = 0; i < names.length(); i++) {
                             sessionsList.add(names.getString(i));
                         }
+                        java.util.Collections.sort(sessionsList); // Sort sessions alphabetically
+                        Log.d("PYQ_DEBUG", "fetchData: Found sessions (sorted): " + sessionsList);
                         callback.onSuccess(sessionsList.toArray(new String[0]));
                     }
                 } catch (JSONException e) {
+                    Log.e("PYQ_DEBUG", "fetchData: JSON Error - " + e.getMessage());
                     callback.onError("JSON Error: " + e.getMessage());
                 }
             }
 
             @Override
             public void onError(String error) {
+                Log.e("PYQ_DEBUG", "fetchData: Error from fetchSubjectQuizData - " + error);
                 callback.onError(error);
             }
         });
@@ -548,11 +631,15 @@ public class Utils {
                             .getJSONObject(year)
                             .getString(session);
 
+                    Log.d("PYQ_DEBUG", "fetchExamJsonLink: Encrypted link - " + link);
                     link = decryptUrl(link);
+                    Log.d("PYQ_DEBUG", "fetchExamJsonLink: Decrypted link - " + link);
 
                     if (link == null || link.isEmpty()) {
+                        Log.e("PYQ_DEBUG", "fetchExamJsonLink: Link is null or empty after decryption");
                         callback.onError("Link is empty");
                     } else {
+                        Log.d("PYQ_DEBUG", "fetchExamJsonLink: Returning link to callback");
                         callback.onSingleLink(link);
                     }
 
@@ -571,8 +658,6 @@ public class Utils {
     public interface ExamLinkCallback {
         void onSingleLink(String link);
 
-        void onMultipleLinks(String[] links);
-
         void onError(String error);
     }
 
@@ -588,264 +673,76 @@ public class Utils {
             VolleyErrorCallback errorCallback) {
         Log.d("API Request", "URL: " + url);
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, response -> {
-            Log.d("API Response", response.toString());
+            Log.d("API Response", "Success for URL: " + url);
             successCallback.onSuccess(response);
         }, error -> {
             String message = "Unknown Error";
-            if (error instanceof com.android.volley.NoConnectionError
-                    || error instanceof com.android.volley.NetworkError) {
+            if (error instanceof NetworkError) {
                 message = "No Internet Connection";
-            } else if (error instanceof com.android.volley.TimeoutError) {
+            } else if (error instanceof TimeoutError) {
                 message = "Connection Timed Out";
-            } else if (error instanceof com.android.volley.ServerError) {
+            } else if (error instanceof ServerError) {
                 if (error.networkResponse != null) {
                     message = "Server Error: " + error.networkResponse.statusCode;
+                    Log.e("API Error", "Response data: " + new String(error.networkResponse.data));
                 } else {
                     message = "Server Error";
                 }
-            } else if (error instanceof com.android.volley.ParseError) {
+            } else if (error instanceof ParseError) {
                 message = "Data Parsing Error";
             }
-            Log.e("API Error", message);
+            Log.e("API Error", "URL: " + url + " | Error: " + message);
+            if (error.getMessage() != null) {
+                Log.e("API Error", "Details: " + error.getMessage());
+            }
             errorCallback.onError(message);
         });
 
-        request.setRetryPolicy(new com.android.volley.DefaultRetryPolicy(
+        request.setRetryPolicy(new DefaultRetryPolicy(
                 10000,
                 1, // 1 retry
-                com.android.volley.DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
         Volley.newRequestQueue(context).add(request);
     }
 
-    public static int setTextColorBasedOnBackground(Context context, String whichColor) {
-        // Calculate the luminance of the background color
-        SharedPreferences preferences = context.getSharedPreferences(SettingsActivity.PREFS_NAME, MODE_PRIVATE);
-        int backgroundColor;
-        int textColor;
-        if (whichColor.equals("primary")) {
-            backgroundColor = preferences.getInt(PRIMARY_COLOR_KEY,
-                    ContextCompat.getColor(context, R.color.primaryColor));
-        } else {
-            backgroundColor = preferences.getInt(SECONDARY_COLOR_KEY,
-                    ContextCompat.getColor(context, R.color.secondaryColor));
-        }
-
-        double luminance = (0.299 * Color.red(backgroundColor) +
-                0.587 * Color.green(backgroundColor) +
-                0.114 * Color.blue(backgroundColor)) / 255;
-
-        if (luminance > 0.5) {
-            textColor = Color.BLACK;
-        } else {
-            textColor = Color.WHITE;
-        }
-        return textColor;
-    }
-
-    public static int dropperTextColor(int bgColor) {
-        int textColor;
-        double luminance = (0.299 * Color.red(bgColor) +
-                0.587 * Color.green(bgColor) +
-                0.114 * Color.blue(bgColor)) / 255;
-
-        if (luminance > 0.5) {
-            textColor = Color.BLACK;
-        } else {
-            textColor = Color.WHITE;
-        }
-        return textColor;
-    }
-
-    private static GradientDrawable createRadialGradient(Context context, String colorKey,
-            int defaultColorResId) {
-        SharedPreferences prefs = context.getSharedPreferences(SettingsActivity.PREFS_NAME, MODE_PRIVATE);
-        int startColor = prefs.getInt(colorKey, ContextCompat.getColor(context, defaultColorResId));
-
-        GradientDrawable gradientDrawable = new GradientDrawable();
-        gradientDrawable.setShape(GradientDrawable.RECTANGLE); // Will be used with oval shape on ImageView if needed
-        gradientDrawable.setCornerRadius(100f); // Match your oval_gradient.xml, or make it a parameter
-
-        gradientDrawable.setGradientType(GradientDrawable.RADIAL_GRADIENT);
-        gradientDrawable.setGradientCenter(0.5f, 0.5f); // Center of the shape
-        // Adjust gradientRadius as needed, this is an example.
-        // It might be better to calculate this based on the view's dimensions if they
-        // are known.
-        gradientDrawable.setGradientRadius(210 * context.getResources().getDisplayMetrics().density); // Example radius
-                                                                                                      // in dp
-        gradientDrawable.setColors(new int[] { startColor, Color.TRANSPARENT }); // Radial from startColor to
-                                                                                 // transparent
-
-        return gradientDrawable;
-    }
-
-    public static void applyGradient1(Context context, ImageView imageView) {
-        GradientDrawable gradient = createRadialGradient(context, GRADIENT_1_COLOR_KEY, R.color.ga1);
-        imageView.setImageDrawable(gradient);
-    }
-
-    public static void applyGradient2(Context context, ImageView imageView) {
-        // Replace R.color.gradient_mid_color with your actual default color resource ID
-        GradientDrawable gradient = createRadialGradient(context, SettingsActivity.GRADIENT_2_COLOR_KEY, R.color.ga2); // Ensure
-                                                                                                                       // ga2
-                                                                                                                       // exists
-        imageView.setImageDrawable(gradient);
-    }
-
-    public static void applyGradient3(Context context, ImageView imageView) {
-        // Replace R.color.gradient_end_color with your actual default color resource ID
-        GradientDrawable gradient = createRadialGradient(context, SettingsActivity.GRADIENT_3_COLOR_KEY, R.color.ga3); // Ensure
-                                                                                                                       // ga3
-                                                                                                                       // exists
-        imageView.setImageDrawable(gradient);
-    }
-
-    public static void bgGrayGenerate(Context context, ImageView imageView) {
-        SharedPreferences preferences = context.getSharedPreferences(SettingsActivity.PREFS_NAME, MODE_PRIVATE);
-        int startColor = preferences.getInt(GRADIENT_1_COLOR_KEY, ContextCompat.getColor(context, R.color.primary));
-        int endColor = ContextCompat.getColor(context, R.color.background);
-
-        GradientDrawable gradientDrawable = new GradientDrawable(
-                GradientDrawable.Orientation.TL_BR,
-                new int[] { startColor, endColor, endColor });
-
-        imageView.setImageDrawable(gradientDrawable);
-    }
-
-    public static void setTheme(Context context, ImageView skyLight, ImageView decor1, ImageView decor2,
-            ImageView decor3) {
-        SharedPreferences preferences = context.getSharedPreferences(SettingsActivity.PREFS_NAME, MODE_PRIVATE);
-        String currentStyle = preferences.getString(THEME_STYLE_KEY, "EdgeFlare");
-
-        if ("SkyLight".equals(currentStyle)) {
-            skyLight.setVisibility(View.VISIBLE);
-            Utils.bgGrayGenerate(context, skyLight);
-
-            decor1.setVisibility(View.GONE);
-            decor2.setVisibility(View.GONE);
-            decor3.setVisibility(View.GONE);
-
-        } else {
-            skyLight.setVisibility(View.GONE);
-
-            decor1.setVisibility(View.VISIBLE);
-            decor2.setVisibility(View.VISIBLE);
-            decor3.setVisibility(View.VISIBLE);
-
-            Utils.applyGradient1(context, decor1);
-            Utils.applyGradient2(context, decor2);
-            Utils.applyGradient3(context, decor3);
-        }
-    }
-
-    public static GradientDrawable setCardColor(Context context, int amount) {
-        SharedPreferences preferences = context.getSharedPreferences(SettingsActivity.PREFS_NAME, MODE_PRIVATE);
-        int startColor;
-        if (amount == 10) {
-            startColor = preferences.getInt(PRIMARY_COLOR_KEY, ContextCompat.getColor(context, R.color.primaryColor));
-        } else {
-            startColor = preferences.getInt(SECONDARY_COLOR_KEY,
-                    ContextCompat.getColor(context, R.color.secondaryColor));
-        }
-        float radiusInPx = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, amount,
-                context.getResources().getDisplayMetrics());
-
-        GradientDrawable drawable = new GradientDrawable();
-        drawable.setColor(startColor);
-        drawable.setCornerRadius(radiusInPx);
-        return drawable;
-    }
-
-    public static void setDropperColors(Context context, TextInputLayout textInputLayout, int hint) {
-        SharedPreferences preferences = context.getSharedPreferences(SettingsActivity.PREFS_NAME, MODE_PRIVATE);
-        int startColor = preferences.getInt(PRIMARY_COLOR_KEY, ContextCompat.getColor(context, R.color.primaryColor));
-        textInputLayout.setBoxBackgroundMode(TextInputLayout.BOX_BACKGROUND_FILLED);
-        textInputLayout.setBoxBackgroundColor(startColor);
-        textInputLayout.setHint(ContextCompat.getString(context, hint));
-        textInputLayout.setDefaultHintTextColor(ColorStateList.valueOf(dropperTextColor(startColor)));
-    }
-
     public static GradientDrawable shadowMaker(Context context) {
-        SharedPreferences preferences = context.getSharedPreferences(SettingsActivity.PREFS_NAME, MODE_PRIVATE);
-        int startColor = preferences.getInt(PRIMARY_COLOR_KEY, ContextCompat.getColor(context, R.color.primaryColor));
-        float radiusInPx = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 10,
-                context.getResources().getDisplayMetrics());
-        int padding = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 5,
-                context.getResources().getDisplayMetrics());
-        int width = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 200,
+        float radiusInPx = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 16,
                 context.getResources().getDisplayMetrics());
 
         GradientDrawable drawable = new GradientDrawable();
-        drawable.setColor(startColor);
+        drawable.setColor(ContextCompat.getColor(context, R.color.white));
         drawable.setCornerRadius(radiusInPx);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            drawable.setPadding(padding, padding, padding, padding);
-        }
-        drawable.setSize(width, 0);
         return drawable;
     }
 
-    public static void buttonTint(Context context, Button button) {
-        SharedPreferences preferences = context.getSharedPreferences(SettingsActivity.PREFS_NAME, MODE_PRIVATE);
-        int startColor = preferences.getInt(PRIMARY_COLOR_KEY, ContextCompat.getColor(context, R.color.primaryColor));
-        button.setBackgroundTintList(ColorStateList.valueOf(startColor));
+    public static void setupDropDown(Context context, @NonNull android.widget.AutoCompleteTextView dropdown,
+            List<String> data) {
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, R.layout.dropdown_item, data);
+        dropdown.setDropDownBackgroundDrawable(shadowMaker(context));
+        dropdown.setAdapter(adapter);
     }
 
-    public static GradientDrawable drawerMaker(Context context) {
-        SharedPreferences preferences = context.getSharedPreferences(SettingsActivity.PREFS_NAME, MODE_PRIVATE);
-        int startColor = preferences.getInt(PRIMARY_COLOR_KEY, ContextCompat.getColor(context, R.color.primaryColor));
-
-        GradientDrawable drawable = new GradientDrawable(GradientDrawable.Orientation.TL_BR,
-                new int[] { startColor, ContextCompat.getColor(context, R.color.background),
-                        ContextCompat.getColor(context, R.color.background) });
-        drawable.setGradientType(LINEAR_GRADIENT);
-        drawable.setCornerRadius(20f);
-        return drawable;
+    public static void applyBounceAnimation(View view) {
+        view.setOnTouchListener((v, event) -> {
+            if (event.getAction() == android.view.MotionEvent.ACTION_DOWN) {
+                Animation anim = AnimationUtils.loadAnimation(v.getContext(), R.anim.bounce);
+                v.startAnimation(anim);
+            }
+            return false;
+        });
     }
 
-    public static void switchColors(Context context, MaterialSwitch materialSwitch) {
-        SharedPreferences preferences = context.getSharedPreferences(SettingsActivity.PREFS_NAME, MODE_PRIVATE);
-        int color = preferences.getInt(PRIMARY_COLOR_KEY, ContextCompat.getColor(context, R.color.primaryColor));
-        materialSwitch.setThumbTintList(ColorStateList.valueOf(color));
-    }
+    public static void updateTabIndicator(View indicator, View target, ViewGroup container) {
+        androidx.transition.AutoTransition transition = new androidx.transition.AutoTransition();
+        transition.setDuration(300);
+        transition.setInterpolator(new android.view.animation.AccelerateDecelerateInterpolator());
+        androidx.transition.TransitionManager.beginDelayedTransition(container, transition);
 
-    public static void radioColors(Context context, MaterialRadioButton radioButton) {
-        SharedPreferences preferences = context.getSharedPreferences(SettingsActivity.PREFS_NAME, Context.MODE_PRIVATE);
-        int checkColor = preferences.getInt(GRADIENT_1_COLOR_KEY, ContextCompat.getColor(context, R.color.glowColor));
-        ColorStateList colorStateList = new ColorStateList(
-                new int[][] {
-                        new int[] { android.R.attr.state_checked },
-                        new int[] { -android.R.attr.state_checked }
-                },
-                new int[] {
-                        checkColor,
-                        ContextCompat.getColor(context, R.color.gray)
-                });
-        radioButton.setButtonTintList(colorStateList);
-    }
-
-    public static void checkBoxColors(Context context, CheckBox checkBox) {
-        SharedPreferences preferences = context.getSharedPreferences(SettingsActivity.PREFS_NAME, Context.MODE_PRIVATE);
-        int checkColor = preferences.getInt(GRADIENT_1_COLOR_KEY, ContextCompat.getColor(context, R.color.glowColor));
-        ColorStateList colorStateList = new ColorStateList(
-                new int[][] {
-                        new int[] { android.R.attr.state_checked },
-                        new int[] { -android.R.attr.state_checked }
-                },
-                new int[] {
-                        checkColor,
-                        ContextCompat.getColor(context, R.color.gray)
-                });
-        checkBox.setButtonTintList(colorStateList);
-    }
-
-    public static int chipUnselected(Context context) {
-        SharedPreferences preferences = context.getSharedPreferences(SettingsActivity.PREFS_NAME, MODE_PRIVATE);
-        return preferences.getInt(SECONDARY_COLOR_KEY, ContextCompat.getColor(context, R.color.secondaryColor));
-    }
-
-    public static int selected(Context context) {
-        SharedPreferences preferences = context.getSharedPreferences(SettingsActivity.PREFS_NAME, MODE_PRIVATE);
-        return preferences.getInt(PRIMARY_COLOR_KEY, ContextCompat.getColor(context, R.color.primaryColor));
+        androidx.constraintlayout.widget.ConstraintLayout.LayoutParams params = (androidx.constraintlayout.widget.ConstraintLayout.LayoutParams) indicator
+                .getLayoutParams();
+        params.startToStart = target.getId();
+        params.endToEnd = target.getId();
+        indicator.setLayoutParams(params);
     }
 }

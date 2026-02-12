@@ -3,7 +3,6 @@ package com.gxdevs.gradify.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +10,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.gxdevs.gradify.R;
@@ -21,12 +19,17 @@ import java.util.List;
 
 public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteViewHolder> {
 
-    private List<NoteItem> noteItemList;
-    private final Context context;
+    private Context context;
+    private List<NoteItem> noteList;
 
-    public NotesAdapter(Context context, List<NoteItem> noteItemList) {
+    public NotesAdapter(Context context, List<NoteItem> noteList) {
         this.context = context;
-        this.noteItemList = noteItemList;
+        this.noteList = noteList;
+    }
+
+    public void updateData(List<NoteItem> newNotes) {
+        this.noteList = newNotes;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -38,46 +41,51 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteViewHold
 
     @Override
     public void onBindViewHolder(@NonNull NoteViewHolder holder, int position) {
-        NoteItem noteItem = noteItemList.get(position);
-        holder.titleTextView.setText(noteItem.getWeek());
-        holder.helperTextView.setText("Helper: " + noteItem.getHelper());
+        NoteItem note = noteList.get(position);
+        holder.title.setText(note.getWeek()); // Assuming 'week' is the title like "Week 1"
+        holder.helper.setText(note.getHelper());
 
-        holder.downloadBtn.setOnClickListener(v -> {
-            String url = noteItem.getLink();
-            if (url != null && !url.isEmpty()) {
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+        holder.itemView.setOnClickListener(v -> {
+            String link = note.getLink();
+            if (link != null && !link.isEmpty()) {
                 try {
-                    context.startActivity(browserIntent);
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(link));
+                    context.startActivity(intent);
                 } catch (Exception e) {
-                    Toast.makeText(context, "No app can handle this request. Please install a web browser.", Toast.LENGTH_LONG).show();
-                    Log.d("DownLinkError", e.getMessage());
+                    Toast.makeText(context, "Cannot open link", Toast.LENGTH_SHORT).show();
                 }
-            } else {
-                Toast.makeText(context, "Download link is not available.", Toast.LENGTH_SHORT).show();
             }
         });
+        
+        // Handle download button? item_note.xml has a downloadBtn
+        View downloadBtn = holder.itemView.findViewById(R.id.downloadBtn);
+        if (downloadBtn != null) {
+            downloadBtn.setOnClickListener(v -> {
+                 String link = note.getLink();
+                if (link != null && !link.isEmpty()) {
+                    try {
+                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(link));
+                        context.startActivity(intent);
+                    } catch (Exception e) {
+                        Toast.makeText(context, "Cannot open link", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
     }
 
     @Override
     public int getItemCount() {
-        return noteItemList == null ? 0 : noteItemList.size();
+        return noteList != null ? noteList.size() : 0;
     }
 
     static class NoteViewHolder extends RecyclerView.ViewHolder {
-        TextView titleTextView;
-        TextView helperTextView;
-        ConstraintLayout downloadBtn;
+        TextView title, helper;
 
         public NoteViewHolder(@NonNull View itemView) {
             super(itemView);
-            titleTextView = itemView.findViewById(R.id.note_title_textview);
-            helperTextView = itemView.findViewById(R.id.note_helper_textview);
-            downloadBtn = itemView.findViewById(R.id.downloadBtn);
+            title = itemView.findViewById(R.id.note_title_textview);
+            helper = itemView.findViewById(R.id.note_helper_textview);
         }
     }
-
-    public void updateData(List<NoteItem> newNoteItems) {
-        this.noteItemList = newNoteItems;
-        notifyDataSetChanged();
-    }
-} 
+}

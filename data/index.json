@@ -45,5 +45,11 @@
     "Stats 1": "https://github.com/gtxPrime/gradify/blob/main/data/quizzes/quiz_Stats%201.json",
     "Stats 2": "https://github.com/gtxPrime/gradify/blob/main/data/quizzes/quiz_Stats%202.json",
     "System Commands": "https://github.com/gtxPrime/gradify/blob/main/data/quizzes/quiz_System%20Commands.json"
+  },
+  "dates": {
+    "quiz_1": "2026-02-22T00:00:00",
+    "quiz_2": "2026-03-22T00:00:00",
+    "end_term": "2026-04-19T00:00:00",
+    "start_date": "2026-01-19T00:00:00"
   }
 }

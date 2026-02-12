@@ -5,30 +5,54 @@
     android:id="@+id/containerPYQQuestion"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
+    android:background="@color/mainBg"
     tools:context=".activities.PYQQuestionActivity"
     tools:ignore="ContentDescription">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/backBtn"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="24dp"
+        app:cardElevation="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/back"
+            android:padding="12dp"
+            android:src="@drawable/ic_back"
+            app:tint="@color/textIcons" />
+
+    </androidx.cardview.widget.CardView>
 
     <!-- Top Bar with Title and Timer -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/topBarLayout"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="#C9243447"
-        android:elevation="4dp"
-        android:padding="16dp"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/backBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/backBtn"
+        app:layout_constraintTop_toTopOf="@+id/backBtn">
 
         <TextView
             android:id="@+id/paperNameTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="35dp"
             android:layout_marginEnd="8dp"
             android:ellipsize="end"
+            android:fontFamily="@font/kanit"
             android:maxLines="1"
             android:text="@string/app_name"
-            android:textColor="@android:color/white"
+            android:textColor="@color/textIcons"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@+id/abortContainer"
@@ -40,32 +64,33 @@
             android:id="@+id/abortContainer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="35dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="12dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:clickable="true"
             android:focusable="true"
-            android:gravity="center_horizontal"
+            android:gravity="center"
             android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/timerLayout"
             app:layout_constraintTop_toTopOf="parent">
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/abortImageButton"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:background="@android:color/transparent"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:contentDescription="@string/abort_quiz"
                 android:src="@drawable/ic_warning"
-                app:tint="#FF0000" />
+                app:tint="@color/red" />
 
             <TextView
                 android:id="@+id/abortTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/kanit"
                 android:text="@string/abort"
-                android:textColor="#FF0000"
-                android:textSize="12sp" />
+                android:textColor="@color/red"
+                android:textSize="10sp"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <!-- Timer Layout (visible only in exam mode) -->
@@ -73,54 +98,65 @@
             android:id="@+id/timerLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="35dp"
-            android:background="@drawable/timer_background"
+            android:background="@drawable/oval_cons"
+            android:backgroundTint="@color/white"
             android:gravity="center"
             android:orientation="horizontal"
-            android:padding="8dp"
+            android:paddingStart="12dp"
+            android:paddingTop="6dp"
+            android:paddingEnd="12dp"
+            android:paddingBottom="6dp"
             android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:layout_width="18dp"
-                android:layout_height="18dp"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
                 android:layout_marginEnd="4dp"
                 android:src="@android:drawable/ic_menu_recent_history"
-                app:tint="@color/white" />
+                app:tint="@color/textIcons" />
 
             <TextView
                 android:id="@+id/timerTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@android:color/white"
-                android:textSize="16sp"
+                android:fontFamily="@font/kanit"
+                android:text="00:00"
+                android:textColor="@color/textIcons"
+                android:textSize="14sp"
                 android:textStyle="bold" />
         </LinearLayout>
 
-        <!-- Progress Indicator -->
-        <TextView
-            android:id="@+id/progressTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/question_1_20"
-            android:textColor="@android:color/white"
-            android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/paperNameTextView" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Progress Indicator -->
+    <TextView
+        android:id="@+id/progressTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/kanit"
+        android:text="@string/question_1_20"
+        android:textColor="@color/unselectedLevelText"
+        android:textSize="12sp"
+        android:textAllCaps="true"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/backBtn" />
 
     <!-- Main Scrollable Content -->
     <androidx.core.widget.NestedScrollView
         android:id="@+id/questionScrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="8dp"
         android:clipToPadding="false"
         android:padding="16dp"
         app:layout_constraintBottom_toTopOf="@+id/navigationLayout"
-        app:layout_constraintTop_toBottomOf="@+id/topBarLayout">
+        app:layout_constraintTop_toBottomOf="@+id/progressTextView">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -131,16 +167,16 @@
                 android:id="@+id/questionCardView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:elevation="4dp"
-                app:cardBackgroundColor="@color/secondaryColor"
-                app:cardCornerRadius="12dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="0dp"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="16dp">
+                    android:padding="20dp">
 
                     <!-- Question Mark and Text Info -->
                     <LinearLayout
@@ -152,21 +188,34 @@
                             android:id="@+id/questionMarksTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/marks_background"
-                            android:padding="6dp"
-                            android:textColor="@android:color/white"
+                            android:background="@drawable/oval_cons"
+                            android:backgroundTint="@color/heroCards"
+                            android:paddingStart="12dp"
+                            android:paddingEnd="12dp"
+                            android:paddingTop="4dp"
+                            android:paddingBottom="4dp"
+                            android:textColor="@color/textIcons"
+                            android:fontFamily="@font/kanit"
                             android:textSize="12sp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            tools:text="+4 Marks" />
 
                         <TextView
                             android:id="@+id/questionTypeTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
-                            android:background="@drawable/question_type_background"
-                            android:padding="6dp"
-                            android:textColor="@android:color/white"
-                            android:textSize="12sp" />
+                            android:background="@drawable/oval_cons"
+                            android:backgroundTint="#F2EFE1"
+                            android:paddingStart="12dp"
+                            android:paddingEnd="12dp"
+                            android:paddingTop="4dp"
+                            android:paddingBottom="4dp"
+                            android:textColor="@color/textIcons"
+                            android:fontFamily="@font/kanit"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            tools:text="MCQ" />
                     </LinearLayout>
 
                     <!-- Question Text -->
@@ -174,16 +223,19 @@
                         android:id="@+id/questionTextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
-                        android:textColor="@android:color/white"
-                        android:textSize="18sp" />
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="@font/kanit"
+                        android:textColor="@color/textIcons"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        tools:text="Sample question text would go here. It can be multiple lines." />
 
                     <!-- Question Image (if any) -->
                     <ImageView
                         android:id="@+id/questionImageView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
+                        android:layout_marginTop="16dp"
                         android:adjustViewBounds="true"
                         android:scaleType="fitCenter"
                         android:layout_gravity="center_horizontal"
@@ -199,23 +251,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:elevation="4dp"
-                app:cardBackgroundColor="@color/secondaryColor"
-                app:cardCornerRadius="12dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="0dp"
                 app:layout_constraintTop_toBottomOf="@+id/questionCardView">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="16dp">
+                    android:padding="20dp">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/select_answer"
-                        android:textColor="@android:color/white"
+                        android:textColor="@color/textIcons"
+                        android:fontFamily="@font/kanit"
                         android:textSize="16sp"
+                        android:textAllCaps="true"
                         android:textStyle="bold" />
 
                     <!-- MCQ Options Container - Shown for MCQ type -->
@@ -223,7 +277,7 @@
                         android:id="@+id/singleChoiceGroup"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="12dp"
                         android:orientation="vertical"
                         android:visibility="visible">
                         <!-- Will be populated dynamically -->
@@ -234,7 +288,7 @@
                         android:id="@+id/multipleChoiceGroup"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="12dp"
                         android:orientation="vertical"
                         android:visibility="gone">
                         <!-- Will be populated dynamically -->
@@ -245,23 +299,32 @@
                         android:id="@+id/textInputGroup"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="12dp"
                         android:orientation="vertical"
                         android:visibility="gone">
 
                         <com.google.android.material.textfield.TextInputLayout
-                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/enter_your_answer"
-                            app:boxStrokeColor="@color/ga1"
-                            app:hintTextColor="@color/ga1">
+                            android:textColorHint="@color/unselectedLevelText"
+                            app:boxBackgroundColor="@color/mainBg"
+                            app:boxCornerRadiusBottomEnd="16dp"
+                            app:boxCornerRadiusBottomStart="16dp"
+                            app:boxCornerRadiusTopEnd="16dp"
+                            app:boxCornerRadiusTopStart="16dp"
+                            app:boxStrokeWidth="0dp"
+                            app:boxStrokeWidthFocused="0dp"
+                            app:hintTextColor="@color/textIcons">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/answerEditText"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:textColor="@android:color/white" />
+                                android:fontFamily="@font/kanit"
+                                android:textColor="@color/textIcons"
+                                android:textSize="16sp" />
                         </com.google.android.material.textfield.TextInputLayout>
                     </LinearLayout>
 
@@ -274,24 +337,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:elevation="4dp"
                 android:visibility="gone"
-                app:cardBackgroundColor="@color/secondaryColor"
-                app:cardCornerRadius="12dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="0dp"
                 app:layout_constraintTop_toBottomOf="@+id/answerCardView">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="16dp">
+                    android:padding="20dp">
 
                     <TextView
                         android:id="@+id/resultTitleTextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/correct"
-                        android:textColor="@android:color/holo_green_light"
+                        android:fontFamily="@font/kanit"
+                        android:textColor="@android:color/holo_green_dark"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -300,7 +364,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:textColor="@android:color/white"
+                        android:fontFamily="@font/kanit"
+                        android:textColor="@color/textIcons"
                         android:textSize="16sp" />
 
                     <TextView
@@ -308,7 +373,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:textColor="@android:color/white"
+                        android:fontFamily="@font/kanit"
+                        android:textColor="@color/unselectedLevelText"
                         android:textSize="14sp" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -321,75 +387,88 @@
         android:id="@+id/navigationLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/fui_transparent"
-        android:elevation="8dp"
+        android:background="@android:color/transparent"
         android:padding="16dp"
         app:layout_constraintBottom_toBottomOf="parent">
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/previousButton"
             android:layout_width="0dp"
             android:layout_height="55dp"
             android:layout_marginEnd="8dp"
-            android:backgroundTint="@color/primaryColor"
+            android:backgroundTint="@color/textIcons"
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
             android:text="@string/back"
-            android:textColor="@android:color/white"
+            android:textAllCaps="false"
+            android:fontFamily="@font/kanit"
+            android:textColor="@color/heroCards"
             android:textSize="14sp"
+            app:cornerRadius="16dp"
             app:icon="@drawable/ic_before"
+            app:iconTint="@color/heroCards"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/checkButton"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/checkButton"
             android:layout_width="0dp"
             android:layout_height="55dp"
             android:layout_marginStart="4dp"
             android:layout_marginEnd="4dp"
-            android:backgroundTint="@color/primaryColor"
+            android:backgroundTint="@color/textIcons"
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
             android:text="@string/check"
-            android:textColor="@android:color/white"
+            android:textAllCaps="false"
+            android:fontFamily="@font/kanit"
+            android:textColor="@color/heroCards"
             android:textSize="14sp"
             android:visibility="gone"
+            app:cornerRadius="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/nextButton"
             app:layout_constraintStart_toEndOf="@+id/previousButton"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/nextButton"
             android:layout_width="0dp"
             android:layout_height="55dp"
             android:layout_marginStart="8dp"
-            android:backgroundTint="@color/primaryColor"
-            android:drawableTint="@color/white"
+            android:backgroundTint="@color/textIcons"
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
             android:text="@string/next"
-            android:textColor="@android:color/white"
+            android:textAllCaps="false"
+            android:fontFamily="@font/kanit"
+            android:textColor="@color/heroCards"
             android:textSize="14sp"
+            app:cornerRadius="16dp"
             app:icon="@drawable/ic_next"
             app:iconGravity="end"
+            app:iconTint="@color/heroCards"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/checkButton"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/submitQuizButton"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/submit_button_background"
+            android:layout_height="60dp"
+            android:backgroundTint="@color/textIcons"
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
             android:text="@string/submit_quiz"
-            android:textColor="@android:color/white"
+            android:textAllCaps="false"
+            android:fontFamily="@font/kanit"
+            android:textColor="@color/heroCards"
+            android:textSize="18sp"
             android:visibility="gone"
+            app:cornerRadius="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -404,9 +483,9 @@
         android:contentDescription="@string/view_extra_information"
         android:src="@drawable/ic_info"
         android:visibility="gone"
-        app:backgroundTint="@color/primaryColor"
+        app:backgroundTint="@color/textIcons"
         app:layout_constraintBottom_toTopOf="@+id/navigationLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:tint="@android:color/white" />
+        app:tint="@color/heroCards" />
 
 </androidx.constraintlayout.widget.ConstraintLayout> 

@@ -219,5 +219,14 @@
 
     <string name="welcome_message"> 👋 Welcome! I’m Lex — your AI assistant powered by Gemini.\n I am here to help you with summaries, notes, and other study support.\n\n🧠 Just type what you need, and I’ll handle the rest.\n\n⏳ Heads up: It may take around 1 minute for me to respond — the delay is on Google\'s end, not ours. Thanks for your patience!\n\n Let\'s get started!💬
     </string>
+    <string name="start_session">Start Studying Now</string>
+    <string name="revision_notes">Revision Notes</string>
+    <string name="student_support">Student Support</string>
+    <string name="quick_tools">Quick Tools</string>
+    <string name="go">go</string>
+    <string name="foundation">Foundation</string>
+    <string name="diploma">Diploma</string>
+    <string name="degree">Degree</string>
+    <string name="studied">STUDIED</string>
 
 </resources>

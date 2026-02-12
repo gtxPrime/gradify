@@ -46,6 +46,7 @@ public class GradeCalculationFragment extends Fragment {
     private LinearLayout dynamicInputContainer;
     private Button calculateButton;
     private TextView resultTextView;
+    private View resultCard;
 
     private Map<String, List<String>> subjectsByLevel;
     private List<SubjectFormula> allFormulas;
@@ -84,6 +85,7 @@ public class GradeCalculationFragment extends Fragment {
         dynamicInputContainer = view.findViewById(R.id.dynamicInputContainer);
         calculateButton = view.findViewById(R.id.calculateButton);
         resultTextView = view.findViewById(R.id.resultTextView);
+        resultCard = view.findViewById(R.id.resultCard);
         levelHolder = view.findViewById(R.id.levelHolder);
         subjectHolder = view.findViewById(R.id.subjectHolder);
 
@@ -95,16 +97,13 @@ public class GradeCalculationFragment extends Fragment {
         setupLevelSpinner();
 
         calculateButton.setOnClickListener(v -> calculateGrade());
-
-        Utils.setDropperColors(requireContext(), levelHolder, R.string.select_level);
-        Utils.setDropperColors(requireContext(), subjectHolder, R.string.select_subjects);
-        Utils.buttonTint(requireContext(), calculateButton);
     }
 
     private void loadFormulas(Context context) {
         allFormulas = new ArrayList<>();
         // Show loading state if possible, e.g. disable button
         calculateButton.setEnabled(false);
+        resultCard.setVisibility(View.VISIBLE);
         resultTextView.setText("Loading formulas...");
 
         Utils.fetchFormulas(context, new Utils.DatabaseCallback() {
@@ -144,6 +143,7 @@ public class GradeCalculationFragment extends Fragment {
 
                     // Refresh UI
                     requireActivity().runOnUiThread(() -> {
+                        resultCard.setVisibility(View.GONE);
                         resultTextView.setText("");
                         setupLevelSpinner(); // Re-setup to ensure subjects are filtered correctly
                     });
@@ -208,21 +208,7 @@ public class GradeCalculationFragment extends Fragment {
     }
 
     private void setupDropDown(MaterialAutoCompleteTextView dropdown, List<String> data) {
-        requireActivity().runOnUiThread(() -> {
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(requireContext(),
-                    android.R.layout.simple_dropdown_item_1line, data) {
-                @NonNull
-                @Override
-                public View getView(int position, View convertView, @NonNull ViewGroup parent) {
-                    TextView view = (TextView) super.getView(position, convertView, parent);
-                    view.setTextColor(Utils.setTextColorBasedOnBackground(requireContext(), "primary"));
-                    return view;
-                }
-            };
-            dropdown.setDropDownBackgroundDrawable(Utils.shadowMaker(requireContext()));
-            dropdown.setDropDownVerticalOffset(5);
-            dropdown.setAdapter(adapter);
-        });
+        Utils.setupDropDown(requireContext(), dropdown, data);
     }
 
     private void displayInputFields(String subjectName) {
@@ -247,7 +233,7 @@ public class GradeCalculationFragment extends Fragment {
 
             calculateButton.setEnabled(true);
             for (String inputName : selectedFormula.inputs) {
-                TextInputLayout textInputLayout = new TextInputLayout(requireContext(), null);
+                String originalName = inputName;
                 switch (inputName) {
                     case "Quiz1":
                     case "Qz1":
@@ -262,23 +248,38 @@ public class GradeCalculationFragment extends Fragment {
                         break;
                 }
 
+                TextInputLayout textInputLayout = new TextInputLayout(requireContext(), null,
+                        com.google.android.material.R.style.Widget_MaterialComponents_TextInputLayout_FilledBox);
                 textInputLayout.setHint(inputName);
+                textInputLayout.setHintEnabled(true);
+                textInputLayout.setBoxBackgroundColor(getResources().getColor(R.color.white));
+                float radius = (float) convertDpToPx(16);
+                textInputLayout.setBoxCornerRadii(radius, radius, radius, radius);
+                textInputLayout.setBoxStrokeWidth(0);
+                textInputLayout.setBoxStrokeWidthFocused(0);
+                int hintColor = getResources().getColor(R.color.unselectedLevelText);
+                textInputLayout.setHintTextColor(android.content.res.ColorStateList.valueOf(hintColor));
+                textInputLayout.setDefaultHintTextColor(android.content.res.ColorStateList.valueOf(hintColor));
 
                 LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.MATCH_PARENT,
                         LinearLayout.LayoutParams.WRAP_CONTENT);
-                params.setMargins(0, convertDpToPx(4), 0, convertDpToPx(4));
+                params.setMargins(0, convertDpToPx(8), 0, convertDpToPx(8));
                 textInputLayout.setLayoutParams(params);
 
-                EditText editText = new EditText(requireContext());
+                com.google.android.material.textfield.TextInputEditText editText = new com.google.android.material.textfield.TextInputEditText(
+                        textInputLayout.getContext());
                 editText.setInputType(
-                        android.text.InputType.TYPE_CLASS_NUMBER | android.text.InputType.TYPE_NUMBER_FLAG_DECIMAL
-                                | android.text.InputType.TYPE_NUMBER_FLAG_SIGNED);
-                editText.setTextColor(getResources().getColor(android.R.color.white)); // Example: white text
+                        android.text.InputType.TYPE_CLASS_NUMBER | android.text.InputType.TYPE_NUMBER_FLAG_DECIMAL);
+                editText.setTextColor(getResources().getColor(R.color.textIcons));
+                editText.setTypeface(
+                        androidx.core.content.res.ResourcesCompat.getFont(requireContext(), R.font.kanit));
+                editText.setPadding(convertDpToPx(16), convertDpToPx(16), convertDpToPx(16), convertDpToPx(16));
+                editText.setBackground(null);
 
                 textInputLayout.addView(editText);
                 dynamicInputContainer.addView(textInputLayout);
-                inputEditTexts.put(inputName, editText); // Store EditText for later retrieval
+                inputEditTexts.put(originalName, editText); // Use original name for formula mapping
             }
         } else {
             TextView errorMsg = new TextView(requireContext());
@@ -290,6 +291,7 @@ public class GradeCalculationFragment extends Fragment {
     private void calculateGrade() {
         String selectedSubjectName = subjectDropdown.getText().toString();
         if (selectedSubjectName.isEmpty() || selectedSubjectName.equals("Select Subject")) {
+            resultCard.setVisibility(View.VISIBLE);
             resultTextView.setText("Please select a subject.");
             return;
         }
@@ -300,6 +302,7 @@ public class GradeCalculationFragment extends Fragment {
                 .orElse(null);
 
         if (currentSubjectFormula == null || currentSubjectFormula.formula.equalsIgnoreCase("Error")) {
+            resultCard.setVisibility(View.VISIBLE);
             resultTextView.setText("Formula not available for calculation.");
             return;
         }
@@ -344,7 +347,8 @@ public class GradeCalculationFragment extends Fragment {
         }
 
         if (!allInputsValid) {
-            resultTextView.setText("Please correct the errors in the input fields.");
+            resultCard.setVisibility(View.VISIBLE);
+            resultTextView.setText("Please correct the errors.");
             return;
         }
 
@@ -361,18 +365,21 @@ public class GradeCalculationFragment extends Fragment {
         if (expression.checkSyntax()) {
             double result = expression.calculate();
             if (Double.isNaN(result)) {
-                resultTextView.setText("Result: Calculation error (NaN). Check inputs/formula.");
+                resultCard.setVisibility(View.VISIBLE);
+                resultTextView.setText("Calculation error (NaN).");
                 Log.e(TAG, "Calculation resulted in NaN. Message: " + expression.getErrorMessage());
             } else {
                 String grade = getString(result);
                 String score = String.format(java.util.Locale.US, "Result: %.2f", result) + " / Grade: " + grade;
                 // Format to 2 decimal places
+                resultCard.setVisibility(View.VISIBLE);
                 resultTextView.setText(score);
             }
         } else {
             String errorMessage = expression.getErrorMessage();
             Log.e(TAG, "Syntax error in formula: " + formulaString + " Error: " + errorMessage);
-            resultTextView.setText("Error in formula syntax: " + errorMessage.split("\n")[0]);
+            resultCard.setVisibility(View.VISIBLE);
+            resultTextView.setText("Error in formula syntax.");
         }
     }
 

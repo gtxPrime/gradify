@@ -53,7 +53,7 @@ public class QuestionSummaryAdapter extends RecyclerView.Adapter<QuestionSummary
         RecyclerView.LayoutParams layoutParams = new RecyclerView.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT);
-        
+
         // Convert 8dp to pixels
         int marginInDp = 8;
         float density = context.getResources().getDisplayMetrics().density;
@@ -63,17 +63,22 @@ public class QuestionSummaryAdapter extends RecyclerView.Adapter<QuestionSummary
         holder.itemView.setLayoutParams(layoutParams);
 
         holder.questionNumberTextView.setText("Q" + question.getDisplayPosition());
-        holder.questionScoreTextView.setText(String.format("%.2f", question.getUserScore()) + "/" + question.getTotalMarks());
+        holder.questionScoreTextView
+                .setText(String.format("%.2f", question.getUserScore()) + "/" + question.getTotalMarks());
 
         if (question.isCorrect()) {
             holder.questionStatusTextView.setText("Correct");
-            holder.questionStatusTextView.setTextColor(Color.parseColor("#4CAF50"));
+            holder.questionStatusTextView
+                    .setTextColor(androidx.core.content.ContextCompat.getColor(context, R.color.green));
         } else if (question.isPartiallyCorrect()) {
             holder.questionStatusTextView.setText("Partially Correct");
-            holder.questionStatusTextView.setTextColor(Color.parseColor("#FFC107"));
+            holder.questionStatusTextView.setTextColor(android.graphics.Color.parseColor("#FFA000")); // Darker amber
+                                                                                                      // for better
+                                                                                                      // contrast
         } else {
             holder.questionStatusTextView.setText("Incorrect");
-            holder.questionStatusTextView.setTextColor(Color.parseColor("#F44336"));
+            holder.questionStatusTextView
+                    .setTextColor(androidx.core.content.ContextCompat.getColor(context, R.color.red));
         }
 
         holder.itemView.setOnClickListener(v -> {
@@ -98,4 +103,4 @@ public class QuestionSummaryAdapter extends RecyclerView.Adapter<QuestionSummary
             questionScoreTextView = itemView.findViewById(R.id.questionScoreTextView);
         }
     }
-} 
+}

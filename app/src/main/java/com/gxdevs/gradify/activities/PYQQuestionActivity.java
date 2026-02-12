@@ -98,8 +98,10 @@ public class PYQQuestionActivity extends AppCompatActivity {
     private final Map<Integer, List<Integer>> userMcqAnswers = new HashMap<>();
     private final Map<Integer, Integer> userSingleMcqAnswers = new HashMap<>();
     private final Map<Integer, Double> questionScores = new HashMap<>();
-    private final Map<Integer, Set<Integer>> extraInfoToQuestionsMap = new HashMap<>(); // Maps extra info indices to question indices
-    private final Map<Integer, Integer> questionToExtraInfoMap = new HashMap<>(); // Maps question indices to extra info indices
+    private final Map<Integer, Set<Integer>> extraInfoToQuestionsMap = new HashMap<>(); // Maps extra info indices to
+                                                                                        // question indices
+    private final Map<Integer, Integer> questionToExtraInfoMap = new HashMap<>(); // Maps question indices to extra info
+                                                                                  // indices
     private int totalQuestions = 0;
     private int totalDisplayQuestions = 0;
     private double totalMarks = 0;
@@ -146,7 +148,8 @@ public class PYQQuestionActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         pyqStartTimeMillis = System.currentTimeMillis();
-        Log.d("TimeTracker", "PYQQuestionActivity resumed for subject: " + subjectNameForTimeTracking + " at " + pyqStartTimeMillis);
+        Log.d("TimeTracker",
+                "PYQQuestionActivity resumed for subject: " + subjectNameForTimeTracking + " at " + pyqStartTimeMillis);
     }
 
     private void initViews() {
@@ -239,18 +242,28 @@ public class PYQQuestionActivity extends AppCompatActivity {
 
         // Setup listener for abort button container
         abortContainer.setOnClickListener(v -> {
-            new AlertDialog.Builder(this)
-                    .setTitle("Abort Quiz")
-                    .setMessage("Are you sure you want to abort the quiz? Your progress will not be saved.")
-                    .setPositiveButton("Yes, Abort", (dialog, which) -> {
-                        if (countDownTimer != null) {
-                            countDownTimer.cancel();
-                        }
-                        finish(); // Finish activity and go back
-                    })
-                    .setNegativeButton("No", null)
-                    .setIcon(android.R.drawable.ic_dialog_alert)
-                    .show();
+            View abortView = LayoutInflater.from(this).inflate(R.layout.dialog_abort, null);
+            com.google.android.material.button.MaterialButton btnCancel = abortView.findViewById(R.id.btnCancelAbort);
+            com.google.android.material.button.MaterialButton btnAbort = abortView.findViewById(R.id.btnConfirmAbort);
+
+            androidx.appcompat.app.AlertDialog dialog = new com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
+                    .setView(abortView)
+                    .setCancelable(true)
+                    .create();
+
+            btnCancel.setOnClickListener(vx -> dialog.dismiss());
+            btnAbort.setOnClickListener(vx -> {
+                if (countDownTimer != null) {
+                    countDownTimer.cancel();
+                }
+                finish(); // Finish activity and go back
+                dialog.dismiss();
+            });
+
+            if (dialog.getWindow() != null) {
+                dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+            }
+            dialog.show();
         });
     }
 
@@ -437,7 +450,8 @@ public class PYQQuestionActivity extends AppCompatActivity {
         int questionNumber = question.getInt("question_number");
 
         // Update progress text
-        progressTextView.setText(String.format(Locale.getDefault(), "Question %d/%d", questionNumber, totalDisplayQuestions));
+        progressTextView
+                .setText(String.format(Locale.getDefault(), "Question %d/%d", questionNumber, totalDisplayQuestions));
 
         // Show/hide submit button on last question
         updateNavigationButtons();
@@ -582,8 +596,7 @@ public class PYQQuestionActivity extends AppCompatActivity {
         extraInfoView = inflater.inflate(
                 R.layout.item_extra_info,
                 container,
-                false
-        );
+                false);
 
         // 3) Bind inner views from the newly inflated hierarchy
         TextView extraInfoTextView = extraInfoView.findViewById(R.id.extraInfoTextView);
@@ -593,8 +606,7 @@ public class PYQQuestionActivity extends AppCompatActivity {
         String extraText = extraInfo.optString("extra_text", "").trim();
         if (!extraText.isEmpty()) {
             extraInfoTextView.setText(
-                    Html.fromHtml(extraText, Html.FROM_HTML_MODE_LEGACY)
-            );
+                    Html.fromHtml(extraText, Html.FROM_HTML_MODE_LEGACY));
             extraInfoTextView.setVisibility(View.VISIBLE);
         } else {
             extraInfoTextView.setVisibility(View.GONE);
@@ -607,9 +619,7 @@ public class PYQQuestionActivity extends AppCompatActivity {
             Glide.with(this)
                     .load(imageUrl)
                     .into(extraInfoImageView);
-            extraInfoImageView.setOnClickListener(v ->
-                    showImageFullScreen(extraInfoImageView)
-            );
+            extraInfoImageView.setOnClickListener(v -> showImageFullScreen(extraInfoImageView));
         } else {
             extraInfoImageView.setVisibility(View.GONE);
         }
@@ -776,14 +786,16 @@ public class PYQQuestionActivity extends AppCompatActivity {
             MaterialRadioButton radioButton = new MaterialRadioButton(this);
             radioButton.setId(View.generateViewId());
             radioButton.setText(Html.fromHtml(option.getString("text").trim(), Html.FROM_HTML_MODE_LEGACY));
-            radioButton.setTextColor(Color.WHITE);
+            radioButton.setTextColor(ContextCompat.getColor(this, R.color.textIcons));
+            radioButton.setTypeface(androidx.core.content.res.ResourcesCompat.getFont(this, R.font.kanit));
             radioButton.setTextSize(16); // Increased text size
             radioButton.setTag(i);
-            Utils.radioColors(this, radioButton);
+            radioButton.setButtonTintList(android.content.res.ColorStateList.valueOf(ContextCompat.getColor(this, R.color.textIcons)));
 
             // Add to our tracking list
             allRadioButtons.add(radioButton);
 
+            
             // Check if this option is selected
             if (selectedOption != null && selectedOption == i) {
                 radioButton.setChecked(true);
@@ -827,10 +839,10 @@ public class PYQQuestionActivity extends AppCompatActivity {
                 cardView.setLayoutParams(new LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.MATCH_PARENT,
                         LinearLayout.LayoutParams.WRAP_CONTENT));
-                cardView.setCardElevation(4f);
-                cardView.setRadius(8f);
+                cardView.setCardElevation(0f);
+                cardView.setRadius(24 * getResources().getDisplayMetrics().density);
                 cardView.setContentPadding(4, 4, 4, 4);
-                cardView.setCardBackgroundColor(Color.WHITE);
+                cardView.setCardBackgroundColor(ContextCompat.getColor(this, R.color.mainBg));
                 cardView.setUseCompatPadding(true);
 
                 ImageView imageView = new ImageView(this);
@@ -867,7 +879,6 @@ public class PYQQuestionActivity extends AppCompatActivity {
                     }
                 });
 
-                // Make the entire container clickable to select the radio button
                 container.setOnClickListener(v -> {
                     // Trigger the radio button's click handler
                     radioButton.performClick();
@@ -884,7 +895,8 @@ public class PYQQuestionActivity extends AppCompatActivity {
             }
         }
 
-        // We don't need the RadioGroup's listener anymore since we handle selection in the RadioButtons
+        // We don't need the RadioGroup's listener anymore since we handle selection in
+        // the RadioButtons
         singleChoiceGroup.setOnCheckedChangeListener(null);
     }
 
@@ -900,10 +912,11 @@ public class PYQQuestionActivity extends AppCompatActivity {
             JSONObject option = options.getJSONObject(i);
             CheckBox checkBox = new CheckBox(this);
             checkBox.setText(Html.fromHtml(option.getString("text").trim(), Html.FROM_HTML_MODE_LEGACY));
-            checkBox.setTextColor(Color.WHITE);
+            checkBox.setTextColor(ContextCompat.getColor(this, R.color.textIcons));
+            checkBox.setTypeface(androidx.core.content.res.ResourcesCompat.getFont(this, R.font.kanit));
+            checkBox.setButtonTintList(android.content.res.ColorStateList.valueOf(ContextCompat.getColor(this, R.color.textIcons)));
             checkBox.setTextSize(16); // Increased text size
             checkBox.setTag(i);
-            Utils.checkBoxColors(this, checkBox);
 
             // Set checked state from saved selections
             boolean isChecked = selectedOptions.contains(i);
@@ -935,10 +948,10 @@ public class PYQQuestionActivity extends AppCompatActivity {
                 cardView.setLayoutParams(new LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.MATCH_PARENT,
                         LinearLayout.LayoutParams.WRAP_CONTENT));
-                cardView.setCardElevation(4f);
-                cardView.setRadius(8f);
+                cardView.setCardElevation(0f);
+                cardView.setRadius(24 * getResources().getDisplayMetrics().density);
                 cardView.setContentPadding(4, 4, 4, 4);
-                cardView.setCardBackgroundColor(Color.WHITE);
+                cardView.setCardBackgroundColor(ContextCompat.getColor(this, R.color.mainBg));
                 cardView.setUseCompatPadding(true);
 
                 ImageView imageView = new ImageView(this);
@@ -1102,7 +1115,8 @@ public class PYQQuestionActivity extends AppCompatActivity {
             }
 
             String questionType = question.getString("question_type");
-            Log.d("RestoreAnswers", "Restoring answers for question " + currentQuestionIndex + " of type " + questionType);
+            Log.d("RestoreAnswers",
+                    "Restoring answers for question " + currentQuestionIndex + " of type " + questionType);
 
             if (questionType.equals("mcq")) {
                 // We don't need to manually restore MCQ answers here anymore
@@ -1246,7 +1260,8 @@ public class PYQQuestionActivity extends AppCompatActivity {
 
                             // If user selected incorrect options, penalize
                             if (selectedOptions.size() > correctSelectedCount) {
-                                score = Math.max(0, score - marksPerOption * (selectedOptions.size() - correctSelectedCount));
+                                score = Math.max(0,
+                                        score - marksPerOption * (selectedOptions.size() - correctSelectedCount));
                             }
                         }
 
@@ -1291,7 +1306,8 @@ public class PYQQuestionActivity extends AppCompatActivity {
                             isTextMatch = false; // Numeric comparison failed
                         }
                     } catch (NumberFormatException e) {
-                        // If parsing fails (e.g., userAnswer is null, empty, or non-numeric after trim),
+                        // If parsing fails (e.g., userAnswer is null, empty, or non-numeric after
+                        // trim),
                         // fall back to string comparison
                         isTextMatch = userAnswer != null && userAnswer.trim().equalsIgnoreCase(correctAnswer);
                     }
@@ -1299,7 +1315,8 @@ public class PYQQuestionActivity extends AppCompatActivity {
 
                 if (question.has("range_start")) { // Simplified condition, range_end check comes later
                     boolean inRange = false;
-                    String rangeEndStr = question.optString("range_end", ""); // Get range_end, default to empty if not present
+                    String rangeEndStr = question.optString("range_end", ""); // Get range_end, default to empty if not
+                                                                              // present
 
                     if (userAnswer != null && !userAnswer.trim().isEmpty()) {
                         try {
@@ -1349,10 +1366,9 @@ public class PYQQuestionActivity extends AppCompatActivity {
             // Show result
             resultCardView.setVisibility(VISIBLE);
             resultTitleTextView.setText(isCorrect ? "Correct!" : (score > 0 ? "Partially Correct" : "Incorrect"));
-            resultTitleTextView.setTextColor(isCorrect ?
-                    ContextCompat.getColor(this, android.R.color.holo_green_light) :
-                    (score > 0 ? ContextCompat.getColor(this, android.R.color.holo_orange_light) :
-                            ContextCompat.getColor(this, android.R.color.holo_red_light)));
+            resultTitleTextView.setTextColor(isCorrect ? ContextCompat.getColor(this, android.R.color.holo_green_light)
+                    : (score > 0 ? ContextCompat.getColor(this, android.R.color.holo_orange_light)
+                            : ContextCompat.getColor(this, android.R.color.holo_red_light)));
             correctAnswerTextView.setText(Html.fromHtml(correctAnswerStr.trim(), Html.FROM_HTML_MODE_LEGACY));
 
             // Show score for this question
@@ -1371,14 +1387,14 @@ public class PYQQuestionActivity extends AppCompatActivity {
         // Save any current answers first
         saveCurrentAnswers();
 
-        //Sexy dialog
+        // Sexy dialog
         View resultView = LayoutInflater.from(this).inflate(R.layout.confirm_exit, null);
-        Button closeButton = resultView.findViewById(R.id.closeButton);
-        Button submitExitButton = resultView.findViewById(R.id.submitExitButton);
+        com.google.android.material.button.MaterialButton closeButton = resultView.findViewById(R.id.closeButton);
+        com.google.android.material.button.MaterialButton submitExitButton = resultView.findViewById(R.id.submitExitButton);
         TextView dialogHead = resultView.findViewById(R.id.dialogHead);
         TextView dialogDesc = resultView.findViewById(R.id.dialogDesc);
 
-        AlertDialog dialog = new AlertDialog.Builder(this)
+        androidx.appcompat.app.AlertDialog dialog = new com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
                 .setView(resultView)
                 .setCancelable(false)
                 .create();
@@ -1392,6 +1408,10 @@ public class PYQQuestionActivity extends AppCompatActivity {
             submitQuiz();
             dialog.cancel();
         });
+        
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        }
         dialog.show();
     }
 
@@ -1468,12 +1488,14 @@ public class PYQQuestionActivity extends AppCompatActivity {
                         }
                     }
 
-                    Log.d("CalculateScore", "Question " + i + " has " + correctOptions.size() + " correct options: " + correctOptions);
+                    Log.d("CalculateScore",
+                            "Question " + i + " has " + correctOptions.size() + " correct options: " + correctOptions);
 
                     if (correctOptions.size() > 1) {
                         // Multiple choice validation
                         List<Integer> selectedOptions = userMcqAnswers.get(i);
-                        Log.d("CalculateScore", "User selected: " + (selectedOptions != null ? selectedOptions : "none"));
+                        Log.d("CalculateScore",
+                                "User selected: " + (selectedOptions != null ? selectedOptions : "none"));
 
                         if (selectedOptions != null && !selectedOptions.isEmpty()) {
                             double marksPerOption = questionMarks / correctOptions.size();
@@ -1486,7 +1508,8 @@ public class PYQQuestionActivity extends AppCompatActivity {
                                 }
                             }
 
-                            Log.d("CalculateScore", "User got " + correctSelectedCount + " correct selections out of " + correctOptions.size());
+                            Log.d("CalculateScore", "User got " + correctSelectedCount + " correct selections out of "
+                                    + correctOptions.size());
 
                             // Award marks for correct selections
                             if (correctSelectedCount > 0) {
@@ -1494,7 +1517,8 @@ public class PYQQuestionActivity extends AppCompatActivity {
 
                                 // If user selected incorrect options, penalize
                                 if (selectedOptions.size() > correctSelectedCount) {
-                                    score = Math.max(0, score - marksPerOption * (selectedOptions.size() - correctSelectedCount));
+                                    score = Math.max(0,
+                                            score - marksPerOption * (selectedOptions.size() - correctSelectedCount));
                                 }
                             }
 
@@ -1507,7 +1531,8 @@ public class PYQQuestionActivity extends AppCompatActivity {
                     } else if (correctOptions.size() == 1) {
                         // Single choice validation
                         Integer selectedOption = userSingleMcqAnswers.get(i);
-                        Log.d("CalculateScore", "Single choice - correct: " + correctOptions.get(0) + ", selected: " + selectedOption);
+                        Log.d("CalculateScore",
+                                "Single choice - correct: " + correctOptions.get(0) + ", selected: " + selectedOption);
                         if (selectedOption != null && selectedOption.equals(correctOptions.get(0))) {
                             score = questionMarks;
                         }
@@ -1534,7 +1559,8 @@ public class PYQQuestionActivity extends AppCompatActivity {
                                 isTextMatch = false; // Numeric comparison failed
                             }
                         } catch (NumberFormatException e) {
-                            // If parsing fails (e.g., userAnswer is null, empty, or non-numeric after trim),
+                            // If parsing fails (e.g., userAnswer is null, empty, or non-numeric after
+                            // trim),
                             // fall back to string comparison
                             isTextMatch = userAnswer != null && userAnswer.trim().equalsIgnoreCase(correctAnswer);
                         }
@@ -1542,7 +1568,8 @@ public class PYQQuestionActivity extends AppCompatActivity {
 
                     if (question.has("range_start")) { // Simplified condition, range_end check comes later
                         boolean inRange = false;
-                        String rangeEndStr = question.optString("range_end", ""); // Get range_end, default to empty if not present
+                        String rangeEndStr = question.optString("range_end", ""); // Get range_end, default to empty if
+                                                                                  // not present
 
                         if (userAnswer != null && !userAnswer.trim().isEmpty()) {
                             try {
@@ -1563,7 +1590,8 @@ public class PYQQuestionActivity extends AppCompatActivity {
                                 }
                             } catch (NumberFormatException nfe) {
                                 // Not a number, inRange remains false.
-                                Log.w("CalculateScore", "User answer for ranged question was not a number: " + userAnswer);
+                                Log.w("CalculateScore",
+                                        "User answer for ranged question was not a number: " + userAnswer);
                             } catch (JSONException je) {
                                 Log.e("CalculateScore", "JSON issue with range keys: " + je.getMessage());
                             }
@@ -1597,8 +1625,8 @@ public class PYQQuestionActivity extends AppCompatActivity {
 
     private void showQuizResults() {
         View resultView = LayoutInflater.from(this).inflate(R.layout.dialog_quiz_result, null);
-        Button closeButton = resultView.findViewById(R.id.closeButton);
-        Button reviewButton = resultView.findViewById(R.id.reviewButton);
+        com.google.android.material.button.MaterialButton closeButton = resultView.findViewById(R.id.closeButton);
+        com.google.android.material.button.MaterialButton reviewButton = resultView.findViewById(R.id.reviewButton);
         TextView scoreTextView = resultView.findViewById(R.id.scoreTextView);
         TextView totalTextView = resultView.findViewById(R.id.totalTextView);
         TextView percentageTextView = resultView.findViewById(R.id.percentageTextView);
@@ -1631,12 +1659,11 @@ public class PYQQuestionActivity extends AppCompatActivity {
             feedbackTextView.setText(R.string.fail_mc);
         }
 
-
         // Setup question summary recyclerview
         questionSummaryRecyclerView.setVisibility(VISIBLE);
         questionSummaryRecyclerView.setLayoutManager(new
 
-                LinearLayoutManager(this));
+        LinearLayoutManager(this));
 
         QuestionSummaryAdapter adapter = new QuestionSummaryAdapter(
                 this,
@@ -1656,7 +1683,7 @@ public class PYQQuestionActivity extends AppCompatActivity {
         questionSummaryRecyclerView.setAdapter(adapter);
 
         // Create and show the dialog
-        AlertDialog dialog = new AlertDialog.Builder(this)
+        androidx.appcompat.app.AlertDialog dialog = new com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
                 .setView(resultView)
                 .setCancelable(false)
                 .create();
@@ -1702,16 +1729,19 @@ public class PYQQuestionActivity extends AppCompatActivity {
             // Save any current answers first
             saveCurrentAnswers();
 
-            //Sexy dialog
+            // Sexy dialog
             View resultView = LayoutInflater.from(this).inflate(R.layout.confirm_exit, null);
-            Button closeButton = resultView.findViewById(R.id.closeButton);
-            Button submitExitButton = resultView.findViewById(R.id.submitExitButton);
+            com.google.android.material.button.MaterialButton closeButton = resultView.findViewById(R.id.closeButton);
+            com.google.android.material.button.MaterialButton submitExitButton = resultView.findViewById(R.id.submitExitButton);
 
-            AlertDialog dialog = new AlertDialog.Builder(this)
+            androidx.appcompat.app.AlertDialog dialog = new com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
                     .setView(resultView)
                     .setCancelable(false)
                     .create();
-
+            
+            if (dialog.getWindow() != null) {
+                dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+            }
 
             closeButton.setOnClickListener(vx -> dialog.cancel());
             submitExitButton.setOnClickListener(vx -> {
@@ -1739,7 +1769,8 @@ public class PYQQuestionActivity extends AppCompatActivity {
             long timeSpentMillis = endTimeMillis - pyqStartTimeMillis;
             if (timeSpentMillis > 1000) { // Only record if more than 1 second
                 dbHelper.addTimeEntry(subjectNameForTimeTracking, "pyq", new Date().getTime(), timeSpentMillis);
-                Log.d("TimeTracker", "PYQQuestionActivity paused. Subject: " + subjectNameForTimeTracking + ". Time spent: " + timeSpentMillis / 1000 + "s. Saved to DB.");
+                Log.d("TimeTracker", "PYQQuestionActivity paused. Subject: " + subjectNameForTimeTracking
+                        + ". Time spent: " + timeSpentMillis / 1000 + "s. Saved to DB.");
             }
             pyqStartTimeMillis = 0; // Reset start time
         }
@@ -1772,12 +1803,12 @@ public class PYQQuestionActivity extends AppCompatActivity {
 
         // Change color to red and update background when less than 5 minutes remaining
         if (millis < 5 * 60 * 1000) {
-            timerTextView.setTextColor(Color.RED);
+            timerTextView.setTextColor(ContextCompat.getColor(this, R.color.red));
             // Add a light background for better visibility
             // Add padding for better appearance
             timerTextView.setPadding(16, 8, 16, 8);
         } else {
-            timerTextView.setTextColor(Color.WHITE);
+            timerTextView.setTextColor(ContextCompat.getColor(this, R.color.textIcons));
             timerTextView.setBackgroundColor(Color.TRANSPARENT);
             timerTextView.setPadding(0, 0, 0, 0);
         }

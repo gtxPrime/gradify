@@ -1,73 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/background"
-    android:orientation="vertical"
-    android:padding="10dp"
-    tools:ignore="ContentDescription">
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="24dp"
+    app:cardElevation="0dp">
 
-    <TextView
-        android:id="@+id/dialogHead"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginBottom="15dp"
-        android:text="@string/quit"
-        android:textColor="@color/white"
-        android:textSize="28sp" />
-
-    <TextView
-        android:id="@+id/dialogDesc"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:gravity="center"
-        android:text="@string/are_you_sure_you_wanna_quit"
-        android:textColor="@android:color/white"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+        android:orientation="vertical"
+        android:padding="24dp"
+        tools:ignore="ContentDescription">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="10dp">
+        <TextView
+            android:id="@+id/dialogHead"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/kanit"
+            android:text="@string/quit"
+            android:textAllCaps="true"
+            android:textColor="@color/textIcons"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
-        <Button
-            android:id="@+id/closeButton"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:textSize="11sp"
-            android:layout_marginEnd="5dp"
-            android:backgroundTint="@color/primaryColor"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:text="@string/cancel"
-            android:textColor="@android:color/white"
-            app:icon="@drawable/ic_close"
-            app:iconGravity="end"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/submitExitButton"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/dialogDesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/kanit"
+            android:gravity="center"
+            android:text="@string/are_you_sure_you_wanna_quit"
+            android:textColor="@color/unselectedLevelText"
+            android:textSize="16sp" />
 
-        <Button
-            android:id="@+id/submitExitButton"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:textSize="11sp"
-            android:backgroundTint="@color/primaryColor"
-            android:text="@string/submit_and_exit"
-            android:textColor="@android:color/white"
-            app:icon="@drawable/ic_next"
-            app:iconGravity="end"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/closeButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:orientation="horizontal">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/closeButton"
+                android:layout_width="0dp"
+                android:layout_height="55dp"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/emailPillBg"
+                android:fontFamily="@font/kanit"
+                android:text="@string/cancel"
+                android:textAllCaps="false"
+                android:textColor="@color/textIcons"
+                app:cornerRadius="16dp" />
 
-</LinearLayout> 
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/submitExitButton"
+                android:layout_width="0dp"
+                android:layout_height="55dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/textIcons"
+                android:fontFamily="@font/kanit"
+                android:text="@string/submit_and_exit"
+                android:textAllCaps="false"
+                android:textColor="@color/heroCards"
+                app:cornerRadius="16dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

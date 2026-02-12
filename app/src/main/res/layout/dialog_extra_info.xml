@@ -9,23 +9,24 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="34dp"
-        app:cardCornerRadius="15dp"
-        app:cardBackgroundColor="@color/background">
+        app:cardCornerRadius="24dp"
+        app:cardElevation="0dp"
+        app:cardBackgroundColor="@color/white">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="16dp"
-            android:background="@color/fui_transparent">
+            android:padding="24dp">
 
             <TextView
                 android:id="@+id/extraInfoTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:fontFamily="@font/kanit"
                 android:text="@string/extra_information"
                 android:textAlignment="center"
-                android:textColor="@color/primaryColor"
+                android:textColor="@color/textIcons"
+                android:textAllCaps="true"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -33,8 +34,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@id/extraInfoTitle"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="48dp">
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="64dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -45,7 +46,8 @@
                         android:id="@+id/extraInfoText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/white"
+                        android:fontFamily="@font/kanit"
+                        android:textColor="@color/textIcons"
                         android:textSize="16sp" />
 
                     <ImageView
@@ -59,15 +61,19 @@
                 </LinearLayout>
             </ScrollView>
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnCloseExtraInfo"
-                android:layout_width="wrap_content"
-                android:backgroundTint="@color/primaryColor"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/textIcons"
+                android:fontFamily="@font/kanit"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:text="@string/close" />
+                android:text="@string/close"
+                android:textAllCaps="false"
+                android:textColor="@color/heroCards"
+                app:cornerRadius="16dp" />
 
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
-</RelativeLayout> 
+</RelativeLayout>

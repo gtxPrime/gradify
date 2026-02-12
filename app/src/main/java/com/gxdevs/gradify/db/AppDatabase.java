@@ -6,11 +6,14 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import com.gxdevs.gradify.db.dao.ChatDao;
 import com.gxdevs.gradify.db.entities.ChatMessageEntity;
+import com.gxdevs.gradify.db.entities.NoteEntity;
 
-@Database(entities = {ChatMessageEntity.class}, version = 1) // Only ChatMessageEntity, version 1
+@Database(entities = { ChatMessageEntity.class, NoteEntity.class }, version = 6) // Added sorting indices, version 6
 public abstract class AppDatabase extends RoomDatabase {
 
     public abstract ChatDao chatDao();
+
+    public abstract com.gxdevs.gradify.db.dao.NoteDao noteDao();
 
     private static volatile AppDatabase INSTANCE;
 
@@ -27,4 +30,4 @@ public abstract class AppDatabase extends RoomDatabase {
         }
         return INSTANCE;
     }
-} 
+}

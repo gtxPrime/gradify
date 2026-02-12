@@ -43,6 +43,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * NOTE: This activity (NotesActivity) is currently HIDDEN from the main app
+ * flow.
+ * It is kept in the codebase for future updates and for open-source reference.
+ * The current user-specific notes are handled by UserNotesActivity.
+ */
 public class NotesActivity extends AppCompatActivity {
 
     private static final String TAG = "NotesActivity";
@@ -79,10 +85,7 @@ public class NotesActivity extends AppCompatActivity {
         selectionLayout = findViewById(R.id.selection_layout);
         notesRecyclerView = findViewById(R.id.notes_recycler_view);
         pageTitle = findViewById(R.id.pageTitle);
-        ImageView mainDecor = findViewById(R.id.notesDecor);
-        ImageView greDecor1 = findViewById(R.id.notesDecor1);
-        ImageView greDecor2 = findViewById(R.id.notesDecor2);
-        ImageView greDecor3 = findViewById(R.id.notesDecor3);
+        pageTitle = findViewById(R.id.pageTitle);
 
         // Initialize new UI elements
         contributionLayout = findViewById(R.id.contribution_layout);
@@ -146,10 +149,8 @@ public class NotesActivity extends AppCompatActivity {
         findViewById(R.id.backBtnN).setOnClickListener(v -> onBackPressed());
         findViewById(R.id.contiNotes).setOnClickListener(v -> sendContribute());
 
-        Utils.setTheme(this, mainDecor, greDecor1, greDecor2, greDecor3);
-        Utils.buttonTint(NotesActivity.this, checkButton);
-        Utils.setDropperColors(NotesActivity.this, levelDropdownLayout, R.string.select_level);
-        Utils.setDropperColors(NotesActivity.this, subjectDropdownLayout, R.string.select_subjects);
+        findViewById(R.id.backBtnN).setOnClickListener(v -> onBackPressed());
+        findViewById(R.id.contiNotes).setOnClickListener(v -> sendContribute());
     }
 
     private void setupLevelSelector() {
@@ -157,24 +158,12 @@ public class NotesActivity extends AppCompatActivity {
             return;
         List<String> levels = new ArrayList<>(subjectsByLevel.keySet());
         Collections.sort(levels);
-        ArrayAdapter<String> levelAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line,
-                levels) {
-            @NonNull
-            @Override
-            public View getView(int position, View convertView, @NonNull ViewGroup parent) {
-                TextView view = (TextView) super.getView(position, convertView, parent);
-                view.setTextColor(Utils.setTextColorBasedOnBackground(NotesActivity.this, "primary"));
-                return view;
-            }
-        };
-        levelAutocompleteTextView.setAdapter(levelAdapter);
-        levelAutocompleteTextView.setDropDownBackgroundDrawable(Utils.shadowMaker(NotesActivity.this));
+        Utils.setupDropDown(this, levelAutocompleteTextView, levels);
 
         levelAutocompleteTextView.setOnItemClickListener((parent, view, position, id) -> {
             selectedLevel = (String) parent.getItemAtPosition(position);
             subjectAutocompleteTextView.setText(""); // Clear previous selection
             selectedSubject = null;
-            Utils.setDropperColors(NotesActivity.this, subjectDropdownLayout, R.string.select_subjects);
             setupSubjectSelector(selectedLevel);
             subjectDropdownLayout.setEnabled(true);
         });
@@ -184,18 +173,7 @@ public class NotesActivity extends AppCompatActivity {
         List<String> subjects = subjectsByLevel.getOrDefault(level, new ArrayList<>());
         Collections.sort(subjects);
 
-        ArrayAdapter<String> subjectAdapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_dropdown_item_1line, subjects) {
-            @NonNull
-            @Override
-            public View getView(int position, View convertView, @NonNull ViewGroup parent) {
-                TextView view = (TextView) super.getView(position, convertView, parent);
-                view.setTextColor(Utils.setTextColorBasedOnBackground(NotesActivity.this, "primary"));
-                return view;
-            }
-        };
-        subjectAutocompleteTextView.setAdapter(subjectAdapter);
-        subjectAutocompleteTextView.setDropDownBackgroundDrawable(Utils.shadowMaker(NotesActivity.this));
+        Utils.setupDropDown(this, subjectAutocompleteTextView, subjects);
         subjectAutocompleteTextView.setOnItemClickListener(
                 (parent, view, position, id) -> selectedSubject = (String) parent.getItemAtPosition(position));
 

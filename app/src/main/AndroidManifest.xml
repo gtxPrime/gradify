@@ -36,6 +36,7 @@
             android:label="Developers" />
         <activity
             android:name=".activities.LectureActivity"
+            android:windowSoftInputMode="adjustResize"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"
             android:exported="false" /> <!-- Subjects Activity -->
         <activity
@@ -43,6 +44,12 @@
             android:exported="false" />
         <activity
             android:name=".activities.SettingsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.UserNotesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.SubjectNotesActivity"
             android:exported="false" />
     </application>
 

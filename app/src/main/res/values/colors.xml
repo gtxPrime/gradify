@@ -14,7 +14,7 @@
     <color name="red">#F44336</color>
     <color name="green">#4CAF50</color>
 
-    <color name="background">#111A23</color>
+    <color name="background">#FAF6E9</color>
     <color name="text_primary">#212121</color>
     <color name="text_secondary">#757575</color>
     <color name="divider">#BDBDBD</color>
@@ -39,17 +39,31 @@
     <color name="secondSecondary">#FF0000</color>
     <color name="firstSecondary">#0049FF</color>
 
+<!--Latest colors-->
+    <color name="mainBg">#FAF6E9</color>
+    <color name="textIcons">#22333B</color>
+    <color name="heroCards">#DDE89D</color>
+    <color name="trayBg">#22333B</color>
+    <color name="selectedChip">#22333B</color>
+    <color name="unselectedChip">#FFFFFF</color>
+    <color name="unselectedLevelText">#5E6E75</color>
+    <color name="saveBtnColor">#DDE89D</color>
+    <color name="emailPillBg">#F2EFE1</color>
+    <color name="editIconBg">#22333B</color>
+    <color name="dividerColor">#E0E0E0</color>
+    <color name="cardBg">#FFFFFF</color>
+<!--Latest colors-->
 
-    <color name="pie1">#00FF90</color>
-    <color name="pie2">#00F7FF</color>
-    <color name="pie3">#007BFF</color>
-    <color name="pie4">#0048FF</color>
+    <color name="pie_green_1">#DDE89D</color>
+    <color name="pie_green_2">#A8C66C</color>
+    <color name="pie_green_3">#739E4D</color>
+    <color name="pie_green_4">#22333B</color>
 
     <array name="default_pie_chart_colors">
-        <item>@color/pie1</item>
-        <item>@color/pie2</item>
-        <item>@color/pie3</item>
-        <item>@color/pie4</item>
+        <item>@color/pie_green_1</item>
+        <item>@color/pie_green_2</item>
+        <item>@color/pie_green_3</item>
+        <item>@color/pie_green_4</item>
     </array>
 
 </resources>

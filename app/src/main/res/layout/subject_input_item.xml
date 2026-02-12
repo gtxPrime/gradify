@@ -1,82 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/subjectCard"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:layout_marginBottom="16dp">
-
-    <TextView
-        android:id="@+id/subjectLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/inter18regular"
-        android:text="Subject X" 
-        android:textColor="@color/white"
-        android:textSize="18sp" />
+    android:layout_marginBottom="16dp"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="24dp"
+    app:cardElevation="0dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="8dp">
+        android:orientation="vertical"
+        android:padding="20dp">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/creditsHolder"
-            android:layout_width="0dp"
+        <TextView
+            android:id="@+id/subjectLabel"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="Enter Credits"
-            android:textColorHint="#D1D1D1"
-            app:boxBackgroundColor="@color/primaryColor"
-            app:boxBackgroundMode="filled"
-            app:boxCornerRadiusBottomEnd="15dp"
-            app:boxCornerRadiusBottomStart="15dp"
-            app:boxCornerRadiusTopEnd="15dp"
-            app:boxCornerRadiusTopStart="15dp"
-            app:boxStrokeWidth="0dp"
-            android:layout_marginEnd="4dp">
+            android:fontFamily="@font/kanit"
+            android:text="Subject X"
+            android:textColor="@color/textIcons"
+            android:textSize="14sp" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/creditsEditText"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:background="@null"
-                android:fontFamily="@font/inter18regular"
-                android:inputType="numberDecimal"
-                android:paddingStart="15dp"
-                android:paddingEnd="15dp"
-                android:textColor="@android:color/white"
-                android:textSize="16sp" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/gradeInputLayout"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="Enter Grade"
-            android:textColorHint="#D1D1D1"
-            app:boxBackgroundColor="@color/primaryColor"
-            app:boxBackgroundMode="filled"
-            app:boxCornerRadiusBottomEnd="15dp"
-            app:boxCornerRadiusBottomStart="15dp"
-            app:boxCornerRadiusTopEnd="15dp"
-            app:boxCornerRadiusTopStart="15dp"
-            app:boxStrokeWidth="0dp"
-            android:layout_marginStart="4dp">
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/gradeEditText"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:background="@null"
-                android:fontFamily="@font/inter18regular"
-                android:paddingStart="15dp"
-                android:paddingEnd="15dp"
-                android:textColor="@android:color/white"
-                android:textSize="16sp" />
-        </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/creditsHolder"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_weight="1"
+                app:boxBackgroundColor="@color/white"
+                app:boxCornerRadiusBottomEnd="16dp"
+                app:boxCornerRadiusBottomStart="16dp"
+                app:boxCornerRadiusTopEnd="16dp"
+                app:boxCornerRadiusTopStart="16dp"
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp"
+                app:hintEnabled="true"
+                app:hintTextColor="@color/unselectedLevelText"
+                android:textColorHint="@color/unselectedLevelText">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/creditsEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/kanit"
+                    android:hint="Credits"
+                    android:inputType="numberDecimal"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"
+                    android:textColor="@color/textIcons"
+                    android:textSize="16sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/gradeInputLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:layout_weight="1"
+                app:boxBackgroundColor="@color/white"
+                app:boxCornerRadiusBottomEnd="16dp"
+                app:boxCornerRadiusBottomStart="16dp"
+                app:boxCornerRadiusTopEnd="16dp"
+                app:boxCornerRadiusTopStart="16dp"
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp"
+                app:hintEnabled="true"
+                app:hintTextColor="@color/unselectedLevelText"
+                android:textColorHint="@color/unselectedLevelText">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/gradeEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/kanit"
+                    android:hint="Grade"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"
+                    android:textColor="@color/textIcons"
+                    android:textSize="16sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
     </LinearLayout>
-
-</LinearLayout> 
+</androidx.cardview.widget.CardView> 

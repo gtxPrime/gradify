@@ -4,101 +4,108 @@
     android:id="@+id/toolsContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/fui_transparent"
-    android:orientation="vertical">
+    android:background="@color/mainBg">
 
-    <!-- Decorative Arcs (copied from activity_pyq.xml) -->
-    <ImageView
-        android:id="@+id/toolDecor1"
-        android:layout_width="420dp"
-        android:layout_height="420dp"
-        android:layout_marginTop="-260dp"
-        android:alpha="0.8"
-        android:contentDescription="@string/decor"
-        android:src="@drawable/oval_gradient"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/toolDecor2"
-        android:layout_width="420dp"
-        android:layout_height="420dp"
-        android:layout_marginEnd="-200dp"
-        android:layout_marginBottom="-230dp"
-        android:alpha="0.8"
-        android:contentDescription="@string/decor"
-        android:src="@drawable/oval_gradient2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <ImageView
-        android:id="@+id/toolDecor3"
-        android:layout_width="420dp"
-        android:layout_height="420dp"
-        android:layout_marginStart="-270dp"
-        android:layout_marginBottom="80dp"
-        android:alpha="0.6"
-        android:contentDescription="@string/decor"
-        android:src="@drawable/oval_gradient3"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/toolDecor"
-        android:visibility="gone"/>
-
-    <ImageView
-        android:id="@+id/backBtnT"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="80dp"
-        android:contentDescription="@string/back"
-        android:src="@drawable/ic_back"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:tint="@color/white" />
-
-    <TextView
-        android:id="@+id/toolsTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start"
-        android:layout_marginTop="48dp"
-        android:fontFamily="@font/inter18regular"
-        android:text="@string/tools"
-        android:textColor="@color/white"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/backBtnT"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tab_layout"
+    <!-- Header Section -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/headerLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        app:tabTextColor="@color/white"
-        app:tabSelectedTextColor="@color/primaryColor"
-        app:tabIndicatorColor="@color/primaryColor"
-        android:background="@color/fui_transparent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolsTitle"
-        app:tabGravity="fill"
-        app:tabMode="fixed" />
+        android:padding="20dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/backBtnT"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:contentDescription="@string/back"
+            android:src="@drawable/ic_back"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/textIcons" />
+
+        <TextView
+            android:id="@+id/toolsTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/kanit"
+            android:text="@string/tools"
+            android:textColor="@color/textIcons"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/backBtnT"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/tab_selector_container"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/segmented_background"
+        android:elevation="4dp"
+        android:padding="4dp"
+        app:layout_constraintTop_toBottomOf="@+id/headerLayout">
+
+        <View
+            android:id="@+id/tab_indicator_tools"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/segmented_item_selected"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/tab_grade"
+            app:layout_constraintStart_toStartOf="@id/tab_grade"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tab_grade"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Grade"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tab_cgpa"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tab_cgpa"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="CGPA"
+            android:textAllCaps="true"
+            android:textColor="@color/unselectedLevelText"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tab_grade"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tab_layout" />
+        app:layout_constraintTop_toBottomOf="@+id/tab_selector_container" />
+
+    <!-- Hidden Unused Decor Elements to keep Java happy -->
+    <ImageView android:id="@+id/toolDecor1" android:layout_width="0dp" android:layout_height="0dp" android:visibility="gone" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"/>
+    <ImageView android:id="@+id/toolDecor2" android:layout_width="0dp" android:layout_height="0dp" android:visibility="gone" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"/>
+    <ImageView android:id="@+id/toolDecor3" android:layout_width="0dp" android:layout_height="0dp" android:visibility="gone" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"/>
+    <ImageView android:id="@+id/toolDecor" android:layout_width="0dp" android:layout_height="0dp" android:visibility="gone" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

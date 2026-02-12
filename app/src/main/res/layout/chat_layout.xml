@@ -5,7 +5,7 @@
     android:id="@+id/blurHolder"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
+    android:background="@color/mainBg"
     tools:ignore="ContentDescription, Autofill">
 
     <TextView
@@ -28,7 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:elevation="10dp"
-        app:blurOverlayColor="#590B0B0B"
+        app:blurOverlayColor="#1A22333B"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -49,7 +49,7 @@
                 android:layout_centerVertical="true"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:src="@drawable/ic_arrow_down"
-                app:tint="?attr/colorOnPrimary" />
+                app:tint="@color/white" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -58,8 +58,9 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:text="@string/ai_chat"
-                android:textColor="?attr/colorOnPrimary"
-                android:textSize="18sp" />
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
         </RelativeLayout>
 
@@ -97,21 +98,30 @@
                 style="@style/Widget.MaterialComponents.Chip.Action"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/summarise_this_video" />
+                android:text="@string/summarise_this_video"
+                app:chipBackgroundColor="@color/white"
+                app:chipStrokeColor="@color/dividerColor"
+                android:textColor="@color/textIcons" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_notes"
                 style="@style/Widget.MaterialComponents.Chip.Action"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/generate_detailed_notes" />
+                android:text="@string/generate_detailed_notes"
+                app:chipBackgroundColor="@color/white"
+                app:chipStrokeColor="@color/dividerColor"
+                android:textColor="@color/textIcons" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_explain"
                 style="@style/Widget.MaterialComponents.Chip.Action"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/explain_this_concept" />
+                android:text="@string/explain_this_concept"
+                app:chipBackgroundColor="@color/white"
+                app:chipStrokeColor="@color/dividerColor"
+                android:textColor="@color/textIcons" />
 
         </com.google.android.material.chip.ChipGroup>
     </HorizontalScrollView>
@@ -121,6 +131,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:background="@color/cardBg"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:padding="8dp"
@@ -131,21 +142,26 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/pill_button_background"
+            android:background="@drawable/rounded_input_bg"
             android:hint="@string/ask_ai"
             android:inputType="textMultiLine"
             android:maxLines="5"
             android:padding="12dp"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white" />
+            android:textColor="@color/textIcons"
+            android:textColorHint="@color/unselectedLevelText" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_send_chat_message"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_marginStart="8dp"
             android:backgroundTint="@color/primaryColor"
-            android:text="@string/send" />
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            app:icon="@drawable/ic_send"
+            app:iconTint="@color/white"
+            app:iconGravity="textStart"
+            app:cornerRadius="25dp" />
     </LinearLayout>
 
     <TextView

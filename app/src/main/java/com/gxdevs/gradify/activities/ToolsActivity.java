@@ -9,10 +9,9 @@ import androidx.core.content.ContextCompat;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.gxdevs.gradify.R;
+import android.widget.TextView;
 import com.gxdevs.gradify.Utils.Utils;
 import com.gxdevs.gradify.adapters.ViewPagerAdapter;
-import com.google.android.material.tabs.TabLayout;
-import com.google.android.material.tabs.TabLayoutMediator;
 
 public class ToolsActivity extends AppCompatActivity {
 
@@ -23,30 +22,39 @@ public class ToolsActivity extends AppCompatActivity {
 
         Utils.setPad(findViewById(R.id.toolsContainer), "bottom", this);
 
-        TabLayout tabLayout = findViewById(R.id.tab_layout);
+        TextView tabGrade = findViewById(R.id.tab_grade);
+        TextView tabCgpa = findViewById(R.id.tab_cgpa);
         ViewPager2 viewPager = findViewById(R.id.view_pager);
-        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(this);
-        ImageView decor = findViewById(R.id.toolDecor);
-        ImageView decor1 = findViewById(R.id.toolDecor1);
-        ImageView decor2 = findViewById(R.id.toolDecor2);
-        ImageView decor3 = findViewById(R.id.toolDecor3);
-        viewPager.setAdapter(viewPagerAdapter);
-        tabLayout.setTabTextColors(Color.WHITE, ContextCompat.getColor(this, R.color.glowColor));
-        tabLayout.setSelectedTabIndicatorColor(ContextCompat.getColor(this, R.color.glowColor));
 
-        Utils.setTheme(this, decor, decor1, decor2, decor3);
+        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(this);
+        viewPager.setAdapter(viewPagerAdapter);
 
         findViewById(R.id.backBtnT).setOnClickListener(v -> onBackPressed());
 
-        new TabLayoutMediator(tabLayout, viewPager, (tab, position) -> {
-            switch (position) {
-                case 0:
-                    tab.setText("Grade Calculation");
-                    break;
-                case 1:
-                    tab.setText("CGPA Calculation");
-                    break;
+        tabGrade.setOnClickListener(v -> viewPager.setCurrentItem(0));
+        tabCgpa.setOnClickListener(v -> viewPager.setCurrentItem(1));
+
+        viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                updateTabs(position, tabGrade, tabCgpa);
             }
-        }).attach();
+        });
     }
-} 
+
+    private void updateTabs(int position, TextView grade, TextView cgpa) {
+        android.view.View indicator = findViewById(R.id.tab_indicator_tools);
+        android.view.ViewGroup container = findViewById(R.id.tab_selector_container);
+
+        if (position == 0) {
+            Utils.updateTabIndicator(indicator, grade, container);
+            grade.setTextColor(ContextCompat.getColor(this, R.color.white));
+            cgpa.setTextColor(ContextCompat.getColor(this, R.color.unselectedLevelText));
+        } else {
+            Utils.updateTabIndicator(indicator, cgpa, container);
+            cgpa.setTextColor(ContextCompat.getColor(this, R.color.white));
+            grade.setTextColor(ContextCompat.getColor(this, R.color.unselectedLevelText));
+        }
+    }
+}

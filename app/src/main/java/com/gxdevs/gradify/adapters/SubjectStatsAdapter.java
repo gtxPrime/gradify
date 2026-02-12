@@ -1,7 +1,6 @@
 package com.gxdevs.gradify.adapters;
 
 import static android.content.Context.MODE_PRIVATE;
-import static com.gxdevs.gradify.activities.SettingsActivity.PRIMARY_COLOR_KEY;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -49,8 +48,6 @@ public class SubjectStatsAdapter extends RecyclerView.Adapter<SubjectStatsAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        SharedPreferences preferences = context.getSharedPreferences(SettingsActivity.PREFS_NAME, MODE_PRIVATE);
-        int startColor = preferences.getInt(PRIMARY_COLOR_KEY, ContextCompat.getColor(context, R.color.primaryColor));
         SubjectStatsData currentItem = subjectStatsList.get(position);
 
         holder.textViewSubjectName.setText(currentItem.getSubjectName());
@@ -60,7 +57,6 @@ public class SubjectStatsAdapter extends RecyclerView.Adapter<SubjectStatsAdapte
 
         holder.textViewLectureTime.setText(currentItem.getFormattedLectureTime());
         holder.progressBarLecture.setProgress(currentItem.getLectureProgress());
-        holder.subjectStatsHolder.setCardBackgroundColor(startColor);
 
         int subjectColor = currentItem.getSubjectColor();
         if (subjectColor != Color.TRANSPARENT && subjectColor != Color.GRAY) {
@@ -109,4 +105,4 @@ public class SubjectStatsAdapter extends RecyclerView.Adapter<SubjectStatsAdapte
         this.subjectStatsList.addAll(newStatsList);
         notifyDataSetChanged();
     }
-} 
+}

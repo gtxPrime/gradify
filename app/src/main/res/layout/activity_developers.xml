@@ -5,418 +5,395 @@
     android:id="@+id/root_developers_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
-    tools:context=".activities.DevelopersActivity"
-    tools:ignore="ContentDescription">
+    android:background="@color/mainBg"
+    tools:context=".activities.DevelopersActivity">
 
-    <!-- Decorative Top Arc -->
-    <ImageView
-        android:id="@+id/decor_oval_gradient_top"
-        android:layout_width="420dp"
-        android:layout_height="420dp"
-        android:layout_marginTop="-260dp"
-        android:alpha="0.8"
-        android:contentDescription="@string/decor"
-        android:src="@drawable/oval_gradient"
-        app:layout_constraintEnd_toEndOf="parent"
+    <!-- Top Bar with Back Button and Title -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/backBtnCard"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="24dp"
+        app:cardElevation="0dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <ImageView
-        android:id="@+id/decor_oval_gradient_bottom_right"
-        android:layout_width="420dp"
-        android:layout_height="420dp"
-        android:layout_marginEnd="-200dp"
-        android:layout_marginBottom="-230dp"
-        android:alpha="0.8"
-        android:contentDescription="@string/decor"
-        android:src="@drawable/oval_gradient2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        <ImageView
+            android:id="@+id/backBtn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/back"
+            android:padding="12dp"
+            android:src="@drawable/ic_back"
+            app:tint="@color/textIcons" />
 
-    <ImageView
-        android:id="@+id/decor_oval_gradient_bottom_left"
-        android:layout_width="420dp"
-        android:layout_height="420dp"
-        android:layout_marginStart="-270dp"
-        android:layout_marginBottom="80dp"
-        android:alpha="0.6"
-        android:contentDescription="@string/decor"
-        android:src="@drawable/oval_gradient3"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <ImageView
-        android:id="@+id/backBtn"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="45dp"
-        android:layout_marginBottom="80dp"
-        android:contentDescription="@string/back"
-        android:src="@drawable/ic_back"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:tint="@color/white" />
+    </androidx.cardview.widget.CardView>
 
     <TextView
         android:id="@+id/tv_title_developers"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="44dp"
+        android:fontFamily="@font/kanit"
         android:text="@string/developers"
-        android:textAppearance="?attr/textAppearanceHeadline4"
-        android:textColor="@color/white"
+        android:textColor="@color/textIcons"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@id/backBtn"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/backBtnCard"
+        app:layout_constraintStart_toEndOf="@+id/backBtnCard"
+        app:layout_constraintTop_toTopOf="@+id/backBtnCard" />
 
-    <ScrollView
-        android:layout_width="0dp"
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
+        android:clipToPadding="false"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/backBtn">
+        app:layout_constraintTop_toBottomOf="@+id/backBtnCard">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp">
+            android:orientation="vertical"
+            android:padding="24dp">
 
-            <!-- Garvit Sharma Section -->
-            <com.google.android.material.card.MaterialCardView
+            <!-- Garvit Sharma Hero Card -->
+            <androidx.cardview.widget.CardView
                 android:id="@+id/card_garvit"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardBackgroundColor="@android:color/transparent"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="4dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:cardBackgroundColor="@color/heroCards"
+                app:cardCornerRadius="32dp"
+                app:cardElevation="0dp">
 
-                <eightbitlab.com.blurview.BlurView
-                    android:id="@+id/blur_view_garvit"
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:blurOverlayColor="#33000000">
+                    android:padding="24dp">
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/img_garvit_pfp"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_profile_placeholder"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:shapeAppearanceOverlay="@style/circleImageView" />
+
+                    <TextView
+                        android:id="@+id/tv_garvit_name"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:padding="16dp">
+                        android:layout_marginTop="20dp"
+                        android:fontFamily="@font/kanit"
+                        android:text="@string/garvit_sharma"
+                        android:textColor="@color/textIcons"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/img_garvit_pfp" />
 
-                        <com.google.android.material.imageview.ShapeableImageView
-                            android:id="@+id/img_garvit_pfp"
-                            android:layout_width="100dp"
-                            android:layout_height="100dp"
-                            android:src="@drawable/ic_profile_placeholder"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:shapeAppearanceOverlay="@style/circleImageView" />
+                    <TextView
+                        android:id="@+id/tv_garvit_role"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:alpha="0.8"
+                        android:fontFamily="@font/kanit"
+                        android:text="@string/head_dev_info"
+                        android:textAlignment="center"
+                        android:textColor="@color/textIcons"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_garvit_name" />
 
-                        <TextView
-                            android:id="@+id/tv_garvit_name"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="12dp"
-                            android:text="@string/garvit_sharma"
-                            android:textAppearance="?attr/textAppearanceHeadline6"
-                            android:textColor="@color/white"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/img_garvit_pfp" />
+                    <LinearLayout
+                        android:id="@+id/layout_garvit_social"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_garvit_role">
 
-                        <TextView
-                            android:alpha="0.7"
-                            android:id="@+id/tv_garvit_role"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:text="@string/head_dev_info"
-                            android:textAlignment="center"
-                            android:textAppearance="?attr/textAppearanceBody2"
-                            android:textColor="@color/white"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/tv_garvit_name" />
+                        <ImageButton
+                            android:id="@+id/btn_garvit_github"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_marginEnd="12dp"
+                            android:background="@drawable/oval_cons"
+                            android:backgroundTint="#40FFFFFF"
+                            android:padding="12dp"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/ic_github"
+                            app:tint="@color/textIcons" />
 
-                        <LinearLayout
-                            android:id="@+id/layout_garvit_social"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="12dp"
-                            android:orientation="horizontal"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/tv_garvit_role">
+                        <ImageButton
+                            android:id="@+id/btn_garvit_linkedin"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_marginEnd="12dp"
+                            android:background="@drawable/oval_cons"
+                            android:backgroundTint="#40FFFFFF"
+                            android:padding="12dp"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/ic_linkedin"
+                            app:tint="@color/textIcons" />
 
-                            <ImageButton
-                                android:id="@+id/btn_garvit_github"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:layout_marginEnd="16dp"
-                                android:background="?attr/selectableItemBackgroundBorderless"
-                                android:scaleType="fitCenter"
-                                android:src="@drawable/ic_github"
-                                app:tint="@color/white" />
+                        <ImageButton
+                            android:id="@+id/btn_garvit_instagram"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_marginEnd="12dp"
+                            android:background="@drawable/oval_cons"
+                            android:backgroundTint="#40FFFFFF"
+                            android:padding="12dp"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/ic_insta"
+                            app:tint="@color/textIcons" />
 
-                            <ImageButton
-                                android:id="@+id/btn_garvit_linkedin"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:layout_marginEnd="16dp"
-                                android:background="?attr/selectableItemBackgroundBorderless"
-                                android:scaleType="fitCenter"
-                                android:src="@drawable/ic_linkedin"
-                                app:tint="@color/white" />
-
-                            <ImageButton
-                                android:id="@+id/btn_garvit_instagram"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:layout_marginEnd="16dp"
-                                android:background="?attr/selectableItemBackgroundBorderless"
-                                android:scaleType="fitCenter"
-                                android:src="@drawable/ic_insta"
-                                app:tint="@color/white" />
-
-                            <ImageButton
-                                android:id="@+id/btn_garvit_telegram"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:background="?attr/selectableItemBackgroundBorderless"
-                                android:scaleType="fitCenter"
-                                android:src="@drawable/ic_telegram"
-                                app:tint="@color/white" />
-                        </LinearLayout>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                </eightbitlab.com.blurview.BlurView>
-            </com.google.android.material.card.MaterialCardView>
+                        <ImageButton
+                            android:id="@+id/btn_garvit_telegram"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:background="@drawable/oval_cons"
+                            android:backgroundTint="#40FFFFFF"
+                            android:padding="12dp"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/ic_telegram"
+                            app:tint="@color/textIcons" />
+                    </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
 
             <TextView
                 android:id="@+id/tv_contributors_header"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="36dp"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/kanit"
                 android:text="@string/key_contributors"
-                android:textAppearance="?attr/textAppearanceHeadline5"
-                android:textColor="@color/white"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/card_garvit" />
+                android:textColor="@color/textIcons"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
-            <!-- Contributor 1 Section -->
-            <com.google.android.material.card.MaterialCardView
+            <!-- Contributor 1 Card -->
+            <androidx.cardview.widget.CardView
                 android:id="@+id/card_contributor1"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                app:cardBackgroundColor="@android:color/transparent"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="2dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_contributors_header">
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="0dp">
 
-                <eightbitlab.com.blurview.BlurView
-                    android:id="@+id/blur_view_contributor1"
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:blurOverlayColor="#33000000">
+                    android:padding="20dp">
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/img_contributor1_pfp"
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_profile_placeholder"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:shapeAppearanceOverlay="@style/circleImageView" />
+
+                    <TextView
+                        android:id="@+id/tv_contributor1_name"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:padding="16dp">
+                        android:layout_marginStart="16dp"
+                        android:fontFamily="@font/kanit"
+                        android:text="@string/dev1"
+                        android:textColor="@color/textIcons"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/img_contributor1_pfp"
+                        app:layout_constraintTop_toTopOf="@id/img_contributor1_pfp" />
 
-                        <com.google.android.material.imageview.ShapeableImageView
-                            android:id="@+id/img_contributor1_pfp"
-                            android:layout_width="60dp"
-                            android:layout_height="60dp"
-                            android:src="@drawable/ic_profile_placeholder"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:shapeAppearanceOverlay="@style/circleImageView" />
+                    <TextView
+                        android:id="@+id/tv_contributor1_role"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="2dp"
+                        android:alpha="0.7"
+                        android:fontFamily="@font/kanit"
+                        android:text="@string/dev2_info"
+                        android:textColor="@color/textIcons"
+                        android:textSize="13sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/img_contributor1_pfp"
+                        app:layout_constraintTop_toBottomOf="@id/tv_contributor1_name" />
 
-                        <TextView
-                            android:id="@+id/tv_contributor1_name"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:text="@string/dev1"
-                            android:textAppearance="?attr/textAppearanceSubtitle1"
-                            android:textColor="@color/white"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toEndOf="@id/img_contributor1_pfp"
-                            app:layout_constraintTop_toTopOf="@id/img_contributor1_pfp" />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="12dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintStart_toEndOf="@id/img_contributor1_pfp"
+                        app:layout_constraintTop_toBottomOf="@id/tv_contributor1_role">
 
-                        <TextView
-                            android:id="@+id/tv_contributor1_role"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginTop="4dp"
-                            android:alpha="0.7"
-                            android:text="@string/dev2_info"
-                            android:textAppearance="?attr/textAppearanceBody2"
-                            android:textColor="@color/white"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toEndOf="@id/img_contributor1_pfp"
-                            app:layout_constraintTop_toBottomOf="@id/tv_contributor1_name" />
+                        <ImageButton
+                            android:id="@+id/btn_contributor1_github"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:layout_marginEnd="12dp"
+                            android:background="@drawable/oval_cons"
+                            android:backgroundTint="@color/mainBg"
+                            android:padding="10dp"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/ic_github"
+                            app:tint="@color/textIcons" />
 
-                        <LinearLayout
-                            android:id="@+id/layout_contributor1_social"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:orientation="horizontal"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="@id/tv_contributor1_role"
-                            app:layout_constraintTop_toBottomOf="@id/tv_contributor1_role">
+                        <ImageButton
+                            android:id="@+id/btn_contributor1_linkedin"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:layout_marginEnd="12dp"
+                            android:background="@drawable/oval_cons"
+                            android:backgroundTint="@color/mainBg"
+                            android:padding="10dp"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/ic_linkedin"
+                            app:tint="@color/textIcons" />
 
-                            <ImageButton
-                                android:id="@+id/btn_contributor1_github"
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
-                                android:layout_marginEnd="12dp"
-                                android:background="?attr/selectableItemBackgroundBorderless"
-                                android:scaleType="fitCenter"
-                                android:src="@drawable/ic_github"
-                                app:tint="@color/white" />
+                        <ImageButton
+                            android:id="@+id/btn_contributor1_other"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:background="@drawable/oval_cons"
+                            android:backgroundTint="@color/mainBg"
+                            android:padding="10dp"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/ic_insta"
+                            app:tint="@color/textIcons" />
+                    </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
 
-                            <ImageButton
-                                android:id="@+id/btn_contributor1_linkedin"
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
-                                android:layout_marginEnd="12dp"
-                                android:background="?attr/selectableItemBackgroundBorderless"
-                                android:scaleType="fitCenter"
-                                android:src="@drawable/ic_linkedin"
-                                app:tint="@color/white" />
-
-                            <ImageButton
-                                android:id="@+id/btn_contributor1_other"
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
-                                android:background="?attr/selectableItemBackgroundBorderless"
-                                android:scaleType="fitCenter"
-                                android:src="@drawable/ic_insta"
-                                app:tint="@color/white" />
-                        </LinearLayout>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                </eightbitlab.com.blurview.BlurView>
-            </com.google.android.material.card.MaterialCardView>
-
-            <!-- Contributor 2 Section -->
-            <com.google.android.material.card.MaterialCardView
+            <!-- Contributor 2 Card -->
+            <androidx.cardview.widget.CardView
                 android:id="@+id/card_contributor2"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                app:cardBackgroundColor="@android:color/transparent"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="2dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/card_contributor1">
+                android:layout_marginTop="12dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="0dp">
 
-                <eightbitlab.com.blurview.BlurView
-                    android:id="@+id/blur_view_contributor2"
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:blurOverlayColor="#33000000">
+                    android:padding="20dp">
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/img_contributor2_pfp"
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_profile_placeholder"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:shapeAppearanceOverlay="@style/circleImageView" />
+
+                    <TextView
+                        android:id="@+id/tv_contributor2_name"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:padding="16dp">
+                        android:layout_marginStart="16dp"
+                        android:fontFamily="@font/kanit"
+                        android:text="@string/shashwat_upadhyay"
+                        android:textColor="@color/textIcons"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/img_contributor2_pfp"
+                        app:layout_constraintTop_toTopOf="@id/img_contributor2_pfp" />
 
-                        <com.google.android.material.imageview.ShapeableImageView
-                            android:id="@+id/img_contributor2_pfp"
-                            android:layout_width="60dp"
-                            android:layout_height="60dp"
-                            android:src="@drawable/ic_profile_placeholder"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:shapeAppearanceOverlay="@style/circleImageView" />
+                    <TextView
+                        android:id="@+id/tv_contributor2_role"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="2dp"
+                        android:alpha="0.7"
+                        android:fontFamily="@font/kanit"
+                        android:text="@string/dev3_info"
+                        android:textColor="@color/textIcons"
+                        android:textSize="13sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/img_contributor2_pfp"
+                        app:layout_constraintTop_toBottomOf="@id/tv_contributor2_name" />
 
-                        <TextView
-                            android:id="@+id/tv_contributor2_name"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:text="@string/shashwat_upadhyay"
-                            android:textAppearance="?attr/textAppearanceSubtitle1"
-                            android:textColor="@color/white"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toEndOf="@id/img_contributor2_pfp"
-                            app:layout_constraintTop_toTopOf="@id/img_contributor2_pfp" />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="12dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintStart_toEndOf="@id/img_contributor2_pfp"
+                        app:layout_constraintTop_toBottomOf="@id/tv_contributor2_role">
 
-                        <TextView
-                            android:id="@+id/tv_contributor2_role"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginTop="4dp"
-                            android:text="@string/dev3_info"
-                            android:alpha="0.7"
-                            android:textAppearance="?attr/textAppearanceBody2"
-                            android:textColor="@color/white"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toEndOf="@id/img_contributor2_pfp"
-                            app:layout_constraintTop_toBottomOf="@id/tv_contributor2_name" />
+                        <ImageButton
+                            android:id="@+id/btn_contributor2_github"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:layout_marginEnd="12dp"
+                            android:background="@drawable/oval_cons"
+                            android:backgroundTint="@color/mainBg"
+                            android:padding="10dp"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/ic_github"
+                            app:tint="@color/textIcons" />
 
-                        <LinearLayout
-                            android:id="@+id/layout_contributor2_social"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:orientation="horizontal"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="@id/tv_contributor2_role"
-                            app:layout_constraintTop_toBottomOf="@id/tv_contributor2_role">
+                        <ImageButton
+                            android:id="@+id/btn_contributor2_linkedin"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:layout_marginEnd="12dp"
+                            android:background="@drawable/oval_cons"
+                            android:backgroundTint="@color/mainBg"
+                            android:padding="10dp"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/ic_linkedin"
+                            app:tint="@color/textIcons" />
 
-                            <ImageButton
-                                android:id="@+id/btn_contributor2_github"
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
-                                android:layout_marginEnd="12dp"
-                                android:background="?attr/selectableItemBackgroundBorderless"
-                                android:scaleType="fitCenter"
-                                android:src="@drawable/ic_github"
-                                app:tint="@color/white" />
+                        <ImageButton
+                            android:id="@+id/btn_contributor2_other"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:background="@drawable/oval_cons"
+                            android:backgroundTint="@color/mainBg"
+                            android:padding="10dp"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/ic_insta"
+                            app:tint="@color/textIcons" />
+                    </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
 
-                            <ImageButton
-                                android:id="@+id/btn_contributor2_linkedin"
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
-                                android:layout_marginEnd="12dp"
-                                android:background="?attr/selectableItemBackgroundBorderless"
-                                android:scaleType="fitCenter"
-                                android:src="@drawable/ic_linkedin"
-                                app:tint="@color/white" />
+            <!-- Bottom Spacing -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="40dp" />
 
-                            <ImageButton
-                                android:id="@+id/btn_contributor2_other"
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
-                                android:background="?attr/selectableItemBackgroundBorderless"
-                                android:scaleType="fitCenter"
-                                android:src="@drawable/ic_insta"
-                                app:tint="@color/white" />
-                        </LinearLayout>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                </eightbitlab.com.blurview.BlurView>
-            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
-</androidx.constraintlayout.widget.ConstraintLayout> 
+</androidx.constraintlayout.widget.ConstraintLayout>

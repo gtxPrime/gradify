@@ -5,6 +5,6 @@
         android:bottomLeftRadius="10dp"
         android:topLeftRadius="10dp" />
     <gradient
-        android:endColor="@color/fui_transparent"
-        android:startColor="@color/glowColor" />
+        android:startColor="@color/fui_transparent"
+        android:endColor="@color/heroCards" />
 </shape>

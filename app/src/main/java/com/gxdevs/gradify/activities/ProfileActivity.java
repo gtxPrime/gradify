@@ -5,13 +5,16 @@ import static android.view.View.VISIBLE;
 
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.NumberPicker;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -58,27 +61,18 @@ public class ProfileActivity extends AppCompatActivity {
     // UI Components
     private ImageView profileImageView, logOut;
     private TextView userNameTextView, profileMailTextView;
-    private ChipGroup subjects_chip_group;
-    private NumberPicker levelPicker;
+    private LinearLayout subjects_container;
+    private View level_foundation, level_diploma, level_degree;
+    private TextView tv_foundation, tv_diploma, tv_degree;
     private MaterialButton signInButton;
-    private TextView loginPromptTextView;
-    private TextView tvDegreeLevels;
-    private TextView tvSubjects;
-    private View pickerHolder;
-
-    // Firebase Auth
+    private TextView loginPromptTextView, subjectCounterText;
+    private View selectionTray;
+    private TextView selectionCount;
+    private LinearLayout selectedChipsContainer;
+    private View logged_out_container;
     private FirebaseAuth auth;
-
-    // Credential Manager
     private CredentialManager credentialManager;
-
-    // SharedPreferences
     private SharedPreferences sharedPreferences;
-    private final List<String> levelOptions = new ArrayList<>();
-
-    private final Handler handler = new Handler(Looper.getMainLooper());
-    private Runnable levelUpdateRunnable;
-    private ImageView mainDecor, greDecor1, greDecor2, greDecor3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,27 +83,21 @@ public class ProfileActivity extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
         credentialManager = CredentialManager.create(this);
-        mainDecor = findViewById(R.id.profileHolder);
-        greDecor1 = findViewById(R.id.profileHolder1);
-        greDecor2 = findViewById(R.id.profileHolder2);
-        greDecor3 = findViewById(R.id.profileHolder3);
-        View picker_pill = findViewById(R.id.picker_pill);
 
-        picker_pill.setBackground(Utils.setCardColor(this, 8));
         // Initialize UI components
         initializeViews();
+
+        findViewById(R.id.top_nav).setPadding(20, 100, 20, 0);
 
         // Initialize SharedPreferences
         sharedPreferences = getSharedPreferences("UserPreferences", MODE_PRIVATE);
 
-        loadCollegeData();
         setupLevelPicker();
 
         if (auth.getCurrentUser() == null) {
             clearUserPreferences();
         }
         signInButton.setOnClickListener(v -> startGoogleSignIn());
-        Utils.buttonTint(this, signInButton);
         logOut.setOnClickListener(v -> {
             if (auth.getCurrentUser() != null) {
                 auth.signOut();
@@ -123,8 +111,6 @@ public class ProfileActivity extends AppCompatActivity {
 
         // Check if user is already signed in
         updateUI(auth.getCurrentUser());
-
-        Utils.setTheme(this, mainDecor, greDecor1, greDecor2, greDecor3);
     }
 
     @Override
@@ -136,162 +122,270 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void initializeViews() {
-        levelPicker = findViewById(R.id.levelPicker);
         profileImageView = findViewById(R.id.profilePic);
         userNameTextView = findViewById(R.id.profileName);
         profileMailTextView = findViewById(R.id.profileMail);
-        subjects_chip_group = findViewById(R.id.subjects_chip_group);
+        subjects_container = findViewById(R.id.subjects_container);
         signInButton = findViewById(R.id.signInButton);
         loginPromptTextView = findViewById(R.id.loginPromptTextView);
         logOut = findViewById(R.id.signOutBtn);
-        tvDegreeLevels = findViewById(R.id.tv_degree_levels);
-        tvSubjects = findViewById(R.id.tv_subjects);
-        pickerHolder = findViewById(R.id.pickerHolder);
+        logged_out_container = findViewById(R.id.logged_out_container);
+
+        level_foundation = findViewById(R.id.level_foundation);
+        level_diploma = findViewById(R.id.level_diploma);
+        level_degree = findViewById(R.id.level_degree);
+
+        tv_foundation = (TextView) level_foundation;
+        tv_diploma = (TextView) level_diploma;
+        tv_degree = (TextView) level_degree;
+
+        selectionTray = findViewById(R.id.selection_tray);
+        selectionCount = findViewById(R.id.selection_count);
+        selectedChipsContainer = findViewById(R.id.selected_chips_container);
+        subjectCounterText = findViewById(R.id.subject_counter_text);
+        MaterialButton saveBtn = findViewById(R.id.save_btn);
 
         userNameTextView.setOnLongClickListener(v -> {
             signInAnonymously();
             return true;
         });
-    }
 
-    private void loadCollegeData() {
-        Map<String, List<String>> subjectsByLevel = Utils.getSubjectsByLevel();
-        // Get actual levels
-        List<String> actualLevels = new ArrayList<>(subjectsByLevel.keySet());
-
-        // If empty, add defaults
-        if (actualLevels.isEmpty()) {
-            actualLevels.add("Foundation");
-            actualLevels.add("Diploma");
-            actualLevels.add("Degree");
-
-            List<String> defaultSubjects = new ArrayList<>();
-            defaultSubjects.add("Default Subject 1");
-            defaultSubjects.add("Default Subject 2");
-
-            subjectsByLevel.put("Foundation", defaultSubjects);
-            subjectsByLevel.put("Diploma", defaultSubjects);
-            subjectsByLevel.put("Degree", defaultSubjects);
-        }
-
-        // Now add padding and update levelOptions
-        levelOptions.clear();
-        levelOptions.addAll(actualLevels);
-    }
-
-    private void setupLevelPicker() {
-        levelPicker.setMinValue(0);
-        levelPicker.setMaxValue(levelOptions.size() - 1);
-        levelPicker.setDisplayedValues(levelOptions.toArray(new String[0]));
-
-        levelPicker.setOnValueChangedListener((picker, oldVal, newVal) -> {
-
-            if (auth.getCurrentUser() != null) {
-                // Cancel any previously scheduled update
-                if (levelUpdateRunnable != null) {
-                    handler.removeCallbacks(levelUpdateRunnable);
-                }
-
-                // Debounced UI update
-                levelUpdateRunnable = () -> {
-                    String selectedLevel = levelOptions.get(newVal);
-                    saveLevelPreference(selectedLevel);
-                    updateSubjectChips(newVal);
-                };
-
-                handler.postDelayed(levelUpdateRunnable, 300); // 300ms delay
-            }
+        saveBtn.setOnClickListener(v -> {
+            updateSelectedSubjects();
+            Toast.makeText(this, "Preferences Saved!", Toast.LENGTH_SHORT).show();
+            hideSelectionTray();
         });
     }
 
-    private void updateSubjectChips(int levelIndex) {
-        // Clear existing chips
-        subjects_chip_group.removeAllViews();
+    private void setupLevelPicker() {
+        level_foundation.setOnClickListener(v -> selectLevel("Foundation"));
+        level_diploma.setOnClickListener(v -> selectLevel("Diploma"));
+        level_degree.setOnClickListener(v -> selectLevel("Degree"));
+    }
 
-        // Add new chips for the selected level
-        if (levelIndex >= 0 && levelIndex < levelOptions.size()) {
-            // Get subjects for the selected level from Utils
-            String selectedLevel = levelOptions.get(levelIndex);
-            Map<String, List<String>> subjectsByLevel = Utils.getSubjectsByLevel();
-            List<String> subjects = subjectsByLevel.get(selectedLevel);
+    private void selectLevel(String level) {
+        if (auth.getCurrentUser() != null) {
+            updateLevelUI(level);
+            saveLevelPreference(level);
+            updateSubjectChipsByLevel(level);
+        }
+    }
 
-            if (subjects == null || subjects.isEmpty()) {
-                return; // No subjects for this level
+    private void updateLevelUI(String level) {
+        View indicator = findViewById(R.id.tab_indicator_profile);
+        ViewGroup container = findViewById(R.id.level_selector_container);
+
+        tv_foundation.setTextColor(ContextCompat.getColor(this, R.color.unselectedLevelText));
+        tv_diploma.setTextColor(ContextCompat.getColor(this, R.color.unselectedLevelText));
+        tv_degree.setTextColor(ContextCompat.getColor(this, R.color.unselectedLevelText));
+
+        // Set selected
+        TextView selectedTV = null;
+        if ("Foundation".equals(level))
+            selectedTV = tv_foundation;
+        else if ("Diploma".equals(level))
+            selectedTV = tv_diploma;
+        else if ("Degree".equals(level))
+            selectedTV = tv_degree;
+
+        if (selectedTV != null) {
+            Utils.updateTabIndicator(indicator, selectedTV, container);
+            selectedTV.setTextColor(ContextCompat.getColor(this, R.color.white));
+        }
+    }
+
+    private void updateSubjectChipsByLevel(String level) {
+        // Clear existing views
+        subjects_container.removeAllViews();
+
+        Map<String, List<String>> subjectsByLevel = Utils.getSubjectsByLevel();
+        List<String> subjects = subjectsByLevel.get(level);
+
+        if (subjects == null || subjects.isEmpty())
+            return;
+
+        Set<String> savedSubjects = sharedPreferences.getStringSet("selectedSubjects", new HashSet<>());
+
+        // Group subjects by type
+        Map<String, List<String>> groupedSubjects = new java.util.LinkedHashMap<>();
+        for (String subject : subjects) {
+            String type = Utils.getSubjectType(subject);
+            if (!groupedSubjects.containsKey(type)) {
+                groupedSubjects.put(type, new ArrayList<>());
             }
+            groupedSubjects.get(type).add(subject);
+        }
 
-            Set<String> savedSubjects = sharedPreferences.getStringSet("selectedSubjects", new HashSet<>());
+        // Create groups
+        for (Map.Entry<String, List<String>> entry : groupedSubjects.entrySet()) {
+            String type = entry.getKey();
+            List<String> typeSubjects = entry.getValue();
 
-            for (String subject : subjects) {
+            // Add Header
+            TextView header = new TextView(this);
+            header.setText(type.toUpperCase());
+            header.setTextColor(ContextCompat.getColor(this, R.color.unselectedLevelText));
+            header.setTextSize(12);
+            header.setAllCaps(true);
+            header.setLetterSpacing(0.1f);
+            header.setPadding(0, 32, 0, 16);
+            header.setCompoundDrawablesWithIntrinsicBounds(createDotDrawable(), null, null, null);
+            header.setCompoundDrawablePadding(16);
+            subjects_container.addView(header);
+
+            // Add ChipGroup
+            ChipGroup chipGroup = new ChipGroup(this);
+            chipGroup.setChipSpacing(24);
+
+            for (String subject : typeSubjects) {
                 Chip chip = new Chip(this);
                 chip.setText(subject);
                 chip.setCheckable(true);
                 chip.setCheckedIconVisible(true);
-                chip.setTextColor(ContextCompat.getColor(this, R.color.white));
-                chip.setChipStrokeWidth(2f);
-                chip.setChipStrokeColor(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.chip_border)));
-                chip.setChipBackgroundColor(ColorStateList.valueOf(Utils.chipUnselected(this)));
-                chip.setShapeAppearanceModel(chip.getShapeAppearanceModel().toBuilder().setAllCornerSizes(24f).build());
-                chip.setTextSize(16);
-                chip.setPadding(20, 10, 20, 10);
-                chip.setChipMinHeight(90);
-                chip.setTypeface(ResourcesCompat.getFont(this, R.font.inter18regular));
+                chip.setCheckedIcon(ContextCompat.getDrawable(this, R.drawable.ic_check));
 
-                // Check if this subject was previously selected
-                if (savedSubjects.contains(subject)) {
-                    chip.setChecked(true);
-                    chip.setChipBackgroundColor(ColorStateList.valueOf(Utils.selected(this)));
-                    chip.setChipIconTint(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.white)));
-                }
+                styleChip(chip, savedSubjects.contains(subject));
 
-                // Set listener for this chip
                 chip.setOnCheckedChangeListener((buttonView, isChecked) -> {
                     if (isChecked) {
-                        // User is attempting to check this chip.
-                        // Count how many chips are currently checked.
-                        int selectedCount = 0;
-                        for (int i = 0; i < subjects_chip_group.getChildCount(); i++) {
-                            View v = subjects_chip_group.getChildAt(i);
-                            if (v instanceof Chip && ((Chip) v).isChecked()) {
-                                selectedCount++;
-                            }
-                        }
-
-                        if (selectedCount > MAX_SELECTED_SUBJECTS) {
-                            // The current chip was just checked, making the total > MAX_SELECTED_SUBJECTS.
-                            // Revert its state and show a toast.
-                            chip.setChecked(false); // This will trigger the listener again with isChecked = false.
-                            Toast.makeText(ProfileActivity.this, "You can select max " + MAX_SELECTED_SUBJECTS + " subjects", Toast.LENGTH_SHORT).show();
-                            // Do not update style or call updateSelectedSubjects here;
-                            // the re-triggered event (for unchecking) will handle it.
+                        if (getSelectedCount() > MAX_SELECTED_SUBJECTS) {
+                            chip.setChecked(false);
+                            Toast.makeText(this, "Max " + MAX_SELECTED_SUBJECTS + " subjects allowed",
+                                    Toast.LENGTH_SHORT).show();
                         } else {
-                            // Selection is valid (<= MAX_SELECTED_SUBJECTS). Style as selected.
-                            chip.setChipBackgroundColor(ColorStateList.valueOf(Utils.selected(this)));
-                            chip.setChipIconTint(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.white)));
-                            updateSelectedSubjects(); // Persist the change
+                            styleChip(chip, true);
+                            updateSelectedSubjects();
+                            refreshSelectionTray();
                         }
                     } else {
-                        // Chip is being unchecked. Style as unselected.
-                        chip.setChipBackgroundColor(ColorStateList.valueOf(Utils.chipUnselected(this)));
-                        chip.setTextColor(ContextCompat.getColor(this, R.color.white));
-                        updateSelectedSubjects(); // Persist the change
+                        styleChip(chip, false);
+                        updateSelectedSubjects();
+                        refreshSelectionTray();
                     }
                 });
 
-                subjects_chip_group.addView(chip);
+                chipGroup.addView(chip);
             }
+            subjects_container.addView(chipGroup);
+        }
+        refreshSelectionTray();
+    }
+
+    private Drawable createDotDrawable() {
+        GradientDrawable dot = new GradientDrawable();
+        dot.setShape(GradientDrawable.OVAL);
+        dot.setSize(12, 12);
+        dot.setColor(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.heroCards)));
+        return dot;
+    }
+
+    private void styleChip(Chip chip, boolean isSelected) {
+        float density = getResources().getDisplayMetrics().density;
+        if (isSelected) {
+            chip.setChecked(true);
+            chip.setChipBackgroundColor(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.selectedChip)));
+            chip.setTextColor(ContextCompat.getColor(this, R.color.heroCards));
+            chip.setCheckedIconTint(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.heroCards)));
+            chip.setChipStrokeWidth(0f);
+            chip.setCheckedIconVisible(true);
+        } else {
+            chip.setChecked(false);
+            chip.setChipBackgroundColor(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.unselectedChip)));
+            chip.setTextColor(ContextCompat.getColor(this, R.color.textIcons));
+            chip.setChipStrokeColor(ColorStateList.valueOf(Color.parseColor("#E0E0E0")));
+            chip.setChipStrokeWidth(density * 1.5f);
+            chip.setCheckedIconVisible(false);
+        }
+        chip.setShapeAppearanceModel(
+                chip.getShapeAppearanceModel().toBuilder().setAllCornerSizes(density * 16).build());
+        chip.setTypeface(ResourcesCompat.getFont(this, R.font.inter18regular));
+        chip.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
+        chip.setChipMinHeight(density * 48);
+
+        chip.setChipStartPadding(density * 12);
+        chip.setChipEndPadding(density * 12);
+        chip.setTextStartPadding(density * 8);
+        chip.setTextEndPadding(density * 8);
+    }
+
+    private int getSelectedCount() {
+        int count = 0;
+        for (int i = 0; i < subjects_container.getChildCount(); i++) {
+            View v = subjects_container.getChildAt(i);
+            if (v instanceof ChipGroup) {
+                ChipGroup cg = (ChipGroup) v;
+                for (int j = 0; j < cg.getChildCount(); j++) {
+                    if (((Chip) cg.getChildAt(j)).isChecked())
+                        count++;
+                }
+            }
+        }
+        return count;
+    }
+
+    private void refreshSelectionTray() {
+        selectedChipsContainer.removeAllViews();
+        int count = 0;
+
+        for (int i = 0; i < subjects_container.getChildCount(); i++) {
+            View v = subjects_container.getChildAt(i);
+            if (v instanceof ChipGroup) {
+                ChipGroup cg = (ChipGroup) v;
+                for (int j = 0; j < cg.getChildCount(); j++) {
+                    Chip mainChip = (Chip) cg.getChildAt(j);
+                    if (mainChip.isChecked()) {
+                        count++;
+                        addTrayChip(mainChip.getText().toString(), mainChip);
+                    }
+                }
+            }
+        }
+
+        selectionCount.setText(count + " / " + MAX_SELECTED_SUBJECTS);
+        if (subjectCounterText != null) {
+            subjectCounterText.setText(count + " / " + MAX_SELECTED_SUBJECTS + " SUBJECTS SELECTED");
+        }
+
+        hideSelectionTray();
+    }
+
+    private void addTrayChip(String text, Chip mainChip) {
+        View chipView = getLayoutInflater().inflate(R.layout.tray_chip_item, selectedChipsContainer, false);
+        TextView tv = chipView.findViewById(R.id.chip_text);
+        tv.setText(text);
+        chipView.findViewById(R.id.remove_chip).setOnClickListener(v -> mainChip.setChecked(false));
+        selectedChipsContainer.addView(chipView);
+    }
+
+    private void showSelectionTray() {
+        if (selectionTray.getVisibility() != VISIBLE) {
+            selectionTray.setVisibility(VISIBLE);
+            selectionTray.post(() -> {
+                selectionTray.setTranslationY(selectionTray.getHeight());
+                selectionTray.animate().translationY(0).setDuration(300).start();
+            });
+        }
+    }
+
+    private void hideSelectionTray() {
+        if (selectionTray.getVisibility() == VISIBLE) {
+            selectionTray.animate().translationY(selectionTray.getHeight() + 200).setDuration(300)
+                    .withEndAction(() -> selectionTray.setVisibility(GONE)).start();
         }
     }
 
     private void updateSelectedSubjects() {
         Set<String> selectedSubjects = new HashSet<>();
 
-        // Collect all checked chip texts
-        for (int i = 0; i < subjects_chip_group.getChildCount(); i++) {
-            View view = subjects_chip_group.getChildAt(i);
-            if (view instanceof Chip) {
-                Chip chip = (Chip) view;
-                if (chip.isChecked()) {
-                    selectedSubjects.add(chip.getText().toString());
+        for (int i = 0; i < subjects_container.getChildCount(); i++) {
+            View v = subjects_container.getChildAt(i);
+            if (v instanceof ChipGroup) {
+                ChipGroup cg = (ChipGroup) v;
+                for (int j = 0; j < cg.getChildCount(); j++) {
+                    Chip mainChip = (Chip) cg.getChildAt(j);
+                    if (mainChip.isChecked()) {
+                        selectedSubjects.add(mainChip.getText().toString());
+                    }
                 }
             }
         }
@@ -330,17 +424,18 @@ public class ProfileActivity extends AppCompatActivity {
                     public void onError(@NonNull GetCredentialException e) {
                         runOnUiThread(() -> {
                             if (e instanceof GetCredentialCancellationException) {
-                                Toast.makeText(ProfileActivity.this, "User canceled the login", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ProfileActivity.this, "User canceled the login", Toast.LENGTH_SHORT)
+                                        .show();
                             } else if (e instanceof NoCredentialException) {
                                 Toast.makeText(ProfileActivity.this, "No credentials found", Toast.LENGTH_SHORT).show();
                             } else {
                                 Log.e("Auth", e.getMessage());
-                                Toast.makeText(ProfileActivity.this, "Sign-in failed" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ProfileActivity.this, "Sign-in failed" + e.getMessage(),
+                                        Toast.LENGTH_SHORT).show();
                             }
                         });
                     }
-                }
-        );
+                });
     }
 
     private void handleSignInResponse(GetCredentialResponse response) {
@@ -349,7 +444,8 @@ public class ProfileActivity extends AppCompatActivity {
 
             if (credential.getType().equals(GoogleIdTokenCredential.TYPE_GOOGLE_ID_TOKEN_CREDENTIAL)) {
                 try {
-                    GoogleIdTokenCredential googleIdTokenCredential = GoogleIdTokenCredential.createFrom(credential.getData());
+                    GoogleIdTokenCredential googleIdTokenCredential = GoogleIdTokenCredential
+                            .createFrom(credential.getData());
 
                     // Get the Google ID token and email
                     String idToken = googleIdTokenCredential.getIdToken();
@@ -418,7 +514,8 @@ public class ProfileActivity extends AppCompatActivity {
                 // User is signed in
                 String displayName = user.getDisplayName();
 
-                // Extract actual name by removing roll number (format: "24F1000625 Garvit Sharma")
+                // Extract actual name by removing roll number (format: "24F1000625 Garvit
+                // Sharma")
                 if (displayName != null && displayName.contains(" ")) {
                     // Find the first space which separates roll number from name
                     String actualName = displayName.substring(displayName.indexOf(" ")).trim();
@@ -458,7 +555,9 @@ public class ProfileActivity extends AppCompatActivity {
             }
             logOut.setVisibility(VISIBLE);
             enableSelectionUI();
-            loginPromptTextView.setVisibility(GONE);
+            if (logged_out_container != null) {
+                logged_out_container.setVisibility(GONE);
+            }
             loadSavedPreferences(); // Load preferences only when logged in
             signInButton.setVisibility(GONE);
 
@@ -477,24 +576,24 @@ public class ProfileActivity extends AppCompatActivity {
             logOut.setVisibility(GONE);
 
             disableSelectionUI();
-            showLoginPrompt();
-            subjects_chip_group.removeAllViews(); // Clear subject chips
-            // clearUserPreferences(); // Moved to logout listener and initial check in onCreate
+            if (logged_out_container != null) {
+                logged_out_container.setVisibility(VISIBLE);
+            }
+            subjects_container.removeAllViews();
         }
     }
 
     private void signInAnonymously() {
         auth.signInAnonymously().addOnCompleteListener(this, task -> {
-                    if (task.isSuccessful()) {
-                        Log.d(TAG, "signInAnonymously:success");
-                        Toast.makeText(this, "Tester login successful!", Toast.LENGTH_SHORT).show();
-                        updateUI(auth.getCurrentUser());
-                    } else {
-                        Log.w(TAG, "signInAnonymously:failure", task.getException());
-                        Toast.makeText(this, "Tester login failed!", Toast.LENGTH_SHORT).show();
-                    }
-                }
-        );
+            if (task.isSuccessful()) {
+                Log.d(TAG, "signInAnonymously:success");
+                Toast.makeText(this, "Tester login successful!", Toast.LENGTH_SHORT).show();
+                updateUI(auth.getCurrentUser());
+            } else {
+                Log.w(TAG, "signInAnonymously:failure", task.getException());
+                Toast.makeText(this, "Tester login failed!", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void showSignInError(String errorMessage) {
@@ -502,12 +601,13 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void enableSelectionUI() {
-        subjects_chip_group.setEnabled(true);
-        levelPicker.setEnabled(true);
-        subjects_chip_group.setVisibility(VISIBLE);
-        pickerHolder.setVisibility(VISIBLE);
-        tvDegreeLevels.setVisibility(VISIBLE);
-        tvSubjects.setVisibility(VISIBLE);
+        level_foundation.setEnabled(true);
+        level_diploma.setEnabled(true);
+        level_degree.setEnabled(true);
+        subjects_container.setVisibility(VISIBLE);
+        findViewById(R.id.level_selector_container).setVisibility(VISIBLE);
+        if (subjectCounterText != null)
+            subjectCounterText.setVisibility(VISIBLE);
 
         if (loginPromptTextView != null) {
             loginPromptTextView.setVisibility(GONE);
@@ -515,12 +615,13 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void disableSelectionUI() {
-        subjects_chip_group.setEnabled(false);
-        levelPicker.setEnabled(false);
-        subjects_chip_group.setVisibility(GONE);
-        pickerHolder.setVisibility(GONE);
-        tvDegreeLevels.setVisibility(GONE);
-        tvSubjects.setVisibility(GONE);
+        level_foundation.setEnabled(false);
+        level_diploma.setEnabled(false);
+        level_degree.setEnabled(false);
+        subjects_container.setVisibility(GONE);
+        findViewById(R.id.level_selector_container).setVisibility(GONE);
+        if (subjectCounterText != null)
+            subjectCounterText.setVisibility(GONE);
     }
 
     private void showLoginPrompt() {
@@ -531,18 +632,31 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void loadSavedPreferences() {
-        // Load selected level
-        String savedLevel = sharedPreferences.getString("studyLevel", null);
-        if (savedLevel != null) {
-            int levelIndex = levelOptions.indexOf(savedLevel);
-            if (levelIndex >= 0) {
-                levelPicker.setValue(levelIndex);
-                updateSubjectChips(levelIndex);
+        Set<String> selectedSubjects = sharedPreferences.getStringSet("selectedSubjects", new HashSet<>());
+        String savedLevel = sharedPreferences.getString("studyLevel", "Foundation");
+
+        // If subjects are already selected, find which level they belong to
+        if (!selectedSubjects.isEmpty()) {
+            String detectedLevel = findLevelForSubjects(selectedSubjects);
+            if (detectedLevel != null) {
+                savedLevel = detectedLevel;
             }
-        } else if (!levelOptions.isEmpty()) {
-            // If no level is saved, default to first level and update subjects
-            updateSubjectChips(0);
         }
+
+        updateLevelUI(savedLevel);
+        updateSubjectChipsByLevel(savedLevel);
+    }
+
+    private String findLevelForSubjects(Set<String> selectedSubjects) {
+        Map<String, List<String>> subjectsByLevel = Utils.getSubjectsByLevel();
+        for (String subject : selectedSubjects) {
+            for (Map.Entry<String, List<String>> entry : subjectsByLevel.entrySet()) {
+                if (entry.getValue().contains(subject)) {
+                    return entry.getKey();
+                }
+            }
+        }
+        return null;
     }
 
     private void saveLevelPreference(String level) {
@@ -562,10 +676,8 @@ public class ProfileActivity extends AppCompatActivity {
         editor.remove("studyLevel");
         editor.remove("selectedSubjects");
         editor.apply();
-        // Reset level picker to default if options are available
-        if (!levelOptions.isEmpty()) {
-            levelPicker.setValue(0);
-            updateSubjectChips(0); // Also update chips for the default level
-        }
+
+        updateLevelUI("Foundation");
+        updateSubjectChipsByLevel("Foundation");
     }
 }
