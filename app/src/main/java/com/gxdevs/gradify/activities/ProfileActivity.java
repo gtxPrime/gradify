@@ -532,8 +532,6 @@ public class ProfileActivity extends AppCompatActivity {
                 // User is signed in
                 String displayName = user.getDisplayName();
 
-                // Extract actual name by removing roll number (format: "24F1000625 Garvit
-                // Sharma")
                 if (displayName != null && displayName.contains(" ")) {
                     String actualName = displayName.substring(displayName.indexOf(" ")).trim();
                     userNameTextView.setText(actualName);

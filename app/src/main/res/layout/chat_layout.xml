@@ -16,7 +16,7 @@
         android:layout_marginEnd="15dp"
         android:fontFamily="@font/kanit"
         android:text="@string/welcome_message"
-        android:textColor="@color/white"
+        android:textColor="@color/textIcons"
         android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/layout_chat_suggestions"
         app:layout_constraintEnd_toEndOf="parent"
