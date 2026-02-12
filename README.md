@@ -21,16 +21,6 @@
 
 ---
 
-## 📱 About Gradify
-
-**Gradify** is a comprehensive mobile learning platform designed exclusively for **IIT Madras BS in Data Science** students. From Foundation to Diploma levels, Gradify brings together video lectures, interactive quizzes, formula sheets, AI assistance, and study materials - all in one beautifully designed Android application.
-
-> "The beautiful thing about learning is that no one can take it away from you." - B.B. King
-
-Whether you're tackling Statistics, mastering Python, or diving into Machine Learning, Gradify is your trusted companion throughout your IIT-M journey.
-
----
-
 ## 🌐 Coming Soon: Gradify Website!
 
 <div align="center">
@@ -50,6 +40,14 @@ Whether you're tackling Statistics, mastering Python, or diving into Machine Lea
 > 🎉 **Stay tuned for the launch announcement!**
 
 </div>
+
+## 📱 About Gradify
+
+**Gradify** is a comprehensive mobile learning platform designed exclusively for **IIT Madras BS in Data Science** students. From Foundation to Diploma levels, Gradify brings together video lectures, interactive quizzes, formula sheets, AI assistance, and study materials - all in one beautifully designed Android application.
+
+> "The beautiful thing about learning is that no one can take it away from you." - B.B. King
+
+Whether you're tackling Statistics, mastering Python, or diving into Machine Learning, Gradify is your trusted companion throughout your IIT-M journey.
 
 ---
 
@@ -114,9 +112,9 @@ Whether you're tackling Statistics, mastering Python, or diving into Machine Lea
 
 <div align="center">
 
-| Home Screen   | Lectures      | Quizzes       | AI Assistant  |
-| ------------- | ------------- | ------------- | ------------- |
-| _Coming Soon_ | _Coming Soon_ | _Coming Soon_ | _Coming Soon_ |
+<img src="screenshots/1.png" width="200" /> <img src="screenshots/2.png" width="200" /> <img src="screenshots/3.png" width="200" /> <img src="screenshots/4.png" width="200" />
+<br>
+<img src="screenshots/5.png" width="200" /> <img src="screenshots/6.png" width="200" /> <img src="screenshots/7.png" width="200" /> <img src="screenshots/8.png" width="200" />
 
 </div>
 
@@ -213,31 +211,7 @@ We love contributions! Whether you're adding content, fixing bugs, or improving 
 
 #### 📐 **Updating Grade Calculation Formulas**
 
-The app uses `data/formulas.json` to dynamically generate the UI and calculate grades in the `GradeCalculationFragment`.
-
-**How to update a formula:**
-
-1. Locate the subject in `data/formulas.json`.
-2. **`inputs`**: An array of strings representing the variables (e.g., `"Qz1"`, `"F"`). These will become the labels for the input fields.
-3. **`formula`**: A mathematical string using the inputs.
-   - Use standard operators (`+`, `-`, `*`, `/`).
-   - Use `Math.max(a, b)` or `Math.min(a, b)` for best-of logic.
-   - The app's parser (`mXparser`) will automatically map your `inputs` to variables in this string.
-4. **`type`**: Either `"subject"` or `"project"` (used for categorization).
-
-**Example Entry:**
-
-```json
-"Stats 1": {
-  "type": "subject",
-  "inputs": ["GAA", "Qz1", "Qz2", "F", "Bonus"],
-  "formula": "0.1 * GAA + Math.max(0.6 * F + 0.2 * Math.max(Qz1, Qz2), 0.4 * F + 0.2 * Qz1 + 0.3 * Qz2) + Bonus"
-}
-```
-
-_Note: Ensure variable names in the `formula` string exactly match those in the `inputs` array._
-
-See [Contributing Guide](docs/CONTRIBUTING.md) for detailed instructions.
+The app uses `data/formulas.json` to calculate grades. For detailed instructions on adding or updating formulas, please see our [Contributing Guide](docs/CONTRIBUTING.md#updating-grade-calculation-formulas).
 
 #### 💻 **Code Contribution**
 

@@ -123,8 +123,6 @@ The grade calculation logic is powered by `data/formulas.json`. These formulas a
 }
 ```
 
-For more details on how these are processed, check the **[Grade Calculation & Formulas](../README.md#-%EF%B8%8F-grade-calculation--formulas)** section in the main README.
-
 ---
 
 ## 💻 Contributing Code
